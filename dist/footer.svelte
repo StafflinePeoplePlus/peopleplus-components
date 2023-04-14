@@ -1,0 +1,1 @@
+<footer>Test PeoplePlus Footer</footer>
