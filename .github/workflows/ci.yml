@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - '*'
+  pull_request: ~
+  workflow_dispatch: ~
+
+jobs:
+  build:
+    name: Run Tests
+
+    strategy:
+      matrix:
+        os-version: [ubuntu-latest]
+        node-version: [18.x]
+
+    runs-on: ${{ matrix.os-version }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install Node Packages
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Run Vi tests 🧪
+        run: npm run test:unit
+
+      - name: Install playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Run Playwrite tests 🧪
+        run: npm run test
