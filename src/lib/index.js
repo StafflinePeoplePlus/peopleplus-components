@@ -5,7 +5,7 @@ export { default as Alert } from './Alert.svelte';
 export { default as BackButton } from './BackButton.svelte';
 export { default as Banner } from './Banner.svelte';
 export { default as BottomNav } from './BottomNav.svelte';
-export { default as BreadCrumbs } from './BreadCrumbs.svelte';
+export { default as Breadcrumbs } from './Breadcrumbs.svelte';
 export { default as CancelButton } from './CancelButton.svelte';
 export { default as Card } from './Card.svelte';
 export { default as Chip } from './Chip.svelte';
