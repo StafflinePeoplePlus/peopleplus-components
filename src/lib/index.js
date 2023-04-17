@@ -1,5 +1,4 @@
 // Reexport your entry components here
-export { default as Footer } from './Footer.svelte';
 export { default as Accordion } from './Accordion.svelte';
 export { default as Alert } from './Alert.svelte';
 export { default as BackButton } from './BackButton.svelte';
@@ -12,6 +11,7 @@ export { default as Chip } from './Chip.svelte';
 export { default as CookieBanner } from './CookieBanner.svelte';
 export { default as Drawer } from './Drawer.svelte';
 export { default as Dropdown } from './Dropdown.svelte';
+export { default as Footer } from './Footer.svelte';
 export { default as Jumbotron } from './Jumbotron.svelte';
 export { default as Loader } from './Loader.svelte';
 export { default as Modal } from './Modal.svelte';
