@@ -1,4 +1,3 @@
-<!-- Breadcrumb -->
 <nav
 	class="justify-between px-4 py-3 text-gray-700 border border-gray-200 rounded-lg sm:flex sm:px-5 bg-gray-50 dark:bg-gray-800 dark:border-gray-700"
 	aria-label="Breadcrumb"
