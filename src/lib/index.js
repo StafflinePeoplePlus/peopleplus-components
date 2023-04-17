@@ -1,5 +1,5 @@
 // Reexport your entry components here
-export { default as Footer } from './footer.svelte';
+export { default as Footer } from './Footer.svelte';
 export { default as Accordion } from './Accordion.svelte';
 export { default as Alert } from './Alert.svelte';
 export { default as BackButton } from './BackButton.svelte';
