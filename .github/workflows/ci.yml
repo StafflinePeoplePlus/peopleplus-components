@@ -41,3 +41,14 @@ jobs:
 
       - name: Run Playwrite tests 🧪
         run: npm run test
+
+      - name: Launch app 🧪
+        run: npm run dev &
+
+      - name: Wait for start 🧪
+        run: sleep 30
+
+      - name: OWASP ZAP Full Scan
+        uses: zaproxy/action-full-scan@v0.4.0
+        with:
+          target: 'http://localhost:5173'
