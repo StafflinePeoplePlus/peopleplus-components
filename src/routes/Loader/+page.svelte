@@ -1,0 +1,23 @@
+<script lang="ts">
+	import { Loader } from '../../lib/';
+
+	let code = `
+    <Loader />
+  `;
+</script>
+
+<h1>Loader</h1>
+<main>
+	<pre class="bg-gray-100 p-4 rounded-md">
+    <code>{code}</code>
+  </pre>
+</main>
+
+<Loader />
+
+<style>
+	pre code {
+		font-family: 'Courier New', Courier, monospace;
+		font-size: 14px;
+	}
+</style>
