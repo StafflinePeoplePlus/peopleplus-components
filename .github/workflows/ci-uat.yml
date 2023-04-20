@@ -5,6 +5,12 @@ on:
     branches:
       - uat
 
+env:
+  PRIVATE_AUTH_SECRET: ${{ secrets.PRIVATE_AUTH_SECRET }}
+  PRIVATE_AUTH0_CLIENT_ID: ${{ secrets.PRIVATE_AUTH0_CLIENT_ID }}
+  PRIVATE_AUTH0_CLIENT_SECRET: ${{ secrets.PRIVATE_AUTH0_CLIENT_SECRET }}
+  PRIVATE_AUTH0_CLIENT_ISSUER: ${{ secrets.PRIVATE_AUTH0_CLIENT_ISSUER }}
+
 jobs:
   build:
     name: Run Tests
