@@ -1,11 +1,9 @@
-name: CI
+name: CI UAT Merged
 
 on:
   push:
     branches:
-      - '*'
-  pull_request: ~
-  workflow_dispatch: ~
+      - uat
 
 jobs:
   build:
@@ -19,36 +17,31 @@ jobs:
     runs-on: ${{ matrix.os-version }}
 
     steps:
-      - name: Checkout
+      - name: Checkout 🛒
         uses: actions/checkout@v3
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }} 🛒
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Install Node Packages
+      - name: Install Node Packages 🛒
         run: npm ci
 
-      - name: Lint
+      - name: Lint 🧽
         run: npm run lint
 
-      - name: Run Vi tests 🧪
+      - name: Run Vi tests 🏃
         run: npm run test:unit
 
-      - name: Install playwright browsers
+      - name: Install playwright browsers 🛒
         run: npx playwright install --with-deps
 
-      - name: Run Playwrite tests 🧪
+      - name: Run Playwrite tests 🏃
         run: npm run test
 
-      - name: Launch app 🧪
-        run: npm run dev &
-
-      - name: Wait for start 🧪
-        run: sleep 30
-
-      - name: OWASP ZAP Full Scan
+      - name: OWASP ZAP Full Scan - Cloudflare - UAT 🩻
         uses: zaproxy/action-full-scan@v0.4.0
         with:
-          target: 'http://localhost:5173'
+          issue_title: 'ZAP Full Scan Report - UAT'
+          target: 'https://uat.peopleplus-components.pages.dev'
