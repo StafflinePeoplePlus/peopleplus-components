@@ -5,3 +5,7 @@ updates:
     schedule:
       interval: 'daily'
     target-branch: 'uat'
+    commit-message: 'chore(deps): update all dependencies'
+    single-branch: true
+    allow:
+      - dependency-type: 'all'
