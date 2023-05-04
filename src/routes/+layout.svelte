@@ -23,6 +23,7 @@
 		{ href: '/Modal', label: 'Modal' },
 		{ href: '/NavBar', label: 'NavBar' },
 		{ href: '/PrimaryButton', label: 'PrimaryButton' },
+		{ href: '/Stepper', label: 'Stepper' },
 		{ href: '/TitleDescription', label: 'TitleDescription' },
 		{ href: '/Tooltip', label: 'Tooltip' }
 	];
