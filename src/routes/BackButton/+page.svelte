@@ -1,23 +1,10 @@
 <script lang="ts">
-	import { BackButton } from '../../lib/';
+	import { BackButton } from '$lib';
+	import ExamplePage from '../ExamplePage.svelte';
 
-	let code = `
-    <BackButton />
-  `;
+	const usage = '<BackButton />';
 </script>
 
-<h1>AccorBackButtondion</h1>
-<main>
-	<pre class="bg-gray-100 p-4 rounded-md">
-    <code>{code}</code>
-  </pre>
-</main>
-
-<BackButton />
-
-<style>
-	pre code {
-		font-family: 'Courier New', Courier, monospace;
-		font-size: 14px;
-	}
-</style>
+<ExamplePage title="BackButton" {usage}>
+	<BackButton />
+</ExamplePage>

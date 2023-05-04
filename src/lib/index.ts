@@ -7,6 +7,7 @@ export { default as Breadcrumbs } from './Breadcrumbs.svelte';
 export { default as CancelButton } from './CancelButton.svelte';
 export { default as Card } from './Card.svelte';
 export { default as Chip } from './Chip.svelte';
+export { default as CodeSnippet } from './CodeSnippet.svelte';
 export { default as CookieBanner } from './CookieBanner.svelte';
 export { default as Drawer } from './Drawer.svelte';
 export { default as Dropdown } from './Dropdown.svelte';

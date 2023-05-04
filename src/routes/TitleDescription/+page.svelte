@@ -1,23 +1,16 @@
 <script lang="ts">
-	import { TitleDescription } from '../../lib/';
+	import { TitleDescription } from '$lib';
+	import ExamplePage from '../ExamplePage.svelte';
 
-	let code = `
-    <TitleDescription />
-  `;
+	const usage = `<TitleDescription
+	title="Hello world!"
+	description="Vestibulum posuere libero feugiat tincidunt."
+/>`;
 </script>
 
-<h1>TitleDescription</h1>
-<main>
-	<pre class="bg-gray-100 p-4 rounded-md">
-    <code>{code}</code>
-  </pre>
-</main>
-
-<TitleDescription />
-
-<style>
-	pre code {
-		font-family: 'Courier New', Courier, monospace;
-		font-size: 14px;
-	}
-</style>
+<ExamplePage title="TitleDescription" {usage}>
+	<TitleDescription
+		title="Hello world!"
+		description="Vestibulum posuere libero feugiat tincidunt."
+	/>
+</ExamplePage>
