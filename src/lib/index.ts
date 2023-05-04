@@ -1,4 +1,3 @@
-// Reexport your entry components here
 export { default as Accordion } from './Accordion.svelte';
 export { default as Alert } from './Alert.svelte';
 export { default as BackButton } from './BackButton.svelte';
@@ -8,6 +7,7 @@ export { default as Breadcrumbs } from './Breadcrumbs.svelte';
 export { default as CancelButton } from './CancelButton.svelte';
 export { default as Card } from './Card.svelte';
 export { default as Chip } from './Chip.svelte';
+export { default as CodeSnippet } from './CodeSnippet.svelte';
 export { default as CookieBanner } from './CookieBanner.svelte';
 export { default as Drawer } from './Drawer.svelte';
 export { default as Dropdown } from './Dropdown.svelte';

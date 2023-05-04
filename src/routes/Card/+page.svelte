@@ -1,23 +1,10 @@
 <script lang="ts">
-	import { Card } from '../../lib/';
+	import { Card } from '$lib';
+	import ExamplePage from '../ExamplePage.svelte';
 
-	let code = `
-    <Card />
-  `;
+	const usage = '<Card />';
 </script>
 
-<h1>Accordion</h1>
-<main>
-	<pre class="bg-gray-100 p-4 rounded-md">
-    <code>{code}</code>
-  </pre>
-</main>
-
-<Card />
-
-<style>
-	pre code {
-		font-family: 'Courier New', Courier, monospace;
-		font-size: 14px;
-	}
-</style>
+<ExamplePage title="Card" {usage}>
+	<Card />
+</ExamplePage>

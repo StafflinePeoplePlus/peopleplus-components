@@ -1,23 +1,10 @@
 <script lang="ts">
-	import { Accordion } from '../../lib/';
+	import { Accordion } from '$lib';
+	import ExamplePage from '../ExamplePage.svelte';
 
-	let code = `
-    <Accordion />
-  `;
+	const usage = '<Accordion />';
 </script>
 
-<h1>Accordion</h1>
-<main>
-	<pre class="bg-gray-100 p-4 rounded-md">
-    <code>{code}</code>
-  </pre>
-</main>
-
-<Accordion />
-
-<style>
-	pre code {
-		font-family: 'Courier New', Courier, monospace;
-		font-size: 14px;
-	}
-</style>
+<ExamplePage title="Accordion" {usage}>
+	<Accordion />
+</ExamplePage>

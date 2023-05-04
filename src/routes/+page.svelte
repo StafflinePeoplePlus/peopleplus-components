@@ -1,7 +1,5 @@
-<h1>Welcome to the PeoplePlus library project</h1>
+<svelte:head>
+	<title>PeoplePlus Components</title>
+</svelte:head>
 
-<style lang="postcss">
-	:global(html) {
-		background-color: theme(colors.gray.100);
-	}
-</style>
+<h1>Welcome to the PeoplePlus library project</h1>
