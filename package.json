@@ -1,7 +1,16 @@
 {
 	"name": "pp-svelte-components",
+	"description": "A collection of Svelte components using tailwind.",
 	"license": "MIT",
-	"version": "0.0.6",
+	"version": "0.0.7",
+	"homepage": "https://peopleplus-components.pages.dev",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/StafflinePeoplePlus/peopleplus-components"
+	},
+	"bugs": {
+		"url": "https://github.com/StafflinePeoplePlus/peopleplus-components/issues"
+	},
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
