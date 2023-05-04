@@ -1,23 +1,10 @@
 <script lang="ts">
-	import { Tooltip } from '../../lib/';
+	import { Tooltip } from '$lib';
+	import ExamplePage from '../ExamplePage.svelte';
 
-	let code = `
-    <Tooltip />
-  `;
+	const usage = '<Tooltip />';
 </script>
 
-<h1>Tooltip</h1>
-<main>
-	<pre class="bg-gray-100 p-4 rounded-md">
-    <code>{code}</code>
-  </pre>
-</main>
-
-<Tooltip />
-
-<style>
-	pre code {
-		font-family: 'Courier New', Courier, monospace;
-		font-size: 14px;
-	}
-</style>
+<ExamplePage title="Tooltip" {usage}>
+	<Tooltip />
+</ExamplePage>

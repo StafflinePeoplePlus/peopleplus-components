@@ -1,76 +1,53 @@
 <script>
 	import '../app.css';
-	import { Footer } from '../lib/';
+	import { Footer } from '$lib';
+
+	const routes = [
+		{ href: '/', label: 'Home' },
+		{ href: '/Accordion', label: 'Accordion' },
+		{ href: '/Alert', label: 'Alert' },
+		{ href: '/BackButton', label: 'BackButton' },
+		{ href: '/Banner', label: 'Banner' },
+		{ href: '/BottomNav', label: 'BottomNav' },
+		{ href: '/Breadcrumbs', label: 'Breadcrumbs' },
+		{ href: '/CancelButton', label: 'CancelButton' },
+		{ href: '/Card', label: 'Card' },
+		{ href: '/Chip', label: 'Chip' },
+		{ href: '/CodeSnippet', label: 'CodeSnippet' },
+		{ href: '/CookieBanner', label: 'CookieBanner' },
+		{ href: '/Drawer', label: 'Drawer' },
+		{ href: '/Dropdown', label: 'Dropdown' },
+		{ href: '/Footer', label: 'Footer' },
+		{ href: '/Jumbotron', label: 'Jumbotron' },
+		{ href: '/Loader', label: 'Loader' },
+		{ href: '/Modal', label: 'Modal' },
+		{ href: '/NavBar', label: 'NavBar' },
+		{ href: '/PrimaryButton', label: 'PrimaryButton' },
+		{ href: '/TitleDescription', label: 'TitleDescription' },
+		{ href: '/Tooltip', label: 'Tooltip' }
+	];
 </script>
 
-<nav class="p-6">
-	<ol>
-		<li>
-			<a href="/">Home</a>
-		</li>
-		<li>
-			<a href="/Accordion">Accordion</a>
-		</li>
-		<li>
-			<a href="/Alert">Alert</a>
-		</li>
-		<li>
-			<a href="/BackButton">BackButton</a>
-		</li>
-		<li>
-			<a href="/Banner">Banner</a>
-		</li>
-		<li>
-			<a href="/BottomNav">BottomNav</a>
-		</li>
-		<li>
-			<a href="/Breadcrumbs">Breadcrumbs</a>
-		</li>
-		<li>
-			<a href="/CancelButton">CancelButton</a>
-		</li>
-		<li>
-			<a href="/Card">Card</a>
-		</li>
-		<li>
-			<a href="/Chip">Chip</a>
-		</li>
-		<li>
-			<a href="/CookieBanner">CookieBanner</a>
-		</li>
-		<li>
-			<a href="/Drawer">Drawer</a>
-		</li>
-		<li>
-			<a href="/Dropdown">Dropdown</a>
-		</li>
-		<li>
-			<a href="/Footer">Footer</a>
-		</li>
-		<li>
-			<a href="/Jumbotron">Jumbotron</a>
-		</li>
-		<li>
-			<a href="/Loader">Loader</a>
-		</li>
-		<li>
-			<a href="/Modal">Modal</a>
-		</li>
-		<li>
-			<a href="/NavBar">NavBar</a>
-		</li>
-		<li>
-			<a href="/PrimaryButton">PrimaryButton</a>
-		</li>
-		<li>
-			<a href="/TitleDescription">TitleDescription</a>
-		</li>
-		<li>
-			<a href="/Tooltip">Tooltip</a>
-		</li>
-	</ol>
-</nav>
+<div class="h-full flex flex-col">
+	<div class="flex grow p-6 gap-4 overflow-hidden">
+		<nav class="overflow-y-auto w-60 shrink-0">
+			<ul class="space-y-0.5">
+				{#each routes as route}
+					<li>
+						<a href={route.href} class="block px-2.5 py-1.5 hover:bg-gray-200 rounded">
+							{route.label}
+						</a>
+					</li>
+				{/each}
+			</ul>
+		</nav>
 
-<slot />
+		<div class="grow">
+			<div class="h-full p-6 bg-white border border-gray-200 rounded-md overflow-y-auto">
+				<slot />
+			</div>
+		</div>
+	</div>
 
-<Footer />
+	<Footer class="m-4" />
+</div>

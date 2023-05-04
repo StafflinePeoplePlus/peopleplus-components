@@ -1,23 +1,10 @@
 <script lang="ts">
-	import { NavBar } from '../../lib/';
+	import { NavBar } from '$lib';
+	import ExamplePage from '../ExamplePage.svelte';
 
-	let code = `
-    <NavBar />
-  `;
+	const usage = '<NavBar />';
 </script>
 
-<h1>NavBar</h1>
-<main>
-	<pre class="bg-gray-100 p-4 rounded-md">
-    <code>{code}</code>
-  </pre>
-</main>
-
-<NavBar />
-
-<style>
-	pre code {
-		font-family: 'Courier New', Courier, monospace;
-		font-size: 14px;
-	}
-</style>
+<ExamplePage title="NavBar" {usage}>
+	<NavBar />
+</ExamplePage>

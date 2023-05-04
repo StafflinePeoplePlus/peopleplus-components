@@ -1,23 +1,10 @@
 <script lang="ts">
-	import { Jumbotron } from '../../lib/';
+	import { Jumbotron } from '$lib';
+	import ExamplePage from '../ExamplePage.svelte';
 
-	let code = `
-    <Jumbotron />
-  `;
+	const usage = '<Jumbotron />';
 </script>
 
-<h1>Jumbotron</h1>
-<main>
-	<pre class="bg-gray-100 p-4 rounded-md">
-    <code>{code}</code>
-  </pre>
-</main>
-
-<Jumbotron />
-
-<style>
-	pre code {
-		font-family: 'Courier New', Courier, monospace;
-		font-size: 14px;
-	}
-</style>
+<ExamplePage title="Jumbotron" {usage}>
+	<Jumbotron />
+</ExamplePage>

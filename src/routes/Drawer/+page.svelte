@@ -1,23 +1,18 @@
 <script lang="ts">
-	import { Drawer } from '../../lib/';
+	import { Drawer } from '$lib';
+	import ExamplePage from '../ExamplePage.svelte';
 
-	let code = `
-    <Drawer />
-  `;
+	const usage = '<Drawer bind:open />';
+	let open = false;
 </script>
 
-<h1>Drawer</h1>
-<main>
-	<pre class="bg-gray-100 p-4 rounded-md">
-    <code>{code}</code>
-  </pre>
-</main>
-
-<Drawer />
-
-<style>
-	pre code {
-		font-family: 'Courier New', Courier, monospace;
-		font-size: 14px;
-	}
-</style>
+<ExamplePage title="Drawer" {usage}>
+	<button
+		class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+		type="button"
+		on:click={() => (open = !open)}
+	>
+		Toggle Drawer
+	</button>
+	<Drawer absolute bind:open />
+</ExamplePage>

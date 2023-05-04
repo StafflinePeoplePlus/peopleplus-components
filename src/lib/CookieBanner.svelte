@@ -1,7 +1,12 @@
+<script lang="ts">
+	export let absolute = false;
+</script>
+
 <div
-	id="bottom-banner"
 	tabindex="-1"
-	class="fixed bottom-0 left-0 z-50 flex justify-between w-full p-4 border-t border-gray-200 bg-gray-50 dark:bg-gray-700 dark:border-gray-600"
+	class="{absolute
+		? 'absolute'
+		: 'fixed'} bottom-0 left-0 z-50 flex justify-between w-full p-4 border-t border-gray-200 bg-gray-50 dark:bg-gray-700 dark:border-gray-600"
 >
 	<div class="flex items-center mx-auto">
 		<p class="flex items-center text-sm font-normal text-gray-500 dark:text-gray-400">

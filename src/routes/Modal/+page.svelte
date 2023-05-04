@@ -1,23 +1,19 @@
 <script lang="ts">
-	import { Modal } from '../../lib/';
+	import { Modal } from '$lib';
+	import ExamplePage from '../ExamplePage.svelte';
 
-	let code = `
-    <Modal />
-  `;
+	const usage = '<Modal />';
+	let open = false;
 </script>
 
-<h1>Modal</h1>
-<main>
-	<pre class="bg-gray-100 p-4 rounded-md">
-    <code>{code}</code>
-  </pre>
-</main>
+<ExamplePage title="Modal" {usage}>
+	<button
+		class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+		type="button"
+		on:click={() => (open = !open)}
+	>
+		Toggle Modal
+	</button>
 
-<Modal />
-
-<style>
-	pre code {
-		font-family: 'Courier New', Courier, monospace;
-		font-size: 14px;
-	}
-</style>
+	<Modal bind:open />
+</ExamplePage>
