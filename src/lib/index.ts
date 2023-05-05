@@ -1,4 +1,4 @@
-export { default as Accordion } from './Accordion.svelte';
+export * from './accordion';
 export { default as Alert } from './Alert.svelte';
 export { default as BackButton } from './BackButton.svelte';
 export { default as Banner } from './Banner.svelte';
@@ -20,3 +20,4 @@ export { default as PrimaryButton } from './PrimaryButton.svelte';
 export { default as Stepper } from './Stepper.svelte';
 export { default as TitleDescription } from './TitleDescription.svelte';
 export { default as Tooltip } from './Tooltip.svelte';
+export * from './classes';
