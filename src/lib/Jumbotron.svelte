@@ -10,6 +10,10 @@
 	export let secondaryAction: string | undefined = undefined;
 	export let secondaryActionHref: string | undefined = undefined;
 	export let image: string | undefined = undefined;
+	/**
+	 * Use tighter padding top and bottom
+	 */
+	export let tight = false;
 
 	const dispatch = createEventDispatcher();
 </script>
@@ -19,7 +23,9 @@
 	class="bg-cover bg-center bg-no-repeat bg-gray-700 bg-blend-multiply {className}"
 	style:background-image={image && `url(${JSON.stringify(image)})`}
 >
-	<div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
+	<div
+		class="px-4 mx-auto max-w-screen-xl text-center {tight ? 'py-16 lg:py-24' : 'py-24 lg:py-56'}"
+	>
 		<slot name="start" />
 
 		<h1
