@@ -9,6 +9,7 @@ export default defineConfig({
 			reporter: ['text', 'json', 'html', 'json-summary'],
 			reportsDirectory: './coverage/vitest'
 		},
-		include: ['src/**/*.{test,spec}.{js,ts}']
+		include: ['src/**/*.{test,spec}.{js,ts}'],
+		environment: 'happy-dom'
 	}
 });
