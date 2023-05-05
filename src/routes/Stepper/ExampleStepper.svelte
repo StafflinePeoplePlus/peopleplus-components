@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Stepper from '$lib/Stepper.svelte';
+	import { Stepper } from '$lib';
 
 	const steps = [
 		{ label: 'Step 1' },
