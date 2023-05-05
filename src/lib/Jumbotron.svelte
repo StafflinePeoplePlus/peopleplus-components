@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 
+	let className = '';
+	export { className as class };
 	export let title: string;
 	export let subtitle: string | undefined = undefined;
 	export let primaryAction: string | undefined = undefined;
@@ -14,7 +16,7 @@
 
 <section
 	data-testid="jumbotron-root"
-	class="rounded-lg bg-cover bg-center bg-no-repeat bg-gray-700 bg-blend-multiply"
+	class="bg-cover bg-center bg-no-repeat bg-gray-700 bg-blend-multiply {className}"
 	style:background-image={image && `url(${JSON.stringify(image)})`}
 >
 	<div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
