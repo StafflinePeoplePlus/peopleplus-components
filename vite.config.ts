@@ -10,6 +10,6 @@ export default defineConfig({
 			reportsDirectory: './coverage/vitest'
 		},
 		include: ['src/**/*.{test,spec}.{js,ts}'],
-		environment: 'happy-dom'
+		environment: 'jsdom'
 	}
 });

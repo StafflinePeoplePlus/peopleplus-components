@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { Jumbotron } from '$lib';
 	import ExamplePage from '../ExamplePage.svelte';
-
-	const usage = '<Jumbotron />';
+	import ExampleJumbotron from './ExampleJumbotron.svelte';
+	import usage from './ExampleJumbotron.svelte?raw';
 </script>
 
 <ExamplePage title="Jumbotron" {usage}>
-	<Jumbotron />
+	<ExampleJumbotron />
 </ExamplePage>
