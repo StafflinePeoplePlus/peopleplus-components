@@ -50,5 +50,6 @@
 				</svelte:element>
 			{/if}
 		</div>
+		<slot />
 	</div>
 </section>
