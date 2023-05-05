@@ -1,0 +1,48 @@
+name: Publish on version change
+
+on:
+  push:
+    branches: main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛒
+        uses: actions/checkout@v3
+
+      - name: Use Node.js 18 🛒
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Node Packages 🛒
+        run: npm ci
+
+      - name: Lint 🧽
+        run: npm run lint
+
+      - name: Run Vi tests 🏃
+        run: npm run test:unit
+
+      - name: Install playwright browsers 🛒
+        run: npx playwright install --with-deps
+
+      - name: Run Playwrite tests 🏃
+        run: npm run test
+
+      - name: Publish to npm if needed 🚀
+        id: publish
+        uses: JS-DevTools/npm-publish@v2
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          strategy: upgrade
+
+      - name: Comment version on commit 💬
+        if: ${{ steps.publish.outputs.type }}
+        uses: peter-evans/commit-comment@v2
+        with:
+          body: |
+            This has been published to NPM as [${{steps.publish.outputs.id}}][1] 🚀
+
+            [1]: https://www.npmjs.com/package/${{steps.publish.outputs.name}}/v/${{steps.publish.outputs.version}}
