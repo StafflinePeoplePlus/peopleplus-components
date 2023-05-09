@@ -12,6 +12,7 @@
 		{ href: '/Breadcrumbs', label: 'Breadcrumbs' },
 		{ href: '/CancelButton', label: 'CancelButton' },
 		{ href: '/Card', label: 'Card' },
+		{ href: '/Carousel', label: 'Carousel' },
 		{ href: '/Chip', label: 'Chip' },
 		{ href: '/CodeSnippet', label: 'CodeSnippet' },
 		{ href: '/CookieBanner', label: 'CookieBanner' },
@@ -43,7 +44,7 @@
 			</ul>
 		</nav>
 
-		<div class="grow">
+		<div class="grow overflow-x-hidden">
 			<div class="h-full p-6 bg-white border border-gray-200 rounded-md overflow-y-auto">
 				<slot />
 			</div>
