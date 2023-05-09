@@ -8,3 +8,4 @@
 10109	IGNORE	(Modern Web Application)
 10049	IGNORE	(Storable and Cacheable Content)
 10049	IGNORE	(Storable but Non-Cacheable Content)
+10104	IGNORE	(User Agent Fuzzer)
