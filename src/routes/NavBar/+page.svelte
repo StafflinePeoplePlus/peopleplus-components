@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { NavBar } from '$lib';
 	import ExamplePage from '../ExamplePage.svelte';
-
-	const usage = '<NavBar />';
+	import ExampleNavBar from './ExampleNavBar.svelte';
+	import usage from './ExampleNavBar.svelte?raw';
 </script>
 
 <ExamplePage title="NavBar" {usage}>
-	<NavBar />
+	<ExampleNavBar />
 </ExamplePage>
