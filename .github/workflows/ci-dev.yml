@@ -63,3 +63,20 @@ jobs:
           issue_title: 'ZAP Full Scan Report - Dev'
           target: 'http://localhost:5173'
           rules_file_name: '.zap/rules-dev.tsv'
+
+      - name: OWASP ZAP Full Scan AJAX - Dev 🩻
+        uses: zaproxy/action-full-scan@v0.4.0
+        with:
+          issue_title: 'ZAP Full Scan Report - Dev AJAX'
+          target: 'http://localhost:5173'
+          rules_file_name: '.zap/rules-dev.tsv'
+          cmd_options:
+            #AJAX Spider
+            '-j'
+
+      - name: Accessibility Scan - Dev 🩻
+        uses: a11ywatch/github-actions@v1.14.1
+        with:
+          WEBSITE_URL: '$(hostname):5173'
+          SUBDOMAINS: false
+          LIST: true
