@@ -6,6 +6,7 @@ export { default as BottomNav } from './BottomNav.svelte';
 export { default as Breadcrumbs } from './Breadcrumbs.svelte';
 export { default as CancelButton } from './CancelButton.svelte';
 export { default as Card } from './Card.svelte';
+export { default as Carousel } from './Carousel.svelte';
 export { default as Chip } from './Chip.svelte';
 export { default as CodeSnippet } from './CodeSnippet.svelte';
 export { default as CookieBanner } from './CookieBanner.svelte';
