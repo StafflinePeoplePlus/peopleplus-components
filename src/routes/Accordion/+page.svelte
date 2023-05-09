@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { Accordion } from '$lib';
 	import ExamplePage from '../ExamplePage.svelte';
-
-	const usage = '<Accordion />';
+	import ExampleAccordion from './ExampleAccordion.svelte';
+	import usage from './ExampleAccordion.svelte?raw';
 </script>
 
 <ExamplePage title="Accordion" {usage}>
-	<Accordion />
+	<ExampleAccordion />
 </ExamplePage>
