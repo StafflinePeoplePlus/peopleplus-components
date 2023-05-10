@@ -10,6 +10,9 @@ on:
       - uat
       - main
 
+concurrency:
+  group: dev
+
 env:
   PRIVATE_AUTH_SECRET: ${{ secrets.PRIVATE_AUTH_SECRET }}
   PRIVATE_AUTH0_CLIENT_ID: ${{ secrets.PRIVATE_AUTH0_CLIENT_ID }}
