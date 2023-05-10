@@ -11,7 +11,7 @@ const config = {
 		csp: {
 			mode: 'auto',
 			directives: {
-				'script-src': ['nonce', 'strict-dynamic', "https: 'unsafe-inline'"],
+				'script-src': ['strict-dynamic', "https: 'unsafe-inline'"],
 				'object-src': ['none'],
 				'base-uri': ['none']
 			}

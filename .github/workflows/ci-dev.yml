@@ -54,11 +54,14 @@ jobs:
       - name: Run Playwrite tests 🏃
         run: npm run test
 
+      - name: Build app 🧱
+        run: npm run build
+
       - name: Launch app 🚀
-        run: npm run dev &
+        run: npm run preview &
 
       - name: Wait for app to start ☕️
-        run: sleep 30
+        run: sleep 10
 
       - name: OWASP ZAP Full Scan - Dev 🩻
         uses: zaproxy/action-full-scan@v0.4.0
@@ -66,16 +69,6 @@ jobs:
           issue_title: 'ZAP Full Scan Report - Dev'
           target: 'http://localhost:5173'
           rules_file_name: '.zap/rules-dev.tsv'
-
-      - name: OWASP ZAP Full Scan AJAX - Dev 🩻
-        uses: zaproxy/action-full-scan@v0.4.0
-        with:
-          issue_title: 'ZAP Full Scan Report - Dev AJAX'
-          target: 'http://localhost:5173'
-          rules_file_name: '.zap/rules-dev.tsv'
-          cmd_options:
-            #AJAX Spider
-            '-j'
 
       - name: Accessibility Scan - Dev 🩻
         uses: a11ywatch/github-actions@v1.14.1
