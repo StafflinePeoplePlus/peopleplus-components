@@ -11,7 +11,7 @@ const config = {
 		csp: {
 			mode: 'auto',
 			directives: {
-				'script-src': ['strict-dynamic'],
+				'default-src': ['strict-dynamic'],
 				'object-src': ['none'],
 				'base-uri': ['none']
 			}
