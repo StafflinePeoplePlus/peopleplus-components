@@ -16,6 +16,7 @@
 		{ href: '/Chip', label: 'Chip' },
 		{ href: '/CodeSnippet', label: 'CodeSnippet' },
 		{ href: '/CookieBanner', label: 'CookieBanner' },
+		{ href: '/DarkMode', label: 'DarkMode' },
 		{ href: '/Drawer', label: 'Drawer' },
 		{ href: '/Dropdown', label: 'Dropdown' },
 		{ href: '/Footer', label: 'Footer' },
@@ -45,7 +46,7 @@
 		</nav>
 
 		<div class="grow overflow-x-hidden">
-			<div class="h-full p-6 bg-white border border-gray-200 rounded-md overflow-y-auto">
+			<div class="h-full p-6 border border-gray-200 rounded-md overflow-y-auto">
 				<slot />
 			</div>
 		</div>

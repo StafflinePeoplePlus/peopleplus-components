@@ -19,7 +19,7 @@
 
 <div
 	class={classes(
-		'border-gray-200 bg-white',
+		'border-gray-200',
 		group != null
 			? 'group border-x border-t first:rounded-t-xl last:rounded-b-xl last:border-b'
 			: 'rounded-xl border',
