@@ -37,7 +37,10 @@
 			<ul class="space-y-0.5">
 				{#each routes as route}
 					<li>
-						<a href={route.href} class="block px-2.5 py-1.5 hover:bg-gray-200 rounded">
+						<a
+							href={route.href}
+							class="block px-2.5 py-1.5 hover:bg-gray-200 dark:hover:bg-gray-600 rounded"
+						>
 							{route.label}
 						</a>
 					</li>

@@ -15,16 +15,10 @@
 			setMode(dark);
 		}
 	}
-	function toggle() {
-		setMode(!dark);
-	}
+
 	function setMode(value: boolean) {
 		dark = value;
-		if (dark) {
-			document.documentElement.classList.add('dark');
-		} else {
-			document.documentElement.classList.remove('dark');
-		}
+		document.documentElement.classList.toggle('dark', dark);
 		localStorage.theme = dark ? 'dark' : 'light';
 		if (window.matchMedia(`(prefers-color-scheme: ${localStorage.theme})`).matches) {
 			localStorage.removeItem('theme');
@@ -32,7 +26,7 @@
 	}
 </script>
 
-<svelte:head>
+<!-- <svelte:head>
 	<script>
 		if (
 			localStorage.theme === 'dark' ||
@@ -43,14 +37,14 @@
 			document.documentElement.classList.remove('dark');
 		}
 	</script>
-</svelte:head>
+</svelte:head> -->
 
 <button
 	class="{dark
 		? 'bg-gray-600 focus:ring-gray-400 ring-offset-gray-700'
 		: 'bg-yellow-200 focus:ring-yellow-400 ring-offset-white'} relative btn-ghost inline-flex flex-shrink-0 h-5 w-9 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-500 focus:outline-none focus:ring-2 focus:ring-offset-2 m-4 shadow-xl"
 	class:hidden
-	on:click={toggle}
+	on:click={() => setMode(!dark)}
 >
 	<span class="sr-only">Toggle Dark Mode</span>
 	<span

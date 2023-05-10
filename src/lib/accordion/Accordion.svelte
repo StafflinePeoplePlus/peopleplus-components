@@ -19,7 +19,7 @@
 
 <div
 	class={classes(
-		'border-gray-200',
+		'border-gray-200 bg-gray-100 dark:bg-gray-700',
 		group != null
 			? 'group border-x border-t first:rounded-t-xl last:rounded-b-xl last:border-b'
 			: 'rounded-xl border',
@@ -30,7 +30,7 @@
 		<button
 			type="button"
 			class={classes(
-				'flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 focus:outline-none focus:ring-2 focus:ring-red-400 focus:z-10 relative hover:bg-gray-50',
+				'flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-red-400 focus:z-10 relative hover:bg-gray-50 dark:hover:bg-gray-600',
 				group != null ? 'group-first:rounded-t-xl' : 'rounded-t-xl',
 				!$disclosure.expanded && (group != null ? 'group-last:rounded-b-xl' : 'rounded-b-xl')
 			)}

@@ -1,6 +1,4 @@
 declare namespace App {
-	//interface Locals {}
-
 	interface Platform {
 		//env: {};
 		context: {
@@ -9,7 +7,12 @@ declare namespace App {
 		caches: CacheStorage & { default: Cache };
 	}
 
-	//interface Session {}
+	interface Locals {
+		colorTheme: import('$lib/types').ColorTheme;
+	}
+	interface Session {
+		colorTheme: import('$lib/types').ColorTheme;
+	}
 
 	//interface Stuff {}
 }

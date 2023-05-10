@@ -1,10 +1,9 @@
 <script lang="ts">
-	import DarkMode from '$lib/DarkMode.svelte';
 	import ExamplePage from '../ExamplePage.svelte';
-
-	const usage = '<DarkMode />';
+	import ExampleDarkMode from './ExampleDarkMode.svelte';
+	import usage from './ExampleDarkMode.svelte?raw';
 </script>
 
 <ExamplePage title="Dark Mode" {usage}>
-	<DarkMode />
+	<ExampleDarkMode />
 </ExamplePage>
