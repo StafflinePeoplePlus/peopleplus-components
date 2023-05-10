@@ -4,5 +4,3 @@
   X-Frame-Options: DENY
   Permissions-Policy: *
   Cross-Origin-Resource-Policy: same-origin
-  Access-Control-Allow-Origin: *
-  Access-Control-Allow-Credentials: true
