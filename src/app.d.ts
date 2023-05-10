@@ -7,12 +7,5 @@ declare namespace App {
 		caches: CacheStorage & { default: Cache };
 	}
 
-	interface Locals {
-		colorTheme: import('$lib/types').ColorTheme;
-	}
-	interface Session {
-		colorTheme: import('$lib/types').ColorTheme;
-	}
-
 	//interface Stuff {}
 }
