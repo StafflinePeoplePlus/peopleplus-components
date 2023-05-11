@@ -25,6 +25,7 @@
 		{ href: '/NavBar', label: 'NavBar' },
 		{ href: '/PrimaryButton', label: 'PrimaryButton' },
 		{ href: '/Stepper', label: 'Stepper' },
+		{ href: '/TextInput', label: 'TextInput' },
 		{ href: '/TitleDescription', label: 'TitleDescription' },
 		{ href: '/Tooltip', label: 'Tooltip' }
 	];
