@@ -19,9 +19,10 @@
 	const dispatch = createEventDispatcher();
 </script>
 
-<section data-testid="jumbotron-root" class="relative {className}">
+<section class="relative {className}">
 	{#if image}
 		<img
+			data-testid="background-image"
 			class="absolute inset-0 w-full h-full object-cover"
 			src={image}
 			alt=""
