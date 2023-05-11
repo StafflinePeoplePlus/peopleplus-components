@@ -20,6 +20,7 @@ export { default as Loader } from './Loader.svelte';
 export { default as Modal } from './Modal.svelte';
 export { default as PrimaryButton } from './PrimaryButton.svelte';
 export { default as Stepper } from './Stepper.svelte';
+export { default as TextArea } from './TextArea.svelte';
 export { default as TextInput } from './TextInput.svelte';
 export { default as TitleDescription } from './TitleDescription.svelte';
 export { default as Tooltip } from './Tooltip.svelte';

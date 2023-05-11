@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { TextInput, InputLabel } from '$lib';
+	import { TextArea, InputLabel } from '$lib';
 </script>
 
 <div class="space-y-3">
 	<InputLabel forName="example" label="label" />
-	<TextInput id="example" name="example" />
+	<TextArea name="example" id="example" />
 </div>
