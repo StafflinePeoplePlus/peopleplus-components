@@ -1,5 +1,5 @@
 <script lang="ts">
-	import TextInput from '$lib/TextInput.svelte';
+	import { TextInput } from '$lib';
 </script>
 
-<TextInput name="Example" label="Label" type="text" />
+<TextInput id="id" name="example" label="label" />
