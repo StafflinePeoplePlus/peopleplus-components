@@ -14,6 +14,7 @@ export { default as CookieBanner } from './CookieBanner.svelte';
 export { default as Drawer } from './Drawer.svelte';
 export { default as Dropdown } from './Dropdown.svelte';
 export { default as Footer } from './Footer.svelte';
+export { default as InputLabel } from './InputLabel.svelte';
 export { default as Jumbotron } from './Jumbotron.svelte';
 export { default as Loader } from './Loader.svelte';
 export { default as Modal } from './Modal.svelte';
