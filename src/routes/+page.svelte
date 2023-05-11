@@ -5,7 +5,7 @@
 <div class="prose prose-red prose-sm dark:prose-invert">
 	<h1>PeoplePlus Svelte Components</h1>
 	<p>A collection of high quality, accessible components for Svelte and SvelteKit.</p>
-	<h2>Goals</h2>
+	<h2 id="goals">Goals</h2>
 	<ul>
 		<li>
 			<strong>Accessible by Default</strong>
