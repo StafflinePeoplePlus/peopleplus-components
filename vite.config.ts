@@ -11,5 +11,7 @@ export default defineConfig({
 		},
 		include: ['src/**/*.{test,spec}.{js,ts}'],
 		environment: 'jsdom'
-	}
+	},
+	server: { cors: { origin: false } },
+	preview: { cors: { origin: false } }
 });

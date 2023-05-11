@@ -9,7 +9,6 @@ const headers: Handle = async function handle({ event, resolve }) {
 	response.headers.set('X-Frame-Options', 'DENY');
 	response.headers.set('Permissions-Policy', '*');
 	response.headers.set('Cross-Origin-Resource-Policy', 'same-origin');
-	response.headers.set('Access-Control-Allow-Credentials', 'true');
 	return response;
 };
 
