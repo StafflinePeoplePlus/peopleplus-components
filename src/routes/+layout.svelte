@@ -16,6 +16,7 @@
 		{ href: '/Chip', label: 'Chip' },
 		{ href: '/CodeSnippet', label: 'CodeSnippet' },
 		{ href: '/CookieBanner', label: 'CookieBanner' },
+		{ href: '/DarkMode', label: 'DarkMode' },
 		{ href: '/Drawer', label: 'Drawer' },
 		{ href: '/Dropdown', label: 'Dropdown' },
 		{ href: '/Footer', label: 'Footer' },
@@ -36,7 +37,10 @@
 			<ul class="space-y-0.5">
 				{#each routes as route}
 					<li>
-						<a href={route.href} class="block px-2.5 py-1.5 hover:bg-gray-200 rounded">
+						<a
+							href={route.href}
+							class="block px-2.5 py-1.5 hover:bg-gray-200 dark:hover:bg-gray-600 rounded"
+						>
 							{route.label}
 						</a>
 					</li>
@@ -45,7 +49,7 @@
 		</nav>
 
 		<div class="grow overflow-x-hidden">
-			<div class="h-full p-6 bg-white border border-gray-200 rounded-md overflow-y-auto">
+			<div class="h-full p-6 border border-gray-200 rounded-md overflow-y-auto">
 				<slot />
 			</div>
 		</div>
