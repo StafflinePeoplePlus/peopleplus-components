@@ -6,7 +6,7 @@
 </script>
 
 <svelte:head>
-	<title>{title} &middot; PeoplePlus Components</title>
+	<title>{title} &middot; PeoplePlus Svelte Components</title>
 </svelte:head>
 
 <div class="h-full flex flex-col">
