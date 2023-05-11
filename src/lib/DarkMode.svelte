@@ -2,10 +2,8 @@
 	import { onMount } from 'svelte';
 
 	let dark = false;
-	let hidden = true;
 	onMount(() => {
 		dark = document.documentElement.classList.contains('dark');
-		hidden = false;
 		const matcher = window.matchMedia('(prefers-color-scheme: dark)');
 		matcher.addEventListener('change', handleChange);
 		return () => matcher.removeEventListener('change', handleChange);
@@ -24,7 +22,6 @@
 	class="{dark
 		? 'bg-gray-600 focus:ring-gray-400 ring-offset-gray-700'
 		: 'bg-yellow-200 focus:ring-yellow-400 ring-offset-white'} relative btn-ghost inline-flex flex-shrink-0 h-5 w-9 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-500 focus:outline-none focus:ring-2 focus:ring-offset-2 m-4 shadow-xl"
-	class:hidden
 	on:click={() => setMode(!dark)}
 >
 	<span class="sr-only">Toggle Dark Mode</span>

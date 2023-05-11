@@ -1,5 +1,5 @@
 <script lang="ts">
-	import DarkMode from '$lib/DarkMode.svelte';
+	import { DarkMode } from '$lib';
 </script>
 
 <DarkMode />
