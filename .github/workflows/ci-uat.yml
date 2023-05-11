@@ -5,6 +5,9 @@ on:
     branches:
       - uat
 
+concurrency:
+  group: uat
+
 env:
   PRIVATE_AUTH_SECRET: ${{ secrets.PRIVATE_AUTH_SECRET }}
   PRIVATE_AUTH0_CLIENT_ID: ${{ secrets.PRIVATE_AUTH0_CLIENT_ID }}
