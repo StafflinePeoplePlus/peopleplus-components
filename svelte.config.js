@@ -11,7 +11,8 @@ const config = {
 		csp: {
 			mode: 'auto',
 			directives: {
-				'default-src': ['strict-dynamic'],
+				// Not able to be strict-dynamic due to https://github.com/sveltejs/kit/issues/3558
+				'default-src': ['self'],
 				'object-src': ['none'],
 				'base-uri': ['none']
 			}
