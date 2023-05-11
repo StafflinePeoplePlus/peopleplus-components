@@ -9,9 +9,11 @@ const config = {
 
 	kit: {
 		csp: {
+			mode: 'auto',
 			directives: {
-				'script-src': ['self'],
-				'style-src': ['self']
+				'default-src': ['strict-dynamic'],
+				'object-src': ['none'],
+				'base-uri': ['none']
 			}
 		},
 		// adapter-auto only supports some environments, see https://kit.svelte.dev/docs/adapter-auto for a list.

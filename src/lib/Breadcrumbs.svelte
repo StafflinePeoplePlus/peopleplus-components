@@ -6,7 +6,7 @@
 		<li>
 			<div class="flex items-center">
 				<a
-					href="#"
+					href="/"
 					class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"
 				>
 					test.com
@@ -28,7 +28,7 @@
 					/></svg
 				>
 				<a
-					href="#"
+					href="/"
 					class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"
 					>develop</a
 				>
@@ -91,21 +91,21 @@
 			<ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
 				<li>
 					<a
-						href="#"
+						href="/"
 						class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
 						>New branch</a
 					>
 				</li>
 				<li>
 					<a
-						href="#"
+						href="/"
 						class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
 						>Rename</a
 					>
 				</li>
 				<li>
 					<a
-						href="#"
+						href="/"
 						class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
 						>Delete</a
 					>
