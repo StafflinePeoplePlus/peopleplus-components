@@ -3,7 +3,7 @@
 </script>
 
 <div class="space-y-3">
-	<InputLabel forName="example" label="label" />
-	<TextArea name="example" id="example" />
+	<InputLabel for="example">Label</InputLabel>
+	<TextArea name="example" id="example" rows={4} />
 	<InputError>* This is an error...</InputError>
 </div>

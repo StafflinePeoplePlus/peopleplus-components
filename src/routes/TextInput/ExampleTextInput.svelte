@@ -3,7 +3,7 @@
 </script>
 
 <div class="space-y-3">
-	<InputLabel forName="example" label="label" />
+	<InputLabel for="example">Label</InputLabel>
 	<TextInput id="example" name="example" />
 	<InputError>* This is a error...</InputError>
 </div>
