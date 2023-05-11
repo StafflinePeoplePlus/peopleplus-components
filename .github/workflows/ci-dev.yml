@@ -57,12 +57,22 @@ jobs:
       - name: Wait for app to start ☕️
         run: sleep 10
 
-      - name: OWASP ZAP Full Scan - ${{ github.head_ref || github.ref_name }}  🩻
+      - name: OWASP ZAP Full Scan - ${{ github.head_ref || github.ref_name }} 🩻
         uses: zaproxy/action-full-scan@v0.4.0
         with:
-          issue_title: 'ZAP Full Scan Report - ${{ github.head_ref || github.ref_name }} '
+          issue_title: 'ZAP Full Scan Report - ${{ github.head_ref || github.ref_name }}'
           target: 'http://localhost:4173'
           rules_file_name: '.zap/rules-dev.tsv'
+
+      - name: OWASP ZAP Full Scan - ${{ github.head_ref || github.ref_name }} AJAX 🩻
+        uses: zaproxy/action-full-scan@v0.4.0
+        with:
+          issue_title: 'ZAP Full Scan Report - ${{ github.head_ref || github.ref_name }} AJAX'
+          target: 'http://localhost:4173'
+          rules_file_name: '.zap/rules-dev.tsv'
+          cmd_options:
+            #AJAX Spider
+            '-j'
 
       - name: Accessibility Scan - Dev 🩻
         uses: a11ywatch/github-actions@v1.14.1
