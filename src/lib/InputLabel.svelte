@@ -1,8 +1,7 @@
 <script lang="ts">
 	let forName = '';
-	export { forName as for };
 	let className = '';
-	export { className as class };
+	export { forName as for, className as class };
 </script>
 
 <label
