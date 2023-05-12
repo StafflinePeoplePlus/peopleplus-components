@@ -23,3 +23,4 @@ export { default as Stepper } from './Stepper.svelte';
 export { default as TitleDescription } from './TitleDescription.svelte';
 export { default as Tooltip } from './Tooltip.svelte';
 export * from './classes';
+export * from './media';
