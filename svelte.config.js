@@ -9,9 +9,14 @@ const config = {
 
 	kit: {
 		csp: {
+			mode: 'auto',
 			directives: {
-				'script-src': ['self'],
-				'style-src': ['self']
+				// Not able to be strict-dynamic due to https://github.com/sveltejs/kit/issues/3558
+				'default-src': ['self'],
+				'object-src': ['none'],
+				// Needed to allow swiper carousel icons
+				'font-src': ['data: unsafe-inline'],
+				'base-uri': ['none']
 			}
 		},
 		// adapter-auto only supports some environments, see https://kit.svelte.dev/docs/adapter-auto for a list.

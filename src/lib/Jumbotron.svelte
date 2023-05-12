@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
+	import { classes } from './classes';
 
 	let className = '';
 	export { className as class };
@@ -18,13 +19,22 @@
 	const dispatch = createEventDispatcher();
 </script>
 
-<section
-	data-testid="jumbotron-root"
-	class="bg-cover bg-center bg-no-repeat bg-gray-700 bg-blend-multiply {className}"
-	style:background-image={image && `url(${JSON.stringify(image)})`}
->
+<section class="relative {className}">
+	{#if image}
+		<img
+			data-testid="background-image"
+			class="absolute inset-0 w-full h-full object-cover"
+			src={image}
+			alt=""
+			aria-hidden="true"
+		/>
+	{/if}
 	<div
-		class="px-4 mx-auto max-w-screen-xl text-center {tight ? 'py-16 lg:py-24' : 'py-24 lg:py-56'}"
+		class={classes(
+			'relative px-4 mx-auto max-w-screen-xl text-center z-10',
+			tight ? 'py-16 lg:py-24' : 'py-24 lg:py-56',
+			image ? 'bg-gray-900/75' : 'bg-gray-700'
+		)}
 	>
 		<slot name="start" />
 

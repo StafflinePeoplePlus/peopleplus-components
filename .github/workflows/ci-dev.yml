@@ -13,12 +13,6 @@ on:
 concurrency:
   group: dev
 
-env:
-  PRIVATE_AUTH_SECRET: ${{ secrets.PRIVATE_AUTH_SECRET }}
-  PRIVATE_AUTH0_CLIENT_ID: ${{ secrets.PRIVATE_AUTH0_CLIENT_ID }}
-  PRIVATE_AUTH0_CLIENT_SECRET: ${{ secrets.PRIVATE_AUTH0_CLIENT_SECRET }}
-  PRIVATE_AUTH0_CLIENT_ISSUER: ${{ secrets.PRIVATE_AUTH0_CLIENT_ISSUER }}
-
 jobs:
   build:
     name: Run Tests
@@ -54,24 +48,27 @@ jobs:
       - name: Run Playwrite tests 🏃
         run: npm run test
 
+      - name: Build app 🧱
+        run: npm run build
+
       - name: Launch app 🚀
-        run: npm run dev &
+        run: npm run preview &
 
       - name: Wait for app to start ☕️
-        run: sleep 30
+        run: sleep 10
 
-      - name: OWASP ZAP Full Scan - Dev 🩻
+      - name: OWASP ZAP Full Scan - ${{ github.head_ref || github.ref_name }} 🩻
         uses: zaproxy/action-full-scan@v0.4.0
         with:
-          issue_title: 'ZAP Full Scan Report - Dev'
-          target: 'http://localhost:5173'
+          issue_title: 'ZAP Full Scan Report - ${{ github.head_ref || github.ref_name }}'
+          target: 'http://localhost:4173'
           rules_file_name: '.zap/rules-dev.tsv'
 
-      - name: OWASP ZAP Full Scan AJAX - Dev 🩻
+      - name: OWASP ZAP Full Scan - ${{ github.head_ref || github.ref_name }} AJAX 🩻
         uses: zaproxy/action-full-scan@v0.4.0
         with:
-          issue_title: 'ZAP Full Scan Report - Dev AJAX'
-          target: 'http://localhost:5173'
+          issue_title: 'ZAP Full Scan Report - ${{ github.head_ref || github.ref_name }} AJAX'
+          target: 'http://localhost:4173'
           rules_file_name: '.zap/rules-dev.tsv'
           cmd_options:
             #AJAX Spider
@@ -80,6 +77,6 @@ jobs:
       - name: Accessibility Scan - Dev 🩻
         uses: a11ywatch/github-actions@v1.14.1
         with:
-          WEBSITE_URL: '$(hostname):5173'
+          WEBSITE_URL: '$(hostname):4173'
           SUBDOMAINS: false
           LIST: true
