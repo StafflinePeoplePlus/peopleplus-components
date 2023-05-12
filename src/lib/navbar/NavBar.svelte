@@ -13,7 +13,11 @@
 
 	const popover = createPopover();
 
-	$: popoverPanel = $md ? () => {} : popover.panel;
+	$: popoverPanel = $md
+		? () => {
+				// Do nothing
+		  }
+		: popover.panel;
 	$: showHamburger = $$slots.middle || $$slots.end;
 </script>
 
