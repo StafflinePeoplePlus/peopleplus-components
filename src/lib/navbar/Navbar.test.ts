@@ -5,12 +5,13 @@ import BasicNavbar from './test/BasicNavbar.svelte';
 afterEach(cleanup);
 
 test('should render the navbar', () => {
-	const { getByText } = render(BasicNavbar);
+	const { getByText, getByPlaceholderText } = render(BasicNavbar);
 
 	const title = getByText('PeoplePlus');
 	getByText('Home');
 	const about = getByText('About');
 	getByText('Contact');
+	getByPlaceholderText('Search');
 
 	expect(title.tagName).toBe('A');
 	expect(title.getAttribute('href')).toBe('https://peopleplus.co.uk');
