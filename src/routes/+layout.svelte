@@ -4,33 +4,9 @@
 
 	const routes = [
 		{ href: '/', label: 'Home' },
-		{ href: '/Accordion', label: 'Accordion' },
-		{ href: '/Alert', label: 'Alert' },
-		{ href: '/BackButton', label: 'BackButton' },
-		{ href: '/Banner', label: 'Banner' },
-		{ href: '/BottomNav', label: 'BottomNav' },
-		{ href: '/Breadcrumbs', label: 'Breadcrumbs' },
-		{ href: '/CancelButton', label: 'CancelButton' },
-		{ href: '/Card', label: 'Card' },
-		{ href: '/Carousel', label: 'Carousel' },
-		{ href: '/Chip', label: 'Chip' },
-		{ href: '/CodeSnippet', label: 'CodeSnippet' },
-		{ href: '/CookieBanner', label: 'CookieBanner' },
-		{ href: '/Drawer', label: 'Drawer' },
-		{ href: '/Dropdown', label: 'Dropdown' },
-		{ href: '/Footer', label: 'Footer' },
-		{ href: '/Jumbotron', label: 'Jumbotron' },
-		{ href: '/Loader', label: 'Loader' },
-		{ href: '/Modal', label: 'Modal' },
-		{ href: '/NavBar', label: 'NavBar' },
-		{ href: '/PrimaryButton', label: 'PrimaryButton' },
-		{ href: '/Stepper', label: 'Stepper' },
-		{ href: '/TextArea', label: 'TextArea' },
-		{ href: '/TextInput', label: 'TextInput' },
-		{ href: '/TitleDescription', label: 'TitleDescription' },
-		{ href: '/Tooltip', label: 'Tooltip' },
 		{ href: '/guidelines', label: 'Implementation Guidelines' }
 	];
+
 	const components = [
 		{ name: 'Accordion' },
 		{ name: 'Alert' },

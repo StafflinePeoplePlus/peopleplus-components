@@ -1,3 +1,8 @@
-<span class="font-semibold text-red-700">
+<script lang="ts">
+	let className = '';
+	export { className as class };
+</script>
+
+<span class={className}>
 	<slot />
 </span>
