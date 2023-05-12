@@ -1,18 +1,18 @@
 <script>
-	import { Footer, FooterCopyright, FooterItem } from '$lib';
+	import { Footer, Copyright, ListItem } from '$lib';
 </script>
 
 <Footer>
-	<FooterCopyright slot="start">
+	<Copyright slot="start">
 		&copy; 2023
 		<a href="https://peopleplus.co.uk/" class="hover:underline"> PeoplePlus&trade; </a>. All Rights
 		Reserved.
-	</FooterCopyright>
+	</Copyright>
 
 	<svelte:fragment slot="end">
-		<FooterItem href="/">About</FooterItem>
-		<FooterItem href="/">Privacy Policy</FooterItem>
-		<FooterItem href="/">Licensing</FooterItem>
-		<FooterItem href="/">Contact</FooterItem>
+		<ListItem href="/">About</ListItem>
+		<ListItem href="/">Privacy Policy</ListItem>
+		<ListItem href="/">Licensing</ListItem>
+		<ListItem href="/">Contact</ListItem>
 	</svelte:fragment>
 </Footer>
