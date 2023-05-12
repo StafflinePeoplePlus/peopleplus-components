@@ -1,6 +1,7 @@
 <script>
 	import '../app.css';
 	import { Footer } from '$lib';
+	import ExampleFooter from './Footer/ExampleFooter.svelte';
 
 	const routes = [
 		{ href: '/', label: 'Home' },
@@ -51,5 +52,5 @@
 		</div>
 	</div>
 
-	<Footer class="m-4" />
+	<ExampleFooter />
 </div>

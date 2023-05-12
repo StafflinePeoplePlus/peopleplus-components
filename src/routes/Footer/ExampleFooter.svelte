@@ -3,15 +3,16 @@
 </script>
 
 <Footer>
-	<FooterCopyright>
-		© 2023
-		<a href="https://peopleplus.co.uk/" class="hover:underline"> PeoplePlus™ </a>. All Rights
+	<FooterCopyright slot="start">
+		&copy; 2023
+		<a href="https://peopleplus.co.uk/" class="hover:underline"> PeoplePlus&trade; </a>. All Rights
 		Reserved.
 	</FooterCopyright>
-	<ul>
+
+	<svelte:fragment slot="end">
 		<FooterItem href="/">About</FooterItem>
 		<FooterItem href="/">Privacy Policy</FooterItem>
 		<FooterItem href="/">Licensing</FooterItem>
 		<FooterItem href="/">Contact</FooterItem>
-	</ul>
+	</svelte:fragment>
 </Footer>
