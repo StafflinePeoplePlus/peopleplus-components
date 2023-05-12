@@ -28,6 +28,8 @@
 		{ name: 'NavBar' },
 		{ name: 'PrimaryButton' },
 		{ name: 'Stepper' },
+		{ name: 'TextInput' },
+		{ name: 'TextArea' },
 		{ name: 'TitleDescription' },
 		{ name: 'Tooltip' }
 	];
