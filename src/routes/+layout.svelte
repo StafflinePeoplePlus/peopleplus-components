@@ -4,30 +4,33 @@
 
 	const routes = [
 		{ href: '/', label: 'Home' },
-		{ href: '/Accordion', label: 'Accordion' },
-		{ href: '/Alert', label: 'Alert' },
-		{ href: '/BackButton', label: 'BackButton' },
-		{ href: '/Banner', label: 'Banner' },
-		{ href: '/BottomNav', label: 'BottomNav' },
-		{ href: '/Breadcrumbs', label: 'Breadcrumbs' },
-		{ href: '/CancelButton', label: 'CancelButton' },
-		{ href: '/Card', label: 'Card' },
-		{ href: '/Carousel', label: 'Carousel' },
-		{ href: '/Chip', label: 'Chip' },
-		{ href: '/CodeSnippet', label: 'CodeSnippet' },
-		{ href: '/CookieBanner', label: 'CookieBanner' },
-		{ href: '/DarkMode', label: 'DarkMode' },
-		{ href: '/Drawer', label: 'Drawer' },
-		{ href: '/Dropdown', label: 'Dropdown' },
-		{ href: '/Footer', label: 'Footer' },
-		{ href: '/Jumbotron', label: 'Jumbotron' },
-		{ href: '/Loader', label: 'Loader' },
-		{ href: '/Modal', label: 'Modal' },
-		{ href: '/NavBar', label: 'NavBar' },
-		{ href: '/PrimaryButton', label: 'PrimaryButton' },
-		{ href: '/Stepper', label: 'Stepper' },
-		{ href: '/TitleDescription', label: 'TitleDescription' },
-		{ href: '/Tooltip', label: 'Tooltip' }
+		{ href: '/guidelines', label: 'Implementation Guidelines' }
+	];
+	const components = [
+		{ name: 'Accordion' },
+		{ name: 'Alert' },
+		{ name: 'BackButton' },
+		{ name: 'Banner' },
+		{ name: 'BottomNav' },
+		{ name: 'Breadcrumbs' },
+		{ name: 'CancelButton' },
+		{ name: 'Card' },
+		{ name: 'Carousel' },
+		{ name: 'Chip' },
+		{ name: 'CodeSnippet' },
+		{ name: 'CookieBanner' },
+		{ name: 'DarkMode' },
+		{ name: 'Drawer' },
+		{ name: 'Dropdown' },
+		{ name: 'Footer' },
+		{ name: 'Jumbotron' },
+		{ name: 'Loader' },
+		{ name: 'Modal' },
+		{ name: 'NavBar' },
+		{ name: 'PrimaryButton' },
+		{ name: 'Stepper' },
+		{ name: 'TitleDescription' },
+		{ name: 'Tooltip' }
 	];
 </script>
 
@@ -46,10 +49,28 @@
 					</li>
 				{/each}
 			</ul>
+			<hr class="border-gray-300 dark:border-gray-700 mx-2 my-4" />
+			<h3 class="text-sm font-semibold tracking-tight ml-2.5 mb-2 text-gray-600 dark:text-gray-400">
+				Components
+			</h3>
+			<ul class="space-y-0.5">
+				{#each components as component}
+					<li>
+						<a
+							href="/{component.name}"
+							class="block px-2.5 py-1.5 hover:bg-gray-200 dark:hover:bg-gray-600 rounded"
+						>
+							{component.name}
+						</a>
+					</li>
+				{/each}
+			</ul>
 		</nav>
 
 		<div class="grow overflow-x-hidden">
-			<div class="h-full p-6 border border-gray-200 rounded-md overflow-y-auto">
+			<div
+				class="bg-white dark:bg-gray-800 h-full p-6 border border-gray-200 dark:border-gray-700 rounded-md overflow-y-auto"
+			>
 				<slot />
 			</div>
 		</div>

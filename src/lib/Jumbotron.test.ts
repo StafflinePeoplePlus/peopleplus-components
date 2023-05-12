@@ -4,7 +4,7 @@ import { cleanup, fireEvent, render } from '@testing-library/svelte';
 
 afterEach(cleanup);
 
-const backgroundImage = 'https://flowbite.s3.amazonaws.com/docs/jumbotron/conference.jpg';
+const backgroundImage = '/jumbotron.jpg';
 
 test('should render the with all props', () => {
 	const { getByText, getByTestId } = render(Jumbotron, {
@@ -21,13 +21,13 @@ test('should render the with all props', () => {
 	getByText('This is a subtitle');
 	const primaryAction = getByText('Primary');
 	const secondaryAction = getByText('Secondary');
-	const root = getByTestId('jumbotron-root');
+	const image = getByTestId('background-image');
 
 	expect(primaryAction.tagName).toBe('A');
 	expect(primaryAction.getAttribute('href')).toBe('https://peopleplus.co.uk');
 	expect(secondaryAction.tagName).toBe('A');
 	expect(secondaryAction.getAttribute('href')).toBe('https://learningplus.co.uk');
-	expect(root.style.backgroundImage).toBe(`url(${backgroundImage})`);
+	expect(image.getAttribute('src')).toBe(backgroundImage);
 });
 
 test('should render with minimal props', () => {

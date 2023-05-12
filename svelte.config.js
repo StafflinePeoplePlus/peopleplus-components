@@ -11,8 +11,11 @@ const config = {
 		csp: {
 			mode: 'auto',
 			directives: {
-				'default-src': ['strict-dynamic'],
+				// Not able to be strict-dynamic due to https://github.com/sveltejs/kit/issues/3558
+				'default-src': ['self'],
 				'object-src': ['none'],
+				// Needed to allow swiper carousel icons
+				'font-src': ['data: unsafe-inline'],
 				'base-uri': ['none']
 			}
 		},

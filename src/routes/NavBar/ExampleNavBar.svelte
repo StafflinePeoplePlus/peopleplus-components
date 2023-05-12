@@ -4,11 +4,7 @@
 
 <NavBar>
 	<NavBarTitle>
-		<img
-			src="https://peopleplus.co.uk/theme/peopleplus/assets/img/peopleplus_logo.svg"
-			class="h-8"
-			alt="PeoplePlus Logo"
-		/>
+		<img src="/peopleplus-logo.svg" class="h-8" alt="PeoplePlus Logo" />
 	</NavBarTitle>
 	<NavHamburger />
 	<NavBarNav>
