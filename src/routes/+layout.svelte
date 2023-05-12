@@ -6,6 +6,7 @@
 		{ href: '/', label: 'Home' },
 		{ href: '/guidelines', label: 'Implementation Guidelines' }
 	];
+
 	const components = [
 		{ name: 'Accordion' },
 		{ name: 'Alert' },
@@ -29,6 +30,8 @@
 		{ name: 'NavBar' },
 		{ name: 'PrimaryButton' },
 		{ name: 'Stepper' },
+		{ name: 'TextInput' },
+		{ name: 'TextArea' },
 		{ name: 'TitleDescription' },
 		{ name: 'Tooltip' }
 	];
