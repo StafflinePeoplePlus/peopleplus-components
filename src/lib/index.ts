@@ -27,3 +27,4 @@ export { default as TextInput } from './TextInput.svelte';
 export { default as TitleDescription } from './TitleDescription.svelte';
 export { default as Tooltip } from './Tooltip.svelte';
 export * from './classes';
+export * from './media';

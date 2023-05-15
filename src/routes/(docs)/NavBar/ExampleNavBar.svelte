@@ -1,13 +1,12 @@
 <script>
-	import { NavBar, NavBarNav, NavBarTitle, NavItem, NavHamburger } from '$lib';
+	import { NavBar, NavBarNav, NavItem } from '$lib';
 </script>
 
 <NavBar>
-	<NavBarTitle>
+	<a href="/" slot="start">
 		<img src="/peopleplus-logo.svg" class="h-8" alt="PeoplePlus Logo" />
-	</NavBarTitle>
-	<NavHamburger />
-	<NavBarNav>
+	</a>
+	<NavBarNav slot="end">
 		<NavItem href="#home">Home</NavItem>
 		<NavItem href="#categories">Categories</NavItem>
 		<NavItem href="#about">About</NavItem>
