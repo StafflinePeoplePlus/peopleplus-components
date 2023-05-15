@@ -1,9 +1,11 @@
 <script lang="ts">
-	import { TextInput, InputLabel, InputError } from '$lib';
+	import { TextInput, InputLabel, InputError, InputArea } from '$lib';
 </script>
 
 <div class="space-y-3">
 	<InputLabel for="example">Label</InputLabel>
-	<TextInput id="example" name="example" />
+	<InputArea>
+		<TextInput id="example" name="example" />
+	</InputArea>
 	<InputError>* This is an error...</InputError>
 </div>
