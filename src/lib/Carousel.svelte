@@ -1,84 +1,126 @@
 <script lang="ts">
-	import Swiper, { Navigation } from 'swiper';
-	import 'swiper/css';
-	import 'swiper/css/navigation';
-	import { onMount } from 'svelte';
 	import { BROWSER } from 'esm-env';
+	import { twMerge } from 'tailwind-merge';
 
 	let className = '';
 	export { className as class };
-	/**
-	 * Page to link out to when JavaScript is disabled and the user clicks the next button
-	 */
-	export let viewMoreHref: string | undefined = undefined;
 	type Item = $$Generic;
 	export let items: Item[];
 	export let itemClass = '';
 
-	let carouselEl: HTMLElement | undefined = undefined;
-	let navButtonNext: HTMLElement | undefined = undefined;
-	let navButtonPrev: HTMLElement | undefined = undefined;
+	let dragging = false;
+	let x = 0;
+	let index = 0;
+	$: translation = BROWSER ? `translateX(-${x}px)` : undefined;
 
-	onMount(() => {
-		if (!carouselEl) {
+	// Cached values calculated on drag start
+	let scrollWidth = 0;
+	let clientWidth = 0;
+	let paddingRight = 0;
+	let paddingLeft = 0;
+
+	function clamp(value: number, min: number, max: number): number {
+		return Math.min(Math.max(value, min), max);
+	}
+
+	function clampContainer(value: number): number {
+		return clamp(value, 0, scrollWidth - clientWidth);
+	}
+
+	function updateItemIndex(update: (index: number) => number) {
+		const itemBoundsX = scrollWidth - paddingLeft - paddingRight;
+		const itemWidth = itemBoundsX / items.length;
+		const currentIndex = Math.round(x / itemWidth);
+		index = clamp(update(currentIndex), 0, items.length - 1);
+		x = clampContainer(index * itemWidth);
+	}
+
+	function stopDragging() {
+		if (!dragging) {
 			return;
 		}
 
-		const instance = new Swiper(carouselEl, {
-			modules: [Navigation],
-			slidesPerView: 'auto',
-
-			navigation: {
-				nextEl: navButtonNext,
-				prevEl: navButtonPrev
-			}
-		});
-		return () => {
-			instance.destroy();
-		};
-	});
+		dragging = false;
+		updateItemIndex((index) => index);
+	}
 </script>
 
-<div bind:this={carouselEl} class="relative swiper select-none {className}">
-	<ul class="swiper-wrapper">
-		{#each items as item}
-			<li class="swiper-slide {itemClass}">
-				<slot {item} />
-			</li>
-		{/each}
-	</ul>
-
-	{#if BROWSER}
-		<button bind:this={navButtonPrev} class="swiper-button-prev !text-gray-300 drop-shadow">
-			<span class="sr-only">Previous</span>
-		</button>
-		<button bind:this={navButtonNext} class="swiper-button-next !text-gray-300 drop-shadow">
-			<span class="sr-only">Next</span>
-		</button>
-	{:else if viewMoreHref != null}
-		<a href={viewMoreHref} class="view-more swiper-button-next !text-gray-300 drop-shadow">
-			<span class="sr-only">View More</span>
-		</a>
-	{/if}
-</div>
-
-<style>
-	.view-more {
-		/* When the user has javascript disabled (or it has yet to load), the view more button will
-		be shown to allow the user to still see all items in the carousel, albeit in a different
-		view. We delay the visibility of this for a second so that javascript users don't see an
-		arrow appear briefly then dissapear if there are not enough carousel items to require an
-		arrow  */
-		opacity: 0;
-		animation: fadeIn 150ms 1000ms forwards;
-	}
-
-	@keyframes fadeIn {
-		from {
-			opacity: 0;
+<svelte:window
+	on:pointermove={(evt) => {
+		if (!dragging) {
+			return;
 		}
-		to {
-			opacity: 1;
+
+		x = clampContainer(x - evt.movementX);
+	}}
+	on:pointerup={stopDragging}
+	on:pointercancel={stopDragging}
+/>
+
+<ul
+	class={twMerge(
+		'flex select-none overflow-hidden relative touch-pan-y touch-pinch-zoom',
+		className
+	)}
+	on:pointerdown={(evt) => {
+		if (evt.button != 0) {
+			return;
 		}
-	}
-</style>
+
+		evt.preventDefault();
+		dragging = true;
+
+		scrollWidth = evt.currentTarget.scrollWidth;
+		clientWidth = evt.currentTarget.clientWidth;
+		paddingRight = parseFloat(getComputedStyle(evt.currentTarget).paddingRight);
+		paddingLeft = parseFloat(getComputedStyle(evt.currentTarget).paddingLeft);
+	}}
+>
+	{#each items as item}
+		<li
+			class={twMerge('flex-shrink-0', !dragging && 'transition duration-300', itemClass)}
+			style:transform={translation}
+		>
+			<slot {item} />
+		</li>
+	{/each}
+
+	<div class="absolute inset-0 pointer-events-none flex items-center justify-between">
+		<button
+			type="button"
+			class="pointer-events-auto text-gray-300 drop-shadow disabled:opacity-50"
+			on:click={() => updateItemIndex((index) => index - 1)}
+		>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				viewBox="0 0 24 24"
+				fill="currentColor"
+				class="w-12 h-12"
+			>
+				<path
+					fill-rule="evenodd"
+					d="M7.72 12.53a.75.75 0 010-1.06l7.5-7.5a.75.75 0 111.06 1.06L9.31 12l6.97 6.97a.75.75 0 11-1.06 1.06l-7.5-7.5z"
+					clip-rule="evenodd"
+				/>
+			</svg>
+		</button>
+		<button
+			type="button"
+			class="pointer-events-auto text-gray-300 drop-shadow"
+			on:click={() => updateItemIndex((index) => index + 1)}
+		>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				viewBox="0 0 24 24"
+				fill="currentColor"
+				class="w-12 h-12"
+			>
+				<path
+					fill-rule="evenodd"
+					d="M16.28 11.47a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 01-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 011.06-1.06l7.5 7.5z"
+					clip-rule="evenodd"
+				/>
+			</svg>
+		</button>
+	</div>
+</ul>
