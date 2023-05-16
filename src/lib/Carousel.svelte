@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { BROWSER } from 'esm-env';
 	import { twMerge } from 'tailwind-merge';
+	import throttle from 'just-throttle';
 
 	let className = '';
 	export { className as class };
@@ -9,15 +10,18 @@
 	export let items: Item[];
 	export let itemClass = '';
 
+	const DRAG_THRESHOLD = 10;
 	let containerEl: HTMLElement | undefined = undefined;
 	let dragging = false;
 	let mounted = false;
+	let movement = 0;
 	let x = 0;
 	let maxX = 0;
 	let itemWidth = 0;
 	let totalVisisble = 0;
 	let visibleRange: [number, number] = [0, items.length - 1];
 	$: translation = BROWSER ? `translateX(-${x}px)` : undefined;
+	$: overflows = totalVisisble < items.length;
 
 	function updateCachedValues(el: HTMLElement) {
 		const clientWidth = el.clientWidth;
@@ -71,19 +75,21 @@
 		const currentIndex = x === maxX ? Math.ceil(x / itemWidth) : Math.round(x / itemWidth);
 		const index = clamp(update(currentIndex), 0, items.length - 1);
 		x = Math.round(clamp(index * itemWidth, 0, maxX));
-
-		if (index != visibleRange[0]) {
-			visibleRange = [index, index + totalVisisble - 1];
-		}
+		visibleRange = [index, index + totalVisisble - 1];
 	}
 
-	function stopDragging() {
+	function stopDragging(evt: Event) {
 		if (!dragging) {
 			return;
 		}
 
+		evt.preventDefault();
 		dragging = false;
 		updateItemIndex((index) => index);
+
+		setTimeout(() => {
+			movement = 0;
+		}, 0);
 	}
 
 	function isInRange(range: [number, number], value: number): boolean {
@@ -97,10 +103,18 @@
 			return;
 		}
 
+		movement += Math.abs(evt.movementX);
 		x = clamp(x - evt.movementX, 0, maxX);
 	}}
 	on:pointerup={stopDragging}
 	on:pointercancel={stopDragging}
+	on:resize={throttle(() => {
+		if (!containerEl) {
+			return;
+		}
+		updateCachedValues(containerEl);
+		updateItemIndex((index) => index);
+	}, 300)}
 />
 
 <ul
@@ -111,7 +125,7 @@
 		className
 	)}
 	on:pointerdown={(evt) => {
-		if (evt.button != 0) {
+		if (evt.button != 0 || !overflows) {
 			return;
 		}
 
@@ -126,13 +140,18 @@
 			style:transform={translation}
 			aria-hidden={isInRange(visibleRange, index) ? 'false' : 'true'}
 			aria-label="Item {index + 1}"
+			on:click={(evt) => {
+				if (evt.button === 0 && movement > DRAG_THRESHOLD) {
+					evt.preventDefault();
+				}
+			}}
 		>
 			<slot {item} {dragging} />
 		</li>
 	{/each}
 
-	{#if BROWSER}
-		<div class="absolute inset-0 pointer-events-none flex items-center justify-between">
+	{#if BROWSER && overflows}
+		<div class="absolute inset-0 pointer-events-none flex items-center justify-between z-10">
 			<button
 				type="button"
 				class="pointer-events-auto text-gray-300 drop-shadow disabled:opacity-50"
