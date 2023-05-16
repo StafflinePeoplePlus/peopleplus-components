@@ -11,6 +11,7 @@
 
 	let containerEl: HTMLElement | undefined = undefined;
 	let dragging = false;
+	let mounted = false;
 	let x = 0;
 	let maxX = 0;
 	let itemWidth = 0;
@@ -33,9 +34,20 @@
 		if (!containerEl) {
 			return;
 		}
-
 		updateCachedValues(containerEl);
+
+		// If the user scrolled before the script loaded, restore their position
+		if (containerEl.scrollLeft != 0) {
+			x = containerEl.scrollLeft;
+			containerEl.scrollLeft = 0;
+			updateItemIndex((index) => index);
+		}
+
 		visibleRange = [0, totalVisisble - 1];
+
+		setTimeout(() => {
+			mounted = true;
+		}, 0);
 	});
 
 	function clamp(value: number, min: number, max: number): number {
@@ -82,7 +94,8 @@
 <ul
 	bind:this={containerEl}
 	class={twMerge(
-		'flex select-none overflow-hidden relative touch-pan-y touch-pinch-zoom',
+		'flex select-none relative touch-pan-y touch-pinch-zoom',
+		BROWSER ? 'overflow-x-hidden' : 'overflow-x-auto',
 		className
 	)}
 	on:pointerdown={(evt) => {
@@ -97,7 +110,7 @@
 >
 	{#each items as item, index}
 		<li
-			class={twMerge('flex-shrink-0', !dragging && 'transition duration-300', itemClass)}
+			class={twMerge('flex-shrink-0', !dragging && mounted && 'transition duration-300', itemClass)}
 			style:transform={translation}
 			aria-hidden={isInRange(visibleRange, index) ? 'false' : 'true'}
 			aria-label="Item {index + 1}"
