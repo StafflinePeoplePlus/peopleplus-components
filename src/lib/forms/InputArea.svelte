@@ -20,7 +20,7 @@
 	<slot name="end" />
 </div>
 
-<style>
+<style lang="postcss">
 	div > :global(:first-child) {
 		@apply pl-2.5;
 	}
