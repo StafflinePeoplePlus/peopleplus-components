@@ -10,5 +10,5 @@
 
 <textarea
 	{...$$restProps}
-	class={twMerge('w-full block focus:outline-none py-2.5 bg-transparent', className)}
+	class={twMerge('block w-full bg-transparent py-2.5 focus:outline-none', className)}
 />

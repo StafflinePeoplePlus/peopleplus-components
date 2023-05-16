@@ -7,7 +7,7 @@
 
 <ul
 	class={twMerge(
-		'flex flex-col font-medium md:flex-row md:items-center md:gap-x-4 md:mt-0',
+		'flex flex-col font-medium md:mt-0 md:flex-row md:items-center md:gap-x-4',
 		className
 	)}
 >

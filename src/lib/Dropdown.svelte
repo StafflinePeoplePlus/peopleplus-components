@@ -5,11 +5,11 @@
 <div class="inline-block" on:mouseleave={() => (open = false)}>
 	<button
 		id="dropdownHoverButton"
-		class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+		class="inline-flex items-center rounded-lg bg-blue-700 px-4 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
 		type="button"
 		on:mouseenter={() => (open = true)}
 		>Dropdown hover <svg
-			class="w-4 h-4 ml-2"
+			class="ml-2 h-4 w-4"
 			aria-hidden="true"
 			fill="none"
 			stroke="currentColor"
@@ -26,7 +26,7 @@
 	<!-- Dropdown menu -->
 	<div
 		id="dropdownHover"
-		class="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+		class="z-10 w-44 divide-y divide-gray-100 rounded-lg bg-white shadow dark:bg-gray-700"
 		class:hidden={!open}
 	>
 		<ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownHoverButton">

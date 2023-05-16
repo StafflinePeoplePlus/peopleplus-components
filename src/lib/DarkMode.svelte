@@ -11,20 +11,20 @@
 
 <button
 	class="{dark
-		? 'bg-gray-600 focus:ring-gray-400 ring-offset-gray-700'
-		: 'bg-yellow-200 focus:ring-yellow-400 ring-offset-white'} relative btn-ghost inline-flex flex-shrink-0 h-5 w-9 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-500 focus:outline-none focus:ring-2 focus:ring-offset-2 m-4 shadow-xl"
+		? 'bg-gray-600 ring-offset-gray-700 focus:ring-gray-400'
+		: 'bg-yellow-200 ring-offset-white focus:ring-yellow-400'} btn-ghost relative m-4 inline-flex h-5 w-9 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent shadow-xl transition-colors duration-500 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2"
 	on:click={() => (forceDark = !dark)}
 >
 	<span class="sr-only">Toggle Dark Mode</span>
 	<span
 		class="{dark
 			? 'translate-x-0 bg-gray-300'
-			: 'translate-x-4 bg-white'} pointer-events-none relative inline-block h-4 w-4 rounded-full shadow transform ring-0 transition ease-in-out duration-500"
+			: 'translate-x-4 bg-white'} pointer-events-none relative inline-block h-4 w-4 transform rounded-full shadow ring-0 transition duration-500 ease-in-out"
 	>
 		<span
 			class="{dark
-				? 'opacity-100 ease-in duration-500'
-				: 'opacity-0 ease-out duration-500'} absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
+				? 'opacity-100 duration-500 ease-in'
+				: 'opacity-0 duration-500 ease-out'} absolute inset-0 flex h-full w-full items-center justify-center transition-opacity"
 			aria-hidden="true"
 		>
 			<svg class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
@@ -33,8 +33,8 @@
 		</span>
 		<span
 			class="{dark
-				? 'opacity-0 ease-out duration-500'
-				: 'opacity-100 ease-in duration-500'} absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
+				? 'opacity-0 duration-500 ease-out'
+				: 'opacity-100 duration-500 ease-in'} absolute inset-0 flex h-full w-full items-center justify-center transition-opacity"
 			aria-hidden="true"
 		>
 			<svg class="h-3 w-3 text-yellow-500" viewBox="0 0 20 20" fill="currentColor">

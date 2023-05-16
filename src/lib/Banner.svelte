@@ -6,13 +6,13 @@
 	tabindex="-1"
 	class="{absolute
 		? 'absolute'
-		: 'fixed'} top-0 left-0 z-50 flex justify-between w-full p-4 border-b border-gray-200 bg-gray-50 dark:bg-gray-700 dark:border-gray-600"
+		: 'fixed'} left-0 top-0 z-50 flex w-full justify-between border-b border-gray-200 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-700"
 >
-	<div class="flex items-center mx-auto">
+	<div class="mx-auto flex items-center">
 		<p class="flex items-center text-sm font-normal text-gray-500 dark:text-gray-400">
-			<span class="inline-flex p-1 mr-3 bg-gray-200 rounded-full dark:bg-gray-600">
+			<span class="mr-3 inline-flex rounded-full bg-gray-200 p-1 dark:bg-gray-600">
 				<svg
-					class="w-4 h-4 text-gray-500 dark:text-gray-400"
+					class="h-4 w-4 text-gray-500 dark:text-gray-400"
 					fill="currentColor"
 					viewBox="0 0 20 20"
 					xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +28,7 @@
 				>New brand identity has been launched for the
 				<a
 					href="https://peopleplus.co.uk"
-					class="inline font-medium text-blue-600 underline dark:text-blue-500 underline-offset-2 decoration-600 dark:decoration-500 decoration-solid hover:no-underline"
+					class="decoration-600 dark:decoration-500 inline font-medium text-blue-600 underline decoration-solid underline-offset-2 hover:no-underline dark:text-blue-500"
 				>
 					PeoplePlus
 				</a></span
@@ -39,11 +39,11 @@
 		<button
 			data-dismiss-target="#sticky-banner"
 			type="button"
-			class="flex-shrink-0 inline-flex justify-center items-center text-gray-400 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 dark:hover:bg-gray-600 dark:hover:text-white"
+			class="inline-flex flex-shrink-0 items-center justify-center rounded-lg p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
 		>
 			<svg
 				aria-hidden="true"
-				class="w-4 h-4"
+				class="h-4 w-4"
 				fill="currentColor"
 				viewBox="0 0 20 20"
 				xmlns="http://www.w3.org/2000/svg"

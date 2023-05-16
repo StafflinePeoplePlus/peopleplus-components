@@ -35,23 +35,23 @@
 	];
 </script>
 
-<div class="h-full flex flex-col">
-	<div class="flex grow p-6 gap-4 overflow-hidden">
-		<nav class="overflow-y-auto w-60 shrink-0">
+<div class="flex h-full flex-col">
+	<div class="flex grow gap-4 overflow-hidden p-6">
+		<nav class="w-60 shrink-0 overflow-y-auto">
 			<ul class="space-y-0.5">
 				{#each routes as route}
 					<li>
 						<a
 							href={route.href}
-							class="block px-2.5 py-1.5 hover:bg-gray-200 dark:hover:bg-gray-600 rounded"
+							class="block rounded px-2.5 py-1.5 hover:bg-gray-200 dark:hover:bg-gray-600"
 						>
 							{route.label}
 						</a>
 					</li>
 				{/each}
 			</ul>
-			<hr class="border-gray-300 dark:border-gray-700 mx-2 my-4" />
-			<h3 class="text-sm font-semibold tracking-tight ml-2.5 mb-2 text-gray-600 dark:text-gray-400">
+			<hr class="mx-2 my-4 border-gray-300 dark:border-gray-700" />
+			<h3 class="mb-2 ml-2.5 text-sm font-semibold tracking-tight text-gray-600 dark:text-gray-400">
 				Components
 			</h3>
 			<ul class="space-y-0.5">
@@ -59,7 +59,7 @@
 					<li>
 						<a
 							href="/{component.name}"
-							class="block px-2.5 py-1.5 hover:bg-gray-200 dark:hover:bg-gray-600 rounded"
+							class="block rounded px-2.5 py-1.5 hover:bg-gray-200 dark:hover:bg-gray-600"
 						>
 							{component.name}
 						</a>
@@ -70,7 +70,7 @@
 
 		<div class="grow overflow-x-hidden">
 			<div
-				class="bg-white dark:bg-gray-800 h-full p-6 border border-gray-200 dark:border-gray-700 rounded-md overflow-y-auto"
+				class="h-full overflow-y-auto rounded-md border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800"
 			>
 				<slot />
 			</div>
