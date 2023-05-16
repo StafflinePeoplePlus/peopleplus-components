@@ -124,6 +124,7 @@
 			<button
 				type="button"
 				class="pointer-events-auto text-gray-300 drop-shadow disabled:opacity-50"
+				disabled={visibleRange[0] === 0}
 				on:click={() => updateItemIndex((index) => index - 1)}
 			>
 				<span class="sr-only">Previous Item</span>
@@ -144,6 +145,7 @@
 			<button
 				type="button"
 				class="pointer-events-auto text-gray-300 drop-shadow"
+				disabled={visibleRange[1] === items.length - 1}
 				on:click={() => updateItemIndex((index) => index + 1)}
 			>
 				<span class="sr-only">Next Item</span>
