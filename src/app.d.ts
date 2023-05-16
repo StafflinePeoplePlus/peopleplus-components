@@ -1,11 +1,11 @@
+import type { ExecutionContext, CacheStorage } from '@cloudflare/workers-types/2022-11-30';
+
 declare namespace App {
 	interface Platform {
-		//env: {};
-		context: {
-			waitUntil(promise: Promise<any>): void;
-		};
-		caches: CacheStorage & { default: Cache };
+		env: unknown;
+		context: ExecutionContext;
+		caches: CacheStorage;
 	}
-
-	//interface Stuff {}
 }
+
+export {};
