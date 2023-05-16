@@ -20,13 +20,25 @@
 	$: translation = BROWSER ? `translateX(-${x}px)` : undefined;
 
 	function updateCachedValues(el: HTMLElement) {
-		const scrollWidth = el.scrollWidth;
 		const clientWidth = el.clientWidth;
 		const paddingRight = parseFloat(getComputedStyle(el).paddingRight);
 		const paddingLeft = parseFloat(getComputedStyle(el).paddingLeft);
-		const itemBoundsX = scrollWidth - paddingLeft - paddingRight;
-		maxX = scrollWidth - clientWidth;
-		itemWidth = itemBoundsX / items.length;
+
+		const listItems = el.querySelectorAll('li');
+		if (listItems.length < 2) {
+			let first = listItems[0].getBoundingClientRect();
+			itemWidth = first.width;
+			maxX = Math.max(itemWidth - clientWidth, 0);
+		} else {
+			let first = listItems[0].getBoundingClientRect();
+			let second = listItems[1].getBoundingClientRect();
+			let last = listItems[listItems.length - 1].getBoundingClientRect();
+
+			itemWidth = second.left - first.left;
+			const allItemsWidth = last.right - first.left + paddingLeft + paddingRight;
+			maxX = Math.max(Math.round(allItemsWidth - clientWidth), 0);
+		}
+
 		totalVisisble = Math.max(Math.floor((clientWidth - paddingLeft) / itemWidth), 1);
 	}
 
@@ -55,13 +67,13 @@
 	}
 
 	function updateItemIndex(update: (index: number) => number) {
-		const currentIndex = Math.round(x / itemWidth);
+		x = Math.round(x);
+		const currentIndex = x === maxX ? Math.ceil(x / itemWidth) : Math.round(x / itemWidth);
 		const index = clamp(update(currentIndex), 0, items.length - 1);
-		x = clamp(index * itemWidth, 0, maxX);
+		x = Math.round(clamp(index * itemWidth, 0, maxX));
 
-		const newIndex = Math.round(x / itemWidth);
-		if (newIndex != visibleRange[0]) {
-			visibleRange = [newIndex, newIndex + totalVisisble - 1];
+		if (index != visibleRange[0]) {
+			visibleRange = [index, index + totalVisisble - 1];
 		}
 	}
 
@@ -144,7 +156,7 @@
 			</button>
 			<button
 				type="button"
-				class="pointer-events-auto text-gray-300 drop-shadow"
+				class="pointer-events-auto text-gray-300 drop-shadow disabled:opacity-50"
 				disabled={visibleRange[1] === items.length - 1}
 				on:click={() => updateItemIndex((index) => index + 1)}
 			>
@@ -165,7 +177,7 @@
 			</button>
 		</div>
 
-		<div class="sr-only" aria-live="polite" aria-atomic="true">
+		<div class="sr-only" aria-live="polite" aria-atomic="true" data-testid="liveregion">
 			{#if visibleRange[0] === visibleRange[1]}
 				Item {visibleRange[0] + 1} of {items.length}
 			{:else}
