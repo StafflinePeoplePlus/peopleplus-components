@@ -17,7 +17,7 @@
 		"preview": "vite preview",
 		"package": "svelte-kit sync && svelte-package && publint",
 		"prepublishOnly": "npm run package",
-		"test": "playwright test --project=playwright_tests",
+		"test": "playwright test",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"test:unit": "vitest",
@@ -40,7 +40,6 @@
 	"dependencies": {
 		"esm-env": "^1.0.0",
 		"svelte-headlessui": "^0.0.15",
-		"swiper": "^9.3.0",
 		"tailwind-merge": "^1.12.0"
 	},
 	"peerDependencies": {
