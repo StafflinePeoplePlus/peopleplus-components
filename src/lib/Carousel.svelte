@@ -120,7 +120,7 @@
 <ul
 	bind:this={containerEl}
 	class={twMerge(
-		'flex select-none relative touch-pan-y touch-pinch-zoom',
+		'relative flex touch-pan-y touch-pinch-zoom select-none',
 		BROWSER ? 'overflow-x-hidden' : 'overflow-x-auto',
 		className
 	)}
@@ -151,7 +151,7 @@
 	{/each}
 
 	{#if BROWSER && overflows}
-		<div class="absolute inset-0 pointer-events-none flex items-center justify-between z-10">
+		<div class="pointer-events-none absolute inset-0 z-10 flex items-center justify-between">
 			<button
 				type="button"
 				class="pointer-events-auto text-gray-300 drop-shadow disabled:opacity-50"
@@ -163,7 +163,7 @@
 					xmlns="http://www.w3.org/2000/svg"
 					viewBox="0 0 24 24"
 					fill="currentColor"
-					class="w-12 h-12"
+					class="h-12 w-12"
 					aria-hidden="true"
 				>
 					<path
@@ -184,7 +184,7 @@
 					xmlns="http://www.w3.org/2000/svg"
 					viewBox="0 0 24 24"
 					fill="currentColor"
-					class="w-12 h-12"
+					class="h-12 w-12"
 					aria-hidden="true"
 				>
 					<path

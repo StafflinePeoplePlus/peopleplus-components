@@ -11,7 +11,7 @@
 </script>
 
 <div
-	class="flex flex-wrap items-center w-full p-3 space-x-2 text-sm font-medium text-gray-500 bg-white border border-gray-200 rounded-lg shadow-sm dark:text-gray-400 sm:text-base dark:bg-gray-800 dark:border-gray-700 sm:p-4 sm:space-x-4"
+	class="flex w-full flex-wrap items-center space-x-2 rounded-lg border border-gray-200 bg-white p-3 text-sm font-medium text-gray-500 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 sm:space-x-4 sm:p-4 sm:text-base"
 >
 	{#each steps as step, index}
 		<button
@@ -21,7 +21,7 @@
 			{step.label}
 		</button>
 		{#if index !== steps.length - 1}
-			<span class="ml-3 font-thin text-xl"> &raquo; </span>
+			<span class="ml-3 text-xl font-thin"> &raquo; </span>
 		{/if}
 	{/each}
 </div>
