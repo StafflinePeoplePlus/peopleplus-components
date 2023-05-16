@@ -11,7 +11,7 @@
 <div
 	{...$$restProps}
 	class={twMerge(
-		'flex items-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg transition focus-within:ring-1 focus-within:ring-primary-400 focus-within:border-primary-400 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus-within:ring-primary-400 dark:focus-within:border-primary-400 overflow-clip gap-x-2.5',
+		'flex w-full items-center gap-x-2.5 overflow-clip rounded-lg border border-gray-300 bg-gray-50 text-sm text-gray-900 transition focus-within:border-primary-400 focus-within:ring-1 focus-within:ring-primary-400 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus-within:border-primary-400 dark:focus-within:ring-primary-400',
 		className
 	)}
 >

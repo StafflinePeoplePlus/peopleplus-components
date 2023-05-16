@@ -6,13 +6,13 @@
 	tabindex="-1"
 	class="{absolute
 		? 'absolute'
-		: 'fixed'} bottom-0 left-0 z-50 flex justify-between w-full p-4 border-t border-gray-200 bg-gray-50 dark:bg-gray-700 dark:border-gray-600"
+		: 'fixed'} bottom-0 left-0 z-50 flex w-full justify-between border-t border-gray-200 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-700"
 >
-	<div class="flex items-center mx-auto">
+	<div class="mx-auto flex items-center">
 		<p class="flex items-center text-sm font-normal text-gray-500 dark:text-gray-400">
-			<span class="inline-flex p-1 mr-3 bg-gray-200 rounded-full dark:bg-gray-600">
+			<span class="mr-3 inline-flex rounded-full bg-gray-200 p-1 dark:bg-gray-600">
 				<svg
-					class="w-4 h-4 text-gray-500 dark:text-gray-400"
+					class="h-4 w-4 text-gray-500 dark:text-gray-400"
 					fill="currentColor"
 					viewBox="0 0 20 20"
 					xmlns="http://www.w3.org/2000/svg"

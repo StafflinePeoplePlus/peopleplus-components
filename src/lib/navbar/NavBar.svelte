@@ -23,25 +23,25 @@
 
 <nav
 	class={twMerge(
-		'bg-gray-100 dark:bg-gray-700 flex justify-between items-center flex-wrap mx-auto max-w-screen-xl p-4 gap-x-8 md:gap-y-2 overflow-hidden',
+		'mx-auto flex max-w-screen-xl flex-wrap items-center justify-between gap-x-8 overflow-hidden bg-gray-100 p-4 dark:bg-gray-700 md:gap-y-2',
 		className
 	)}
 >
-	<div class={twMerge('shrink-0 flex items-center w-full md:w-auto', startClass)}>
+	<div class={twMerge('flex w-full shrink-0 items-center md:w-auto', startClass)}>
 		<slot name="start" />
 		{#if showHamburger}
 			<div class="ml-auto md:hidden">
 				<button
 					type="button"
 					class={twMerge(
-						'inline-flex items-center p-2 ml-1 text-sm text-gray-500 dark:text-gray-300 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:hover:bg-gray-600',
+						'ml-1 inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-300 dark:hover:bg-gray-600 md:hidden',
 						hamburgerClass
 					)}
 					use:popover.button
 				>
 					<span class="sr-only">Open main menu</span>
 					<svg
-						class="w-6 h-6"
+						class="h-6 w-6"
 						aria-hidden="true"
 						fill="currentColor"
 						viewBox="0 0 20 20"
@@ -58,7 +58,7 @@
 		{/if}
 	</div>
 	<div
-		class={twMerge('mt-4 w-full md:w-auto md:contents md:mt-0', panelClass)}
+		class={twMerge('mt-4 w-full md:mt-0 md:contents md:w-auto', panelClass)}
 		use:popoverPanel
 		class:hidden={!$popover.expanded}
 	>
