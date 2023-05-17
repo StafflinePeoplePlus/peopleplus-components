@@ -37,6 +37,9 @@ export default defineConfig({
 		include: ['src/**/*.{test,spec}.{js,ts}'],
 		environment: 'jsdom'
 	},
+	build: {
+		sourcemap: !!process.env.VITE_COVERAGE
+	},
 	server: { cors: { origin: false } },
 	preview: { cors: { origin: false }, host: process.env.CI ? '0.0.0.0' : undefined }
 });
