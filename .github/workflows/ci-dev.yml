@@ -48,22 +48,15 @@ jobs:
 
   zap:
     name: ZAP Full Scan
-
-    strategy:
-      matrix:
-        os-version: [ubuntu-latest]
-        node-version: [18.x]
-
-    runs-on: ${{ matrix.os-version }}
-
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛒
         uses: actions/checkout@v3
 
-      - name: Use Node.js ${{ matrix.node-version }} 🛒
+      - name: Use Node.js 18.x 🛒
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 18.x
           cache: 'npm'
 
       - name: Install Node Packages 🛒
@@ -90,22 +83,15 @@ jobs:
 
   a11y:
     name: Accessibility Scan
-
-    strategy:
-      matrix:
-        os-version: [ubuntu-latest]
-        node-version: [18.x]
-
-    runs-on: ${{ matrix.os-version }}
-
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛒
         uses: actions/checkout@v3
 
-      - name: Use Node.js ${{ matrix.node-version }} 🛒
+      - name: Use Node.js 18.x 🛒
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 18.x
           cache: 'npm'
 
       - name: Install Node Packages 🛒
