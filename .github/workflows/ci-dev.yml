@@ -51,7 +51,7 @@ jobs:
           filename: 'coverage/coverage-summary.json'
           prefix: coverage_summary
 
-      - name: Upload test coverage
+      - name: Upload test coverage (lines)
         uses: schneegans/dynamic-badges-action@v1.6.0
         with:
           auth: ${{ secrets.COVERAGE_GIST_SECRET }}
@@ -59,7 +59,37 @@ jobs:
           filename: lines.json
           label: lines
           message: '${{ env.coverage_summary_total_lines_pct }}%'
-          color: ${{ env.coverage_summary_total_lines_pct > 80 && 'green' || env.coverage_summary_total_lines_pct > 50 && 'orange' || 'red' }}
+          color: ${{ env.coverage_summary_total_lines_pct > 80 && 'bright-green' || env.coverage_summary_total_lines_pct > 50 && 'yellow' || 'red' }}
+
+      - name: Upload test coverage (statements)
+        uses: schneegans/dynamic-badges-action@v1.6.0
+        with:
+          auth: ${{ secrets.COVERAGE_GIST_SECRET }}
+          gistID: ${{ vars.COVERAGE_GIST_ID }}
+          filename: statements.json
+          label: statements
+          message: '${{ env.coverage_summary_total_statements_pct }}%'
+          color: ${{ env.coverage_summary_total_statements_pct > 80 && 'bright-green' || env.coverage_summary_total_statements_pct > 50 && 'yellow' || 'red' }}
+
+      - name: Upload test coverage (functions)
+        uses: schneegans/dynamic-badges-action@v1.6.0
+        with:
+          auth: ${{ secrets.COVERAGE_GIST_SECRET }}
+          gistID: ${{ vars.COVERAGE_GIST_ID }}
+          filename: functions.json
+          label: functions
+          message: '${{ env.coverage_summary_total_functions_pct }}%'
+          color: ${{ env.coverage_summary_total_functions_pct > 80 && 'bright-green' || env.coverage_summary_total_functions_pct > 50 && 'yellow' || 'red' }}
+
+      - name: Upload test coverage (branches)
+        uses: schneegans/dynamic-badges-action@v1.6.0
+        with:
+          auth: ${{ secrets.COVERAGE_GIST_SECRET }}
+          gistID: ${{ vars.COVERAGE_GIST_ID }}
+          filename: branches.json
+          label: branches
+          message: '${{ env.coverage_summary_total_branches_pct }}%'
+          color: ${{ env.coverage_summary_total_branches_pct > 80 && 'bright-green' || env.coverage_summary_total_branches_pct > 50 && 'yellow' || 'red' }}
 
   zap:
     name: ZAP Full Scan
