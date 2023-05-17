@@ -103,8 +103,8 @@ jobs:
       - name: Launch app 🚀
         run: npm run preview &
 
-      - name: Wait for app to start ☕️
-        run: sleep 10
+      - name: Install playwright browsers 🛒
+        run: npx playwright install --with-deps
 
       - name: Accessibility scan 🩻
         uses: a11ywatch/github-actions@v1.14.1
