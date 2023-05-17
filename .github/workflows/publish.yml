@@ -4,6 +4,9 @@ on:
   push:
     branches: main
 
+permissions:
+  contents: write
+
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -46,3 +49,15 @@ jobs:
             This has been published to NPM as [${{steps.publish.outputs.id}}][1] 🚀
 
             [1]: https://www.npmjs.com/package/${{steps.publish.outputs.name}}/v/${{steps.publish.outputs.version}}
+
+      - name: Create tag v${{ steps.publish.outputs.version }}
+        if: ${{ steps.publish.outputs.type }}
+        uses: actions/github-script@v5
+        with:
+          script: |
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: 'refs/tags/v${{ steps.publish.outputs.version }}',
+              sha: context.sha
+            })
