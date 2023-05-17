@@ -13,22 +13,21 @@ on:
 concurrency:
   group: dev
 
+env:
+  NODE_VERSION: 18.x
+
 jobs:
   test:
     name: Vitest & Playwright
-    strategy:
-      matrix:
-        os-version: [ubuntu-latest]
-        node-version: [18.x]
-    runs-on: ${{ matrix.os-version }}
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛒
         uses: actions/checkout@v3
 
-      - name: Use Node.js ${{ matrix.node-version }} 🛒
+      - name: Use Node.js ${{ env.NODE_VERSION }} 🛒
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
 
       - name: Install Node Packages 🛒
@@ -53,10 +52,10 @@ jobs:
       - name: Checkout 🛒
         uses: actions/checkout@v3
 
-      - name: Use Node.js 18.x 🛒
+      - name: Use Node.js ${{ env.NODE_VERSION }} 🛒
         uses: actions/setup-node@v3
         with:
-          node-version: 18.x
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
 
       - name: Install Node Packages 🛒
@@ -89,10 +88,10 @@ jobs:
       - name: Checkout 🛒
         uses: actions/checkout@v3
 
-      - name: Use Node.js 18.x 🛒
+      - name: Use Node.js ${{ env.NODE_VERSION }} 🛒
         uses: actions/setup-node@v3
         with:
-          node-version: 18.x
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
 
       - name: Install Node Packages 🛒
