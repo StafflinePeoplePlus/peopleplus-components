@@ -50,7 +50,7 @@ jobs:
         run: |
           npm run merge-coverage
           summary=`cat ./coverage/coverage-summary.json`
-          echo "summary=${summary}" >> $GITHUB_OUTPUT
+          echo "summary='${summary}'" >> $GITHUB_OUTPUT
 
       - name: Upload test coverage
         uses: schneegans/dynamic-badges-action@v1.6.0
@@ -59,9 +59,8 @@ jobs:
           gistID: ${{ vars.COVERAGE_GIST_ID }}
           filename: lines.json
           label: lines
-          message: ${{ fromJson(steps.coverage.outputs.summary).total.lines.pct }}
-          # TODO: figure out how to set this
-          color: orange
+          message: '${{ fromJson(steps.coverage.outputs.summary).total.lines.pct }}%'
+          color: ${{ fromJson(steps.coverage.outputs.summary).total.lines.pct > 80 && 'green' || fromJson(steps.coverage.outputs.summary).total.lines.pct > 50 && 'orange' || 'red' }}
 
   zap:
     name: ZAP Full Scan
