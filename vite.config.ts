@@ -1,6 +1,7 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import type { Connect } from 'vite';
 import { defineConfig } from 'vitest/config';
+import istanbul from 'vite-plugin-istanbul';
 
 const configureServer = (server: { middlewares: Connect.Server }) => {
 	server.middlewares.use((_req, res, next) => {
@@ -18,7 +19,14 @@ const configureServer = (server: { middlewares: Connect.Server }) => {
 export default defineConfig({
 	plugins: [
 		sveltekit(),
-		{ name: 'headers', configureServer, configurePreviewServer: configureServer }
+		{ name: 'headers', configureServer, configurePreviewServer: configureServer },
+		istanbul({
+			include: 'src/*',
+			extension: ['.js', '.ts', '.svelte'],
+			forceBuildInstrument: true,
+			// checkProd: false
+			requireEnv: true
+		})
 	],
 	test: {
 		coverage: {

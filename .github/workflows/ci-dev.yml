@@ -37,13 +37,31 @@ jobs:
         run: npm run lint
 
       - name: Run Vi tests 🏃
-        run: npm run test:unit
+        run: npm run test:unit-coverage
 
       - name: Install playwright browsers 🛒
         run: npx playwright install --with-deps
 
       - name: Run Playwrite tests 🏃
-        run: npm run test
+        run: npm run test-coverage
+
+      - name: Process test coverage
+        id: coverage
+        run: |
+          npm run merge-coverage
+          summary=`cat ./coverage/coverage-summary.json`
+          echo "summary=${summary}" >> $GITHUB_OUTPUT
+
+      - name: Upload test coverage
+        uses: schneegans/dynamic-badges-action@v1.6.0
+        with:
+          auth: ${{ secrets.COVERAGE_GIST_SECRET }}
+          gistID: ${{ vars.COVERAGE_GIST_ID }}
+          filename: lines.json
+          label: lines
+          message: ${{ fromJson(steps.coverage.outputs.summary).total.lines.pct }}
+          # TODO: figure out how to set this
+          color: orange
 
   zap:
     name: ZAP Full Scan
