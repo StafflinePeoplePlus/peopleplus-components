@@ -14,16 +14,13 @@ concurrency:
   group: dev
 
 jobs:
-  build:
-    name: Run Tests
-
+  test:
+    name: Vitest & Playwright
     strategy:
       matrix:
         os-version: [ubuntu-latest]
         node-version: [18.x]
-
     runs-on: ${{ matrix.os-version }}
-
     steps:
       - name: Checkout 🛒
         uses: actions/checkout@v3
@@ -32,6 +29,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+          cache: 'npm'
 
       - name: Install Node Packages 🛒
         run: npm ci
@@ -48,6 +46,29 @@ jobs:
       - name: Run Playwrite tests 🏃
         run: npm run test
 
+  zap:
+    name: ZAP Full Scan
+
+    strategy:
+      matrix:
+        os-version: [ubuntu-latest]
+        node-version: [18.x]
+
+    runs-on: ${{ matrix.os-version }}
+
+    steps:
+      - name: Checkout 🛒
+        uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }} 🛒
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install Node Packages 🛒
+        run: npm ci
+
       - name: Build app 🧱
         run: npm run build
 
@@ -63,20 +84,47 @@ jobs:
           issue_title: 'ZAP Full Scan Report - ${{ github.head_ref || github.ref_name }}'
           target: 'http://localhost:4173'
           rules_file_name: '.zap/rules-dev.tsv'
-
-      - name: OWASP ZAP Full Scan - ${{ github.head_ref || github.ref_name }} AJAX 🩻
-        uses: zaproxy/action-full-scan@v0.4.0
-        with:
-          issue_title: 'ZAP Full Scan Report - ${{ github.head_ref || github.ref_name }} AJAX'
-          target: 'http://localhost:4173'
-          rules_file_name: '.zap/rules-dev.tsv'
           cmd_options:
             #AJAX Spider
             '-j'
 
-      - name: Accessibility Scan - Dev 🩻
+  a11y:
+    name: Accessibility Scan
+
+    strategy:
+      matrix:
+        os-version: [ubuntu-latest]
+        node-version: [18.x]
+
+    runs-on: ${{ matrix.os-version }}
+
+    steps:
+      - name: Checkout 🛒
+        uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }} 🛒
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install Node Packages 🛒
+        run: npm ci
+
+      - name: Build app 🧱
+        run: npm run build
+
+      - name: Launch app 🚀
+        run: npm run preview &
+
+      - name: Wait for app to start ☕️
+        run: sleep 10
+
+      - name: Accessibility scan 🩻
         uses: a11ywatch/github-actions@v1.14.1
         with:
           WEBSITE_URL: '$(hostname):4173'
           SUBDOMAINS: false
           LIST: true
+          TLD: false
+          SITE_WIDE: true
