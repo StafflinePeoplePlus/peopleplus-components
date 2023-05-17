@@ -114,3 +114,4 @@ jobs:
           LIST: true
           TLD: false
           SITE_WIDE: true
+          UPGRADE: true
