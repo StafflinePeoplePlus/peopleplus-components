@@ -42,15 +42,14 @@ jobs:
       - name: Run Playwrite tests 🏃
         run: npm run test-coverage
 
-      - name: Process test coverage
-        id: coverage
-        run: |
-          npm run merge-coverage
-          summary=`cat ./coverage/coverage-summary.json`
-          # strip newlines
-          content="${content//$'\n'/'%0A'}"
-          content="${content//$'\r'/'%0D'}"
-          echo "summary=${summary}" >> $GITHUB_OUTPUT
+      - name: Merge coverage reports
+        run: npm run merge-coverage
+
+      - name: Extract coverage summary
+        uses: antifree/json-to-variables@v1.0.1
+        with:
+          filename: 'coverage/coverage-summary.json'
+          prefix: coverage_summary
 
       - name: Upload test coverage
         uses: schneegans/dynamic-badges-action@v1.6.0
@@ -59,8 +58,8 @@ jobs:
           gistID: ${{ vars.COVERAGE_GIST_ID }}
           filename: lines.json
           label: lines
-          message: '${{ fromJson(steps.coverage.outputs.summary).total.lines.pct }}%'
-          color: ${{ fromJson(steps.coverage.outputs.summary).total.lines.pct > 80 && 'green' || fromJson(steps.coverage.outputs.summary).total.lines.pct > 50 && 'orange' || 'red' }}
+          message: '${{ env.coverage_summary_total_lines_pct }}%'
+          color: ${{ env.coverage_summary_total_lines_pct > 80 && 'green' || env.coverage_summary_total_lines_pct > 50 && 'orange' || 'red' }}
 
   zap:
     name: ZAP Full Scan
