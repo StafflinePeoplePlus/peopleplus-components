@@ -76,7 +76,7 @@ jobs:
         with:
           issue_title: 'ZAP Full Scan Report - ${{ github.head_ref || github.ref_name }}'
           target: 'http://localhost:4173'
-          rules_file_name: '.zap/rules-dev.tsv'
+          rules_file_name: '.zap/rules.tsv'
           cmd_options:
             #AJAX Spider
             '-j'

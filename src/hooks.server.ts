@@ -12,6 +12,7 @@ const headers: Handle = async function handle({ event, resolve }) {
 		'Permissions-Policy',
 		'camera=() display-capture=() fullscreen=() geolocation=() microphone=() interest-cohort=()'
 	);
+	response.headers.delete('access-control-allow-origin');
 	return response;
 };
 

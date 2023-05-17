@@ -48,14 +48,14 @@ jobs:
         with:
           issue_title: 'ZAP Full Scan Report - UAT'
           target: ${{ vars.UAT_URL }}
-          rules_file_name: '.zap/rules-uat.tsv'
+          rules_file_name: '.zap/rules.tsv'
 
       - name: OWASP ZAP Full Scan AJAX - Cloudflare - UAT 🩻
         uses: zaproxy/action-full-scan@v0.4.0
         with:
           issue_title: 'ZAP Full Scan Report - UAT AJAX'
           target: ${{ vars.UAT_URL }}
-          rules_file_name: '.zap/rules-uat.tsv'
+          rules_file_name: '.zap/rules.tsv'
           cmd_options:
             #AJAX Spider
             '-j'
