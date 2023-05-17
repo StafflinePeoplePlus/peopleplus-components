@@ -1,8 +1,25 @@
 import { sveltekit } from '@sveltejs/kit/vite';
+import type { Connect } from 'vite';
 import { defineConfig } from 'vitest/config';
 
+const configureServer = (server: { middlewares: Connect.Server }) => {
+	server.middlewares.use((_req, res, next) => {
+		res.setHeader('X-Content-Type-Options', 'nosniff');
+		res.setHeader('X-Frame-Options', 'DENY');
+		res.setHeader('Cross-Origin-Resource-Policy', 'same-origin');
+		res.setHeader(
+			'Permissions-Policy',
+			'camera=() display-capture=() fullscreen=() geolocation=() microphone=() interest-cohort=()'
+		);
+		next();
+	});
+};
+
 export default defineConfig({
-	plugins: [sveltekit()],
+	plugins: [
+		sveltekit(),
+		{ name: 'headers', configureServer, configurePreviewServer: configureServer }
+	],
 	test: {
 		coverage: {
 			provider: 'istanbul',
@@ -13,5 +30,5 @@ export default defineConfig({
 		environment: 'jsdom'
 	},
 	server: { cors: { origin: false } },
-	preview: { cors: { origin: false } }
+	preview: { cors: { origin: false }, host: process.env.CI ? '0.0.0.0' : undefined }
 });
