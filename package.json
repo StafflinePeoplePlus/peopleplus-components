@@ -18,13 +18,14 @@
 		"package": "svelte-kit sync && svelte-package && publint",
 		"prepublishOnly": "npm run package",
 		"test": "playwright test",
+		"test-coverage": "VITE_COVERAGE=true nyc --instrument=false playwright test",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"test:unit": "vitest",
 		"test:unit-coverage": "vitest run --coverage",
-		"make-badges": "istanbul-badges-readme --coverageDir='./coverage/vitest'",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
-		"format": "prettier --plugin-search-dir . --write ."
+		"format": "prettier --plugin-search-dir . --write .",
+		"merge-coverage": "istanbul report -v --include='coverage/**/coverage-final.json' json-summary"
 	},
 	"exports": {
 		".": {
@@ -49,8 +50,7 @@
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20230511.0",
 		"@playwright/test": "^1.33.0",
-		"@sveltejs/adapter-auto": "^2.0.1",
-		"@sveltejs/adapter-cloudflare": "^2.2.2",
+		"@sveltejs/adapter-cloudflare": "2.2.2",
 		"@sveltejs/kit": "^1.15.10",
 		"@sveltejs/package": "^2.0.0",
 		"@tailwindcss/typography": "^0.5.9",
@@ -62,8 +62,10 @@
 		"eslint": "^8.39.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-svelte3": "^4.0.0",
-		"istanbul-badges-readme": "^1.8.5",
+		"istanbul": "^0.4.5",
 		"jsdom": "^22.0.0",
+		"nyc": "^15.1.0",
+		"playwright-test-coverage": "^1.2.12",
 		"postcss": "^8.4.21",
 		"prettier": "^2.8.8",
 		"prettier-plugin-svelte": "^2.8.1",
@@ -75,6 +77,7 @@
 		"tslib": "^2.4.1",
 		"typescript": "^5.0.0",
 		"vite": "^4.3.4",
+		"vite-plugin-istanbul": "^4.0.1",
 		"vitest": "^0.31.0"
 	},
 	"svelte": "./dist/index.js",

@@ -7,12 +7,12 @@
 	<a href="/" slot="start">
 		<img src="/peopleplus-logo.svg" class="h-8" alt="PeoplePlus Logo" />
 	</a>
-	<form slot="middle">
+	<div slot="middle">
 		<InputArea>
 			<div slot="start"><SearchIcon /></div>
 			<TextInput name="query" placeholder="Search" />
 		</InputArea>
-	</form>
+	</div>
 	<NavBarNav slot="end">
 		<NavItem href="#home">Home</NavItem>
 		<NavItem href="#categories">Categories</NavItem>

@@ -8,6 +8,11 @@ const headers: Handle = async function handle({ event, resolve }) {
 	response.headers.set('X-Content-Type-Options', 'nosniff');
 	response.headers.set('X-Frame-Options', 'DENY');
 	response.headers.set('Cross-Origin-Resource-Policy', 'same-origin');
+	response.headers.set(
+		'Permissions-Policy',
+		'camera=(), display-capture=(), fullscreen=(), geolocation=(), microphone=()'
+	);
+	response.headers.delete('access-control-allow-origin');
 	return response;
 };
 

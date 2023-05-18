@@ -1,4 +1,5 @@
-import { Locator, expect, test } from '@playwright/test';
+import type { Locator } from '@playwright/test';
+import { expect, test } from 'playwright-test-coverage';
 
 const ITEM_GAP = 8;
 const ITEM_WIDTH = 200;
