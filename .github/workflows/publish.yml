@@ -18,6 +18,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
+          cache: true
 
       - name: Install Node Packages 🛒
         run: npm ci
@@ -26,13 +27,62 @@ jobs:
         run: npm run lint
 
       - name: Run Vi tests 🏃
-        run: npm run test:unit
+        run: npm run test:unit-coverage
 
       - name: Install playwright browsers 🛒
         run: npx playwright install --with-deps
 
       - name: Run Playwrite tests 🏃
-        run: npm run test
+        run: npm run test-coverage
+
+      - name: Merge coverage reports
+        run: npm run merge-coverage
+
+      - name: Extract coverage summary
+        uses: antifree/json-to-variables@v1.0.1
+        with:
+          filename: 'coverage/coverage-summary.json'
+          prefix: coverage_summary
+
+      - name: Upload test coverage (lines)
+        uses: schneegans/dynamic-badges-action@v1.6.0
+        with:
+          auth: ${{ secrets.COVERAGE_GIST_SECRET }}
+          gistID: ${{ vars.COVERAGE_GIST_ID }}
+          filename: lines.json
+          label: lines
+          message: '${{ env.coverage_summary_total_lines_pct }}%'
+          color: ${{ env.coverage_summary_total_lines_pct > 80 && 'bright-green' || env.coverage_summary_total_lines_pct > 50 && 'yellow' || 'red' }}
+
+      - name: Upload test coverage (statements)
+        uses: schneegans/dynamic-badges-action@v1.6.0
+        with:
+          auth: ${{ secrets.COVERAGE_GIST_SECRET }}
+          gistID: ${{ vars.COVERAGE_GIST_ID }}
+          filename: statements.json
+          label: statements
+          message: '${{ env.coverage_summary_total_statements_pct }}%'
+          color: ${{ env.coverage_summary_total_statements_pct > 80 && 'bright-green' || env.coverage_summary_total_statements_pct > 50 && 'yellow' || 'red' }}
+
+      - name: Upload test coverage (functions)
+        uses: schneegans/dynamic-badges-action@v1.6.0
+        with:
+          auth: ${{ secrets.COVERAGE_GIST_SECRET }}
+          gistID: ${{ vars.COVERAGE_GIST_ID }}
+          filename: functions.json
+          label: functions
+          message: '${{ env.coverage_summary_total_functions_pct }}%'
+          color: ${{ env.coverage_summary_total_functions_pct > 80 && 'bright-green' || env.coverage_summary_total_functions_pct > 50 && 'yellow' || 'red' }}
+
+      - name: Upload test coverage (branches)
+        uses: schneegans/dynamic-badges-action@v1.6.0
+        with:
+          auth: ${{ secrets.COVERAGE_GIST_SECRET }}
+          gistID: ${{ vars.COVERAGE_GIST_ID }}
+          filename: branches.json
+          label: branches
+          message: '${{ env.coverage_summary_total_branches_pct }}%'
+          color: ${{ env.coverage_summary_total_branches_pct > 80 && 'bright-green' || env.coverage_summary_total_branches_pct > 50 && 'yellow' || 'red' }}
 
       - name: Publish to npm if needed 🚀
         id: publish

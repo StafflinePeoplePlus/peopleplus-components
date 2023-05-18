@@ -3,7 +3,8 @@ on:
   push:
     tags:
       - '*'
-
+permissions:
+  contents: write
 jobs:
   changelog:
     if: startsWith(github.ref, 'refs/tags/')
