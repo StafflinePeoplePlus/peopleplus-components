@@ -1,5 +1,6 @@
 name: 'Changelog'
 on:
+  create:
   push:
     tags:
       - '*'
