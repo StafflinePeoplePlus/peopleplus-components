@@ -2,7 +2,7 @@
 	class="w-full max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
 >
 	<a href="/">
-		<img class="rounded-t-lg p-8" src="/docs/images/products/apple-watch.png" alt="product image" />
+		<img class="rounded-t-lg p-8" src="/docs/images/products/apple-watch.png" alt="product" />
 	</a>
 	<div class="px-5 pb-5">
 		<a href="/">
