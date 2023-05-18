@@ -20,13 +20,15 @@ export default defineConfig({
 	plugins: [
 		sveltekit(),
 		{ name: 'headers', configureServer, configurePreviewServer: configureServer },
-		istanbul({
-			include: 'src/*',
-			extension: ['.js', '.ts', '.svelte'],
-			forceBuildInstrument: true,
-			// checkProd: false
-			requireEnv: true
-		})
+		...(process.env.VITE_COVERAGE
+			? [
+					istanbul({
+						include: 'src/*',
+						extension: ['.js', '.ts', '.svelte'],
+						forceBuildInstrument: true
+					})
+			  ]
+			: [])
 	],
 	test: {
 		coverage: {
