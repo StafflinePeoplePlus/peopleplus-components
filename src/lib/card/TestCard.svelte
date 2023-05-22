@@ -3,7 +3,7 @@
 </script>
 
 <Card>
-	<Typography variant="title-xl" as="h1">This is a title</Typography>
-	<Typography variant="subtitle">This is a subtitle</Typography>
+	<Typography variant="heading" as="h1">This is a title</Typography>
+	<Typography variant="sub-heading">This is a subtitle</Typography>
 	<Button href="https://peopleplus.co.uk">Primary</Button>
 </Card>
