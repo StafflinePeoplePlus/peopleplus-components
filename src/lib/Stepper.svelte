@@ -22,11 +22,11 @@
 </script>
 
 <div
-	class="mb-5 rounded-lg border border-gray-200 bg-white p-2 font-medium shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 lg:flex lg:space-x-4"
+	class="mb-5 rounded-lg border border-gray-200 bg-white p-2 font-medium shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 lg:flex lg:space-x-2"
 >
 	{#each steps as step, index}
 		<button
-			class={`rounded-lg p-2 text-gray-500 sm:p-3 md:w-1/2   ${
+			class={`hover:bg-gray-100 rounded-lg p-2 text-gray-500 sm:p-3 md:w-1/2   ${
 				step === activeStep ? 'text-primary-500' : ''
 			}`}
 			on:click={() => changeStep(step)}
