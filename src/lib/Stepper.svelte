@@ -26,7 +26,7 @@
 >
 	{#each steps as step, index}
 		<button
-			class={`hover:bg-gray-100 rounded-lg p-2 text-gray-500 sm:p-3 md:w-1/2   ${
+			class={`rounded-lg p-2 text-gray-500 hover:bg-gray-100 sm:p-3 md:w-1/2   ${
 				step === activeStep ? 'text-primary-500' : ''
 			}`}
 			on:click={() => changeStep(step)}
