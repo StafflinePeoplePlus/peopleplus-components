@@ -5,7 +5,7 @@ import { cleanup, render } from '@testing-library/svelte';
 afterEach(cleanup);
 
 test('should render everything', () => {
-	const { getByText, getByTestId } = render(TestCard);
+	const { getByText } = render(TestCard);
 
 	getByText('This is a title');
 	getByText('This is a subtitle');
