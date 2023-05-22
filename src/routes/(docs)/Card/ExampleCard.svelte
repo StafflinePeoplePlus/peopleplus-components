@@ -3,10 +3,14 @@
 </script>
 
 <Card>
-	<div
-		class="relative h-80 rounded-xl bg-cover bg-center"
-		style="height: 200px; background-image: url('/jumbotron.jpg');"
-	/>
+	<div class="relative h-48 rounded-xl bg-cover bg-center">
+		<img
+			src="/jumbotron.jpg"
+			alt="Sample"
+			class="absolute inset-0 h-full w-full rounded-xl object-cover object-center"
+		/>
+	</div>
+
 	<div class="space-y-5 px-5">
 		<Typography variant="heading" as="h1" class="pt-4 text-gray-700">
 			Lorem ipsum dolor sit amet
