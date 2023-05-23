@@ -1,6 +1,7 @@
 export * from './accordion';
-export * from './navbar';
 export * from './forms';
+export * from './navbar';
+export * from './video';
 export { default as Alert } from './Alert.svelte';
 export { default as BackgroundImage } from './BackgroundImage.svelte';
 export { default as Banner } from './Banner.svelte';
