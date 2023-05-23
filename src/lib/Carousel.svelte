@@ -146,7 +146,7 @@
 				}
 			}}
 		>
-			<slot {item} {dragging} />
+			<slot {item} {index} {dragging} />
 		</li>
 	{/each}
 
