@@ -12,9 +12,12 @@ const config = {
 			mode: 'auto',
 			directives: {
 				// Not able to be strict-dynamic due to https://github.com/sveltejs/kit/issues/3558
-				'default-src': ['self'],
-				'object-src': ['none'],
-				'base-uri': ['none']
+				'script-src': ['self', 'https://embed.cloudflarestream.com/embed/sdk.latest.js'],
+				'style-src': [
+					'self',
+					// bind:clientWidth/Height requires this - https://github.com/sveltejs/svelte/issues/8607
+					'unsafe-inline'
+				]
 			}
 		},
 		adapter: adapter()
