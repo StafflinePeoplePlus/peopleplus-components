@@ -29,7 +29,8 @@
 		{ name: 'TextInput' },
 		{ name: 'TextArea' },
 		{ name: 'TitleDescription' },
-		{ name: 'Tooltip' }
+		{ name: 'Tooltip' },
+		{ name: 'VideoPlayer' }
 	];
 </script>
 

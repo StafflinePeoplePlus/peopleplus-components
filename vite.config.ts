@@ -10,7 +10,7 @@ const configureServer = (server: { middlewares: Connect.Server }) => {
 		res.setHeader('Cross-Origin-Resource-Policy', 'same-origin');
 		res.setHeader(
 			'Permissions-Policy',
-			'camera=(), display-capture=(), fullscreen=(), geolocation=(), microphone=()'
+			'camera=(), display-capture=(), fullscreen=(self), geolocation=(), microphone=()'
 		);
 		next();
 	});
