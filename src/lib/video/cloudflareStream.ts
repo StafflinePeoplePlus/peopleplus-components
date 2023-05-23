@@ -1,11 +1,11 @@
-import { browser } from '$app/environment';
+import { BROWSER } from 'esm-env';
 import { onMount } from 'svelte';
 import { get, readonly, writable } from 'svelte/store';
 
 const sdkScriptLocation = 'https://embed.cloudflarestream.com/embed/sdk.latest.js';
 export function useCloudflareStream() {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const streamSdk = writable(browser ? (window as any).Stream : undefined);
+	const streamSdk = writable(BROWSER ? (window as any).Stream : undefined);
 
 	onMount(() => {
 		const existingSdk = get(streamSdk);
