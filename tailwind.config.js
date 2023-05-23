@@ -1,4 +1,5 @@
 import colors from 'tailwindcss/colors';
+import ppSvelteComponents from './src/lib/tailwind';
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -11,5 +12,5 @@ export default {
 			}
 		}
 	},
-	plugins: [require('@tailwindcss/typography')]
+	plugins: [require('@tailwindcss/typography'), ppSvelteComponents()]
 };

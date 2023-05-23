@@ -18,6 +18,6 @@
 		{max}
 		step="any"
 		bind:value
-		class="h-1 w-40 -rotate-90 appearance-none bg-transparent [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-primary-600 [&::-webkit-slider-thumb]:shadow-md"
+		class="h-1 w-40 -rotate-90 appearance-none bg-transparent range-thumb:h-5 range-thumb:w-5 range-thumb:appearance-none range-thumb:rounded-full range-thumb:border-none range-thumb:bg-primary-600 range-thumb:shadow-md"
 	/>
 </div>

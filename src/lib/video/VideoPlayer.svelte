@@ -53,7 +53,7 @@
 		)}
 	>
 		<button
-			class="absolute inset-0 flex cursor-default items-center justify-center"
+			class="absolute inset-0 flex w-full cursor-default items-center justify-center"
 			on:click={() => (playing ? dispatchEvent('pause') : dispatchEvent('play'))}
 		>
 			<div class="cursor-pointer rounded-full bg-black/50 p-4 text-center">
