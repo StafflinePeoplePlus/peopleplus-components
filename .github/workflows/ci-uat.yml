@@ -41,7 +41,8 @@ jobs:
     name: ZAP Full Scan
     runs-on: ubuntu-latest
     concurrency:
-      group: uat
+      group: zap-uat
+      cancel-in-progress: true
     steps:
       - name: Checkout 🛒
         uses: actions/checkout@v3
