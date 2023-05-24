@@ -2,7 +2,7 @@
 	"name": "pp-svelte-components",
 	"description": "A collection of Svelte components using tailwind.",
 	"license": "MIT",
-	"version": "0.0.11",
+	"version": "0.0.12",
 	"homepage": "https://peopleplus-components.pages.dev",
 	"repository": {
 		"type": "git",
@@ -31,6 +31,10 @@
 		".": {
 			"types": "./dist/index.d.ts",
 			"svelte": "./dist/index.js"
+		},
+		"./tailwind": {
+			"types": "./dist/tailwind.d.ts",
+			"svelte": "./dist/tailwind.js"
 		}
 	},
 	"files": [
@@ -40,6 +44,7 @@
 	],
 	"dependencies": {
 		"esm-env": "^1.0.0",
+		"just-debounce-it": "^3.2.0",
 		"just-throttle": "^4.2.0",
 		"svelte-headlessui": "^0.0.15",
 		"tailwind-merge": "^1.12.0"

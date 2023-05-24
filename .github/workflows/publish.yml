@@ -111,3 +111,19 @@ jobs:
               ref: 'refs/tags/v${{ steps.publish.outputs.version }}',
               sha: context.sha
             })
+
+      - name: Build changelog
+        if: ${{ steps.publish.outputs.type }}
+        id: github_release
+        uses: mikepenz/release-changelog-builder-action@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          ignorePreReleases: true
+          toTag: 'v${{ steps.publish.outputs.version }}'
+
+      - name: Create release v${{ steps.publish.outputs.version }}
+        if: ${{ steps.publish.outputs.type }}
+        uses: mikepenz/action-gh-release@v0.2.0-a03
+        with:
+          body: ${{steps.github_release.outputs.changelog}}

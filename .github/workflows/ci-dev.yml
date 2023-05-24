@@ -5,10 +5,6 @@ on:
     branches-ignore:
       - uat
       - main
-  pull_request:
-    branches-ignore:
-      - uat
-      - main
 
 env:
   NODE_VERSION: 18.x
@@ -46,7 +42,8 @@ jobs:
     name: ZAP Full Scan
     runs-on: ubuntu-latest
     concurrency:
-      group: dev
+      group: zap-${{ github.ref }}
+      cancel-in-progress: true
     steps:
       - name: Checkout 🛒
         uses: actions/checkout@v3
