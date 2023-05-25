@@ -19,7 +19,7 @@ const configureServer = (server: { middlewares: Connect.Server }) => {
 export default defineConfig({
 	plugins: [
 		sveltekit(),
-		{ name: 'headers', configureServer, configurePreviewServer: configureServer },
+		{ name: 'headers', configureServer },
 		...(process.env.VITE_COVERAGE
 			? [
 					istanbul({
@@ -42,6 +42,5 @@ export default defineConfig({
 	build: {
 		sourcemap: !!process.env.VITE_COVERAGE
 	},
-	server: { cors: { origin: false } },
-	preview: { cors: { origin: false }, host: process.env.CI ? '0.0.0.0' : undefined }
+	server: { cors: { origin: false } }
 });
