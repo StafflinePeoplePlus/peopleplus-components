@@ -4,8 +4,8 @@
 
 <Jumbotron>
 	<BackgroundImage src="/jumbotron.jpg" />
-	<Typography variant="title-xl" as="h1" class="mb-4">Lorem ipsum dolor sit amet</Typography>
-	<Typography variant="subtitle" class="mb-8">
+	<Typography variant="heading" as="h1" class="text-white">Lorem ipsum dolor sit amet</Typography>
+	<Typography variant="sub-heading">
 		Duis augue nibh, viverra quis sapien ut, sagittis facilisis quam. Aenean eleifend, lacus eu
 		efficitur feugiat, lacus urna porttitor enim, et tincidunt nunc nisl non tellus.
 	</Typography>
