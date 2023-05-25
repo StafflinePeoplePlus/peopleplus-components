@@ -10,7 +10,7 @@
 
 <section
 	class={twMerge(
-		'relative z-0 max-w-screen-xl bg-gray-700 px-4 py-24 text-center lg:py-56',
+		'relative z-0 space-y-8 bg-gray-700 p-16 text-center text-white lg:p-48',
 		className
 	)}
 	{...$$restProps}
