@@ -1,20 +1,18 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	export type Step = $$Generic<{ label: string }>;
 	import type { SvelteHTMLElements } from 'svelte/elements';
-	type $$Props = SvelteHTMLElements['section'];
 	import { twMerge } from 'tailwind-merge';
+	export type Step = $$Generic<{ label: string }>;
+	type $$Props = SvelteHTMLElements['section'];
 
-	let className: $$Props['class'] = undefined;
 	export { className as class };
+	let className: $$Props['class'] = undefined;
 
 	export let steps: Step[];
-	let activeStep: Step;
+	export let activeStep: Step | undefined = undefined;
 
-	$: {
-		if (steps && steps.length > 0) {
-			activeStep = steps[0];
-		}
+	$: if (steps && steps.length > 0) {
+		activeStep = steps[0];
 	}
 
 	interface $$Events {
@@ -44,7 +42,7 @@
 		>
 			<span
 				class={`rounded-full bg-gray-500 px-2 py-1 text-xs text-white ${
-					step === activeStep ? 'border border-white bg-white text-primary-600' : ''
+					step === activeStep ? 'border-none bg-white text-primary-500' : ''
 				}`}
 			>
 				{index + 1}
