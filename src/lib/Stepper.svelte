@@ -35,14 +35,14 @@
 >
 	{#each steps as step, index}
 		<button
-			class={`hover:scale-120 w-full rounded-lg p-2 text-left text-gray-500 lg:mx-2 lg:w-3/4 lg:text-center ${
-				step === activeStep ? 'bg-primary-500 text-white ' : ''
+			class={`w-full rounded-lg p-2 text-left text-gray-500 lg:mx-2 lg:w-3/4 lg:text-center ${
+				step === activeStep ? 'bg-primary-500 text-white' : ''
 			}`}
 			on:click={() => changeStep(step)}
 		>
 			<span
 				class={`rounded-full bg-gray-500 px-2 py-1 text-xs text-white ${
-					step === activeStep ? 'border-none bg-white text-primary-500' : ''
+					step === activeStep ? 'border border-white bg-primary-500' : ''
 				}`}
 			>
 				{index + 1}
