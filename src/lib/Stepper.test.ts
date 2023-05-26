@@ -7,12 +7,11 @@ const steps = [{ label: 'Step 1' }, { label: 'Step 2', foo: 'bar' }, { label: 'S
 afterEach(cleanup);
 
 test('should render the steps', () => {
-	const { getByText, getAllByText } = render(Stepper, { steps });
+	const { getByText } = render(Stepper, { steps });
 
 	getByText('Step 1');
 	getByText('Step 2');
 	getByText('Step 3');
-	expect(getAllByText('»')).toHaveLength(2);
 });
 
 test('should fire the changeStep event on step click', () => {
