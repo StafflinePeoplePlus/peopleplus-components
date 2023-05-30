@@ -1,6 +1,5 @@
 <script>
 	import '../app.css';
-	import { Footer } from '$lib';
 	import ExampleFooter from './(docs)/Footer/ExampleFooter.svelte';
 
 	const routes = [
