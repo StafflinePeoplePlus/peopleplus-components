@@ -95,6 +95,14 @@
 	function isInRange(range: [number, number], value: number): boolean {
 		return value >= range[0] && value <= range[1];
 	}
+
+	const onResize = throttle(() => {
+		if (!containerEl) {
+			return;
+		}
+		updateCachedValues(containerEl);
+		updateItemIndex((index) => index);
+	}, 300);
 </script>
 
 <svelte:window
@@ -108,13 +116,7 @@
 	}}
 	on:pointerup={stopDragging}
 	on:pointercancel={stopDragging}
-	on:resize={throttle(() => {
-		if (!containerEl) {
-			return;
-		}
-		updateCachedValues(containerEl);
-		updateItemIndex((index) => index);
-	}, 300)}
+	on:resize={onResize}
 />
 
 <ul
