@@ -2,6 +2,8 @@ import type { PlaywrightTestConfig } from '@playwright/test';
 import { devices } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
+	testDir: './playwright_tests',
+	testMatch: /.*.spec.ts/,
 	webServer: {
 		command: 'npm run build && npm run preview',
 		port: 4173
@@ -20,12 +22,12 @@ const config: PlaywrightTestConfig = {
 			use: { ...devices['Desktop Safari'] }
 		},
 		{
-			name: 'playwright_tests',
-			testDir: './playwright_tests',
-			testMatch: /.*.spec.ts/
+			name: 'Mobile Safari',
+			use: {
+				...devices['iPhone 13']
+			}
 		}
-	],
-	testDir: 'playwright_tests'
+	]
 };
 
 export default config;

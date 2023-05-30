@@ -4,6 +4,9 @@ on:
   push:
     branches: main
 
+permissions:
+  contents: write
+
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -15,6 +18,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
+          cache: 'npm'
 
       - name: Install Node Packages 🛒
         run: npm ci
@@ -23,13 +27,62 @@ jobs:
         run: npm run lint
 
       - name: Run Vi tests 🏃
-        run: npm run test:unit
+        run: npm run test:unit-coverage
 
       - name: Install playwright browsers 🛒
         run: npx playwright install --with-deps
 
       - name: Run Playwrite tests 🏃
-        run: npm run test
+        run: npm run test-coverage
+
+      - name: Merge coverage reports
+        run: npm run merge-coverage
+
+      - name: Extract coverage summary
+        uses: antifree/json-to-variables@v1.0.1
+        with:
+          filename: 'coverage/coverage-summary.json'
+          prefix: coverage_summary
+
+      - name: Upload test coverage (lines)
+        uses: schneegans/dynamic-badges-action@v1.6.0
+        with:
+          auth: ${{ secrets.COVERAGE_GIST_SECRET }}
+          gistID: ${{ vars.COVERAGE_GIST_ID }}
+          filename: lines.json
+          label: lines
+          message: '${{ env.coverage_summary_total_lines_pct }}%'
+          color: ${{ env.coverage_summary_total_lines_pct > 80 && 'bright-green' || env.coverage_summary_total_lines_pct > 50 && 'yellow' || 'red' }}
+
+      - name: Upload test coverage (statements)
+        uses: schneegans/dynamic-badges-action@v1.6.0
+        with:
+          auth: ${{ secrets.COVERAGE_GIST_SECRET }}
+          gistID: ${{ vars.COVERAGE_GIST_ID }}
+          filename: statements.json
+          label: statements
+          message: '${{ env.coverage_summary_total_statements_pct }}%'
+          color: ${{ env.coverage_summary_total_statements_pct > 80 && 'bright-green' || env.coverage_summary_total_statements_pct > 50 && 'yellow' || 'red' }}
+
+      - name: Upload test coverage (functions)
+        uses: schneegans/dynamic-badges-action@v1.6.0
+        with:
+          auth: ${{ secrets.COVERAGE_GIST_SECRET }}
+          gistID: ${{ vars.COVERAGE_GIST_ID }}
+          filename: functions.json
+          label: functions
+          message: '${{ env.coverage_summary_total_functions_pct }}%'
+          color: ${{ env.coverage_summary_total_functions_pct > 80 && 'bright-green' || env.coverage_summary_total_functions_pct > 50 && 'yellow' || 'red' }}
+
+      - name: Upload test coverage (branches)
+        uses: schneegans/dynamic-badges-action@v1.6.0
+        with:
+          auth: ${{ secrets.COVERAGE_GIST_SECRET }}
+          gistID: ${{ vars.COVERAGE_GIST_ID }}
+          filename: branches.json
+          label: branches
+          message: '${{ env.coverage_summary_total_branches_pct }}%'
+          color: ${{ env.coverage_summary_total_branches_pct > 80 && 'bright-green' || env.coverage_summary_total_branches_pct > 50 && 'yellow' || 'red' }}
 
       - name: Publish to npm if needed 🚀
         id: publish
@@ -46,3 +99,31 @@ jobs:
             This has been published to NPM as [${{steps.publish.outputs.id}}][1] 🚀
 
             [1]: https://www.npmjs.com/package/${{steps.publish.outputs.name}}/v/${{steps.publish.outputs.version}}
+
+      - name: Create tag v${{ steps.publish.outputs.version }}
+        if: ${{ steps.publish.outputs.type }}
+        uses: actions/github-script@v5
+        with:
+          script: |
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: 'refs/tags/v${{ steps.publish.outputs.version }}',
+              sha: context.sha
+            })
+
+      - name: Build changelog
+        if: ${{ steps.publish.outputs.type }}
+        id: github_release
+        uses: mikepenz/release-changelog-builder-action@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          ignorePreReleases: true
+          toTag: 'v${{ steps.publish.outputs.version }}'
+
+      - name: Create release v${{ steps.publish.outputs.version }}
+        if: ${{ steps.publish.outputs.type }}
+        uses: mikepenz/action-gh-release@v0.2.0-a03
+        with:
+          body: ${{steps.github_release.outputs.changelog}}

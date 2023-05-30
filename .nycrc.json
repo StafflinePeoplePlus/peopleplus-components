@@ -1,0 +1,7 @@
+{
+	"all": "true",
+	"include": ["src/lib/**"],
+	"reporter": ["text", "json", "html", "json-summary"],
+	"extension": [".js", ".ts", ".svelte"],
+	"report-dir": "./coverage/playwright"
+}

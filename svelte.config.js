@@ -9,14 +9,17 @@ const config = {
 
 	kit: {
 		csp: {
+			mode: 'auto',
 			directives: {
-				'script-src': ['self'],
-				'style-src': ['self']
+				// Not able to be strict-dynamic due to https://github.com/sveltejs/kit/issues/3558
+				'script-src': ['self', 'https://embed.cloudflarestream.com/embed/sdk.latest.js'],
+				'style-src': [
+					'self',
+					// bind:clientWidth/Height requires this - https://github.com/sveltejs/svelte/issues/8607
+					'unsafe-inline'
+				]
 			}
 		},
-		// adapter-auto only supports some environments, see https://kit.svelte.dev/docs/adapter-auto for a list.
-		// If your environment is not supported or you settled on a specific environment, switch out the adapter.
-		// See https://kit.svelte.dev/docs/adapters for more information about adapters.
 		adapter: adapter()
 	}
 };

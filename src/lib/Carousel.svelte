@@ -1,84 +1,209 @@
 <script lang="ts">
-	import Swiper, { Navigation } from 'swiper';
-	import 'swiper/css';
-	import 'swiper/css/navigation';
 	import { onMount } from 'svelte';
 	import { BROWSER } from 'esm-env';
+	import { twMerge } from 'tailwind-merge';
+	import throttle from 'just-throttle';
 
 	let className = '';
 	export { className as class };
-	/**
-	 * Page to link out to when JavaScript is disabled and the user clicks the next button
-	 */
-	export let viewMoreHref: string | undefined = undefined;
 	type Item = $$Generic;
 	export let items: Item[];
 	export let itemClass = '';
 
-	let carouselEl: HTMLElement | undefined = undefined;
-	let navButtonNext: HTMLElement | undefined = undefined;
-	let navButtonPrev: HTMLElement | undefined = undefined;
+	const DRAG_THRESHOLD = 10;
+	let containerEl: HTMLElement | undefined = undefined;
+	let dragging = false;
+	let mounted = false;
+	let movement = 0;
+	let x = 0;
+	let maxX = 0;
+	let itemWidth = 0;
+	let totalVisisble = 0;
+	let visibleRange: [number, number] = [0, items.length - 1];
+	$: translation = BROWSER ? `translateX(-${x}px)` : undefined;
+	$: overflows = totalVisisble < items.length;
+
+	function updateCachedValues(el: HTMLElement) {
+		const clientWidth = el.clientWidth;
+		const paddingRight = parseFloat(getComputedStyle(el).paddingRight);
+		const paddingLeft = parseFloat(getComputedStyle(el).paddingLeft);
+
+		const listItems = el.querySelectorAll('li');
+		if (listItems.length < 2) {
+			let first = listItems[0].getBoundingClientRect();
+			itemWidth = first.width;
+			maxX = Math.max(itemWidth - clientWidth, 0);
+		} else {
+			let first = listItems[0].getBoundingClientRect();
+			let second = listItems[1].getBoundingClientRect();
+			let last = listItems[listItems.length - 1].getBoundingClientRect();
+
+			itemWidth = second.left - first.left;
+			const allItemsWidth = last.right - first.left + paddingLeft + paddingRight;
+			maxX = Math.max(Math.round(allItemsWidth - clientWidth), 0);
+		}
+
+		totalVisisble = Math.max(Math.floor((clientWidth - paddingLeft) / itemWidth), 1);
+	}
 
 	onMount(() => {
-		if (!carouselEl) {
+		if (!containerEl) {
+			return;
+		}
+		updateCachedValues(containerEl);
+
+		// If the user scrolled before the script loaded, restore their position
+		if (containerEl.scrollLeft != 0) {
+			x = containerEl.scrollLeft;
+			containerEl.scrollLeft = 0;
+			updateItemIndex((index) => index);
+		}
+
+		visibleRange = [0, totalVisisble - 1];
+
+		setTimeout(() => {
+			mounted = true;
+		}, 0);
+	});
+
+	function clamp(value: number, min: number, max: number): number {
+		return Math.min(Math.max(value, min), max);
+	}
+
+	function updateItemIndex(update: (index: number) => number) {
+		x = Math.round(x);
+		const currentIndex = x === maxX ? Math.ceil(x / itemWidth) : Math.round(x / itemWidth);
+		const index = clamp(update(currentIndex), 0, items.length - 1);
+		x = Math.round(clamp(index * itemWidth, 0, maxX));
+		visibleRange = [index, index + totalVisisble - 1];
+	}
+
+	function stopDragging(evt: Event) {
+		if (!dragging) {
 			return;
 		}
 
-		const instance = new Swiper(carouselEl, {
-			modules: [Navigation],
-			slidesPerView: 'auto',
+		evt.preventDefault();
+		dragging = false;
+		updateItemIndex((index) => index);
 
-			navigation: {
-				nextEl: navButtonNext,
-				prevEl: navButtonPrev
-			}
-		});
-		return () => {
-			instance.destroy();
-		};
-	});
+		setTimeout(() => {
+			movement = 0;
+		}, 0);
+	}
+
+	function isInRange(range: [number, number], value: number): boolean {
+		return value >= range[0] && value <= range[1];
+	}
+
+	const onResize = throttle(() => {
+		if (!containerEl) {
+			return;
+		}
+		updateCachedValues(containerEl);
+		updateItemIndex((index) => index);
+	}, 300);
 </script>
 
-<div bind:this={carouselEl} class="relative swiper select-none {className}">
-	<ul class="swiper-wrapper">
-		{#each items as item}
-			<li class="swiper-slide {itemClass}">
-				<slot {item} />
-			</li>
-		{/each}
-	</ul>
+<svelte:window
+	on:pointermove={(evt) => {
+		if (!dragging) {
+			return;
+		}
 
-	{#if BROWSER}
-		<button bind:this={navButtonPrev} class="swiper-button-prev !text-gray-300 drop-shadow">
-			<span class="sr-only">Previous</span>
-		</button>
-		<button bind:this={navButtonNext} class="swiper-button-next !text-gray-300 drop-shadow">
-			<span class="sr-only">Next</span>
-		</button>
-	{:else if viewMoreHref != null}
-		<a href={viewMoreHref} class="view-more swiper-button-next !text-gray-300 drop-shadow">
-			<span class="sr-only">View More</span>
-		</a>
+		movement += Math.abs(evt.movementX);
+		x = clamp(x - evt.movementX, 0, maxX);
+	}}
+	on:pointerup={stopDragging}
+	on:pointercancel={stopDragging}
+	on:resize={onResize}
+/>
+
+<ul
+	bind:this={containerEl}
+	class={twMerge(
+		'relative flex touch-pan-y touch-pinch-zoom select-none',
+		BROWSER ? 'overflow-x-hidden' : 'overflow-x-auto',
+		className
+	)}
+	on:pointerdown={(evt) => {
+		if (evt.button != 0 || !overflows) {
+			return;
+		}
+
+		evt.preventDefault();
+		dragging = true;
+		updateCachedValues(evt.currentTarget);
+	}}
+>
+	{#each items as item, index}
+		<li
+			class={twMerge('flex-shrink-0', !dragging && mounted && 'transition duration-300', itemClass)}
+			style:transform={translation}
+			aria-hidden={isInRange(visibleRange, index) ? 'false' : 'true'}
+			aria-label="Item {index + 1}"
+			on:click={(evt) => {
+				if (evt.button === 0 && movement > DRAG_THRESHOLD) {
+					evt.preventDefault();
+				}
+			}}
+		>
+			<slot {item} {index} {dragging} />
+		</li>
+	{/each}
+
+	{#if BROWSER && overflows}
+		<div class="pointer-events-none absolute inset-0 z-10 flex items-center justify-between">
+			<button
+				type="button"
+				class="pointer-events-auto text-gray-300 drop-shadow disabled:opacity-50"
+				disabled={visibleRange[0] === 0}
+				on:click={() => updateItemIndex((index) => index - 1)}
+			>
+				<span class="sr-only">Previous Item</span>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 24 24"
+					fill="currentColor"
+					class="h-12 w-12"
+					aria-hidden="true"
+				>
+					<path
+						fill-rule="evenodd"
+						d="M7.72 12.53a.75.75 0 010-1.06l7.5-7.5a.75.75 0 111.06 1.06L9.31 12l6.97 6.97a.75.75 0 11-1.06 1.06l-7.5-7.5z"
+						clip-rule="evenodd"
+					/>
+				</svg>
+			</button>
+			<button
+				type="button"
+				class="pointer-events-auto text-gray-300 drop-shadow disabled:opacity-50"
+				disabled={visibleRange[1] === items.length - 1}
+				on:click={() => updateItemIndex((index) => index + 1)}
+			>
+				<span class="sr-only">Next Item</span>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 24 24"
+					fill="currentColor"
+					class="h-12 w-12"
+					aria-hidden="true"
+				>
+					<path
+						fill-rule="evenodd"
+						d="M16.28 11.47a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 01-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 011.06-1.06l7.5 7.5z"
+						clip-rule="evenodd"
+					/>
+				</svg>
+			</button>
+		</div>
+
+		<div class="sr-only" aria-live="polite" aria-atomic="true" data-testid="liveregion">
+			{#if visibleRange[0] === visibleRange[1]}
+				Item {visibleRange[0] + 1} of {items.length}
+			{:else}
+				Items {visibleRange[0] + 1} to {visibleRange[1] + 1} of {items.length}
+			{/if}
+		</div>
 	{/if}
-</div>
-
-<style>
-	.view-more {
-		/* When the user has javascript disabled (or it has yet to load), the view more button will
-		be shown to allow the user to still see all items in the carousel, albeit in a different
-		view. We delay the visibility of this for a second so that javascript users don't see an
-		arrow appear briefly then dissapear if there are not enough carousel items to require an
-		arrow  */
-		opacity: 0;
-		animation: fadeIn 150ms 1000ms forwards;
-	}
-
-	@keyframes fadeIn {
-		from {
-			opacity: 0;
-		}
-		to {
-			opacity: 1;
-		}
-	}
-</style>
+</ul>

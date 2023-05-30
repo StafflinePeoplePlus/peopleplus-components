@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { classes } from '$lib/classes';
 	import { createDisclosure } from 'svelte-headlessui';
 	import { getAccordionGroup } from './AccordionGroup.svelte';
+	import { twMerge } from 'tailwind-merge';
 
 	let className = '';
 	export { className as class };
@@ -18,8 +18,8 @@
 </script>
 
 <div
-	class={classes(
-		'border-gray-200 bg-white',
+	class={twMerge(
+		'border-gray-200 bg-gray-100 dark:bg-gray-700',
 		group != null
 			? 'group border-x border-t first:rounded-t-xl last:rounded-b-xl last:border-b'
 			: 'rounded-xl border',
@@ -29,8 +29,8 @@
 	<h2>
 		<button
 			type="button"
-			class={classes(
-				'flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 focus:outline-none focus:ring-2 focus:ring-red-400 focus:z-10 relative hover:bg-gray-50',
+			class={twMerge(
+				'relative flex w-full items-center justify-between p-5 text-left font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-2 focus:ring-red-400 dark:text-gray-100 dark:hover:bg-gray-600',
 				group != null ? 'group-first:rounded-t-xl' : 'rounded-t-xl',
 				!$disclosure.expanded && (group != null ? 'group-last:rounded-b-xl' : 'rounded-b-xl')
 			)}
@@ -38,7 +38,7 @@
 		>
 			<span>{label}</span>
 			<svg
-				class="w-6 h-6 shrink-0 transition"
+				class="h-6 w-6 shrink-0 transition"
 				class:rotate-180={$disclosure.expanded}
 				fill="currentColor"
 				viewBox="0 0 20 20"
@@ -54,7 +54,7 @@
 	</h2>
 	<div
 		class:hidden={!$disclosure.expanded}
-		class="p-5 border-t border-gray-200"
+		class="border-t border-gray-200 p-5"
 		use:disclosure.panel
 	>
 		<slot />

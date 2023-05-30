@@ -1,5 +1,6 @@
 <script>
 	import '../app.css';
+<<<<<<< HEAD
 	import { Footer } from '$lib';
 	import ExampleFooter from './Footer/ExampleFooter.svelte';
 
@@ -54,3 +55,8 @@
 
 	<ExampleFooter />
 </div>
+=======
+</script>
+
+<slot />
+>>>>>>> 5b001a3124779c39f0c790a03fb5000a02556ce5

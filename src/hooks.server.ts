@@ -7,10 +7,12 @@ const headers: Handle = async function handle({ event, resolve }) {
 	response.headers.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
 	response.headers.set('X-Content-Type-Options', 'nosniff');
 	response.headers.set('X-Frame-Options', 'DENY');
-	response.headers.set('Permissions-Policy', '*');
 	response.headers.set('Cross-Origin-Resource-Policy', 'same-origin');
-	response.headers.set('Access-Control-Allow-Origin', '*');
-	response.headers.set('Access-Control-Allow-Credentials', 'true');
+	response.headers.set(
+		'Permissions-Policy',
+		'camera=(), display-capture=(), fullscreen=(self), geolocation=(), microphone=()'
+	);
+	response.headers.delete('access-control-allow-origin');
 	return response;
 };
 

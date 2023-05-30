@@ -5,34 +5,22 @@ on:
     branches:
       - uat
 
-concurrency:
-  group: uat
-
 env:
-  PRIVATE_AUTH_SECRET: ${{ secrets.PRIVATE_AUTH_SECRET }}
-  PRIVATE_AUTH0_CLIENT_ID: ${{ secrets.PRIVATE_AUTH0_CLIENT_ID }}
-  PRIVATE_AUTH0_CLIENT_SECRET: ${{ secrets.PRIVATE_AUTH0_CLIENT_SECRET }}
-  PRIVATE_AUTH0_CLIENT_ISSUER: ${{ secrets.PRIVATE_AUTH0_CLIENT_ISSUER }}
+  NODE_VERSION: 18.x
 
 jobs:
-  build:
-    name: Run Tests
-
-    strategy:
-      matrix:
-        os-version: [ubuntu-latest]
-        node-version: [18.x]
-
-    runs-on: ${{ matrix.os-version }}
-
+  test:
+    name: Vitest & Playwright
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛒
         uses: actions/checkout@v3
 
-      - name: Use Node.js ${{ matrix.node-version }} 🛒
+      - name: Use Node.js ${{ env.NODE_VERSION }} 🛒
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
 
       - name: Install Node Packages 🛒
         run: npm ci
@@ -49,26 +37,75 @@ jobs:
       - name: Run Playwrite tests 🏃
         run: npm run test
 
+  zap:
+    name: ZAP Full Scan
+    runs-on: ubuntu-latest
+    concurrency:
+      group: zap-uat
+      cancel-in-progress: true
+    steps:
+      - name: Checkout 🛒
+        uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ env.NODE_VERSION }} 🛒
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install Node Packages 🛒
+        run: npm ci
+
+      - name: Build app 🧱
+        run: npm run build
+
+      - name: Launch app 🚀
+        run: npm run preview &
+
+      - name: Wait for app to start ☕️
+        run: sleep 10
+
       - name: OWASP ZAP Full Scan - Cloudflare - UAT 🩻
         uses: zaproxy/action-full-scan@v0.4.0
         with:
           issue_title: 'ZAP Full Scan Report - UAT'
           target: ${{ vars.UAT_URL }}
-          rules_file_name: '.zap/rules-uat.tsv'
-
-      - name: OWASP ZAP Full Scan AJAX - Cloudflare - UAT 🩻
-        uses: zaproxy/action-full-scan@v0.4.0
-        with:
-          issue_title: 'ZAP Full Scan Report - UAT AJAX'
-          target: ${{ vars.UAT_URL }}
-          rules_file_name: '.zap/rules-uat.tsv'
+          rules_file_name: '.zap/rules.tsv'
           cmd_options:
             #AJAX Spider
             '-j'
 
-      - name: Accessibility Scan - UAT 🩻
+  a11y:
+    name: Accessibility Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛒
+        uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ env.NODE_VERSION }} 🛒
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install Node Packages 🛒
+        run: npm ci
+
+      - name: Build app 🧱
+        run: npm run build
+
+      - name: Launch app 🚀
+        run: npm run preview &
+
+      - name: Wait for app to start ☕️
+        run: sleep 10
+
+      - name: Accessibility scan 🩻
         uses: a11ywatch/github-actions@v1.14.1
         with:
           WEBSITE_URL: ${{ vars.UAT_URL }}
           SUBDOMAINS: false
           LIST: true
+          TLD: false
+          SITE_WIDE: true
+          UPGRADE: true
