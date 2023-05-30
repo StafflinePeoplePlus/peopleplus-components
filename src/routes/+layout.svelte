@@ -31,13 +31,13 @@
 	];
 </script>
 
-<div class="h-full flex flex-col">
-	<div class="flex grow p-6 gap-4 overflow-hidden">
-		<nav class="overflow-y-auto w-60 shrink-0">
+<div class="flex h-full flex-col">
+	<div class="flex grow gap-4 overflow-hidden p-6">
+		<nav class="w-60 shrink-0 overflow-y-auto">
 			<ul class="space-y-0.5">
 				{#each routes as route}
 					<li>
-						<a href={route.href} class="block px-2.5 py-1.5 hover:bg-gray-200 rounded">
+						<a href={route.href} class="block rounded px-2.5 py-1.5 hover:bg-gray-200">
 							{route.label}
 						</a>
 					</li>
@@ -46,7 +46,7 @@
 		</nav>
 
 		<div class="grow overflow-x-hidden">
-			<div class="h-full p-6 bg-white border border-gray-200 rounded-md overflow-y-auto">
+			<div class="h-full overflow-y-auto rounded-md border border-gray-200 bg-white p-6">
 				<slot />
 			</div>
 		</div>
