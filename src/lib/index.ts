@@ -4,7 +4,7 @@ export * from './navbar';
 export * from './video';
 export { default as Alert } from './Alert.svelte';
 export { default as BackgroundImage } from './BackgroundImage.svelte';
-export { default as Banner } from './Banner.svelte';
+export { default as Banner } from './banner/Banner.svelte';
 export { default as BottomNav } from './BottomNav.svelte';
 export { default as Breadcrumbs } from './Breadcrumbs.svelte';
 export { default as Button } from './Button.svelte';
