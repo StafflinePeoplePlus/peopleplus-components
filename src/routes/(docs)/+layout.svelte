@@ -26,6 +26,7 @@
 		{ name: 'Modal' },
 		{ name: 'NavBar' },
 		{ name: 'Stepper' },
+		{ name: 'Switch' },
 		{ name: 'TextInput' },
 		{ name: 'TextArea' },
 		{ name: 'TitleDescription' },

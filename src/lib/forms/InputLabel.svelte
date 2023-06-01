@@ -10,7 +10,7 @@
 
 <label
 	{...$$restProps}
-	class={twMerge('mb-2 block text-sm font-medium text-gray-900 dark:text-white', className)}
+	class={twMerge('inline-block text-sm font-medium text-gray-900 dark:text-white', className)}
 >
 	<slot />
 </label>
