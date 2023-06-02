@@ -13,7 +13,9 @@ test('should render everything', () => {
 	const primaryAction = getByText('Primary');
 	expect(primaryAction.tagName).toBe('A');
 	expect(primaryAction.getAttribute('href')).toBe('https://peopleplus.co.uk');
+});
 
+test('should dismiss the banner once clicked', () => {
 	const dismissButton = getByText('Dismiss');
 	expect(dismissButton).toBeInTheDocument();
 	fireEvent.click(dismissButton);
