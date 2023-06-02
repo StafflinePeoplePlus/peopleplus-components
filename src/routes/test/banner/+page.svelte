@@ -1,0 +1,22 @@
+<script>
+    import Banner from "$lib/banner/Banner.svelte";
+    import { Button, Typography } from 'pp-svelte-components';
+</script>
+
+<Banner>
+    <div class="gap-4 items-center md:flex">
+        <div class="relative h-28 rounded-lg bg-cover bg-center md:h-40 lg:h-20 md:w-80 lg:w-64">
+            <img
+                    src="/jumbotron.jpg" alt=""
+                    class="absolute inset-0 h-full w-full rounded-lg object-cover object-center"
+            />
+        </div>
+        <div class="space-y-1 max-sm:pb-2">
+            <Typography variant="sub-heading">'The Lyrics, The Music & The Money'</Typography>
+            <Typography variant="body">
+                Introducing our latest course! Unravel the complex world of music industry economics and understand the artistry behind creating impactful lyrics.
+            </Typography>
+        </div>
+        <Button href="/courses" class="md:w-1/2 lg:w-1/4 h-12 w-full">View Course</Button>
+    </div>
+</Banner>
