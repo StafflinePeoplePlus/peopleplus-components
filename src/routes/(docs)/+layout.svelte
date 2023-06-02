@@ -16,7 +16,7 @@
 		{ name: 'Carousel' },
 		{ name: 'Chip' },
 		{ name: 'CodeSnippet' },
-		{ name: 'CookieBanner' },
+		{ name: 'CookieConsent' },
 		{ name: 'DarkMode' },
 		{ name: 'Drawer' },
 		{ name: 'Dropdown' },
