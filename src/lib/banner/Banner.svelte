@@ -13,14 +13,18 @@
 
 {#if showBanner}
 	<section
-			class={twMerge(
-		'bg-white shadow-sm mx-auto max-w-screen-2xl md:flex justify-between items-center gap-4 p-2 sm:p-4',
-		className
-	)}
-			{...$$restProps}
+		class={twMerge(
+			'mx-auto max-w-screen-2xl items-center justify-between gap-4 bg-white p-2 shadow-sm sm:p-4 md:flex',
+			className
+		)}
+		{...$$restProps}
 	>
 		<slot />
-		<Button variant="secondary" class="h-12 max-sm:w-full max-md:my-2" on:click={() => showBanner = false}>
+		<Button
+			variant="secondary"
+			class="h-12 max-md:my-2 max-sm:w-full"
+			on:click={() => (showBanner = false)}
+		>
 			<span aria-hidden="true" class="max-sm:hidden">&times;</span>
 			<span aria-hidden="true" class="sm:hidden">Dismiss</span>
 			<span class="sr-only">Close banner</span>
