@@ -1,59 +1,50 @@
 <script lang="ts">
-	export let absolute = false;
+	import type { SvelteHTMLElements } from 'svelte/elements';
+	import { twMerge } from 'tailwind-merge';
+	import { Button, Typography } from 'pp-svelte-components';
+
+	type $$Props = SvelteHTMLElements['section'];
+
+	let className: $$Props['class'] = undefined;
+	export { className as class };
+
+	let showBanner = true;
 </script>
 
-<div
-	tabindex="-1"
-	class="{absolute
-		? 'absolute'
-		: 'fixed'} left-0 top-0 z-50 flex w-full justify-between border-b border-gray-200 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-700"
->
-	<div class="mx-auto flex items-center">
-		<p class="flex items-center text-sm font-normal text-gray-500 dark:text-gray-400">
-			<span class="mr-3 inline-flex rounded-full bg-gray-200 p-1 dark:bg-gray-600">
-				<svg
-					class="h-4 w-4 text-gray-500 dark:text-gray-400"
-					fill="currentColor"
-					viewBox="0 0 20 20"
-					xmlns="http://www.w3.org/2000/svg"
-					aria-hidden="true"
-				>
-					<path
-						d="M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM15.657 5.757a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM5 10a1 1 0 01-1 1H3a1 1 0 110-2h1a1 1 0 011 1zM8 16v-1h4v1a2 2 0 11-4 0zM12 14c.015-.34.208-.646.477-.859a4 4 0 10-4.954 0c.27.213.462.519.476.859h4.002z"
-					/>
-				</svg>
-				<span class="sr-only">Light bulb</span>
-			</span>
-			<span
-				>New brand identity has been launched for the
-				<a
-					href="https://peopleplus.co.uk"
-					class="decoration-600 dark:decoration-500 inline font-medium text-blue-600 underline decoration-solid underline-offset-2 hover:no-underline dark:text-blue-500"
-				>
-					PeoplePlus
-				</a></span
-			>
-		</p>
+{#if showBanner}
+	<section
+			class={twMerge(
+		'mx-auto mb-16 mt-6 max-w-screen-2xl items-center gap-4 bg-amber-50 p-2 sm:p-4 lg:flex',
+		className
+	)}
+			{...$$restProps}
+	>
+		<slot />
+	</section>
+
+
+	<div>
+		<div class="relative h-28 rounded-lg bg-cover bg-center sm:h-40 lg:h-20 lg:w-64">
+			<img
+					src="/jumbotron.jpg" alt=""
+					class="absolute inset-0 h-full w-full rounded-lg object-cover object-center"
+			/>
+		</div>
+
+		<div class="space-y-1">
+			<Typography variant="sub-heading">'The Lyrics, The Music & The Money'</Typography>
+			<Typography variant="body">
+				Introducing our latest course! Unravel the complex world of music industry economics and
+				understand the artistry behind creating impactful lyrics.
+			</Typography>
+		</div>
+
+		<div class="flex gap-4 max-lg:mt-2 lg:w-1/2 xl:w-1/4">
+			<Button href="/courses" class="w-full">View Course</Button>
+			<Button variant="secondary" class="h-12" on:click={() => showBanner = false}>
+			<span aria-hidden="true">&times;</span>
+				<span class="sr-only">Close banner</span>
+			</Button>
+		</div>
 	</div>
-	<div class="flex items-center">
-		<button
-			data-dismiss-target="#sticky-banner"
-			type="button"
-			class="inline-flex flex-shrink-0 items-center justify-center rounded-lg p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
-		>
-			<svg
-				aria-hidden="true"
-				class="h-4 w-4"
-				fill="currentColor"
-				viewBox="0 0 20 20"
-				xmlns="http://www.w3.org/2000/svg"
-				><path
-					fill-rule="evenodd"
-					d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-					clip-rule="evenodd"
-				/></svg
-			>
-			<span class="sr-only">Close banner</span>
-		</button>
-	</div>
-</div>
+{/if}
