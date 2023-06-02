@@ -10,7 +10,7 @@ test('should render everything', () => {
 	getByText('Banner Title');
 	getByText('Banner Description');
 
-	const primaryAction = getByText('Primary');
+	const primaryAction = getByText('Learn More');
 	expect(primaryAction.tagName).toBe('A');
 	expect(primaryAction.getAttribute('href')).toBe('https://peopleplus.co.uk');
 });
