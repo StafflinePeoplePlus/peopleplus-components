@@ -27,6 +27,7 @@
 		{ name: 'NavBar' },
 		{ name: 'Stepper' },
 		{ name: 'Switch' },
+		{ name: 'Table' },
 		{ name: 'TextInput' },
 		{ name: 'TextArea' },
 		{ name: 'TitleDescription' },
