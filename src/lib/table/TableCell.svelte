@@ -30,9 +30,9 @@
 	this={header ? 'th' : 'td'}
 	class={twMerge(
 		'px-3 py-2',
-		header && 'bg-gray-200 font-semibold text-gray-800',
+		header && 'bg-gray-200 font-semibold text-gray-800 dark:bg-gray-700 dark:text-white',
 		number && 'text-right',
-		$table.borders && 'ring-1 ring-gray-300',
+		$table.borders && 'ring-1 ring-gray-300 dark:ring-gray-500',
 		visualPosition
 			? isPosition(visualPosition, 'top-left') && 'rounded-tl-md'
 			: 'group-first-of-type/tr:first:rounded-tl-md',
