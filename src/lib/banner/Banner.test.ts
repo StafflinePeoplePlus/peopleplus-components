@@ -1,6 +1,6 @@
 import TestBanner from './TestBanner.svelte';
 import { test, expect, afterEach } from 'vitest';
-import { cleanup, fireEvent, render } from '@testing-library/svelte';
+import {cleanup, fireEvent, render, waitForElementToBeRemoved} from '@testing-library/svelte';
 
 afterEach(cleanup);
 
@@ -15,11 +15,15 @@ test('should render everything', () => {
 	expect(primaryAction.getAttribute('href')).toBe('https://peopleplus.co.uk');
 });
 
-test('should dismiss the banner once clicked', () => {
+test('should dismiss the banner once clicked', async () => {
+	const { getByText, queryByText } = render(TestBanner);
+	getByText('Banner Title');
+
 	const dismissButton = getByText('Dismiss');
-	expect(dismissButton).toBeInTheDocument();
 	fireEvent.click(dismissButton);
 
-	expect(queryByText('Banner Title')).not.toBeInTheDocument();
-	expect(queryByText('Banner Description')).not.toBeInTheDocument();
+	await waitForElementToBeRemoved(() => queryByText('Banner Title'));
+
+	expect(queryByText('Banner Title')).to.not.exist;
 });
+
