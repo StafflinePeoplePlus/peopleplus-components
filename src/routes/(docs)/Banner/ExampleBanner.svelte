@@ -1,6 +1,5 @@
 <script>
-	import Banner from '$lib/banner/Banner.svelte';
-	import { Button, Typography } from '$lib';
+	import { Button, Typography, Banner } from '$lib';
 </script>
 
 <Banner>
