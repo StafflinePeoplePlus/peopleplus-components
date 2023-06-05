@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { SvelteHTMLElements } from 'svelte/elements';
 	import { twMerge } from 'tailwind-merge';
-	import { Button } from 'pp-svelte-components';
+	import { Button } from '$lib';
 
 	type $$Props = SvelteHTMLElements['section'];
 

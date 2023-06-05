@@ -1,6 +1,6 @@
 import TestBanner from './TestBanner.svelte';
 import { test, expect, afterEach } from 'vitest';
-import {cleanup, fireEvent, render, waitForElementToBeRemoved} from '@testing-library/svelte';
+import { cleanup, fireEvent, render, waitForElementToBeRemoved } from '@testing-library/svelte';
 
 afterEach(cleanup);
 
@@ -26,4 +26,3 @@ test('should dismiss the banner once clicked', async () => {
 
 	expect(queryByText('Banner Title')).to.not.exist;
 });
-
