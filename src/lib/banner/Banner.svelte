@@ -22,11 +22,11 @@
 		<slot />
 		<Button
 			variant="secondary"
-			class="h-12 max-md:my-2 max-sm:w-full"
+			class="h-12 max-md:my-2 max-md:w-full"
 			on:click={() => (showBanner = false)}
 		>
-			<span aria-hidden="true" class="max-sm:hidden">&times;</span>
-			<span aria-hidden="true" class="sm:hidden">Dismiss</span>
+			<span aria-hidden="true" class="max-md:hidden">&times;</span>
+			<span aria-hidden="true" class="md:hidden">Dismiss</span>
 			<span class="sr-only">Close banner</span>
 		</Button>
 	</section>
