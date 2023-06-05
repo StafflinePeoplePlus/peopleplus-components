@@ -1,6 +1,6 @@
 <script>
 	import Banner from '$lib/banner/Banner.svelte';
-	import { Button, Typography } from 'pp-svelte-components';
+	import { Button, Typography } from '$lib';
 </script>
 
 <Banner>
