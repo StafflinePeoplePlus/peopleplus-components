@@ -56,7 +56,7 @@
 		on:reject={() => {
 			dismissed = true;
 		}}
-		on:save={(evt) => {
+		on:save={() => {
 			dismissed = true;
 		}}
 	/>
