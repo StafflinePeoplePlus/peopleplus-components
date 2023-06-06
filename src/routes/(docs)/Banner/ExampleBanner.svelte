@@ -4,11 +4,11 @@
 
 <Banner>
 	<div class="items-center gap-4 md:flex">
-		<div class="relative h-28 rounded-lg bg-cover bg-center md:h-40 md:w-80 lg:h-20 lg:w-64">
+		<div class="relative h-28 rounded-lg md:h-40 md:w-80 lg:h-20 lg:w-64">
 			<img
 				src="/jumbotron.jpg"
 				alt=""
-				class="absolute inset-0 h-full w-full rounded-lg object-cover object-center"
+				class="inset-0 h-full w-full rounded-lg object-cover object-center"
 			/>
 		</div>
 		<div class="space-y-1 max-sm:pb-2">

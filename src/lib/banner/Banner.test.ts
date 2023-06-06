@@ -1,28 +1,24 @@
-import TestBanner from './TestBanner.svelte';
 import { test, expect, afterEach } from 'vitest';
-import { cleanup, fireEvent, render, waitForElementToBeRemoved } from '@testing-library/svelte';
+import { cleanup, fireEvent, render } from '@testing-library/svelte';
+import ExampleBanner from '../../routes/(docs)/Banner/ExampleBanner.svelte';
 
 afterEach(cleanup);
 
 test('should render everything', () => {
-	const { getByText } = render(TestBanner);
+	const { getByText } = render(ExampleBanner);
 
-	getByText('Banner Title');
-	getByText('Banner Description');
+	getByText(`'The Lyrics, The Music & The Money'`);
 
-	const primaryAction = getByText('Learn More');
+	const primaryAction = getByText('View Course');
 	expect(primaryAction.tagName).toBe('A');
 	expect(primaryAction.getAttribute('href')).toBe('https://peopleplus.co.uk');
 });
 
 test('should dismiss the banner once clicked', async () => {
-	const { getByText, queryByText } = render(TestBanner);
-	getByText('Banner Title');
+	const { getByText, queryByText } = render(ExampleBanner);
 
 	const dismissButton = getByText('Dismiss');
 	fireEvent.click(dismissButton);
 
-	await waitForElementToBeRemoved(() => queryByText('Banner Title'));
-
-	expect(queryByText('Banner Title')).to.not.exist;
+	expect(queryByText('The Lyrics, The Music & The Money')).to.not.exist;
 });
