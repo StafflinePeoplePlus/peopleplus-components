@@ -82,7 +82,7 @@
 		<!-- Bottom controls -->
 		<div
 			class={twMerge(
-				'absolute bottom-0 w-full px-12 py-6 transition duration-300',
+				'absolute bottom-0 w-full px-6 py-6 transition duration-300 sm:px-12',
 				!showControls && 'translate-y-full'
 			)}
 		>
