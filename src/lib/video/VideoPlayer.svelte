@@ -35,7 +35,7 @@
 <div
 	bind:this={element}
 	class={twMerge(
-		'relative overflow-hidden bg-black text-white',
+		'relative touch-none overflow-hidden bg-black text-white',
 		!showControls && 'cursor-none',
 		className
 	)}
