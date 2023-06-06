@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { CookieConsentBanner } from '$lib';
+	import { CookieConsentBanner, type CookieCategory } from '$lib';
 
-	const categories = [
+	const categories: CookieCategory[] = [
 		{
 			name: 'neccesary-consent',
 			title: 'Neccesary Cookies',
@@ -17,21 +17,18 @@
 					name: '_fbp',
 					provider: 'Facebook',
 					purpose: 'Marketing/Tracking',
-					functionality: 'To store and track visits across websites.',
 					expiration: '3 months'
 				},
 				{
 					name: '_ga',
 					provider: 'Google Analytics',
 					purpose: 'Statistics',
-					functionality: 'To store count pageviews.',
 					expiration: '2 years'
 				},
 				{
 					name: '_gid',
 					provider: 'Google Analytics',
 					purpose: 'Statistics',
-					functionality: 'To store count pageviews.',
 					expiration: '1 day'
 				}
 			]
@@ -43,6 +40,7 @@
 
 {#if !dismissed}
 	<CookieConsentBanner
+		class="absolute"
 		{categories}
 		cookiePolicy="/"
 		on:accept={() => {
@@ -53,8 +51,8 @@
 			alert('Rejected all cookies!');
 			dismissed = true;
 		}}
-		on:save={() => {
-			alert('Save cookie consent!');
+		on:save={(evt) => {
+			alert(`Save cookie consent! - ${JSON.stringify(evt.detail)}`);
 			dismissed = true;
 		}}
 	/>

@@ -7,19 +7,26 @@
 	import CookieConsentCategory from './CookieConsentCategory.svelte';
 	import { twMerge } from 'tailwind-merge';
 
-	const dispatch = createEventDispatcher();
+	const dispatch = createEventDispatcher<{
+		save: Record<string, boolean | undefined>;
+		accept: void;
+		reject: void;
+	}>();
 
 	let className: string | undefined = undefined;
 	export { className as class };
 	export let categories: CookieCategory[];
 	export let cookiePolicy: string | undefined = undefined;
+	export let consent: Record<string, boolean | undefined> = {};
+	export let acceptAction: string | undefined = undefined;
+	export let rejectAction: string | undefined = undefined;
 
 	let expanded = false;
 </script>
 
 <section
 	class={twMerge(
-		'absolute inset-x-0 bottom-0 max-h-[calc(100%-2rem)] overflow-auto border-t border-gray-300 bg-gray-50 p-6 dark:border-gray-700 dark:bg-gray-800',
+		'fixed inset-x-0 bottom-0 max-h-[calc(100%-2rem)] overflow-auto border-t border-gray-300 bg-gray-50 p-6 dark:border-gray-700 dark:bg-gray-800',
 		className
 	)}
 	transition:fade|local
@@ -36,7 +43,13 @@
 		<div
 			class={twMerge('grid grid-cols-2 gap-4 md:flex md:flex-col md:gap-2', expanded && 'hidden')}
 		>
-			<Button variant="secondary" type="button" class="md:w-56" on:click={() => dispatch('accept')}>
+			<Button
+				variant="secondary"
+				type={acceptAction ? 'submit' : 'button'}
+				formaction={acceptAction}
+				class="md:w-56"
+				on:click={() => dispatch('accept')}
+			>
 				<span>Accept all <span class="hidden md:inline">cookies</span></span>
 			</Button>
 			<Button
@@ -70,10 +83,20 @@
 			<div class="divide-y dark:divide-gray-700">
 				<div class="mb-8">
 					<div class="mt-4 grid grid-cols-2 gap-4">
-						<Button variant="secondary" type="button" on:click={() => dispatch('accept')}>
+						<Button
+							variant="secondary"
+							type={acceptAction ? 'submit' : 'button'}
+							formaction={acceptAction}
+							on:click={() => dispatch('accept')}
+						>
 							<span>Accept all <span class="hidden md:inline">cookies</span></span>
 						</Button>
-						<Button variant="secondary" type="button" on:click={() => dispatch('reject')}>
+						<Button
+							variant="secondary"
+							type={rejectAction ? 'submit' : 'button'}
+							formaction={rejectAction}
+							on:click={() => dispatch('reject')}
+						>
 							<span>Reject all <span class="hidden md:inline">cookies</span></span>
 						</Button>
 					</div>
@@ -87,16 +110,17 @@
 						body={category.body}
 						required={category.required}
 						cookies={category.cookies}
+						bind:checked={consent[category.name]}
 					/>
 				{/each}
 
 				<div class="grid grid-cols-2 gap-4 pt-8 md:block">
 					<Button
 						variant="primary"
-						type="button"
+						type="submit"
 						on:click={() => {
 							expanded = false;
-							dispatch('save');
+							dispatch('save', consent);
 						}}
 					>
 						Save and close
