@@ -23,7 +23,10 @@
 	const stopInteracting = debounce(() => {
 		interacting = false;
 	}, 2000);
-	function startInteracting() {
+	function startInteracting(evt: Event) {
+		if (!showControls) {
+			evt.preventDefault();
+		}
 		interacting = true;
 		stopInteracting();
 	}
@@ -37,8 +40,9 @@
 		className
 	)}
 	on:pointermove={startInteracting}
-	on:pointerdown={startInteracting}
-	on:pointerleave={() => (interacting = false)}
+	on:mousedown={startInteracting}
+	on:mouseleave={() => (interacting = false)}
+	on:touchend={startInteracting}
 >
 	<!-- Video element -->
 	<div class="pointer-events-none absolute inset-0 h-full w-full">
