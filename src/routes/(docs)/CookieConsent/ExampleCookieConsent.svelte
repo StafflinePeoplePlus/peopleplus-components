@@ -1,15 +1,15 @@
 <script lang="ts">
-	import { CookieConsentBanner, type CookieCategory } from '$lib';
+	import { CookieConsentBanner, Card, CookieConsentManagement, type CookieCategory } from '$lib';
 
 	const categories: CookieCategory[] = [
 		{
-			name: 'neccesary-consent',
+			name: 'neccesary',
 			title: 'Neccesary Cookies',
 			body: 'Necessary cookies enable core functionality such as security, network management, and accessibility. You may disable these by changing your browser settings, but this may affect how the website functions.',
 			required: true
 		},
 		{
-			name: 'analytics-consent',
+			name: 'analytics',
 			title: 'Analytics Cookies',
 			body: "We'd like to collect website analytics information. We collect on device data about how you interact with our site. The data is collected in a way that does not directly identify anyone. For more information please see our Cookies page.",
 			cookies: [
@@ -35,24 +35,28 @@
 		}
 	];
 
+	let consent = {};
 	let dismissed = false;
 </script>
 
-{#if !dismissed}
+{#if dismissed}
+	<Card class="mt-4 max-w-prose p-6">
+		<CookieConsentManagement {categories} bind:consent cookiePolicy="/" />
+	</Card>
+{:else}
 	<CookieConsentBanner
 		class="absolute"
 		{categories}
 		cookiePolicy="/"
+		bind:consent
 		on:accept={() => {
-			alert('Accepted all cookies!');
+			consent = { analytics: true };
 			dismissed = true;
 		}}
 		on:reject={() => {
-			alert('Rejected all cookies!');
 			dismissed = true;
 		}}
 		on:save={(evt) => {
-			alert(`Save cookie consent! - ${JSON.stringify(evt.detail)}`);
 			dismissed = true;
 		}}
 	/>
