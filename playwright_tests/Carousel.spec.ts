@@ -1,5 +1,6 @@
 import type { Locator } from '@playwright/test';
-import { expect, test } from 'playwright-test-coverage';
+import { expect } from 'playwright-test-coverage';
+import { test } from './fixtures';
 
 const ITEM_GAP = 8;
 const ITEM_WIDTH = 200;
