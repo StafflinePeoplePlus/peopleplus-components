@@ -22,7 +22,7 @@
 	}
 </script>
 
-<div class={twMerge('flex items-center gap-6', className)}>
+<div class={twMerge('flex items-center gap-3 sm:gap-6', className)}>
 	<HorizontalRange
 		class="grow"
 		max={duration}
@@ -35,6 +35,9 @@
 		}}
 	/>
 	{#if duration}
-		<div class="font-mono">{formatSeconds(scrubTime)} / {formatSeconds(duration)}</div>
+		<div class="font-mono">
+			{formatSeconds(scrubTime)}
+			<span class="hidden sm:inline"> / {formatSeconds(duration)}</span>
+		</div>
 	{/if}
 </div>

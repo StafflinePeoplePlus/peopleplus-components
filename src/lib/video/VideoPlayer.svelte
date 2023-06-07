@@ -23,7 +23,10 @@
 	const stopInteracting = debounce(() => {
 		interacting = false;
 	}, 2000);
-	function startInteracting() {
+	function startInteracting(evt: Event) {
+		if (!showControls) {
+			evt.preventDefault();
+		}
 		interacting = true;
 		stopInteracting();
 	}
@@ -32,13 +35,14 @@
 <div
 	bind:this={element}
 	class={twMerge(
-		'relative overflow-hidden bg-black text-white',
+		'relative touch-none overflow-hidden bg-black text-white',
 		!showControls && 'cursor-none',
 		className
 	)}
 	on:pointermove={startInteracting}
-	on:pointerdown={startInteracting}
-	on:pointerleave={() => (interacting = false)}
+	on:mousedown={startInteracting}
+	on:mouseleave={() => (interacting = false)}
+	on:touchend={startInteracting}
 >
 	<!-- Video element -->
 	<div class="pointer-events-none absolute inset-0 h-full w-full">
@@ -78,7 +82,7 @@
 		<!-- Bottom controls -->
 		<div
 			class={twMerge(
-				'absolute bottom-0 w-full px-12 py-6 transition duration-300',
+				'absolute bottom-0 w-full px-6 py-6 transition duration-300 sm:px-12',
 				!showControls && 'translate-y-full'
 			)}
 		>

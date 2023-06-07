@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import MaximiseIcon from './icons/MaximiseIcon.svelte';
 	import MinimizeIcon from './icons/MinimizeIcon.svelte';
 
@@ -12,14 +13,21 @@
 			element?.requestFullscreen({ navigationUI: 'hide' });
 		}
 	}
+
+	let supported = true;
+	onMount(() => {
+		supported = 'requestFullscreen' in document.body;
+	});
 </script>
 
 <svelte:window on:fullscreenchange={() => (fullscreen = !!document.fullscreenElement)} />
 
-<button class="p-1" on:click={toggleFullscreen}>
-	{#if fullscreen}
-		<MinimizeIcon />
-	{:else}
-		<MaximiseIcon />
-	{/if}
-</button>
+{#if supported}
+	<button class="p-1" on:click={toggleFullscreen}>
+		{#if fullscreen}
+			<MinimizeIcon />
+		{:else}
+			<MaximiseIcon />
+		{/if}
+	</button>
+{/if}

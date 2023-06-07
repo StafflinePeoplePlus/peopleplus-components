@@ -18,7 +18,7 @@
 
 <VideoPlayer
 	bind:element={playerElement}
-	class="h-[400px] w-[600px]"
+	class="-mx-6 h-[400px] w-screen sm:mx-0 sm:w-[600px] sm:max-w-full"
 	{playing}
 	on:play={() => player.play()}
 	on:pause={() => player.pause()}
@@ -40,7 +40,7 @@
 		bind:progress={buffered}
 	/>
 
-	<div slot="bottom" class="flex items-center gap-6">
+	<div slot="bottom" class="flex items-center gap-3 sm:gap-6">
 		<ScrubBar
 			class="grow"
 			{currentTime}

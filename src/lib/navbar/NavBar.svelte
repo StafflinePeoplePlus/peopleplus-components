@@ -23,7 +23,7 @@
 
 <nav
 	class={twMerge(
-		'mx-auto flex max-w-screen-xl flex-wrap items-center justify-between gap-x-8 overflow-hidden bg-gray-100 p-4 dark:bg-gray-700 md:gap-y-2',
+		'flex flex-wrap items-center justify-between gap-x-8 overflow-hidden bg-gray-100 p-4 dark:bg-gray-700 md:gap-y-2',
 		className
 	)}
 >
