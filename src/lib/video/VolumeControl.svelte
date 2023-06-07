@@ -8,7 +8,9 @@
 </script>
 
 <div class="group/volume relative flex items-center justify-center">
-	<div class="absolute bottom-8 z-10 hidden p-10 pb-2 group-hover/volume:block">
+	<div
+		class="absolute bottom-8 z-10 hidden p-10 pb-2 group-focus-within/volume:block group-hover/volume:block"
+	>
 		<div
 			class="flex items-center justify-center rounded-lg border border-white/10 bg-black/70 px-2 py-3 shadow-lg backdrop-blur"
 		>
@@ -17,12 +19,14 @@
 	</div>
 	<button
 		class="p-1"
-		on:click={() => {
-			if (volume > 0) {
-				restoreVolume = volume;
-				volume = 0;
-			} else {
-				volume = restoreVolume || 1;
+		on:pointerdown={(evt) => {
+			if (evt.pointerType === 'mouse' || document.activeElement === evt.currentTarget) {
+				if (volume > 0) {
+					restoreVolume = volume;
+					volume = 0;
+				} else {
+					volume = restoreVolume || 1;
+				}
 			}
 		}}
 	>

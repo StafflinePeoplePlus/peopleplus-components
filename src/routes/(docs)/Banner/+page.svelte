@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { Banner } from '$lib';
 	import ExamplePage from '../ExamplePage.svelte';
-
-	const usage = '<Banner />';
+	import usage from './ExampleBanner.svelte?raw';
+	import ExampleBanner from './ExampleBanner.svelte';
 </script>
 
 <ExamplePage title="Banner" {usage}>
-	<Banner absolute />
+	<ExampleBanner />
 </ExamplePage>
