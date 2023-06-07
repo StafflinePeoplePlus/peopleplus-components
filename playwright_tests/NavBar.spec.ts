@@ -1,4 +1,5 @@
-import { expect, test } from 'playwright-test-coverage';
+import { expect } from 'playwright-test-coverage';
+import { test } from './fixtures';
 
 test('NavBar content is visible', async ({ page, isMobile }) => {
 	await page.goto('/test/navbar');

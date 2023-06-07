@@ -12,3 +12,5 @@ vite.config.ts.timestamp-*
 coverage
 /dist
 .wrangler
+test-results
+.nyc_output
