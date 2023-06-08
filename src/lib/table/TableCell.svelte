@@ -29,9 +29,9 @@
 <svelte:element
 	this={header ? 'th' : 'td'}
 	class={twMerge(
-		'px-3 py-2',
+		'px-3 py-2 text-gray-800 dark:text-white',
 		header && 'bg-gray-200 font-semibold text-gray-800 dark:bg-gray-700 dark:text-white',
-		number && 'text-right',
+		number && 'text-right text-gray-800 dark:text-white',
 		$table.borders && 'ring-1 ring-gray-300 dark:ring-gray-500',
 		visualPosition
 			? isPosition(visualPosition, 'top-left') && 'rounded-tl-md'
