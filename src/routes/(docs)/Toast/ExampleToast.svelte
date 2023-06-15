@@ -4,7 +4,7 @@
     import ToastButton from "$lib/toast/ToastButton.svelte";
 </script>
 
-<ToastButton>
+<ToastButton variant="secondary">
     Delete
 </ToastButton>
 
