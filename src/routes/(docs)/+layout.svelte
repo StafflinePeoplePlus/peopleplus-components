@@ -33,6 +33,7 @@
 		{ name: 'TextInput' },
 		{ name: 'TextArea' },
 		{ name: 'TitleDescription' },
+		{ name: 'Toast' },
 		{ name: 'Tooltip' },
 		{ name: 'VideoPlayer' }
 	];
