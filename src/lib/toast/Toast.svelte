@@ -1,44 +1,29 @@
-<script>
-	import {toasts} from './toastStore';
+<script lang="ts">
+	import { toasts, showToast, removeToast } from './toastStore';
 	import {Button} from "$lib";
+	import type { SvelteHTMLElements } from 'svelte/elements';
+	import { twMerge } from 'tailwind-merge';
 
-	let id = 0;
+	type Props = SvelteHTMLElements['section'];
 
-	function showToast(message) {
-		toasts.update((currentToasts) => [...currentToasts, {message, id: ++id}]);
+	let className: Props['class'] = undefined;
+	export { className as class };
 
-		setTimeout(() => {
-			toasts.update((t) => t.filter((toast) => toast.id !== id));
-		}, 5000);
-	}
-
-	function removeToast(id) {
-		toasts.update((t) => t.filter((toast) => toast.id !== id));
-	}
+	let restProps = {};
 </script>
 
-<Button on:click={() => showToast('Toast message')}>
-	Submit
-</Button>
-
-
 {#each $toasts as toast (toast.id)}
-	<div
-		class="toast mb-4 flex w-full max-w-md items-center rounded-lg bg-white p-4 text-gray-500 shadow dark:bg-gray-800 dark:text-gray-400"
+	<section
+			class={twMerge(
+		'toast my-4 flex p-4 text-blue-800 border border-blue-300 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 dark:border-blue-800 items-center',
+		className
+	)}
+			{...restProps}
 	>
-		<div
-			class="inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-green-100 text-green-500 dark:bg-green-800 dark:text-green-200"
-		/>
-		<div class="ml-3 text-sm font-normal">
-			{toast.message}
-		</div>
-		<button
-			on:click={() => removeToast(toast.id)}
-			type="button"
-			class="ml-auto inline-flex h-8 w-8 items-center rounded-lg bg-white text-gray-400 hover:bg-gray-100 hover:text-gray-900 focus:ring-2 focus:ring-gray-300 dark:bg-gray-800 dark:text-gray-500 dark:hover:bg-gray-700 dark:hover:text-white"
-			aria-label="Close"
-		>
-			<span class="mx-auto text-center"> &times; </span>
-		</button>
-	</div>
+		<slot />
+
+		<Button variant="secondary" on:click={() => removeToast(toast.id)} class="ml-auto">
+			<span aria-hidden="true"> &times; </span>
+		</Button>
+	</section>
 {/each}
