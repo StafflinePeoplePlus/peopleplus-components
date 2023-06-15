@@ -1,10 +1,11 @@
 <script>
-	import { toasts } from './toastStore';
+	import {toasts} from './toastStore';
+	import {Button} from "$lib";
 
 	let id = 0;
 
 	function showToast(message) {
-		toasts.update((currentToasts) => [...currentToasts, { message, id: ++id }]);
+		toasts.update((currentToasts) => [...currentToasts, {message, id: ++id}]);
 
 		setTimeout(() => {
 			toasts.update((t) => t.filter((toast) => toast.id !== id));
@@ -16,7 +17,10 @@
 	}
 </script>
 
-<button on:click={() => showToast('Toast message')}>O</button>
+<Button on:click={() => showToast('Toast message')}>
+	Submit
+</Button>
+
 
 {#each $toasts as toast (toast.id)}
 	<div
