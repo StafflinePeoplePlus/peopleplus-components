@@ -10,6 +10,15 @@ export default {
 			colors: {
 				primary: colors.red
 			}
+		},
+		keyframes: {
+			slideIn: {
+				'0%': { transform: 'translateX(-30%)' },
+				'100%': { transform: 'translateX(0)' }
+			}
+		},
+		animation: {
+			slideIn: 'slideIn 0.3s ease-in-out'
 		}
 	},
 	plugins: [require('@tailwindcss/typography'), ppSvelteComponents()]
