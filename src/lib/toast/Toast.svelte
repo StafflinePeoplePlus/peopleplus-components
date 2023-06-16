@@ -28,7 +28,7 @@
 
 {#each $toasts as toast, i (i)}
 	<section class={twMerge(variants[variant], className)} {...restProps}>
-		<div class={twMerge(generateIconStyle(variant))} >
+		<div class={twMerge(generateIconStyle(variant))}>
 			{#if variant === 'warning'}
 				!
 			{:else if variant === 'error'}
@@ -37,7 +37,8 @@
 				&#10003;
 			{/if}
 		</div>
-		<slot />
+
+		<div><slot /></div>
 
 		<Button variant="secondary" on:click={() => removeToast(i)} class="ml-auto">
 			<span aria-hidden="true"> &times; </span>

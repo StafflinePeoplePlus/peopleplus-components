@@ -2,12 +2,12 @@ import { writable } from 'svelte/store';
 
 export const toasts = writable([]);
 
-export function showToast() {
+export function showToast(timeout = 5000) {
 	toasts.update((currentToasts) => [...currentToasts, undefined]);
 
 	setTimeout(() => {
 		toasts.update((t) => t.slice(1));
-	}, 5000);
+	}, timeout);
 }
 
 export function removeToast() {

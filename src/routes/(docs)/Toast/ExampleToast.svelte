@@ -4,25 +4,19 @@
 	import ToastButton from '$lib/toast/ToastButton.svelte';
 </script>
 
-<ToastButton variant="secondary">Delete</ToastButton>
+<ToastButton timeout={3000}>Click me</ToastButton>
 
 <Toast variant="warning">
-	<div>
-		<Typography variant="sub-heading">Invalid Username</Typography>
-		<Typography variant="body">Username you have entered is invalid</Typography>
-	</div>
+	<Typography variant="sub-heading">Invalid Username</Typography>
+	<Typography variant="body">Username you have entered is invalid</Typography>
 </Toast>
 
 <Toast variant="success">
-	<div>
-		<Typography variant="sub-heading">Success</Typography>
-		<Typography variant="body">Item moved successfully.</Typography>
-	</div>
+	<Typography variant="sub-heading">Success</Typography>
+	<Typography variant="body">Item moved successfully.</Typography>
 </Toast>
 
 <Toast variant="error">
-	<div>
-		<Typography variant="sub-heading">Error</Typography>
-		<Typography variant="body">Please try again</Typography>
-	</div>
+	<Typography variant="sub-heading">Error</Typography>
+	<Typography variant="body">Please try again</Typography>
 </Toast>
