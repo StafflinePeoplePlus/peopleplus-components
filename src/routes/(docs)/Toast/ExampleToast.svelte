@@ -1,7 +1,5 @@
 <script>
-	import Toast from '$lib/toast/Toast.svelte';
-	import { Typography } from '$lib';
-	import ToastButton from '$lib/toast/ToastButton.svelte';
+	import { Typography, ToastButton, Toast } from '$lib';
 </script>
 
 <ToastButton timeout={3000}>Click me</ToastButton>
