@@ -19,7 +19,6 @@
 			message: 'Uploading videos.',
 			timeout: null
 		});
-
 	}
 </script>
 
