@@ -44,8 +44,11 @@
 	],
 	"dependencies": {
 		"esm-env": "^1.0.0",
+		"i": "^0.3.7",
 		"just-debounce-it": "^3.2.0",
 		"just-throttle": "^4.2.0",
+		"lucide-svelte": "^0.246.0",
+		"npm": "^9.7.1",
 		"svelte-headlessui": "^0.0.16",
 		"tailwind-merge": "^1.12.0"
 	},
