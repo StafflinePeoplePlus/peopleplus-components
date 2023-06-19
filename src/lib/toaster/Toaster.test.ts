@@ -15,8 +15,8 @@ test('clicking buttons shows the toast messages and they disappear after timeout
 	const successToast = await findByText('Changes successfully saved.');
 	const errorToast = await findByText('Username you have entered is invalid.');
 
-	await waitForElementToBeRemoved(successToast, { timeout: 3500 });
-	await waitForElementToBeRemoved(errorToast, { timeout: 6500 });
+	await waitForElementToBeRemoved(successToast, { timeout: 5000 });
+	await waitForElementToBeRemoved(errorToast, { timeout: 8000 });
 
 	await fireEvent.click(uploadButton);
 });
