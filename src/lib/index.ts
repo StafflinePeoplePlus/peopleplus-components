@@ -4,6 +4,7 @@ export * from './forms';
 export * from './navbar';
 export * from './table';
 export * from './video';
+export * from './sortable';
 export { default as Alert } from './Alert.svelte';
 export { default as BackgroundImage } from './BackgroundImage.svelte';
 export { default as Banner } from './banner/Banner.svelte';
