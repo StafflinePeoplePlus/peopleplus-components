@@ -3,7 +3,7 @@
 	import type { ToastMessage } from './types';
 	import { twMerge } from 'tailwind-merge';
 	import { onMount, createEventDispatcher } from 'svelte';
-	import { XCircleIcon, CheckCircleIcon, XIcon } from 'lucide-svelte';
+	import { XCircleIcon, CheckCircleIcon, XIcon, AlertCircle } from 'lucide-svelte';
 	const dispatch = createEventDispatcher<{ dismiss: undefined }>();
 	export let toast: ToastMessage;
 	onMount(() => {
@@ -23,7 +23,8 @@
 	class={twMerge(
 		'mb-2 flex w-72 max-w-full items-center gap-3 rounded-md border border-white/20 p-3 leading-tight text-white shadow-lg backdrop-blur-md',
 		toast.kind === 'success' && 'bg-green-700/70',
-		toast.kind === 'error' && 'bg-rose-700/70'
+		toast.kind === 'alert' && 'bg-orange-600/70',
+		toast.kind === 'error' && 'bg-rose-700/70',
 	)}
 	role="alert"
 	in:fly|local={{ x: 300 }}
@@ -32,6 +33,8 @@
 >
 	{#if toast.kind === 'success'}
 		<CheckCircleIcon size="20" aria-hidden="true" />
+	{:else if toast.kind === 'alert'}
+		<AlertCircle size="20" aria-hidden="true" />
 	{:else if toast.kind === 'error'}
 		<XCircleIcon size="20" aria-hidden="true" />
 	{/if}

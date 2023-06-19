@@ -1,6 +1,5 @@
 <script>
-	import { Toaster, showToast } from '$lib/toaster';
-	import { Button } from '$lib';
+	import { Button, Toaster, showToast } from '$lib';
 
 	function showToastClick() {
 		showToast({
@@ -14,8 +13,17 @@
 			timeout: 6000
 		});
 	}
+	function showToastClickNull() {
+		showToast({
+			variant: 'alert',
+			message: 'Uploading videos.',
+			timeout: null
+		});
+
+	}
 </script>
 
 <Button on:click={showToastClick}>Delete</Button>
+<Button on:click={showToastClickNull} variant="secondary">Upload</Button>
 
 <Toaster />
