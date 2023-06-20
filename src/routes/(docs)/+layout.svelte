@@ -27,12 +27,14 @@
 		{ name: 'Loader' },
 		{ name: 'Modal' },
 		{ name: 'NavBar' },
+		{ name: 'Sortable' },
 		{ name: 'Stepper' },
 		{ name: 'Switch' },
 		{ name: 'Table' },
 		{ name: 'TextInput' },
 		{ name: 'TextArea' },
 		{ name: 'TitleDescription' },
+		{ name: 'Toaster' },
 		{ name: 'Tooltip' },
 		{ name: 'VideoPlayer' }
 	];
