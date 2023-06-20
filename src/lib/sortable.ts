@@ -1,58 +1,74 @@
 import type { Action } from 'svelte/action';
-import { type Readable, readable } from 'svelte/store';
+import { type Readable, readable, writable, derived } from 'svelte/store';
+import { destroySequence, toggleableAction, addEventListener } from './helpers/action';
 
 const DRAG_BAR_SIZE = 3;
-const DEBUG = false;
 
-export type SortableAxis = 'x' | 'y';
+export type Axis = 'x' | 'y';
 export type SortableOpts = {
+	/**
+	 * Svelte store containing a boolean to enable/disable the sortable. Defaults to enabled.
+	 */
 	enabled?: Readable<boolean>;
-	axis?: SortableAxis;
+	/**
+	 * Axis the sortable works in. Defaults to 'y'
+	 */
+	axis?: Axis;
+	/**
+	 * When true, enabled some debug rendering such as rendering the drop zones. Defaults to false
+	 */
+	debug?: boolean;
+	/**
+	 * Called when the order changes. It is expected that you update your list order when this
+	 * happens as this will not be done for you.
+	 * @param ids List of the sortable ids
+	 */
 	onReorder?(ids: string[]): void;
 };
+
+export type Sortable = Readable<{ enabled: boolean; dragging: boolean }> & {
+	item: Action<HTMLElement, string>;
+};
+
 type AxisBound = { start: number; end: number; size: number };
-export function createSortable(opts: SortableOpts = {}) {
+type ItemBounds = { id: string; primaryAxis: AxisBound; secondaryAxis: AxisBound };
+type ScrollArea = {
+	element: HTMLElement;
+	rect: DOMRect;
+	size: number;
+};
+type DragState = {
+	el: HTMLElement;
+	id: string;
+	bar: HTMLElement;
+	zones: SortableDropZone[];
+	itemBounds: ItemBounds[];
+	dragCanvas: HTMLElement;
+	createdDropZones: boolean;
+};
+
+export function createSortable(opts: SortableOpts = {}): Sortable {
 	const enabled = opts.enabled ?? readable(true);
 	const axis = opts.axis ?? 'y';
+	const debug = opts.debug ?? false;
 	const items: Map<string, HTMLElement> = new Map();
-	let dragState:
-		| {
-				el: HTMLElement;
-				id: string;
-				bar: HTMLElement;
-				zones: SortableDropZone[];
-				itemBounds: { id: string; primaryAxis: AxisBound; secondaryAxis: AxisBound }[];
-				dragCanvas: HTMLElement;
-				createdDropZones: boolean;
-		  }
-		| undefined = undefined;
+	const dragging = writable(false);
+	let dragState: DragState | undefined = undefined;
 
 	const cancelDrag = () => {
 		if (dragState) {
-			dragState.el.style.opacity = '1';
+			dragState.el.style.removeProperty('opacity');
 			dragState.dragCanvas.remove();
 			dragState = undefined;
+			dragging.set(false);
 		}
 	};
 	const onDrop = (zone: SortableDropZone) => {
 		if (dragState) {
-			const itemId = dragState.id;
-			if (zone.afterId || zone.beforeId) {
-				const targetId = zone.afterId ?? zone.beforeId;
-				const targetOffset = zone.afterId ? 1 : 0;
-
-				if (targetId !== itemId) {
-					let insertAtIndex = 0;
-					const order = dragState.itemBounds
-						.filter((item) => item.id !== itemId)
-						.map((item, index) => {
-							if (item.id === zone.afterId) {
-								insertAtIndex = index + targetOffset;
-							}
-							return item.id;
-						});
-					order.splice(insertAtIndex, 0, itemId);
-					opts.onReorder?.(order);
+			if (opts.onReorder) {
+				const order = calculateNewOrder(dragState, zone);
+				if (order) {
+					opts.onReorder(order);
 				}
 			}
 
@@ -61,132 +77,64 @@ export function createSortable(opts: SortableOpts = {}) {
 	};
 	const onDragOver = (zone: SortableDropZone) => {
 		if (dragState) {
-			let value;
-			if (zone.afterId === undefined) {
-				const item = dragState.itemBounds[0];
-				value = `${item.primaryAxis.start - DRAG_BAR_SIZE - 2}px`;
-			} else if (zone.beforeId === undefined) {
-				const item = dragState.itemBounds[dragState.itemBounds.length - 1];
-				value = `${item.primaryAxis.end + 2}px`;
-			} else {
-				value = `${zone.start + (zone.end - zone.start) / 2 - DRAG_BAR_SIZE / 2}px`;
-			}
-			if (axis === 'x') {
-				dragState.bar.style.left = value;
-			} else {
-				dragState.bar.style.top = value;
-			}
+			repositionDragBar(dragState.bar, zone, dragState.itemBounds, axis);
 		}
 	};
 
 	return {
-		item: toggleableAction(enabled, (el: HTMLElement, id: string) => {
-			el.setAttribute('draggable', 'true');
+		...derived([enabled, dragging], ([enabled, dragging]) => ({
+			enabled,
+			dragging
+		})),
+		item: toggleableAction<HTMLElement, string>(enabled, (el, id) => {
+			if (!id) {
+				throw new Error('Must supply ID to sortable item');
+			}
 
+			el.setAttribute('draggable', 'true');
 			items.set(id, el);
+
 			const destroy = destroySequence(
 				() => {
 					el.removeAttribute('draggable');
+					el.style.removeProperty('opacity');
 					items.delete(id);
 				},
-				addEventListener(el, 'dragstart', () => {
+				addEventListener(el, 'dragstart', (evt) => {
 					el.style.opacity = '0.5';
 
 					const scrollArea = getScrollArea(el, axis);
-					const itemBounds = Array.from(items.entries()).map(([id, el]) => {
-						const rect = getRelativeRect(scrollArea.rect, el.getBoundingClientRect());
-						const xAxis = {
-							start: rect.left + scrollArea.element.scrollLeft,
-							end: rect.right + scrollArea.element.scrollLeft,
-							size: rect.width
-						};
-						const yAxis = {
-							start: rect.top + scrollArea.element.scrollTop,
-							end: rect.bottom + scrollArea.element.scrollTop,
-							size: rect.height
-						};
-						return {
-							id,
-							primaryAxis: axis === 'x' ? xAxis : yAxis,
-							secondaryAxis: axis === 'x' ? yAxis : xAxis
-						};
-					});
-					itemBounds.sort((a, b) => a.primaryAxis.start - b.primaryAxis.start);
-
-					const zones: SortableDropZone[] = [
-						{
-							afterId: undefined,
-							beforeId: itemBounds[0]?.id,
-							start: 0,
-							end: itemBounds[0].primaryAxis.start + itemBounds[0].primaryAxis.size / 2
-						}
-					];
-					let dragBarSize = 0;
-					let dragBarStart = Infinity;
-					for (let i = 0; i < itemBounds.length; i++) {
-						const current = itemBounds[i];
-						dragBarSize = Math.max(dragBarSize, current.secondaryAxis.size);
-						dragBarStart = Math.min(dragBarStart, current.secondaryAxis.start);
-
-						const next = itemBounds[i + 1];
-						if (next) {
-							zones.push({
-								afterId: current.id,
-								beforeId: next.id,
-								start: current.primaryAxis.start + current.primaryAxis.size / 2,
-								end: next.primaryAxis.start + next.primaryAxis.size / 2
-							});
-						}
-					}
-					const lastItem = itemBounds[itemBounds.length - 1];
-					zones.push({
-						afterId: lastItem.id,
-						beforeId: undefined,
-						start: lastItem.primaryAxis.start + lastItem.primaryAxis.size / 2,
-						end: scrollArea.size
-					});
-
+					const itemBounds = calculateAllItemBounds(items, scrollArea, axis);
+					const zones = calculateDropZones(itemBounds, scrollArea);
 					const dragCanvas = createDragCanvas(scrollArea.element);
+					const bar = createDragBar(dragCanvas, axis, itemBounds);
+					const zoneUnderCursor = findDropZoneUnderCursor(zones, scrollArea, axis, evt);
+					if (zoneUnderCursor) {
+						repositionDragBar(bar, zoneUnderCursor, itemBounds, axis);
+					}
+
 					dragState = {
 						id,
 						el,
-						bar: createDragBar(dragCanvas, axis),
+						bar,
 						zones,
 						itemBounds,
 						dragCanvas,
 						createdDropZones: false
 					};
-
-					const thisItem = itemBounds.find((i) => i.id === id);
-					if (axis === 'x') {
-						if (thisItem) {
-							dragState.bar.style.left = `${thisItem.primaryAxis.start - DRAG_BAR_SIZE - 2}px`;
-						}
-						dragState.bar.style.top = `${dragBarStart}px`;
-						dragState.bar.style.height = `${dragBarSize}px`;
-					} else {
-						if (thisItem) {
-							dragState.bar.style.top = `${thisItem.primaryAxis.start - DRAG_BAR_SIZE - 2}px`;
-						}
-						dragState.bar.style.left = `${dragBarStart}px`;
-						dragState.bar.style.width = `${dragBarSize}px`;
-					}
+					dragging.set(true);
 				}),
-				addEventListener(el, 'dragend', () => {
-					cancelDrag();
-				}),
+				addEventListener(el, 'dragend', cancelDrag),
 				addEventListener(el, 'drag', () => {
-					if (dragState) {
-						if (!dragState.createdDropZones) {
-							createDropZones(
-								dragState.dragCanvas,
-								dragState.zones,
-								axis,
-								{ onDrop, onDragOver },
-								DEBUG
-							);
-							dragState.createdDropZones = true;
-						}
+					if (dragState && !dragState.createdDropZones) {
+						createDropZones(
+							dragState.dragCanvas,
+							dragState.zones,
+							axis,
+							{ onDrop, onDragOver },
+							debug
+						);
+						dragState.createdDropZones = true;
 					}
 				})
 			);
@@ -198,7 +146,144 @@ export function createSortable(opts: SortableOpts = {}) {
 	};
 }
 
-function getScrollArea(childElement: HTMLElement, axis: SortableAxis) {
+function repositionDragBar(
+	bar: HTMLElement,
+	zone: SortableDropZone,
+	itemBounds: ItemBounds[],
+	axis: string
+) {
+	let value;
+	if (zone.afterId === undefined) {
+		const item = itemBounds[0];
+		value = `${item.primaryAxis.start - DRAG_BAR_SIZE - 2}px`;
+	} else if (zone.beforeId === undefined) {
+		const item = itemBounds[itemBounds.length - 1];
+		value = `${item.primaryAxis.end + 2}px`;
+	} else {
+		value = `${zone.start + (zone.end - zone.start) / 2 - DRAG_BAR_SIZE / 2}px`;
+	}
+	if (axis === 'x') {
+		bar.style.left = value;
+	} else {
+		bar.style.top = value;
+	}
+}
+
+function calculateNewOrder(dragState: DragState, zone: SortableDropZone): string[] | undefined {
+	const itemId = dragState.id;
+	if (zone.afterId || zone.beforeId) {
+		const targetId = zone.afterId ?? zone.beforeId;
+		const targetOffset = zone.afterId ? 1 : 0;
+
+		if (targetId !== itemId) {
+			let insertAtIndex = 0;
+			const order = dragState.itemBounds
+				.filter((item) => item.id !== itemId)
+				.map((item, index) => {
+					if (item.id === zone.afterId) {
+						insertAtIndex = index + targetOffset;
+					}
+					return item.id;
+				});
+			order.splice(insertAtIndex, 0, itemId);
+			return order;
+		}
+	}
+}
+
+function createDragBar(appendTo: HTMLDivElement, axis: Axis, itemBounds: ItemBounds[]) {
+	const bar = document.createElement('div');
+	bar.className = `absolute bg-red-600 rounded-sm pointer-events-none ${
+		axis === 'x' ? 'w-[3px]' : 'h-[3px]'
+	}`;
+	const dragBarSize = itemBounds.reduce(
+		(value, bounds) => Math.max(value, bounds.secondaryAxis.size),
+		0
+	);
+	const dragBarStart = itemBounds.reduce(
+		(value, bounds) => Math.min(value, bounds.secondaryAxis.start),
+		Infinity
+	);
+	if (axis === 'x') {
+		bar.style.top = `${dragBarStart}px`;
+		bar.style.height = `${dragBarSize}px`;
+	} else {
+		bar.style.left = `${dragBarStart}px`;
+		bar.style.width = `${dragBarSize}px`;
+	}
+	appendTo.appendChild(bar);
+	return bar;
+}
+
+function calculateDropZones(itemBounds: ItemBounds[], scrollArea: ScrollArea) {
+	const zones: SortableDropZone[] = [
+		{
+			afterId: undefined,
+			beforeId: itemBounds[0]?.id,
+			start: 0,
+			end: itemBounds[0].primaryAxis.start + itemBounds[0].primaryAxis.size / 2
+		}
+	];
+	for (let i = 0; i < itemBounds.length; i++) {
+		const current = itemBounds[i];
+
+		const next = itemBounds[i + 1];
+		if (next) {
+			zones.push({
+				afterId: current.id,
+				beforeId: next.id,
+				start: current.primaryAxis.start + current.primaryAxis.size / 2,
+				end: next.primaryAxis.start + next.primaryAxis.size / 2
+			});
+		}
+	}
+	const lastItem = itemBounds[itemBounds.length - 1];
+	zones.push({
+		afterId: lastItem.id,
+		beforeId: undefined,
+		start: lastItem.primaryAxis.start + lastItem.primaryAxis.size / 2,
+		end: scrollArea.size
+	});
+	return zones;
+}
+
+function calculateAllItemBounds(
+	items: Map<string, HTMLElement>,
+	scrollArea: ScrollArea,
+	axis: Axis
+) {
+	const itemBounds = Array.from(items.entries()).map(([id, el]) => {
+		return calculateItemBounds(scrollArea, el, id, axis);
+	});
+	itemBounds.sort((a, b) => a.primaryAxis.start - b.primaryAxis.start);
+	return itemBounds;
+}
+
+function calculateItemBounds(
+	scrollArea: ScrollArea,
+	el: HTMLElement,
+	id: string,
+	axis: Axis
+): ItemBounds {
+	const rect = getRelativeRect(scrollArea.rect, el.getBoundingClientRect());
+	const xAxis = {
+		start: rect.left + scrollArea.element.scrollLeft,
+		end: rect.right + scrollArea.element.scrollLeft,
+		size: rect.width
+	};
+	const yAxis = {
+		start: rect.top + scrollArea.element.scrollTop,
+		end: rect.bottom + scrollArea.element.scrollTop,
+		size: rect.height
+	};
+	return {
+		id,
+		primaryAxis: axis === 'x' ? xAxis : yAxis,
+		secondaryAxis: axis === 'x' ? yAxis : xAxis
+	};
+}
+
+function getScrollArea(childElement: HTMLElement, axis: Axis): ScrollArea {
 	const element = findScrollParent(childElement, axis);
 	const rect = element.getBoundingClientRect();
 	return {
@@ -208,7 +293,7 @@ function getScrollArea(childElement: HTMLElement, axis: SortableAxis) {
 	};
 }
 
-function findScrollParent(element: HTMLElement, axis: SortableAxis) {
+function findScrollParent(element: HTMLElement, axis: Axis) {
 	const rect = element.getBoundingClientRect();
 	if (axis === 'x' && element.scrollWidth > rect.width) {
 		const styles = window.getComputedStyle(element);
@@ -239,16 +324,6 @@ function createDragCanvas(appendTo: Node) {
 	return el;
 }
 
-function createDragBar(appendTo: Node, axis: SortableAxis) {
-	const el = document.createElement('div');
-	el.className = `absolute bg-red-600 rounded-sm pointer-events-none ${
-		axis === 'x' ? 'w-[3px]' : 'h-[3px]'
-	}`;
-
-	appendTo.appendChild(el);
-	return el;
-}
-
 type SortableDropZone = {
 	afterId: string | undefined;
 	beforeId: string | undefined;
@@ -263,20 +338,19 @@ type DropZoneHandlers = {
 function createDropZones(
 	appendTo: Node,
 	zones: SortableDropZone[],
-	axis: SortableAxis,
+	axis: Axis,
 	handlers: DropZoneHandlers,
 	debug: boolean
 ) {
-	const els: HTMLElement[] = [];
 	for (const zone of zones) {
-		els.push(createDropZone(appendTo, zone, axis, handlers, debug));
+		createDropZone(appendTo, zone, axis, handlers, debug);
 	}
 }
 
 function createDropZone(
 	appendTo: Node,
 	zone: SortableDropZone,
-	axis: SortableAxis,
+	axis: Axis,
 	handlers: DropZoneHandlers,
 	debug: boolean
 ) {
@@ -290,7 +364,6 @@ function createDropZone(
 	if (axis === 'x') {
 		el.style.top = '0';
 		el.style.height = '100%';
-
 		el.style.left = `${zone.start}px`;
 		el.style.width = `${zone.end - zone.start}px`;
 	} else {
@@ -316,54 +389,16 @@ function createDropZone(
 	return el;
 }
 
-function addEventListener<E extends HTMLElement, K extends keyof HTMLElementEventMap>(
-	el: E,
-	type: K,
-	listener: (evt: HTMLElementEventMap[K]) => unknown,
-	options?: boolean | AddEventListenerOptions
+function findDropZoneUnderCursor(
+	zones: SortableDropZone[],
+	scrollArea: ScrollArea,
+	axis: Axis,
+	cursorPos: { x: number; y: number }
 ) {
-	el.addEventListener(type, listener, options);
-	return () => {
-		el.removeEventListener(type, listener, options);
-	};
-}
+	const position =
+		axis === 'x'
+			? cursorPos.x - scrollArea.rect.x + scrollArea.element.scrollLeft
+			: cursorPos.y - scrollArea.rect.y + scrollArea.element.scrollTop;
 
-function destroySequence(...fns: ((...args: unknown[]) => unknown)[]) {
-	return () => {
-		for (const fn of fns) {
-			fn();
-		}
-	};
-}
-
-function toggleableAction<A extends Action>(enabled: Readable<boolean>, action: A): A {
-	return ((node, params) => {
-		let activeAction: ReturnType<A> | undefined = undefined;
-		const unsub = enabled.subscribe((enabled) => {
-			if (enabled) {
-				if (!activeAction) {
-					activeAction = action(node, params) as ReturnType<A>;
-				}
-			} else {
-				if (activeAction) {
-					activeAction.destroy?.();
-					activeAction = undefined;
-				}
-			}
-		});
-		return {
-			update(newParams) {
-				params = newParams;
-				if (activeAction) {
-					activeAction?.update?.(newParams);
-				}
-			},
-			destroy() {
-				unsub();
-				if (activeAction) {
-					activeAction?.destroy?.();
-				}
-			}
-		};
-	}) as A;
+	return zones.find((z) => position >= z.start && position < z.end);
 }
