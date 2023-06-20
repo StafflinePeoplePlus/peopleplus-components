@@ -8,7 +8,9 @@ test('toast should disappear after a button click', async ({ page }) => {
 	expect(isToastPresent).toBe(null);
 });
 
-test('toast should not disappear after a button click if timeout is set to null', async ({ page }) => {
+test('toast should not disappear after a button click if timeout is set to null', async ({
+	page
+}) => {
 	await page.goto('/Toaster');
 	await page.getByRole('button', { name: 'Upload' }).click();
 	await page.getByText('text="Uploading videos."');
