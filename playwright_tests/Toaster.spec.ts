@@ -19,7 +19,7 @@ test('toast should disappear after a button click', async ({ page }) => {
 	expect(isToastPresent).toBe(null);
 });
 
-test('toast should not disappear timeout is set to null', async ({
+test('toast should not disappear if timeout is set to null', async ({
 	page
 }) => {
 	await page.goto('/Toaster');
