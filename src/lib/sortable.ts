@@ -119,6 +119,7 @@ export function createSortable(opts: SortableOpts = {}): Sortable {
 					el.style.opacity = '0.5';
 
 					const scrollArea = getScrollArea(el, axis);
+					scrollArea.element.style.position = 'relative';
 					const itemBounds = calculateAllItemBounds(items, scrollArea, axis);
 					const zones = calculateDropZones(itemBounds, scrollArea);
 					const dragCanvas = createDragCanvas(scrollArea.element);
