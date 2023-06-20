@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button, createSortable } from '$lib';
+	import { Button, createSortable, reorderList } from '$lib';
 	import { crossfade } from 'svelte/transition';
 	import { twMerge } from 'tailwind-merge';
 	import { flip } from 'svelte/animate';
@@ -9,22 +9,17 @@
 		id: i.toString(),
 		name: `Item ${i + 1}`
 	}));
+	const [send, receive] = crossfade({});
 	const sortingEnabled = writable(true);
 	const sortableX = createSortable({
 		axis: 'x',
 		enabled: sortingEnabled,
-		onReorder: (order) => {
-			items = order.map((id) => items.find((i) => i.id === id)!);
-		}
+		onReorder: (op) => (items = reorderList(items, (item) => item.id, op))
 	});
 	const sortableY = createSortable({
 		enabled: sortingEnabled,
-		onReorder: (order) => {
-			items = order.map((id) => items.find((i) => i.id === id)!);
-		}
+		onReorder: (op) => (items = reorderList(items, (item) => item.id, op))
 	});
-
-	const [send, receive] = crossfade({});
 </script>
 
 <Button

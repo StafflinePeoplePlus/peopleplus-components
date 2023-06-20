@@ -5,6 +5,21 @@ import { destroySequence, toggleableAction, addEventListener } from './helpers/a
 const DRAG_BAR_SIZE = 3;
 
 export type Axis = 'x' | 'y';
+export type ReorderOperation = {
+	/**
+	 * Id of the item that is being reordered.
+	 */
+	id: string;
+	/**
+	 * Index the item is currently at.
+	 */
+	fromIndex: number;
+	/**
+	 * Index the item should be inserted at. This index assumes that the item has already been
+	 * removed from the fromIndex.
+	 */
+	toIndex: number;
+};
 export type SortableOpts = {
 	/**
 	 * Svelte store containing a boolean to enable/disable the sortable. Defaults to enabled.
@@ -21,9 +36,9 @@ export type SortableOpts = {
 	/**
 	 * Called when the order changes. It is expected that you update your list order when this
 	 * happens as this will not be done for you.
-	 * @param ids List of the sortable ids
+	 * @param operation Object describing the operation that needs to be applied to your list
 	 */
-	onReorder?(ids: string[]): void;
+	onReorder?(operation: ReorderOperation): void;
 };
 
 export type Sortable = Readable<{ enabled: boolean; dragging: boolean }> & {
@@ -66,9 +81,9 @@ export function createSortable(opts: SortableOpts = {}): Sortable {
 	const onDrop = (zone: SortableDropZone) => {
 		if (dragState) {
 			if (opts.onReorder) {
-				const order = calculateNewOrder(dragState, zone);
-				if (order) {
-					opts.onReorder(order);
+				const operation = calculateReorder(dragState, zone);
+				if (operation) {
+					opts.onReorder(operation);
 				}
 			}
 
@@ -146,6 +161,19 @@ export function createSortable(opts: SortableOpts = {}): Sortable {
 	};
 }
 
+export function reorderList<T>(
+	list: T[],
+	idAccessor: (item: T) => string,
+	operation: ReorderOperation
+): T[] {
+	const item = list.find((item) => operation.id === idAccessor(item));
+	if (item) {
+		list.splice(operation.fromIndex, 1);
+		list.splice(operation.toIndex, 0, item);
+	}
+	return list;
+}
+
 function repositionDragBar(
 	bar: HTMLElement,
 	zone: SortableDropZone,
@@ -169,24 +197,27 @@ function repositionDragBar(
 	}
 }
 
-function calculateNewOrder(dragState: DragState, zone: SortableDropZone): string[] | undefined {
+function calculateReorder(
+	dragState: DragState,
+	zone: SortableDropZone
+): ReorderOperation | undefined {
 	const itemId = dragState.id;
 	if (zone.afterId || zone.beforeId) {
 		const targetId = zone.afterId ?? zone.beforeId;
 		const targetOffset = zone.afterId ? 1 : 0;
 
 		if (targetId !== itemId) {
-			let insertAtIndex = 0;
-			const order = dragState.itemBounds
-				.filter((item) => item.id !== itemId)
-				.map((item, index) => {
-					if (item.id === zone.afterId) {
-						insertAtIndex = index + targetOffset;
-					}
-					return item.id;
-				});
-			order.splice(insertAtIndex, 0, itemId);
-			return order;
+			const fromIndex = dragState.itemBounds.findIndex((item) => item.id === itemId);
+			let toIndex =
+				dragState.itemBounds.findIndex((item) => item.id === zone.afterId) + targetOffset;
+			if (toIndex === -1) {
+				toIndex = 0;
+			}
+			if (toIndex > fromIndex) {
+				toIndex -= 1;
+			}
+
+			return { id: itemId, fromIndex, toIndex };
 		}
 	}
 }
