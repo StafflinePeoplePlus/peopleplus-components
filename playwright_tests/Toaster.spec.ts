@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from 'playwright-test-coverage';
 
 const TIMEOUT_MESSAGE = 'Changes successfully saved.';
 const NULL_TIMEOUT_MESSAGE = 'Uploading videos.';
@@ -6,29 +6,23 @@ const NULL_TIMEOUT_MESSAGE = 'Uploading videos.';
 test('toast should appear after a button click', async ({ page }) => {
 	await page.goto('/Toaster');
 	await page.getByRole('button', { name: 'Delete' }).click();
-	await page.waitForTimeout(1000);
-	const isToastPresent = await page.$(`text="${TIMEOUT_MESSAGE}"`);
-	expect(isToastPresent).not.toBeNull();
+	await expect(page.getByRole('alert', { name: `${TIMEOUT_MESSAGE}` })).toBeVisible();
 });
 
 test('toast should disappear after a button click', async ({ page }) => {
 	await page.goto('/Toaster');
 	await page.getByRole('button', { name: 'Delete' }).click();
-	await page.waitForTimeout(5000);
-	const isToastPresent = await page.$(`text="${TIMEOUT_MESSAGE}"`);
-	expect(isToastPresent).toBe(null);
+	await expect(page.getByRole('alert', { name: `${TIMEOUT_MESSAGE}` })).not.toBeVisible();
 });
 
 test('toast should not disappear if timeout is set to null', async ({ page }) => {
 	await page.goto('/Toaster');
 	await page.getByRole('button', { name: 'Upload' }).click();
-	await page.getByText(`text="${NULL_TIMEOUT_MESSAGE}"`);
-	await page.waitForTimeout(6000);
-	const isToastPresent = await page.$(`text="${NULL_TIMEOUT_MESSAGE}"`);
-	expect(isToastPresent).not.toBeNull();
+	await expect(page.getByRole('alert', { name: `${NULL_TIMEOUT_MESSAGE}` })).toBeVisible();
 
-	await page.getByRole('alert', { name: NULL_TIMEOUT_MESSAGE }).getByRole('button').click();
-	await page.waitForTimeout(1000);
-	const isToast = await page.$(`text="${NULL_TIMEOUT_MESSAGE}"`);
-	expect(isToast).toBeNull();
+	await page
+		.getByRole('alert', { name: `${NULL_TIMEOUT_MESSAGE}` })
+		.getByRole('button')
+		.click();
+	await expect(page.getByRole('alert', { name: `${NULL_TIMEOUT_MESSAGE}` })).not.toBeVisible();
 });
