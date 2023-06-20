@@ -3,6 +3,7 @@ export * from './cookies';
 export * from './forms';
 export * from './navbar';
 export * from './table';
+export * from './toaster';
 export * from './video';
 export * from './sortable';
 export { default as Alert } from './Alert.svelte';
