@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { Footer } from '$lib';
 	import ExamplePage from '../ExamplePage.svelte';
-
-	const usage = '<Footer />';
+	import ExampleFooter from './ExampleFooter.svelte';
+	import usage from './ExampleFooter.svelte?raw';
 </script>
 
 <ExamplePage title="Footer" {usage}>
-	<Footer />
+	<ExampleFooter />
 </ExamplePage>

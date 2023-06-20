@@ -1,0 +1,49 @@
+<script>
+	import { Footer, Typography } from '$lib';
+</script>
+
+<Footer>
+	<div slot="start">
+		<a href="/">
+			<img src="/peopleplus-logo.svg" class="h-8" alt="PeoplePlus Logo" />
+		</a>
+		<Typography variant="caption" class="mt-5 max-w-lg">
+			We are a leading skills and training business helping people to transform their lives and
+			businesses through work, training, education and financial advice.
+		</Typography>
+	</div>
+
+	<div slot="middle">
+		<Typography variant="sub-heading">Help and support</Typography>
+		<address class="not-italic">
+			<ul class="mt-3 text-gray-600 dark:text-gray-400">
+				<li class="mb-4">
+					<a href="mailto:customerexperience@peopleplus.co.uk" class="hover:underline">
+						customerexperience@peopleplus.co.uk
+					</a>
+				</li>
+				<li class="mb-4">
+					<a href="tel:0800345666" class="hover:underline"> 0800 345666 </a>
+				</li>
+				<li>
+					<span class="italic">
+						PeoplePlus Central Operations,<br />
+						PO Box 509<br />
+						St Helens<br />
+						WA10 9JT
+					</span>
+				</li>
+			</ul>
+		</address>
+	</div>
+	<div slot="end">
+		<ul class="text-gray-600 dark:text-gray-40">
+			<li>Privacy Policy</li>
+			<li>Cookies Policy</li>
+			<li>Terms And Conditions</li>
+			<li>Acceptable Use Policy</li>
+			<li>Modern Slavery</li>
+			<li>Complaints Policy</li>
+		</ul>
+	</div>
+</Footer>
