@@ -66,15 +66,23 @@ async function dragAndDrop(
 	offset: { x?: number; y?: number } = {}
 ) {
 	await source.hover();
-	await page.mouse.down();
-	await page.mouse.move(0, 0);
+	await source.dispatchEvent('dragstart');
+	await source.dispatchEvent('drag');
 	await target.scrollIntoViewIfNeeded();
-
 	const targetBox = await target.boundingBox();
 	if (targetBox == null) {
 		throw new Error('target was not visible');
 	}
-	await page.mouse.move(targetBox.x + (offset.x ?? 0), targetBox.y + (offset.y ?? 0), { steps: 5 });
-	await page.waitForTimeout(1000);
-	await page.mouse.up();
+
+	const element = (
+		await page.evaluateHandle(
+			([x, y]) => document.elementFromPoint(x, y),
+			[targetBox.x + (offset.x ?? 0), targetBox.y + (offset.y ?? 0)]
+		)
+	).asElement();
+	if (!element) {
+		throw new Error('failed to find element at point');
+	}
+	await element.dispatchEvent('dragover');
+	await element.dispatchEvent('drop');
 }

@@ -7,7 +7,6 @@
 	}));
 	const sortable = createSortable({
 		axis: 'x',
-		debug: true,
 		onReorder: (op) => (items = reorderList(items, (item) => item.id, op))
 	});
 </script>
