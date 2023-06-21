@@ -24,7 +24,7 @@
 			<div class={twMerge('max-lg:my-5', middleClass)}>
 				<slot name="middle" />
 			</div>
-			<div class={twMerge(endClass)}>
+			<div class={endClass}>
 				<slot name="end" />
 			</div>
 		</div>
