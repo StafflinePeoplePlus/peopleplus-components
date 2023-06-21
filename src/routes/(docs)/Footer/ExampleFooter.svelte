@@ -14,7 +14,7 @@
 	</div>
 
 	<div slot="middle">
-		<Typography variant="sub-heading">Help and support</Typography>
+		<Typography variant="sub-heading" as="h3">Help and Support</Typography>
 		<address class="not-italic">
 			<ul class="mt-3 text-gray-600 dark:text-gray-400">
 				<li class="mb-4">
