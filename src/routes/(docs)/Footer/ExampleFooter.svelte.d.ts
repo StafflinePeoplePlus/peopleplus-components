@@ -6,9 +6,8 @@ export default class ExampleFooter extends SvelteComponentTyped<
 		[x: string]: never;
 	},
 	{
-		[evt: string]: CustomEvent<any>;
-	},
-	{}
+		[evt: string]: CustomEvent<object>;
+	}
 > {}
 export type ExampleFooterProps = typeof __propDef.props;
 export type ExampleFooterEvents = typeof __propDef.events;
@@ -19,8 +18,7 @@ declare const __propDef: {
 		[x: string]: never;
 	};
 	events: {
-		[evt: string]: CustomEvent<any>;
+		[evt: string]: CustomEvent<object>;
 	};
-	slots: {};
 };
 export {};
