@@ -49,6 +49,6 @@
 	</div>
 
 	<div slot="bottom">
-		<Typography variant="caption">All Rights Reserved | PeoplePlus &copy; 2022</Typography>
+		<Typography variant="caption">All Rights Reserved | PeoplePlus &copy; 2023</Typography>
 	</div>
 </Footer>
