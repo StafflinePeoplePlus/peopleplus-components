@@ -6,18 +6,25 @@
 	export let startClass = '';
 	export let middleClass = '';
 	export let endClass = '';
+	export let bottomClass = '';
 </script>
 
-<div class={twMerge('lg:flex text-sm justify-between bg-white p-4 sm:p-10 dark:bg-gray-700 max-w-screen-2xl 2xl:mx-auto', className)}>
-	<div class={twMerge('flex w-full md:w-auto', startClass)}>
-		<slot name="start" />
+<div class="bg-white p-4 sm:p-10 dark:bg-gray-700 max-w-screen-2xl 2xl:mx-auto text-sm">
+	<div class={twMerge('lg:flex justify-between', className)}>
+		<div class={twMerge('flex w-full md:w-auto', startClass)}>
+			<slot name="start" />
+		</div>
+		<div class={twMerge('md:contents md:w-auto')}>
+			<div class={twMerge('max-lg:my-5', middleClass)}>
+				<slot name="middle" />
+			</div>
+			<div class={twMerge(endClass)}>
+				<slot name="end" />
+			</div>
+		</div>
 	</div>
-	<div class={twMerge('md:contents md:w-auto')}>
-		<div class={twMerge('max-lg:mt-5', middleClass)}>
-			<slot name="middle" />
-		</div>
-		<div class={twMerge('max-lg:mt-5', $$slots.middle, endClass)}>
-			<slot name="end" />
-		</div>
+
+	<div class={twMerge('border-t border-gray-100 mt-5 pt-5', bottomClass)}>
+		<slot name="bottom" />
 	</div>
 </div>

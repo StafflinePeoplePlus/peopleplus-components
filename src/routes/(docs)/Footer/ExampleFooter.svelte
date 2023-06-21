@@ -36,14 +36,19 @@
 			</ul>
 		</address>
 	</div>
+
 	<div slot="end">
-		<ul class="text-gray-600 dark:text-gray-40">
-			<li>Privacy Policy</li>
-			<li>Cookies Policy</li>
-			<li>Terms And Conditions</li>
-			<li>Acceptable Use Policy</li>
-			<li>Modern Slavery</li>
-			<li>Complaints Policy</li>
+		<ul class="text-gray-600 dark:text-gray-40 space-y-2">
+			<li><a href="#privacy" class="hover:underline">Privacy Policy</a></li>
+			<li><a href="#cookies" class="hover:underline">Cookies Policy</a></li>
+			<li><a href="#terms" class="hover:underline">Terms And Conditions</a></li>
+			<li><a href="#policy" class="hover:underline">Acceptable Use Policy</a></li>
+			<li><a href="#modern-slavery" class="hover:underline">Modern Slavery</a></li>
+			<li><a href="#compliments" class="hover:underline">Complaints and Compliments</a></li>
 		</ul>
+	</div>
+
+	<div slot="bottom">
+		<Typography variant="caption">All Rights Reserved | Way2Learn &copy; 2022</Typography>
 	</div>
 </Footer>
