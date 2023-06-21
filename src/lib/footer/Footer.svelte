@@ -9,8 +9,8 @@
 	export let bottomClass = '';
 </script>
 
-<div class="bg-white p-4 sm:p-10 dark:bg-gray-700 max-w-screen-2xl 2xl:mx-auto text-sm">
-	<div class={twMerge('lg:flex justify-between', className)}>
+<div class="max-w-screen-2xl bg-white p-4 text-sm dark:bg-gray-700 sm:p-10 2xl:mx-auto">
+	<div class={twMerge('justify-between lg:flex', className)}>
 		<div class={twMerge('flex w-full md:w-auto', startClass)}>
 			<slot name="start" />
 		</div>
@@ -24,7 +24,7 @@
 		</div>
 	</div>
 
-	<div class={twMerge('border-t border-gray-100 mt-5 pt-5', bottomClass)}>
+	<div class={twMerge('mt-5 border-t border-gray-100 pt-5', bottomClass)}>
 		<slot name="bottom" />
 	</div>
 </div>

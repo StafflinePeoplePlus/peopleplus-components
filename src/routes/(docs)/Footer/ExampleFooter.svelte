@@ -38,7 +38,7 @@
 	</div>
 
 	<div slot="end">
-		<ul class="text-gray-600 dark:text-gray-40 space-y-2">
+		<ul class="dark:text-gray-40 space-y-2 text-gray-600">
 			<li><a href="#privacy" class="hover:underline">Privacy Policy</a></li>
 			<li><a href="#cookies" class="hover:underline">Cookies Policy</a></li>
 			<li><a href="#terms" class="hover:underline">Terms And Conditions</a></li>
