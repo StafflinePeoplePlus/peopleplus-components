@@ -17,20 +17,20 @@
 	{...$$restProps}
 >
 	<div class={'justify-between lg:flex'}>
-		<div class={('flex w-full md:w-auto', startClass)}>
+		<div class={twMerge('flex w-full md:w-auto', startClass)}>
 			<slot name="start" />
 		</div>
 		<div class={'md:contents md:w-auto'}>
-			<div class={('max-lg:my-5', middleClass)}>
+			<div class={twMerge('max-lg:my-5', middleClass)}>
 				<slot name="middle" />
 			</div>
-			<div class={endClass}>
+			<div class={twMerge(endClass)}>
 				<slot name="end" />
 			</div>
 		</div>
 	</div>
 
-	<div class={('mt-5 border-t border-gray-100 pt-5', bottomClass)}>
+	<div class={twMerge('mt-5 border-t border-gray-100 pt-5', bottomClass)}>
 		<slot name="bottom" />
 	</div>
 </div>
