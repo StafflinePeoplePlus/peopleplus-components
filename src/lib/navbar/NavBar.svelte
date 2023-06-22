@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { createPopover } from 'svelte-headlessui';
 	import { twMerge } from 'tailwind-merge';
-	import { md } from '$lib/media';
+	import { screenMd } from '$lib/media';
 
 	let className = '';
 	export { className as class };
@@ -13,7 +13,7 @@
 
 	const popover = createPopover();
 
-	$: popoverPanel = $md
+	$: popoverPanel = $screenMd
 		? () => {
 				// Do nothing
 		  }
