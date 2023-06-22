@@ -361,9 +361,11 @@ function getRelativeRect(parent: DOMRect, child: DOMRect): DOMRect {
 	return new DOMRect(child.x - parent.x, child.y - parent.y, child.width, child.height);
 }
 
-function createDragCanvas(appendTo: Node) {
+function createDragCanvas(appendTo: Element) {
 	const el = document.createElement('div');
-	el.className = 'absolute inset-0 z-[999] pointer-events-none';
+	el.className = 'absolute top-0 left-0 z-[999] pointer-events-none';
+	el.style.width = `${appendTo.scrollWidth}px`;
+	el.style.height = `${appendTo.scrollHeight}px`;
 	appendTo.appendChild(el);
 	return el;
 }
