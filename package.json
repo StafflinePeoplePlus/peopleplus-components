@@ -34,7 +34,7 @@
 		},
 		"./tailwind": {
 			"types": "./dist/tailwind.d.ts",
-			"svelte": "./dist/tailwind.js"
+			"default": "./dist/tailwind.js"
 		}
 	},
 	"files": [
