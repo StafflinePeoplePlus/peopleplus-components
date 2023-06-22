@@ -1,6 +1,7 @@
 import type { Action } from 'svelte/action';
 import { type Readable, readable, writable, derived } from 'svelte/store';
 import { destroySequence, toggleableAction, addEventListener } from './helpers/action';
+import { onDestroy } from 'svelte';
 
 const DRAG_BAR_SIZE = 3;
 
@@ -26,9 +27,9 @@ export type SortableOpts = {
 	 */
 	enabled?: Readable<boolean>;
 	/**
-	 * Axis the sortable works in. Defaults to 'y'
+	 * Axis the sortable works in. Defaults to 'y'. Can be a svelte store or static value.
 	 */
-	axis?: Axis;
+	axis?: Axis | Readable<Axis>;
 	/**
 	 * When true, enabled some debug rendering such as rendering the drop zones. Defaults to false
 	 */
@@ -64,11 +65,16 @@ type DragState = {
 
 export function createSortable(opts: SortableOpts = {}): Sortable {
 	const enabled = opts.enabled ?? readable(true);
-	const axis = opts.axis ?? 'y';
+	const axisStore = opts.axis
+		? typeof opts.axis === 'string'
+			? readable(opts.axis)
+			: opts.axis
+		: readable('y' as const);
 	const debug = opts.debug ?? false;
 	const items: Map<string, HTMLElement> = new Map();
 	const dragging = writable(false);
 	let dragState: DragState | undefined = undefined;
+	let axis: Axis = 'y';
 
 	const cancelDrag = () => {
 		if (dragState) {
@@ -95,6 +101,12 @@ export function createSortable(opts: SortableOpts = {}): Sortable {
 			repositionDragBar(dragState.bar, zone, dragState.itemBounds, axis);
 		}
 	};
+
+	onDestroy(
+		axisStore.subscribe((newAxis) => {
+			axis = newAxis;
+		})
+	);
 
 	return {
 		...derived([enabled, dragging], ([enabled, dragging]) => ({
