@@ -70,7 +70,7 @@
 		"eslint-plugin-svelte3": "^4.0.0",
 		"istanbul": "^0.4.5",
 		"jsdom": "^22.0.0",
-		"lucide-svelte": "^0.248.0",
+		"lucide-svelte": "^0.252.0",
 		"nyc": "^15.1.0",
 		"playwright-test-coverage": "^1.2.12",
 		"postcss": "^8.4.21",
