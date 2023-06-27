@@ -24,7 +24,6 @@ export { default as Jumbotron } from './jumbotron/Jumbotron.svelte';
 export { default as Loader } from './Loader.svelte';
 export { default as Modal } from './Modal.svelte';
 export { default as Stepper } from './Stepper.svelte';
-export { default as TitleDescription } from './TitleDescription.svelte';
 export { default as Tooltip } from './Tooltip.svelte';
 export { default as Typography } from './Typography.svelte';
 export * from './media';
