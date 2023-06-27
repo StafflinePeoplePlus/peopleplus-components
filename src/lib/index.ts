@@ -6,7 +6,6 @@ export * from './table';
 export * from './toaster';
 export * from './video';
 export * from './sortable';
-export { default as Alert } from './Alert.svelte';
 export { default as BackgroundImage } from './BackgroundImage.svelte';
 export { default as Banner } from './banner/Banner.svelte';
 export { default as BottomNav } from './BottomNav.svelte';
