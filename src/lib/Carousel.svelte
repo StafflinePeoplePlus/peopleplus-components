@@ -8,6 +8,7 @@
 	export { className as class };
 	type Item = $$Generic;
 	export let items: Item[];
+	export let listClass = '';
 	export let itemClass = '';
 
 	const DRAG_THRESHOLD = 10;
@@ -119,38 +120,44 @@
 	on:resize={onResize}
 />
 
-<ul
-	bind:this={containerEl}
-	class={twMerge(
-		'relative flex touch-pan-y touch-pinch-zoom select-none',
-		BROWSER ? 'overflow-x-hidden' : 'overflow-x-auto',
-		className
-	)}
-	on:pointerdown={(evt) => {
-		if (evt.button != 0 || !overflows) {
-			return;
-		}
+<div class={twMerge('relative', className)}>
+	<ul
+		bind:this={containerEl}
+		class={twMerge(
+			'flex touch-pan-y touch-pinch-zoom select-none',
+			BROWSER ? 'overflow-x-hidden' : 'overflow-x-auto',
+			listClass
+		)}
+		on:pointerdown={(evt) => {
+			if (evt.button != 0 || !overflows) {
+				return;
+			}
 
-		evt.preventDefault();
-		dragging = true;
-		updateCachedValues(evt.currentTarget);
-	}}
->
-	{#each items as item, index}
-		<li
-			class={twMerge('flex-shrink-0', !dragging && mounted && 'transition duration-300', itemClass)}
-			style:transform={translation}
-			aria-hidden={isInRange(visibleRange, index) ? 'false' : 'true'}
-			aria-label="Item {index + 1}"
-			on:click={(evt) => {
-				if (evt.button === 0 && movement > DRAG_THRESHOLD) {
-					evt.preventDefault();
-				}
-			}}
-		>
-			<slot {item} {index} {dragging} />
-		</li>
-	{/each}
+			evt.preventDefault();
+			dragging = true;
+			updateCachedValues(evt.currentTarget);
+		}}
+	>
+		{#each items as item, index}
+			<li
+				class={twMerge(
+					'flex-shrink-0',
+					!dragging && mounted && 'transition duration-300',
+					itemClass
+				)}
+				style:transform={translation}
+				aria-hidden={isInRange(visibleRange, index) ? 'false' : 'true'}
+				aria-label="Item {index + 1}"
+				on:click={(evt) => {
+					if (evt.button === 0 && movement > DRAG_THRESHOLD) {
+						evt.preventDefault();
+					}
+				}}
+			>
+				<slot {item} {index} {dragging} />
+			</li>
+		{/each}
+	</ul>
 
 	{#if BROWSER && overflows}
 		<div class="pointer-events-none absolute inset-0 z-10 flex items-center justify-between">
@@ -206,4 +213,4 @@
 			{/if}
 		</div>
 	{/if}
-</ul>
+</div>
