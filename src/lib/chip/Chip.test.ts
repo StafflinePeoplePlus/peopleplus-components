@@ -1,4 +1,4 @@
-import ExampleChip from './ExampleChip.svelte';
+import ExampleChip from '../../routes/(docs)/Chip/ExampleChip.svelte';
 import { test, expect, afterEach } from 'vitest';
 import { cleanup, render } from '@testing-library/svelte';
 

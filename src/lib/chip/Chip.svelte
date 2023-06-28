@@ -8,7 +8,7 @@
 	export { className as class };
 </script>
 
-<section
+<div
 	class={twMerge(
 		'mr-2 inline-flex rounded border border-primary-400 bg-primary-100 px-1 py-0.5 text-xs font-medium text-primary-800 dark:bg-primary-700 dark:text-primary-100',
 		className
@@ -16,4 +16,4 @@
 	{...$$restProps}
 >
 	<slot />
-</section>
+</div>
