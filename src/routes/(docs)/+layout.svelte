@@ -9,7 +9,6 @@
 	];
 	const components = [
 		{ name: 'Accordion' },
-		{ name: 'Alert' },
 		{ name: 'Banner' },
 		{ name: 'BottomNav' },
 		{ name: 'Breadcrumbs' },
@@ -33,7 +32,6 @@
 		{ name: 'Table' },
 		{ name: 'TextInput' },
 		{ name: 'TextArea' },
-		{ name: 'TitleDescription' },
 		{ name: 'Toaster' },
 		{ name: 'Tooltip' },
 		{ name: 'VideoPlayer' }
