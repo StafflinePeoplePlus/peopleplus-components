@@ -9,7 +9,6 @@
 	];
 	const components = [
 		{ name: 'Accordion' },
-		{ name: 'Alert' },
 		{ name: 'Banner' },
 		{ name: 'BottomNav' },
 		{ name: 'Breadcrumbs' },
