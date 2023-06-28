@@ -6,6 +6,6 @@ afterEach(cleanup);
 
 test('should render a chip', () => {
 	const { getByText } = render(ExampleChip);
-	expect(getByText('Primary')).toBeTruthy();
+	expect(getByText('2 minutes ago')).toBeTruthy();
 	expect(getByText('Open Now')).toBeTruthy();
 });

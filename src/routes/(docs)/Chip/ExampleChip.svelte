@@ -3,7 +3,7 @@
 </script>
 
 <Chip>
-	<Typography>Primary</Typography>
+	<Typography>2 minutes ago</Typography>
 </Chip>
 
 <Chip class="rounded-full bg-gray-400 dark:bg-gray-200">
