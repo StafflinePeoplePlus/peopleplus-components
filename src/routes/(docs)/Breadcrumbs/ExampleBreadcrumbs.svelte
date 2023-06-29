@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { Breadcrumbs, BreadcrumbItem } from '$lib';
+	import { Breadcrumbs, Breadcrumb } from '$lib';
 </script>
 
 <Breadcrumbs>
-	<BreadcrumbItem>
+	<Breadcrumb>
 		<a href="#home">Find Flights</a>
-	</BreadcrumbItem>
-	<BreadcrumbItem>
+	</Breadcrumb>
+	<Breadcrumb>
 		<a href="#canada">Canada</a>
-	</BreadcrumbItem>
-	<BreadcrumbItem isLast={true}>Vancouver</BreadcrumbItem>
+	</Breadcrumb>
+	<Breadcrumb>Vancouver</Breadcrumb>
 </Breadcrumbs>
