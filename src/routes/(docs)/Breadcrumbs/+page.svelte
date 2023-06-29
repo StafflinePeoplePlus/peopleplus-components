@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { Breadcrumbs } from '$lib';
 	import ExamplePage from '../ExamplePage.svelte';
-
-	const usage = '<Breadcrumbs />';
+	import ExampleBreadcrumbs from './ExampleBreadcrumbs.svelte';
+	import usage from './ExampleBreadcrumbs.svelte?raw';
 </script>
 
 <ExamplePage title="Breadcrumbs" {usage}>
-	<Breadcrumbs />
+	<ExampleBreadcrumbs />
 </ExamplePage>
