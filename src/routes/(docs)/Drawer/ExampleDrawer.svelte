@@ -16,7 +16,7 @@
 
 <Drawer bind:open>
     <Typography variant="body-lg" class="font-bold">Measurements</Typography>
-    <Typography variant="body">Neck width: Seam to seam</Typography>
+    <Typography variant="body">Neck width: Seam to seam width</Typography>
     <div class="border-t my-5"></div>
     <div class="space-y-4 flex-col text-sm">
         {#each columns as column}
