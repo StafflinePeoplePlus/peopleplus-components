@@ -4,7 +4,7 @@
 	import { Button } from '$lib';
 	import { createEventDispatcher } from 'svelte';
 
-	type $$Props = SvelteHTMLElements['section'] & { dismissable: boolean };
+	type $$Props = SvelteHTMLElements['section'] & { dismissable?: boolean };
 
 	const dispatch = createEventDispatcher<{ dismiss: never }>();
 
