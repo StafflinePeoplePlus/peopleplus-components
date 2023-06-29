@@ -2,7 +2,7 @@
 	import type { SvelteHTMLElements } from 'svelte/elements';
 	import { twMerge } from 'tailwind-merge';
 
-	type $$Props = SvelteHTMLElements['section'];
+	type $$Props = SvelteHTMLElements['ol'];
 
 	let className: $$Props['class'] = undefined;
 	export { className as class };

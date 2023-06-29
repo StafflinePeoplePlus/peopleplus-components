@@ -28,9 +28,5 @@ test('should not render an arrow after the last breadcrumb item', () => {
 	const { getByText } = render(Breadcrumbs);
 	const lastItem = getByText(LAST_ITEM);
 	const arrow = within(lastItem).queryByText('>');
-	if (!arrow) {
-		return;
-	} else {
-		expect(arrow).toBeNull();
-	}
+	expect(arrow).toBeNull();
 });
