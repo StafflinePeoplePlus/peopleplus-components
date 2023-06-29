@@ -12,22 +12,25 @@
 </script>
 
 <div
-	class:translate-x-full={!open}
-	tabindex="-1"
-	aria-labelledby="drawer-right-label"
-	class={twMerge(
-		'fixed bottom-0 right-0 top-0 z-40 h-full w-80 overflow-y-auto bg-white p-4 transition-transform dark:bg-gray-800 shadow-xl',
+		class:translate-x-full={!open}
+		tabindex="-1"
+		class={twMerge(
+		'fixed bottom-0 right-0 top-0 z-50 h-full w-80 overflow-y-auto bg-white p-4 pt-2 transition-transform dark:bg-gray-800 shadow-xl border',
 		className
 	)}
-	{...$$restProps}
+		{...$$restProps}
 >
-	<Button
-			on:click={() => (open = false)}
-			variant="secondary"
-			class="right-0 absolute"
-	>
-		&times;
-	</Button>
-
-	<slot />
+	<div class="flex justify-end">
+		<Button
+				on:click={() => (open = false)}
+				variant="secondary"
+				class="p-3 h-8 text-gray-500"
+		>
+			&times;
+		</Button>
+	</div>
+	<div>
+		<slot />
+	</div>
 </div>
+
