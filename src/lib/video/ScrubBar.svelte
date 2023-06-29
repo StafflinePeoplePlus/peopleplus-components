@@ -29,6 +29,7 @@
 		value={currentTime}
 		highlightRanges={buffered}
 		disabled={duration === undefined}
+		label="Seek video"
 		bind:scrubValue={scrubTime}
 		on:change={(evt) => {
 			dispatchEvent('seek', evt.detail);
