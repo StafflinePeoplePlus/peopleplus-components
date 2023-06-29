@@ -1,9 +1,9 @@
-<script>
+<script lang="ts">
 	import Banner from '$lib/banner/Banner.svelte';
 	import { Button, Typography } from '$lib';
 </script>
 
-<Banner>
+<Banner dismissable on:dismiss>
 	<div class="items-center gap-4 md:flex">
 		<div class="space-y-1 max-sm:pb-2">
 			<Typography variant="sub-heading">Banner Title</Typography>
