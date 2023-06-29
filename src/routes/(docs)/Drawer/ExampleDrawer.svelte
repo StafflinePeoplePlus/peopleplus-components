@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {Button, Drawer, Typography, Chip} from '$lib';
+    import {Button, Drawer, Typography} from '$lib';
 
     let open = false;
 
@@ -14,7 +14,7 @@
 
 <Button on:click={() => (open = !open)}>View Measurements</Button>
 
-<Drawer fixed bind:open>
+<Drawer bind:open>
     <Typography variant="body-lg" class="font-bold">Measurements</Typography>
     <Typography variant="body">Neck width: Seam to seam</Typography>
     <div class="border-t my-5"></div>
