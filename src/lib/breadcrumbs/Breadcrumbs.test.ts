@@ -30,6 +30,7 @@ test('should not render an arrow after the last breadcrumb item', () => {
 	const arrow = within(lastItem).queryByText('>');
 	if (!arrow) {
 		return;
+	} else {
+		expect(arrow).toBeNull();
 	}
-	throw new Error("'>' character found in the last breadcrumb item");
 });
