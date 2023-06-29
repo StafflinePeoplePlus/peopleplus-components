@@ -1,42 +1,35 @@
-<script lang="ts" context="module">
-	import { writable } from 'svelte/store';
-	import type { ToastKind, ToastMessage } from './types';
-	const store = writable<{ nextId: number; toasts: ToastMessage[] }>({ nextId: 0, toasts: [] });
-
-	export function showToast({
-		variant,
-		message,
-		timeout
-	}: {
-		variant: ToastKind;
-		message: string;
-		timeout?: number | null;
-	}) {
-		store.update((state) => {
-			state.toasts.push({
-				id: state.nextId++,
-				kind: variant,
-				content: { message },
-				duration: timeout
-			});
-			return state;
-		});
-	}
-</script>
-
 <script lang="ts">
-	import Toast from './Content.svelte';
+	import type {SvelteHTMLElements} from 'svelte/elements';
+	import {twMerge} from 'tailwind-merge';
+	import Button from '$lib/Button.svelte';
+
+	export let open = false;
+
+	type $$Props = SvelteHTMLElements['div'];
+
+	let className: $$Props['class'] = undefined;
+	export {className as class};
 </script>
 
-<div class="fixed inset-x-2 bottom-0 flex flex-col-reverse sm:bottom-2 sm:left-auto sm:right-3">
-	{#each $store.toasts as toast, index (toast.id)}
-		<Toast
-			{toast}
-			on:dismiss={() =>
-				store.update((state) => {
-					state.toasts.splice(index, 1);
-					return state;
-				})}
-		/>
-	{/each}
+<div
+	id="drawer"
+	class:translate-x-full={!open}
+	tabindex="-1"
+	aria-labelledby="drawer-right-label"
+	class={twMerge(
+		'fixed bottom-0 right-0 top-0 z-40 h-full w-80 overflow-y-auto bg-white p-4 transition-transform dark:bg-gray-800 shadow-xl',
+		className
+	)}
+	{...$$restProps}
+>
+	<Button
+			aria-controls="drawer"
+			on:click={() => (open = false)}
+			variant="secondary"
+			class="right-0 absolute"
+	>
+		&times;
+	</Button>
+
+	<slot />
 </div>
