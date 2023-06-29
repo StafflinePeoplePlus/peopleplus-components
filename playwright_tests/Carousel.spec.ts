@@ -14,8 +14,8 @@ test('Carousel next & previous', async ({ page, viewport }) => {
 
 	await page.goto('/test/carousel');
 	const carousel = page.getByRole('list');
-	const prev = carousel.getByRole('button', { name: 'Previous Item' });
-	const next = carousel.getByRole('button', { name: 'Next Item' });
+	const prev = page.getByRole('button', { name: 'Previous Item' });
+	const next = page.getByRole('button', { name: 'Next Item' });
 
 	await expect(prev).toBeVisible();
 	await expect(prev).toBeDisabled();

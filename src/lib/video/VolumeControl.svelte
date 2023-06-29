@@ -1,7 +1,6 @@
 <script lang="ts">
+	import { Volume1Icon, Volume2Icon, VolumeXIcon } from 'lucide-svelte';
 	import VerticalRange from './VerticalRange.svelte';
-	import VolumeFullIcon from './icons/VolumeFullIcon.svelte';
-	import VolumeMuteIcon from './icons/VolumeMuteIcon.svelte';
 
 	export let volume = 1;
 	let restoreVolume = 1;
@@ -14,7 +13,7 @@
 		<div
 			class="flex items-center justify-center rounded-lg border border-white/10 bg-black/70 px-2 py-3 shadow-lg backdrop-blur"
 		>
-			<VerticalRange bind:value={volume} />
+			<VerticalRange bind:value={volume} label="Volume Control" />
 		</div>
 	</div>
 	<button
@@ -31,9 +30,17 @@
 		}}
 	>
 		{#if volume > 0}
-			<VolumeFullIcon />
+			<span class="sr-only">Unmute audio</span>
 		{:else}
-			<VolumeMuteIcon />
+			<span class="sr-only">Mute audio</span>
+		{/if}
+
+		{#if volume > 0.5}
+			<Volume2Icon aria-hidden />
+		{:else if volume > 0}
+			<Volume1Icon aria-hidden />
+		{:else}
+			<VolumeXIcon aria-hidden />
 		{/if}
 	</button>
 </div>

@@ -10,6 +10,7 @@
 	export let value = 0;
 	export let highlightRanges: [number, number][] = [];
 	export let disabled = false;
+	export let label: string | undefined = undefined;
 
 	let scrubbing = false;
 	export let scrubValue = 0;
@@ -40,6 +41,7 @@
 		min="0"
 		{max}
 		{disabled}
+		aria-label={label}
 		bind:value={scrubValue}
 		on:input={() => {
 			scrubbing = true;
