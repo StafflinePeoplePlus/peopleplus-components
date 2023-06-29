@@ -12,7 +12,6 @@
 </script>
 
 <div
-	id="drawer"
 	class:translate-x-full={!open}
 	tabindex="-1"
 	aria-labelledby="drawer-right-label"
@@ -23,7 +22,6 @@
 	{...$$restProps}
 >
 	<Button
-			aria-controls="drawer"
 			on:click={() => (open = false)}
 			variant="secondary"
 			class="right-0 absolute"
