@@ -30,7 +30,12 @@
 		{...$$restProps}
 	>
 		<div class="flex justify-end">
-			<Button on:click={closeDrawer} variant="secondary" class="h-8 p-3 text-gray-500">
+			<Button
+				on:click={closeDrawer}
+				variant="secondary"
+				class="h-8 p-3 text-gray-500"
+				data-testId="closeDrawer"
+			>
 				&times;
 				<span class="sr-only">Close</span>
 			</Button>
