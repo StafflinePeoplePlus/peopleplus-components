@@ -11,7 +11,7 @@
 
 <Button on:click={submit} disabled={isLoading} data-testId="loadingButton">
 	{#if isLoading}
-		<Loader {isLoading} /> Loading...
+		<Loader {isLoading} variant="horizontal" /> Loading...
 	{:else}
 		Submit Form
 	{/if}

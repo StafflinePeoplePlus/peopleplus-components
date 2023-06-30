@@ -1,8 +1,10 @@
 <script>
 	export let isLoading = false;
+	export let variant = 'spinner';
 </script>
 
 {#if isLoading}
+	{#if variant === 'spinner'}
 	<svg
 			data-testId="loader"
 		aria-hidden="true"
@@ -20,4 +22,7 @@
 			fill="currentFill"
 		/>
 	</svg>
+	{:else if variant === 'horizontal'}
+		<div class="px-3 py-1 text-xs font-medium leading-none text-center bg-primary-200 rounded-full animate-pulse dark:bg-primary-900 w-full mr-3"></div>
+	{/if}
 {/if}
