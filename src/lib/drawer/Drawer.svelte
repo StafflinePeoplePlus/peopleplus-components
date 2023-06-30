@@ -5,24 +5,18 @@
 
 	export let open = false;
 
-	let drawerOpen: boolean;
-
 	function toggleDrawer() {
 		open = !open;
 	}
 
-	$: {
-		drawerOpen = open;
+	function closeDrawer() {
+		open = false;
 	}
 
 	type $$Props = SvelteHTMLElements['div'];
 
 	let className: $$Props['class'] = undefined;
 	export { className as class };
-
-	function closeDrawer() {
-		open = false;
-	}
 </script>
 
 <div
