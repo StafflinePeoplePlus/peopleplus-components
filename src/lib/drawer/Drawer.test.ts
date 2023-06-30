@@ -6,9 +6,9 @@ import matchers from '@testing-library/jest-dom/matchers';
 expect.extend(matchers);
 afterEach(cleanup);
 
-const OPEN_BUTTON = 'Measurements';
+const OPEN_BUTTON = 'Open Measurements';
 const DRAWER = 'Size';
-const CLOSE_BUTTON = 'Close';
+const CLOSE_BUTTON = 'closeDrawer';
 
 test('should show the drawer once "Open" is clicked', async () => {
 	const { getByText } = render(ExampleDrawer);
@@ -21,12 +21,14 @@ test('should show the drawer once "Open" is clicked', async () => {
 });
 
 test('should dismiss the drawer once "close" button is clicked', async () => {
-	const { getByText } = render(ExampleDrawer);
+	const { getByText, getByTestId, queryByTestId } = render(ExampleDrawer);
 
 	const openButton = getByText(OPEN_BUTTON);
 	await fireEvent.click(openButton);
 
-	const closeButton = getByText(CLOSE_BUTTON);
+	const closeButton = getByTestId(CLOSE_BUTTON);
 	await fireEvent.click(closeButton);
-	expect(closeButton).toBeNull();
+
+	const closedButton = queryByTestId(CLOSE_BUTTON);
+	expect(closedButton).toBeNull();
 });
