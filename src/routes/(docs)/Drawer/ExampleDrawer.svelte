@@ -2,6 +2,9 @@
 	import { Button, Drawer, Typography } from '$lib';
 
 	let open = false;
+	function toggleDrawer() {
+		open = !open;
+	}
 
 	const columns = [
 		{ label: 'Size', value: 'XS' },
@@ -12,15 +15,16 @@
 	];
 </script>
 
-<Button on:click={() => (open = !open)}>View Measurements</Button>
+<Button on:click={toggleDrawer}>
+	{open ? 'Close Measurements' : 'Open Measurements'}
+</Button>
 
-<Drawer {open}>
+<Drawer bind:open>
 	<Typography variant="body-lg" class="font-bold">Measurements</Typography>
 	<Typography variant="body">Neck width: Seam to seam width</Typography>
-	<div class="my-5 border-t" />
-	<div class="flex-col space-y-4 text-sm">
+	<div class="mt-4 flex-col space-y-4 text-sm">
 		{#each columns as column}
-			<div class="flex justify-between border-b pb-4">
+			<div class="flex justify-between border-t pt-4">
 				<div>{column.label}</div>
 				<div>{column.value}</div>
 			</div>
