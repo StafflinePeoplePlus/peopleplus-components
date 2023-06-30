@@ -1,6 +1,6 @@
 import ExampleDrawer from '../../routes/(docs)/Drawer/ExampleDrawer.svelte';
 import { test, expect, afterEach } from 'vitest';
-import { cleanup, fireEvent, render, waitFor } from '@testing-library/svelte';
+import { cleanup, fireEvent, render } from '@testing-library/svelte';
 import matchers from '@testing-library/jest-dom/matchers';
 
 expect.extend(matchers);
@@ -28,5 +28,5 @@ test('should dismiss the drawer once "close" button is clicked', async () => {
 
 	const closeButton = getByText(CLOSE_BUTTON);
 	await fireEvent.click(closeButton);
-	expect(closeButton).toBeNull()
+	expect(closeButton).toBeNull();
 });
