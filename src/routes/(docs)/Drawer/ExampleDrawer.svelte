@@ -16,7 +16,7 @@
 </script>
 
 <Button on:click={toggleDrawer}>
-	{open ? 'Close Measurements' : 'Open Measurements'}
+	{open ? 'Close' : 'Open'} Measurements
 </Button>
 
 <Drawer bind:open>
