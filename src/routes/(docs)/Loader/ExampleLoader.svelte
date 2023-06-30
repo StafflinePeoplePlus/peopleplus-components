@@ -9,7 +9,7 @@
 	}
 </script>
 
-<Button on:click={submit} disabled={isLoading}>
+<Button on:click={submit} disabled={isLoading} data-testId="loadingButton">
 	{#if isLoading}
 		<Loader {isLoading} /> Loading...
 	{:else}
