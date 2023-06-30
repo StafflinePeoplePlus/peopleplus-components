@@ -20,7 +20,7 @@ export { default as Drawer } from './Drawer.svelte';
 export { default as Dropdown } from './Dropdown.svelte';
 export { default as Footer } from './footer/Footer.svelte';
 export { default as Jumbotron } from './jumbotron/Jumbotron.svelte';
-export { default as Loader } from './Loader.svelte';
+export { default as Loader } from './loader/Loader.svelte';
 export { default as Modal } from './Modal.svelte';
 export { default as Stepper } from './Stepper.svelte';
 export { default as Tooltip } from './Tooltip.svelte';
