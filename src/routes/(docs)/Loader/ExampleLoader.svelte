@@ -1,5 +1,5 @@
 <script>
-	import { Loader, Button } from '$lib';
+	import { SpinnerLoader, HorizontalLoader, Button } from '$lib';
 	let isLoading = false;
 	function submit() {
 		isLoading = true;
@@ -11,14 +11,14 @@
 
 <Button on:click={submit} disabled={isLoading} variant="secondary">
 	{#if isLoading}
-		<Loader {isLoading} variant="horizontal">Uploading Video</Loader>
+		<HorizontalLoader>Uploading Video</HorizontalLoader>
 	{:else}
 		Upload
 	{/if}
 </Button>
 <Button on:click={submit} disabled={isLoading} data-testId="loadingButton">
 	{#if isLoading}
-		<Loader {isLoading} variant="spinner">Loading...</Loader>
+		<SpinnerLoader />Loading...
 	{:else}
 		Submit Form
 	{/if}
