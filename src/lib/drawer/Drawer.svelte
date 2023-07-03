@@ -5,10 +5,6 @@
 
 	export let open = false;
 
-	function toggleDrawer() {
-		open = !open;
-	}
-
 	function closeDrawer() {
 		open = false;
 	}

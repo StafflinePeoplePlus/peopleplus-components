@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button, Drawer, Typography } from '$lib';
+	import { Button, Drawer, Typography, Chip } from '$lib';
 
 	let open = false;
 	function toggleDrawer() {
@@ -26,7 +26,13 @@
 		{#each columns as column}
 			<div class="flex justify-between border-t pt-4">
 				<div>{column.label}</div>
-				<div>{column.value}</div>
+				<div>
+					{#if column.label === 'Status'}
+						<Chip>{column.value}</Chip>
+					{:else}
+						{column.value}
+					{/if}
+				</div>
 			</div>
 		{/each}
 	</div>
