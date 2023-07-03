@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { Tooltip } from '$lib';
 	import ExamplePage from '../ExamplePage.svelte';
-
-	const usage = '<Tooltip />';
+	import ExampleTooltip from './ExampleTooltip.svelte';
+	import usage from './ExampleTooltip.svelte?raw';
 </script>
 
 <ExamplePage title="Tooltip" {usage}>
-	<Tooltip />
+	<ExampleTooltip />
 </ExamplePage>
