@@ -1,7 +1,6 @@
 <script lang="ts">
+	import { MaximizeIcon, MinimizeIcon } from 'lucide-svelte';
 	import { onMount } from 'svelte';
-	import MaximiseIcon from './icons/MaximiseIcon.svelte';
-	import MinimizeIcon from './icons/MinimizeIcon.svelte';
 
 	export let fullscreen = false;
 	export let element: HTMLElement | undefined;
@@ -25,9 +24,11 @@
 {#if supported}
 	<button class="p-1" on:click={toggleFullscreen}>
 		{#if fullscreen}
-			<MinimizeIcon />
+			<MinimizeIcon aria-hidden="true" />
+			<span class="sr-only">Minimize player</span>
 		{:else}
-			<MaximiseIcon />
+			<MaximizeIcon aria-hidden="true" />
+			<span class="sr-only">Maximise player</span>
 		{/if}
 	</button>
 {/if}

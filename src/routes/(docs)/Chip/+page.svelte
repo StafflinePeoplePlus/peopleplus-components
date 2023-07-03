@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { Chip } from '$lib';
 	import ExamplePage from '../ExamplePage.svelte';
-
-	const usage = '<Chip />';
+	import ExampleChip from './ExampleChip.svelte';
+	import usage from './ExampleChip.svelte?raw';
 </script>
 
 <ExamplePage title="Chip" {usage}>
-	<Chip />
+	<ExampleChip />
 </ExamplePage>

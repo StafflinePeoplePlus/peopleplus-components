@@ -1,4 +1,5 @@
 export * from './accordion';
+export * from './breadcrumbs';
 export * from './cookies';
 export * from './forms';
 export * from './navbar';
@@ -9,11 +10,10 @@ export * from './sortable';
 export { default as BackgroundImage } from './BackgroundImage.svelte';
 export { default as Banner } from './banner/Banner.svelte';
 export { default as BottomNav } from './BottomNav.svelte';
-export { default as Breadcrumbs } from './Breadcrumbs.svelte';
 export { default as Button } from './Button.svelte';
 export { default as Card } from './card/Card.svelte';
 export { default as Carousel } from './Carousel.svelte';
-export { default as Chip } from './Chip.svelte';
+export { default as Chip } from './chip/Chip.svelte';
 export { default as CodeSnippet } from './CodeSnippet.svelte';
 export { default as DarkMode } from './DarkMode.svelte';
 export { default as Drawer } from './drawer/Drawer.svelte';

@@ -2,6 +2,7 @@
 	export let value = 0;
 	export let min = 0;
 	export let max = 1;
+	export let label: string | undefined = undefined;
 
 	let trackHeight = 1;
 </script>
@@ -19,5 +20,6 @@
 		step="any"
 		bind:value
 		class="h-1 w-40 -rotate-90 appearance-none bg-transparent range-thumb:h-5 range-thumb:w-5 range-thumb:appearance-none range-thumb:rounded-full range-thumb:border-none range-thumb:bg-primary-600 range-thumb:shadow-md"
+		aria-label={label}
 	/>
 </div>

@@ -2,8 +2,7 @@
 	import { createEventDispatcher } from 'svelte';
 	import { twJoin, twMerge } from 'tailwind-merge';
 	import debounce from 'just-debounce-it';
-	import PauseIcon from './icons/PauseIcon.svelte';
-	import PlayIcon from './icons/PlayIcon.svelte';
+	import { PauseIcon, PlayIcon } from 'lucide-svelte';
 
 	const dispatchEvent = createEventDispatcher();
 
@@ -62,9 +61,11 @@
 		>
 			<div class="cursor-pointer rounded-full bg-black/50 p-4 text-center">
 				{#if playing}
-					<PauseIcon class="h-12 w-12 drop-shadow" />
+					<span class="sr-only">Pause video</span>
+					<PauseIcon class="h-12 w-12 drop-shadow" aria-hidden="true" />
 				{:else}
-					<PlayIcon class="h-12 w-12 drop-shadow" />
+					<span class="sr-only">Play video</span>
+					<PlayIcon class="h-12 w-12 drop-shadow" aria-hidden="true" />
 				{/if}
 			</div>
 		</button>
