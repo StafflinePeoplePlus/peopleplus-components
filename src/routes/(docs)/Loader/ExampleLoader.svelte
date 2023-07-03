@@ -9,9 +9,16 @@
 	}
 </script>
 
+<Button on:click={submit} disabled={isLoading} variant="secondary">
+	{#if isLoading}
+		<Loader {isLoading} variant="horizontal">Uploading Video</Loader>
+	{:else}
+		Upload
+	{/if}
+</Button>
 <Button on:click={submit} disabled={isLoading} data-testId="loadingButton">
 	{#if isLoading}
-		<Loader {isLoading} variant="horizontal" /> Loading...
+		<Loader {isLoading} variant="spinner">Loading...</Loader>
 	{:else}
 		Submit Form
 	{/if}
