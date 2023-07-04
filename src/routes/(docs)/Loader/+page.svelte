@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { Loader } from '$lib';
 	import ExamplePage from '../ExamplePage.svelte';
 
-	const usage = '<Loader />';
+	import usage from './ExampleLoader.svelte?raw';
+	import ExampleLoader from './ExampleLoader.svelte';
 </script>
 
 <ExamplePage title="Loader" {usage}>
-	<Loader />
+	<ExampleLoader />
 </ExamplePage>
