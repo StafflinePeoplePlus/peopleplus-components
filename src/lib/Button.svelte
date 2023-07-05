@@ -31,6 +31,9 @@
 		className
 	)}
 	on:click
+	on:mouseenter
+	on:mouseout
+	on:mousemove
 	{...$$restProps}
 >
 	<slot />

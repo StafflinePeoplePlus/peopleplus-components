@@ -1,14 +1,10 @@
 <script>
-    import { Tooltip, Button } from '$lib';
-    let showTooltip = false;
-
-    function toggleTooltip() {
-        showTooltip = !showTooltip;
-    }
+	import { Tooltip, Button } from '$lib';
 </script>
 
-<Button on:mouseenter={toggleTooltip} on:mouseout={toggleTooltip}>Delete</Button>
-
-{#if showTooltip}
-    <Tooltip>This action cannot be undone.</Tooltip>
-{/if}
+<Tooltip title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum fermentum ante ut ex consectetur."
+		 class="text-xs">
+	<Button>
+		More info
+	</Button>
+</Tooltip>
