@@ -13,7 +13,10 @@
 		class="w-36"
 	>
 		<Button class="rounded-full px-3">
-			<MailPlus />
+			<div>
+				<MailPlus />
+				<span class="sr-only">Subscribe</span>
+			</div>
 		</Button>
 	</Tooltip>
 </div>
