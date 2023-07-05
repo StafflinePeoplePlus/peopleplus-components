@@ -17,7 +17,7 @@ export { default as Carousel } from './Carousel.svelte';
 export { default as Chip } from './chip/Chip.svelte';
 export { default as CodeSnippet } from './CodeSnippet.svelte';
 export { default as DarkMode } from './DarkMode.svelte';
-export { default as Drawer } from './Drawer.svelte';
+export { default as Drawer } from './drawer/Drawer.svelte';
 export { default as Dropdown } from './Dropdown.svelte';
 export { default as Footer } from './footer/Footer.svelte';
 export { default as Jumbotron } from './jumbotron/Jumbotron.svelte';
