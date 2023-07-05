@@ -29,10 +29,8 @@ test('should dismiss the drawer once "close" button is clicked', async () => {
 	const closeButton = getByTestId(CLOSE_BUTTON);
 	await fireEvent.click(closeButton);
 
-	await waitFor(
-		() => {
-			expect(queryByTestId(CLOSE_BUTTON)).toBeNull();
-		},
-		{ timeout: 4000 }
-	);
+	await new Promise((resolve) => setTimeout(resolve, 4000));
+
+	const drawer = queryByTestId(DRAWER);
+	expect(drawer).not.toBeInTheDocument();
 });
