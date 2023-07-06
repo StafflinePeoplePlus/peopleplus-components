@@ -17,6 +17,7 @@
 
 <script lang="ts">
 	import { setContext } from 'svelte';
+	import { actions, type UseActions } from '$lib/actions';
 
 	let className = '';
 	export { className as class };
@@ -24,6 +25,7 @@
 	 * Only allow one accordion in the group to be open at a time
 	 */
 	export let exclusive = false;
+	export let use: UseActions = [];
 
 	setContext<AccordionGroupContext>(ctxKey, {
 		disclosures: [],
@@ -50,6 +52,6 @@
 	});
 </script>
 
-<div class={className}>
+<div class={className} use:actions={use}>
 	<slot />
 </div>

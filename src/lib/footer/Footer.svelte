@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { actions, type UseActions } from '$lib/actions';
 	import { twMerge } from 'tailwind-merge';
 
 	let className = '';
@@ -7,6 +8,7 @@
 	export let middleClass = '';
 	export let endClass = '';
 	export let bottomClass = '';
+	export let use: UseActions = [];
 </script>
 
 <div
@@ -14,6 +16,7 @@
 		'max-w-screen-2xl bg-white p-4 text-sm dark:bg-gray-700 sm:p-10 2xl:mx-auto',
 		className
 	)}
+	use:actions={use}
 	{...$$restProps}
 >
 	<div class={'justify-between lg:flex'}>
