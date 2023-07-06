@@ -1,4 +1,12 @@
-<div>
+<script lang="ts">
+	import { actions, type UseActions } from '$lib/actions';
+
+	let className: string | undefined = undefined;
+	export { className as class };
+	export let use: UseActions = [];
+</script>
+
+<div class={className} use:actions={use}>
 	<svg
 		data-testId="loader"
 		aria-hidden="true"

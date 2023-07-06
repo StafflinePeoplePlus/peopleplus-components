@@ -2,10 +2,12 @@
 	import { createDisclosure } from 'svelte-headlessui';
 	import { getAccordionGroup } from './AccordionGroup.svelte';
 	import { twMerge } from 'tailwind-merge';
+	import { actions, type UseActions } from '$lib/actions';
 
 	let className = '';
 	export { className as class };
 	export let label: string;
+	export let use: UseActions = [];
 
 	const group = getAccordionGroup();
 	const disclosure = createDisclosure({ label });
@@ -25,6 +27,7 @@
 			: 'rounded-xl border',
 		className
 	)}
+	use:actions={use}
 >
 	<h2>
 		<button

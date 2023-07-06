@@ -1,6 +1,6 @@
 import type { Action } from 'svelte/action';
 import { type Readable, readable, writable, derived } from 'svelte/store';
-import { destroySequence, toggleableAction, addEventListener } from './helpers/action';
+import { destroySequence, toggleableAction, addEventListener } from './actions';
 import { onDestroy } from 'svelte';
 
 const DRAG_BAR_SIZE = 3;

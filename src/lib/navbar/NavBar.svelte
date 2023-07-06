@@ -2,6 +2,7 @@
 	import { createPopover } from 'svelte-headlessui';
 	import { twMerge } from 'tailwind-merge';
 	import { screenMd } from '$lib/media';
+	import { actions, type UseActions } from '$lib/actions';
 
 	let className = '';
 	export { className as class };
@@ -10,6 +11,7 @@
 	export let endClass = '';
 	export let panelClass = '';
 	export let hamburgerClass = '';
+	export let use: UseActions = [];
 
 	const popover = createPopover();
 
@@ -26,6 +28,7 @@
 		'flex flex-wrap items-center justify-between gap-x-8 overflow-hidden bg-gray-100 p-4 dark:bg-gray-700 md:gap-y-2',
 		className
 	)}
+	use:actions={use}
 >
 	<div class={twMerge('flex w-full shrink-0 items-center md:w-auto', startClass)}>
 		<slot name="start" />

@@ -1,4 +1,5 @@
 export * from './accordion';
+export * from './actions';
 export * from './breadcrumbs';
 export * from './cookies';
 export * from './forms';

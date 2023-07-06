@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { actions, type UseActions } from '$lib/actions';
 	import { createEventDispatcher } from 'svelte';
 	import type { HTMLInputAttributes } from 'svelte/elements';
 	import { twMerge } from 'tailwind-merge';
@@ -6,13 +7,16 @@
 	interface $$Events {
 		change: CustomEvent<boolean>;
 	}
-	type $$Props = Omit<HTMLInputAttributes, 'type' | 'role' | `${string}:${string}`>;
+	type $$Props = Omit<HTMLInputAttributes, 'type' | 'role' | `${string}:${string}`> & {
+		use?: UseActions;
+	};
 
 	const dispatch = createEventDispatcher();
 
 	let className: $$Props['class'] = undefined;
 	export { className as class };
 	export let checked: $$Props['checked'] = undefined;
+	export let use: UseActions = [];
 </script>
 
 <input
@@ -23,6 +27,7 @@
 		className
 	)}
 	bind:checked
+	use:actions={use}
 	on:change={(evt) => dispatch('change', evt.currentTarget.checked)}
 	{...$$restProps}
 />
