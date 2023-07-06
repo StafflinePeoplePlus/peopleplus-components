@@ -5,6 +5,7 @@ export * from './cookies';
 export * from './forms';
 export * from './loader';
 export * from './navbar';
+export * from './popover';
 export * from './table';
 export * from './toaster';
 export * from './video';
