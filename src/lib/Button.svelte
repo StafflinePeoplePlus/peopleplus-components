@@ -10,8 +10,9 @@
 <script lang="ts">
 	import type { SvelteHTMLElements } from 'svelte/elements';
 	import { twMerge } from 'tailwind-merge';
+	import { actions, type UseActions } from './actions';
 
-	type Props = { class?: string; variant?: keyof typeof variants };
+	type Props = { class?: string; variant?: keyof typeof variants; use?: UseActions };
 	type $$Props =
 		| (Props & { href: string } & SvelteHTMLElements['a'])
 		| (Props & { href?: undefined } & SvelteHTMLElements['button']);
@@ -20,6 +21,7 @@
 	export { className as class };
 	export let href: string | undefined = undefined;
 	export let variant: Props['variant'] = undefined;
+	export let use: UseActions = [];
 </script>
 
 <svelte:element
@@ -31,6 +33,7 @@
 		className
 	)}
 	on:click
+	use:actions={use}
 	{...$$restProps}
 >
 	<slot />

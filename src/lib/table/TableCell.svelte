@@ -3,10 +3,12 @@
 	import { twMerge } from 'tailwind-merge';
 	import { isPosition, type VisualPosition } from './position';
 	import { getTableContext } from './context';
+	import { actions, type UseActions } from '$lib/actions';
 
 	type Props = {
 		visualPosition?: VisualPosition;
 		number?: boolean;
+		use?: UseActions;
 	};
 	type $$Props =
 		| (Props & { header: true } & SvelteHTMLElements['th'])
@@ -22,6 +24,7 @@
 	 * border radius to.
 	 */
 	export let visualPosition: $$Props['visualPosition'] = undefined;
+	export let use: UseActions = [];
 
 	const table = getTableContext();
 </script>
@@ -47,6 +50,7 @@
 			: 'group-last-of-type/tr:last:rounded-br-md',
 		className
 	)}
+	use:actions={use}
 	{...$$restProps}
 >
 	<slot />
