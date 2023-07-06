@@ -26,6 +26,7 @@
 		{ name: 'Loader' },
 		{ name: 'Modal' },
 		{ name: 'NavBar' },
+		{ name: 'Popover' },
 		{ name: 'Sortable' },
 		{ name: 'Stepper' },
 		{ name: 'Switch' },
