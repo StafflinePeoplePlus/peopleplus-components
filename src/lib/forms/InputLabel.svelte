@@ -3,7 +3,7 @@
 	import type { HTMLLabelAttributes } from 'svelte/elements';
 	import { twMerge } from 'tailwind-merge';
 
-	type $$Props = HTMLLabelAttributes & { use: UseActions };
+	type $$Props = HTMLLabelAttributes & { use?: UseActions };
 
 	let className: $$Props['class'] = undefined;
 	export { className as class };
