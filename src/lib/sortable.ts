@@ -237,7 +237,7 @@ function calculateReorder(
 
 function createDragBar(appendTo: HTMLDivElement, axis: Axis, itemBounds: ItemBounds[]) {
 	const bar = document.createElement('div');
-	bar.className = `absolute bg-red-600 rounded-sm pointer-events-none ${
+	bar.className = `absolute bg-primary-600 rounded-sm pointer-events-none ${
 		axis === 'x' ? 'w-[3px]' : 'h-[3px]'
 	}`;
 	const dragBarSize = itemBounds.reduce(
@@ -403,7 +403,7 @@ function createDropZone(
 	const el = document.createElement('div');
 	el.className = 'absolute z-[999] pointer-events-auto';
 	if (debug) {
-		el.className += ` bg-red-400/40 ${
+		el.className += ` bg-primary-400/40 ${
 			axis === 'x' ? 'border-r' : 'border-b'
 		} last:border-none border-black`;
 	}
