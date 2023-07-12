@@ -22,6 +22,7 @@
 	type ElementAttrs = T['as'] extends keyof SvelteHTMLElements
 		? SvelteHTMLElements[T['as']]
 		: HTMLAttributes<HTMLParagraphElement>;
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	type $$Props = Props & T & ElementAttrs;
 
 	let className = '';

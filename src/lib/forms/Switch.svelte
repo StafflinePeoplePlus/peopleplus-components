@@ -4,14 +4,11 @@
 	import type { HTMLInputAttributes } from 'svelte/elements';
 	import { twMerge } from 'tailwind-merge';
 
-	interface $$Events {
-		change: CustomEvent<boolean>;
-	}
 	type $$Props = Omit<HTMLInputAttributes, 'type' | 'role' | `${string}:${string}`> & {
 		use?: UseActions;
 	};
 
-	const dispatch = createEventDispatcher();
+	const dispatch = createEventDispatcher<{ change: boolean }>();
 
 	let className: $$Props['class'] = undefined;
 	export { className as class };
