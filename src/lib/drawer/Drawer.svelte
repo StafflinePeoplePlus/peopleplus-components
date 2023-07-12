@@ -4,13 +4,13 @@
 	import Button from '$lib/Button.svelte';
 	import { fly } from 'svelte/transition';
 
+	type $$Props = SvelteHTMLElements['div'] & { open: boolean };
+
 	export let open = false;
 
 	function closeDrawer() {
 		open = false;
 	}
-
-	type $$Props = SvelteHTMLElements['div'];
 
 	let className: $$Props['class'] = undefined;
 	export { className as class };
