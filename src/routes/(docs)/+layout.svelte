@@ -11,7 +11,6 @@
 		{ name: 'Accordion' },
 		{ name: 'Avatar' },
 		{ name: 'Banner' },
-		{ name: 'BottomNav' },
 		{ name: 'Breadcrumbs' },
 		{ name: 'Button' },
 		{ name: 'Card' },
@@ -21,11 +20,9 @@
 		{ name: 'CookieConsent' },
 		{ name: 'DarkMode' },
 		{ name: 'Drawer' },
-		{ name: 'Dropdown' },
 		{ name: 'Footer' },
 		{ name: 'Jumbotron' },
 		{ name: 'Loader' },
-		{ name: 'Modal' },
 		{ name: 'NavBar' },
 		{ name: 'Popover' },
 		{ name: 'Sortable' },
@@ -35,7 +32,6 @@
 		{ name: 'TextInput' },
 		{ name: 'TextArea' },
 		{ name: 'Toaster' },
-		{ name: 'Tooltip' },
 		{ name: 'VideoPlayer' },
 	];
 	let showSidebar = false;
