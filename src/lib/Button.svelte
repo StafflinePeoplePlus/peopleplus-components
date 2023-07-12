@@ -32,6 +32,7 @@
 		variants[variant ?? 'primary'],
 		className
 	)}
+	role={href ? 'link' : 'button'}
 	on:click
 	use:actions={use}
 	{...$$restProps}
