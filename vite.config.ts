@@ -10,7 +10,7 @@ const configureServer = (server: { middlewares: Connect.Server }) => {
 		res.setHeader('Cross-Origin-Resource-Policy', 'same-origin');
 		res.setHeader(
 			'Permissions-Policy',
-			'camera=(), display-capture=(), fullscreen=(self), geolocation=(), microphone=()'
+			'camera=(), display-capture=(), fullscreen=(self), geolocation=(), microphone=()',
 		);
 		next();
 	});
@@ -25,22 +25,22 @@ export default defineConfig({
 					istanbul({
 						include: 'src/*',
 						extension: ['.js', '.ts', '.svelte'],
-						forceBuildInstrument: true
-					})
+						forceBuildInstrument: true,
+					}),
 			  ]
-			: [])
+			: []),
 	],
 	test: {
 		coverage: {
 			provider: 'istanbul',
 			reporter: ['text', 'json', 'html', 'json-summary'],
-			reportsDirectory: './coverage/vitest'
+			reportsDirectory: './coverage/vitest',
 		},
 		include: ['src/**/*.{test,spec}.{js,ts}'],
-		environment: 'jsdom'
+		environment: 'jsdom',
 	},
 	build: {
-		sourcemap: !!process.env.VITE_COVERAGE
+		sourcemap: !!process.env.VITE_COVERAGE,
 	},
-	server: { cors: { origin: false } }
+	server: { cors: { origin: false } },
 });

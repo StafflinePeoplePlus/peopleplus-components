@@ -3,10 +3,10 @@
 
 	let items = Array.from({ length: 100 }).map((_, i) => ({
 		id: i.toString(),
-		name: `Item ${i + 1}`
+		name: `Item ${i + 1}`,
 	}));
 	const sortable = createSortable({
-		onReorder: (op) => (items = reorderList(items, (item) => item.id, op))
+		onReorder: (op) => (items = reorderList(items, (item) => item.id, op)),
 	});
 </script>
 

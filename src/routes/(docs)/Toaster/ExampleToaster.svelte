@@ -5,19 +5,19 @@
 		showToast({
 			variant: 'success',
 			message: 'Changes successfully saved.',
-			timeout: 3000
+			timeout: 3000,
 		});
 		showToast({
 			variant: 'error',
 			message: 'Username you have entered is invalid.',
-			timeout: 6000
+			timeout: 6000,
 		});
 	}
 	function showToastClickNull() {
 		showToast({
 			variant: 'alert',
 			message: 'Uploading videos.',
-			timeout: null
+			timeout: null,
 		});
 	}
 </script>

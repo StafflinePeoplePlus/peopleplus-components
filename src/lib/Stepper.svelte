@@ -27,7 +27,7 @@
 <section
 	class={twMerge(
 		'mb-5 rounded-lg border border-gray-200 bg-white p-2 font-medium shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 lg:flex lg:px-0',
-		className
+		className,
 	)}
 	{...$$restProps}
 >

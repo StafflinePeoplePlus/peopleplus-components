@@ -16,7 +16,7 @@
 	class={twMerge(
 		'group/tr',
 		$table.striped && '[&:nth-of-type(2n+1)]:bg-gray-100 [&:nth-of-type(2n+1)]:dark:bg-gray-900',
-		className
+		className,
 	)}
 	use:actions={use}
 	{...$$restProps}

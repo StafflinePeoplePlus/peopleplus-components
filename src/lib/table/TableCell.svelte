@@ -48,7 +48,7 @@
 		visualPosition
 			? isPosition(visualPosition, 'bottom-right') && 'rounded-br-md'
 			: 'group-last-of-type/tr:last:rounded-br-md',
-		className
+		className,
 	)}
 	use:actions={use}
 	{...$$restProps}

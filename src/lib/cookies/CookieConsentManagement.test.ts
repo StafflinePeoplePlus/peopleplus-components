@@ -9,12 +9,12 @@ afterEach(cleanup);
 const categories = [
 	{ title: 'Category 1', body: 'Category body', name: 'category-1' },
 	{ title: 'Category 2', body: 'Category body', name: 'category-2' },
-	{ title: 'Category 3', body: 'Category body', name: 'category-3' }
+	{ title: 'Category 3', body: 'Category body', name: 'category-3' },
 ];
 test('category switches reflect the given consent', async () => {
 	const { getByRole, component } = render(CookieConsentManagement, {
 		categories,
-		consent: { 'category-1': true, 'category-2': false }
+		consent: { 'category-1': true, 'category-2': false },
 	});
 
 	const cat1 = getByRole('switch', { name: 'Category 1' });
@@ -25,7 +25,7 @@ test('category switches reflect the given consent', async () => {
 	expect(cat2).not.toBeChecked();
 	expect(cat3).not.toBeChecked();
 	await act(() =>
-		component.$set({ consent: { 'category-1': false, 'category-2': false, 'category-3': true } })
+		component.$set({ consent: { 'category-1': false, 'category-2': false, 'category-3': true } }),
 	);
 	expect(cat1).not.toBeChecked();
 	expect(cat2).not.toBeChecked();
@@ -45,6 +45,6 @@ test('clicking save button fires the save event with the selected consent', asyn
 	expect(onSave).toHaveReturnedWith({
 		'category-1': false,
 		'category-2': true,
-		'category-3': false
+		'category-3': false,
 	});
 });

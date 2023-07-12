@@ -26,7 +26,7 @@
 <nav
 	class={twMerge(
 		'flex flex-wrap items-center justify-between gap-x-8 overflow-hidden bg-gray-100 p-4 dark:bg-gray-700 md:gap-y-2',
-		className
+		className,
 	)}
 	use:actions={use}
 >
@@ -38,7 +38,7 @@
 					type="button"
 					class={twMerge(
 						'ml-1 inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-300 dark:hover:bg-gray-600 md:hidden',
-						hamburgerClass
+						hamburgerClass,
 					)}
 					use:popover.button
 				>

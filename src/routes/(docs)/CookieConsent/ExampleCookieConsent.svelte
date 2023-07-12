@@ -6,7 +6,7 @@
 			name: 'neccesary',
 			title: 'Neccesary Cookies',
 			body: 'Necessary cookies enable core functionality such as security, network management, and accessibility. You may disable these by changing your browser settings, but this may affect how the website functions.',
-			required: true
+			required: true,
 		},
 		{
 			name: 'analytics',
@@ -17,22 +17,22 @@
 					name: '_fbp',
 					provider: 'Facebook',
 					purpose: 'Marketing/Tracking',
-					expiration: '3 months'
+					expiration: '3 months',
 				},
 				{
 					name: '_ga',
 					provider: 'Google Analytics',
 					purpose: 'Statistics',
-					expiration: '2 years'
+					expiration: '2 years',
 				},
 				{
 					name: '_gid',
 					provider: 'Google Analytics',
 					purpose: 'Statistics',
-					expiration: '1 day'
-				}
-			]
-		}
+					expiration: '1 day',
+				},
+			],
+		},
 	];
 
 	let consent = {};

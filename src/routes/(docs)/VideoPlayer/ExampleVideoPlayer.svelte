@@ -4,7 +4,7 @@
 		FullscreenButton,
 		ScrubBar,
 		VideoPlayer,
-		VolumeControl
+		VolumeControl,
 	} from '$lib';
 
 	let playerElement: HTMLElement | undefined = undefined;

@@ -13,7 +13,7 @@
 		top: 'origin-top',
 		bottom: 'origin-bottom',
 		left: 'origin-left',
-		right: 'origin-right'
+		right: 'origin-right',
 	};
 </script>
 
@@ -23,7 +23,7 @@
 		class={twMerge(
 			'rounded-lg border border-gray-200 bg-white p-2 text-gray-900 shadow-lg dark:border-gray-600 dark:bg-gray-700 dark:text-white',
 			origin[$popover.staticSide],
-			className
+			className,
 		)}
 		in:scale={{ easing: backOut, start: 0.75, duration: 300 }}
 		out:scale={{ easing: backIn, start: 0.75, duration: 300 }}

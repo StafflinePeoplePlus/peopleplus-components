@@ -22,7 +22,7 @@
 		transition:fly={{ x: '100%', duration: 300 }}
 		class={twMerge(
 			'fixed bottom-0 right-0 top-0 z-50 h-full w-80 overflow-y-auto border bg-white p-4 pt-2 shadow-xl dark:border-gray-600 dark:bg-gray-800',
-			className
+			className,
 		)}
 		{...$$restProps}
 	>

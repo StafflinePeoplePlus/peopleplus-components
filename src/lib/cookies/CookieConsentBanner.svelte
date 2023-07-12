@@ -27,7 +27,7 @@
 <section
 	class={twMerge(
 		'fixed inset-x-0 bottom-0 max-h-[calc(100%-2rem)] overflow-auto border-t border-gray-300 bg-gray-50 p-6 dark:border-gray-700 dark:bg-gray-800',
-		className
+		className,
 	)}
 	transition:fade
 >

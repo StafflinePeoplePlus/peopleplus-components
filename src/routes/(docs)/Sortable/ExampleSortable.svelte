@@ -7,18 +7,18 @@
 
 	let items = Array.from({ length: 20 }).map((_, i) => ({
 		id: i.toString(),
-		name: `Item ${i + 1}`
+		name: `Item ${i + 1}`,
 	}));
 	const [send, receive] = crossfade({});
 	const sortingEnabled = writable(true);
 	const sortableX = createSortable({
 		axis: 'x',
 		enabled: sortingEnabled,
-		onReorder: (op) => (items = reorderList(items, (item) => item.id, op))
+		onReorder: (op) => (items = reorderList(items, (item) => item.id, op)),
 	});
 	const sortableY = createSortable({
 		enabled: sortingEnabled,
-		onReorder: (op) => (items = reorderList(items, (item) => item.id, op))
+		onReorder: (op) => (items = reorderList(items, (item) => item.id, op)),
 	});
 </script>
 
@@ -35,7 +35,7 @@
 		<li
 			class={twMerge(
 				'mr-2 flex h-16 w-24 shrink-0 select-none items-center justify-center gap-1 rounded bg-gray-300 p-2 px-3 transition',
-				$sortingEnabled && 'cursor-grab hover:bg-gray-400'
+				$sortingEnabled && 'cursor-grab hover:bg-gray-400',
 			)}
 			in:receive={{ key: item.id }}
 			out:send={{ key: item.id }}
@@ -70,7 +70,7 @@
 		<li
 			class={twMerge(
 				'mb-2 flex select-none items-center gap-1 rounded bg-gray-300 p-2 px-3 transition',
-				$sortingEnabled && 'cursor-grab hover:bg-gray-400'
+				$sortingEnabled && 'cursor-grab hover:bg-gray-400',
 			)}
 			in:receive={{ key: item.id }}
 			out:send={{ key: item.id }}

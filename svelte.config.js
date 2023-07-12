@@ -5,7 +5,7 @@ import { vitePreprocess } from '@sveltejs/kit/vite';
 const config = {
 	compilerOptions: {
 		// For tests
-		accessors: true
+		accessors: true,
 	},
 	// Consult https://kit.svelte.dev/docs/integrations#preprocessors
 	// for more information about preprocessors
@@ -20,12 +20,12 @@ const config = {
 				'style-src': [
 					'self',
 					// bind:clientWidth/Height requires this - https://github.com/sveltejs/svelte/issues/8607
-					'unsafe-inline'
-				]
-			}
+					'unsafe-inline',
+				],
+			},
 		},
-		adapter: adapter()
-	}
+		adapter: adapter(),
+	},
 };
 
 export default config;

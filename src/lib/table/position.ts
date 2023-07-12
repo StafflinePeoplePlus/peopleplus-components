@@ -8,7 +8,7 @@ export type VisualPosition =
 
 export function isPosition(
 	configured: VisualPosition,
-	target: `${VerticalPosition}-${HorizontalPosition}`
+	target: `${VerticalPosition}-${HorizontalPosition}`,
 ): boolean {
 	return (
 		configured === target ||

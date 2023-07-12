@@ -126,7 +126,7 @@
 		class={twMerge(
 			'flex touch-pan-y touch-pinch-zoom select-none',
 			BROWSER ? 'overflow-x-hidden' : 'overflow-x-auto',
-			listClass
+			listClass,
 		)}
 		on:pointerdown={(evt) => {
 			if (evt.button != 0 || !overflows) {
@@ -143,7 +143,7 @@
 				class={twMerge(
 					'flex-shrink-0',
 					!dragging && mounted && 'transition duration-300',
-					itemClass
+					itemClass,
 				)}
 				style:transform={translation}
 				aria-hidden={isInRange(visibleRange, index) ? 'false' : 'true'}

@@ -9,5 +9,5 @@
 <pre
 	class={twMerge(
 		'whitespace-pre-wrap break-words rounded-md border border-gray-300 bg-gray-50 p-4 shadow-sm dark:border-gray-600 dark:bg-gray-700',
-		className
+		className,
 	)}><code class="font-mono text-sm">{code}</code></pre>

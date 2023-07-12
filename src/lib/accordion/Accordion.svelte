@@ -25,7 +25,7 @@
 		group != null
 			? 'group border-x border-t first:rounded-t-xl last:rounded-b-xl last:border-b'
 			: 'rounded-xl border',
-		className
+		className,
 	)}
 	use:actions={use}
 >
@@ -35,7 +35,7 @@
 			class={twMerge(
 				'relative flex w-full items-center justify-between p-5 text-left font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-2 focus:ring-red-400 dark:text-gray-100 dark:hover:bg-gray-600',
 				group != null ? 'group-first:rounded-t-xl' : 'rounded-t-xl',
-				!$disclosure.expanded && (group != null ? 'group-last:rounded-b-xl' : 'rounded-b-xl')
+				!$disclosure.expanded && (group != null ? 'group-last:rounded-b-xl' : 'rounded-b-xl'),
 			)}
 			use:disclosure.button
 		>

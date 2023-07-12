@@ -50,7 +50,7 @@ export function actions(node: HTMLElement, actions: UseActions) {
 				returnValue.destroy?.();
 			}
 			instances.clear();
-		}
+		},
 	};
 }
 
@@ -65,7 +65,7 @@ export function use<Element>(action: Action<Element, undefined>): UseAction;
 export function use<Element>(action: Action<Element, void>): UseAction;
 export function use<Element, Parameters>(
 	action: Action<Element, Parameters>,
-	params: Parameters
+	params: Parameters,
 ): UseAction;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function use(action: Action<any, any>, params?: any): UseAction {
@@ -76,7 +76,7 @@ export function addEventListener<E extends HTMLElement, K extends keyof HTMLElem
 	el: E,
 	type: K,
 	listener: (evt: HTMLElementEventMap[K]) => unknown,
-	options?: boolean | AddEventListenerOptions
+	options?: boolean | AddEventListenerOptions,
 ) {
 	el.addEventListener(type, listener, options);
 	return () => {
@@ -95,10 +95,10 @@ export function destroySequence(...fns: ((...args: unknown[]) => unknown)[]) {
 export function toggleableAction<
 	Element = HTMLElement,
 	Parameter = unknown,
-	Attributes extends Record<string, unknown> = Record<never, unknown>
+	Attributes extends Record<string, unknown> = Record<never, unknown>,
 >(
 	enabled: Readable<boolean>,
-	action: Action<Element, Parameter, Attributes>
+	action: Action<Element, Parameter, Attributes>,
 ): Action<Element, Parameter, Attributes> {
 	return (node: Element, params) => {
 		let activeAction: void | ActionReturn<Parameter, Attributes> = undefined;
@@ -126,7 +126,7 @@ export function toggleableAction<
 				if (activeAction) {
 					activeAction?.destroy?.();
 				}
-			}
+			},
 		};
 	};
 }

@@ -11,7 +11,7 @@ for (const axis of ['x', 'y']) {
 			await dragAndDrop(
 				page,
 				page.getByText('Item 1', { exact: true }),
-				page.getByText('Item 50', { exact: true })
+				page.getByText('Item 50', { exact: true }),
 			);
 
 			await expect(page.locator(':text("Item 49") + :text("Item 1")')).toBeVisible();
@@ -23,7 +23,7 @@ for (const axis of ['x', 'y']) {
 				page,
 				page.getByText('Item 1', { exact: true }),
 				page.getByText('Item 50', { exact: true }),
-				{ [axis]: 60 }
+				{ [axis]: 60 },
 			);
 
 			await expect(page.locator(':text("Item 50") + :text("Item 1")')).toBeVisible();
@@ -38,7 +38,7 @@ for (const axis of ['x', 'y']) {
 				page,
 				page.getByText('Item 1', { exact: true }),
 				page.getByText('Item 100', { exact: true }),
-				{ [axis]: 60 }
+				{ [axis]: 60 },
 			);
 
 			await expect(page.locator(':text("Item 100") + :text("Item 1")')).toBeVisible();
@@ -51,7 +51,7 @@ for (const axis of ['x', 'y']) {
 			await dragAndDrop(
 				page,
 				page.getByText('Item 100', { exact: true }),
-				page.getByText('Item 1', { exact: true })
+				page.getByText('Item 1', { exact: true }),
 			);
 
 			await expect(page.locator(':text("Item 100") + :text("Item 1")')).toBeVisible();
@@ -63,7 +63,7 @@ async function dragAndDrop(
 	page: Page,
 	source: Locator,
 	target: Locator,
-	offset: { x?: number; y?: number } = {}
+	offset: { x?: number; y?: number } = {},
 ) {
 	await source.hover();
 	await source.dispatchEvent('dragstart');
@@ -77,7 +77,7 @@ async function dragAndDrop(
 	const element = (
 		await page.evaluateHandle(
 			([x, y]) => document.elementFromPoint(x, y),
-			[targetBox.x + (offset.x ?? 0), targetBox.y + (offset.y ?? 0)]
+			[targetBox.x + (offset.x ?? 0), targetBox.y + (offset.y ?? 0)],
 		)
 	).asElement();
 	if (!element) {

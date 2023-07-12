@@ -24,7 +24,7 @@
 		'mb-2 flex w-72 max-w-full items-center gap-3 rounded-md border border-white/20 p-3 leading-tight text-white shadow-lg backdrop-blur-md',
 		toast.kind === 'success' && 'bg-green-700/70',
 		toast.kind === 'alert' && 'bg-orange-600/70',
-		toast.kind === 'error' && 'bg-rose-700/70'
+		toast.kind === 'error' && 'bg-rose-700/70',
 	)}
 	role="alert"
 	in:fly={{ x: 300 }}

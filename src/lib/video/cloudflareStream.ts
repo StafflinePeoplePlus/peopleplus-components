@@ -14,7 +14,7 @@ export function useCloudflareStream() {
 		}
 
 		const existingScript = document.querySelector<HTMLScriptElement>(
-			`script[src='${sdkScriptLocation}']`
+			`script[src='${sdkScriptLocation}']`,
 		);
 		const script = existingScript ?? document.createElement('script');
 		script.addEventListener('load', () => {
