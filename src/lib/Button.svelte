@@ -20,7 +20,7 @@
 	let className = '';
 	export { className as class };
 	export let href: string | undefined = undefined;
-	export let variant: Props['variant'] = undefined;
+	export let variant: $$Props['variant'] = undefined;
 	export let use: UseActions = [];
 </script>
 
