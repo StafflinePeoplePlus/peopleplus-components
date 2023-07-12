@@ -38,6 +38,8 @@
 		!showControls && 'cursor-none',
 		className
 	)}
+	role="button"
+	tabindex="-1"
 	on:pointermove={startInteracting}
 	on:mousedown={startInteracting}
 	on:mouseleave={() => (interacting = false)}

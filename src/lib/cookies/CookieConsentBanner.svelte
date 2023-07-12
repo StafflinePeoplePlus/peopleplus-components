@@ -29,7 +29,7 @@
 		'fixed inset-x-0 bottom-0 max-h-[calc(100%-2rem)] overflow-auto border-t border-gray-300 bg-gray-50 p-6 dark:border-gray-700 dark:bg-gray-800',
 		className
 	)}
-	transition:fade|local
+	transition:fade
 >
 	<div class="flex flex-col gap-4 md:flex-row md:items-center">
 		<div class="grow">
@@ -70,7 +70,7 @@
 		</div>
 	</div>
 	{#if expanded}
-		<div transition:slide|local class="max-w-prose" id="consent-content">
+		<div transition:slide class="max-w-prose" id="consent-content">
 			{#if cookiePolicy}
 				<Typography variant="body" class="mt-4">
 					For more detailed information about the cookies we use, see our <a

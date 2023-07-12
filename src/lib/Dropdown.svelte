@@ -2,7 +2,7 @@
 	let open = false;
 </script>
 
-<div class="inline-block" on:mouseleave={() => (open = false)}>
+<div class="inline-block" on:mouseleave={() => (open = false)} role="group">
 	<button
 		id="dropdownHoverButton"
 		class="inline-flex items-center rounded-lg bg-blue-700 px-4 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"

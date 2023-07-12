@@ -27,8 +27,8 @@
 		toast.kind === 'error' && 'bg-rose-700/70'
 	)}
 	role="alert"
-	in:fly|local={{ x: 300 }}
-	out:slide|local
+	in:fly={{ x: 300 }}
+	out:slide
 	aria-labelledby="toast-{toast.id}-message"
 >
 	{#if toast.kind === 'success'}
