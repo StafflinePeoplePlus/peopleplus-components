@@ -58,7 +58,7 @@
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20230511.0",
 		"@playwright/test": "^1.33.0",
-		"@sveltejs/adapter-cloudflare": "2.3.0",
+		"@sveltejs/adapter-cloudflare": "2.3.1",
 		"@sveltejs/kit": "^1.22.2",
 		"@sveltejs/package": "^2.2.0",
 		"@tailwindcss/typography": "^0.5.9",
