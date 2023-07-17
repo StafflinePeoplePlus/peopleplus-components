@@ -8,9 +8,9 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				primary: colors.red
-			}
-		}
+				primary: colors.red,
+			},
+		},
 	},
-	plugins: [require('@tailwindcss/typography'), ppSvelteComponents()]
+	plugins: [require('@tailwindcss/typography'), ppSvelteComponents()],
 };

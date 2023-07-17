@@ -22,16 +22,16 @@ test('should reflect properties in the dom', async () => {
 					name: 'cookie 1',
 					provider: 'provider 1',
 					purpose: 'purpose 1',
-					expiration: 'expiration 1'
+					expiration: 'expiration 1',
 				},
 				{
 					name: 'cookie 2',
 					provider: 'provider 2',
 					purpose: 'purpose 2',
-					expiration: 'expiration 2'
-				}
-			]
-		}
+					expiration: 'expiration 2',
+				},
+			],
+		},
 	);
 
 	const toggle = getByRole('switch', { name: 'Category Title' });

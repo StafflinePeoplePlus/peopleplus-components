@@ -6,7 +6,7 @@
 	export function showToast({
 		variant,
 		message,
-		timeout
+		timeout,
 	}: {
 		variant: ToastKind;
 		message: string;
@@ -17,7 +17,7 @@
 				id: state.nextId++,
 				kind: variant,
 				content: { message },
-				duration: timeout
+				duration: timeout,
 			});
 			return state;
 		});

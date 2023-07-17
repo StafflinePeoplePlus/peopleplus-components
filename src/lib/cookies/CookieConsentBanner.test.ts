@@ -7,7 +7,7 @@ afterEach(cleanup);
 const categories = [
 	{ title: 'Category 1', body: 'Category body', name: 'category-1' },
 	{ title: 'Category 2', body: 'Category body', name: 'category-2' },
-	{ title: 'Category 3', body: 'Category body', name: 'category-3' }
+	{ title: 'Category 3', body: 'Category body', name: 'category-3' },
 ];
 test('clicking customise shows the categories', async () => {
 	const { getByRole, queryByRole } = render(CookieConsentBanner, { categories });
@@ -44,7 +44,7 @@ test('clicking reject all button fires the reject event', async () => {
 test('clicking save button fires the save event with the correct consent', async () => {
 	const { getByRole, component } = render(CookieConsentBanner, {
 		categories,
-		consent: { 'category-2': true }
+		consent: { 'category-2': true },
 	});
 
 	await fireEvent.click(getByRole('button', { name: 'Customise cookies' }));
@@ -56,6 +56,6 @@ test('clicking save button fires the save event with the correct consent', async
 	expect(onSave).toHaveReturnedWith({
 		'category-1': false,
 		'category-2': true,
-		'category-3': false
+		'category-3': false,
 	});
 });

@@ -14,7 +14,7 @@
 <div
 	class={twMerge(
 		'max-w-screen-2xl bg-white p-4 text-sm dark:bg-gray-700 sm:p-10 2xl:mx-auto',
-		className
+		className,
 	)}
 	use:actions={use}
 	{...$$restProps}

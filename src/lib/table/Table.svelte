@@ -28,7 +28,7 @@
 	class={twMerge(
 		'border-separate border-spacing-0 rounded-md shadow-sm',
 		borders ? 'border-spacing-px' : 'border border-gray-300 dark:border-gray-500',
-		className
+		className,
 	)}
 	use:actions={use}
 	{...$$restProps}

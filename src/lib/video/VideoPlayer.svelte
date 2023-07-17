@@ -36,8 +36,10 @@
 	class={twMerge(
 		'relative touch-none overflow-hidden bg-black text-white',
 		!showControls && 'cursor-none',
-		className
+		className,
 	)}
+	role="button"
+	tabindex="-1"
 	on:pointermove={startInteracting}
 	on:mousedown={startInteracting}
 	on:mouseleave={() => (interacting = false)}
@@ -52,7 +54,7 @@
 	<div
 		class={twJoin(
 			'absolute inset-0 bg-gradient-to-b from-black/75 via-transparent to-black/75 transition duration-300',
-			!showControls && 'pointer-events-none opacity-0'
+			!showControls && 'pointer-events-none opacity-0',
 		)}
 	>
 		<button
@@ -74,7 +76,7 @@
 		<div
 			class={twMerge(
 				'relative z-10 w-full p-6 px-12 transition duration-300',
-				!showControls && '-translate-y-full'
+				!showControls && '-translate-y-full',
 			)}
 		>
 			<slot name="top" />
@@ -84,7 +86,7 @@
 		<div
 			class={twMerge(
 				'absolute bottom-0 w-full px-6 py-6 transition duration-300 sm:px-12',
-				!showControls && 'translate-y-full'
+				!showControls && 'translate-y-full',
 			)}
 		>
 			<slot name="bottom" />

@@ -13,7 +13,7 @@
 <section
 	class={twMerge(
 		'relative z-0 h-full space-y-8 bg-gray-700 p-16 text-center text-white lg:p-48',
-		className
+		className,
 	)}
 	use:actions={use}
 	{...$$restProps}

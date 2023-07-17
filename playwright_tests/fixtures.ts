@@ -10,5 +10,5 @@ export const test = base.extend({
 			return res;
 		};
 		await use(page);
-	}
+	},
 });

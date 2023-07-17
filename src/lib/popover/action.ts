@@ -56,7 +56,7 @@ export type PopoverOptions = {
 export function createPopover({
 	placement = 'top',
 	strategy = 'absolute',
-	label
+	label,
 }: PopoverOptions = {}): PopoverInstance {
 	const arrowRef = writable<HTMLElement | null>(null);
 	const computed = writable<ComputedState>({ staticSide: 'bottom', arrow: {} });
@@ -67,7 +67,7 @@ export function createPopover({
 			offset(8),
 			flip(),
 			shift({ padding: 8 }),
-			arrow({ element: arrowRef as Writable<HTMLElement> })
+			arrow({ element: arrowRef as Writable<HTMLElement> }),
 		],
 		onComputed({ placement, middlewareData }) {
 			const staticSide =
@@ -75,13 +75,13 @@ export function createPopover({
 					top: 'bottom' as const,
 					right: 'left' as const,
 					bottom: 'top' as const,
-					left: 'right' as const
+					left: 'right' as const,
 				}[placement.split('-')[0]] ?? 'bottom';
 			computed.set({
 				staticSide,
-				arrow: { x: middlewareData.arrow?.x, y: middlewareData.arrow?.y }
+				arrow: { x: middlewareData.arrow?.x, y: middlewareData.arrow?.y },
 			});
-		}
+		},
 	});
 	const popover = createHeadlessPopover({ label });
 
@@ -89,7 +89,7 @@ export function createPopover({
 		...derived([popover, computed], ([popover, computed]) => {
 			return {
 				...popover,
-				...computed
+				...computed,
 			};
 		}),
 		element: ref,
@@ -100,10 +100,10 @@ export function createPopover({
 			return {
 				destroy() {
 					arrowRef.set(null);
-				}
+				},
 			};
 		},
 		open: popover.open,
-		close: popover.close
+		close: popover.close,
 	};
 }

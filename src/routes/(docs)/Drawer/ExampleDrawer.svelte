@@ -11,7 +11,7 @@
 		{ label: 'Units tested', value: '8' },
 		{ label: 'Expected value', value: '16.00cm' },
 		{ label: 'Tolerance', value: '-1.5cm / +1cm' },
-		{ label: 'Status', value: 'Failed' }
+		{ label: 'Status', value: 'Failed' },
 	];
 </script>
 

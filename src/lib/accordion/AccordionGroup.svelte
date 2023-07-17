@@ -48,7 +48,7 @@
 					this.disclosures.splice(index, 1);
 				}
 			});
-		}
+		},
 	});
 </script>
 

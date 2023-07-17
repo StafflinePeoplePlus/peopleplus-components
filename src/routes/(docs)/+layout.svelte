@@ -5,7 +5,7 @@
 
 	const routes = [
 		{ href: '/', label: 'Introduction' },
-		{ href: '/guidelines', label: 'Implementation Guidelines' }
+		{ href: '/guidelines', label: 'Implementation Guidelines' },
 	];
 	const components = [
 		{ name: 'Accordion' },
@@ -35,7 +35,7 @@
 		{ name: 'TextArea' },
 		{ name: 'Toaster' },
 		{ name: 'Tooltip' },
-		{ name: 'VideoPlayer' }
+		{ name: 'VideoPlayer' },
 	];
 	let showSidebar = false;
 
@@ -77,7 +77,7 @@
 		<button
 			class={twJoin(
 				'absolute inset-0 z-50 cursor-default bg-gray-800/30 transition-opacity duration-300 md:hidden',
-				!showSidebar && 'pointer-events-none opacity-0'
+				!showSidebar && 'pointer-events-none opacity-0',
 			)}
 			on:click={() => (showSidebar = false)}
 		>
@@ -86,7 +86,7 @@
 		<nav
 			class={twJoin(
 				'absolute inset-y-0 z-50 w-72 shrink-0 overflow-y-auto border-r border-t bg-white p-6 shadow-lg backdrop-blur-3xl transition-transform duration-300 dark:border-gray-800 dark:bg-gray-800 md:relative md:translate-x-0 md:bg-none md:shadow-none',
-				!showSidebar && '-translate-x-full'
+				!showSidebar && '-translate-x-full',
 			)}
 		>
 			<ul class="space-y-0.5">

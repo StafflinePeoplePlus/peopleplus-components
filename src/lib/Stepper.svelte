@@ -2,8 +2,9 @@
 	import { createEventDispatcher } from 'svelte';
 	import type { SvelteHTMLElements } from 'svelte/elements';
 	import { twMerge } from 'tailwind-merge';
+
 	export type Step = $$Generic<{ label: string }>;
-	type $$Props = SvelteHTMLElements['section'];
+	type $$Props = SvelteHTMLElements['section'] & { steps: Step[]; activeStep?: Step };
 
 	export { className as class };
 	let className: $$Props['class'] = undefined;
@@ -15,10 +16,7 @@
 		activeStep = steps[0];
 	}
 
-	interface $$Events {
-		changeStep: CustomEvent<Step>;
-	}
-	const dispatchEvent = createEventDispatcher();
+	const dispatchEvent = createEventDispatcher<{ changeStep: Step }>();
 
 	function changeStep(step: Step) {
 		activeStep = step;
@@ -29,7 +27,7 @@
 <section
 	class={twMerge(
 		'mb-5 rounded-lg border border-gray-200 bg-white p-2 font-medium shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 lg:flex lg:px-0',
-		className
+		className,
 	)}
 	{...$$restProps}
 >

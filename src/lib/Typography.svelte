@@ -6,7 +6,7 @@
 		'sub-heading': 'text-xl font-bold text-gray-800 dark:text-white',
 		'body-lg': 'text-md sm:text-lg text-gray-700 dark:text-gray-400',
 		body: 'text-gray-700 dark:text-gray-400',
-		caption: 'text-sm text-gray-500 dark:text-gray-300'
+		caption: 'text-sm text-gray-500 dark:text-gray-300',
 	};
 </script>
 
@@ -22,6 +22,7 @@
 	type ElementAttrs = T['as'] extends keyof SvelteHTMLElements
 		? SvelteHTMLElements[T['as']]
 		: HTMLAttributes<HTMLParagraphElement>;
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	type $$Props = Props & T & ElementAttrs;
 
 	let className = '';
