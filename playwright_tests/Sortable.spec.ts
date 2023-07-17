@@ -33,7 +33,6 @@ for (const axis of ['x', 'y']) {
 		test('reorder to end', async ({ page }) => {
 			await page.goto(`/test/sortable/${axis}`);
 
-			await page.reload();
 			await dragAndDrop(
 				page,
 				page.getByText('Item 1', { exact: true }),
@@ -47,7 +46,6 @@ for (const axis of ['x', 'y']) {
 		test('reorder to start', async ({ page }) => {
 			await page.goto(`/test/sortable/${axis}`);
 
-			await page.reload();
 			await dragAndDrop(
 				page,
 				page.getByText('Item 100', { exact: true }),
@@ -59,11 +57,51 @@ for (const axis of ['x', 'y']) {
 	});
 }
 
+test.describe('grid', () => {
+	test('drag to reorder', async ({ page }) => {
+		await page.goto('/test/sortable/grid');
+
+		// Drag over item 50
+		await dragAndDrop(
+			page,
+			page.getByText('Item 1', { exact: true }),
+			page.getByText('Item 50', { exact: true }),
+		);
+
+		await expect(page.locator(':text("Item 50") + :text("Item 1")')).toBeVisible();
+		await expect(page.locator(':text("Item 1") + :text("Item 51")')).toBeVisible();
+	});
+
+	test('reorder to end', async ({ page }) => {
+		await page.goto('/test/sortable/grid');
+
+		await dragAndDrop(
+			page,
+			page.getByText('Item 1', { exact: true }),
+			page.getByText('Item 100', { exact: true }),
+		);
+
+		await expect(page.locator(':text("Item 100") + :text("Item 1")')).toBeVisible();
+	});
+
+	test('reorder to start', async ({ page }) => {
+		await page.goto('/test/sortable/grid');
+
+		await dragAndDrop(
+			page,
+			page.getByText('Item 100', { exact: true }),
+			page.getByText('Item 1', { exact: true }),
+		);
+
+		await expect(page.locator(':text("Item 100") + :text("Item 1")')).toBeVisible();
+	});
+});
+
 async function dragAndDrop(
 	page: Page,
 	source: Locator,
 	target: Locator,
-	offset: { x?: number; y?: number } = {},
+	offset: { x?: number; y?: number } = { x: 8, y: 8 },
 ) {
 	await source.hover();
 	await source.dispatchEvent('dragstart');
