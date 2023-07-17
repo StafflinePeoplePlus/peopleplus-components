@@ -6,7 +6,7 @@ import { onDestroy } from 'svelte';
 const DRAG_BAR_SIZE = 3;
 
 export type Axis = 'x' | 'y';
-export type ReorderOperation = {
+export type ReorderListOperation = {
 	/**
 	 * Id of the item that is being reordered.
 	 */
@@ -39,10 +39,10 @@ export type SortableOpts = {
 	 * happens as this will not be done for you.
 	 * @param operation Object describing the operation that needs to be applied to your list
 	 */
-	onReorder?(operation: ReorderOperation): void;
+	onReorder?(operation: ReorderListOperation): void;
 };
 
-export type Sortable = Readable<{ enabled: boolean; dragging: boolean }> & {
+export type SortableList = Readable<{ enabled: boolean; dragging: boolean }> & {
 	item: Action<HTMLElement, string>;
 };
 
@@ -63,7 +63,7 @@ type DragState = {
 	createdDropZones: boolean;
 };
 
-export function createSortable(opts: SortableOpts = {}): Sortable {
+export function createSortableList(opts: SortableOpts = {}): SortableList {
 	const enabled = opts.enabled ?? readable(true);
 	const axisStore = opts.axis
 		? typeof opts.axis === 'string'
@@ -177,7 +177,7 @@ export function createSortable(opts: SortableOpts = {}): Sortable {
 export function reorderList<T>(
 	list: T[],
 	idAccessor: (item: T) => string,
-	operation: ReorderOperation,
+	operation: ReorderListOperation,
 ): T[] {
 	const item = list.find((item) => operation.id === idAccessor(item));
 	if (item) {
@@ -213,7 +213,7 @@ function repositionDragBar(
 function calculateReorder(
 	dragState: DragState,
 	zone: SortableDropZone,
-): ReorderOperation | undefined {
+): ReorderListOperation | undefined {
 	const itemId = dragState.id;
 	if (zone.afterId || zone.beforeId) {
 		const targetId = zone.afterId ?? zone.beforeId;
