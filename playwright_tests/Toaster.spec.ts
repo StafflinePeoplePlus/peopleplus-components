@@ -1,4 +1,5 @@
-import { test, expect } from 'playwright-test-coverage';
+import { expect } from 'playwright-test-coverage';
+import { test } from './fixtures';
 
 const TIMEOUT_MESSAGE = 'Changes successfully saved.';
 const NULL_TIMEOUT_MESSAGE = 'Uploading videos.';
