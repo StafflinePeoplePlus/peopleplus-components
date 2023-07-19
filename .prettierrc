@@ -1,10 +1,8 @@
 {
 	"useTabs": true,
 	"singleQuote": true,
-	"trailingComma": "all",
 	"printWidth": 100,
 	"tailwindFunctions": ["twMerge"],
 	"plugins": ["prettier-plugin-svelte", "prettier-plugin-tailwindcss"],
-	"pluginSearchDirs": ["."],
 	"overrides": [{ "files": "*.svelte", "options": { "parser": "svelte" } }]
 }
