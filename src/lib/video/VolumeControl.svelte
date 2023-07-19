@@ -36,11 +36,11 @@
 		{/if}
 
 		{#if volume > 0.5}
-			<Volume2Icon aria-hidden />
+			<Volume2Icon aria-hidden="true" />
 		{:else if volume > 0}
-			<Volume1Icon aria-hidden />
+			<Volume1Icon aria-hidden="true" />
 		{:else}
-			<VolumeXIcon aria-hidden />
+			<VolumeXIcon aria-hidden="true" />
 		{/if}
 	</button>
 </div>
