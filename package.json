@@ -23,8 +23,8 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"test:unit": "vitest",
 		"test:unit-coverage": "vitest run --coverage",
-		"lint": "prettier --plugin-search-dir . --check . && eslint .",
-		"format": "prettier --plugin-search-dir . --write .",
+		"lint": "prettier --check . && eslint .",
+		"format": "prettier --write .",
 		"merge-coverage": "istanbul report -v --include='coverage/**/coverage-final.json' json-summary"
 	},
 	"exports": {
@@ -76,8 +76,8 @@
 		"nyc": "^15.1.0",
 		"playwright-test-coverage": "^1.2.12",
 		"postcss": "^8.4.21",
-		"prettier": "^2.8.8",
-		"prettier-plugin-svelte": "^2.10.1",
+		"prettier": "^3.0.0",
+		"prettier-plugin-svelte": "^3.0.0",
 		"prettier-plugin-tailwindcss": "^0.4.1",
 		"publint": "^0.1.9",
 		"svelte": "^4.0.5",
