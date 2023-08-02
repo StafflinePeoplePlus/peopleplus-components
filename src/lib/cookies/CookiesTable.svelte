@@ -9,6 +9,7 @@
 
 <div class="overflow-x-auto">
 	<Table striped class={className}>
+		<caption class="sr-only">List of cookies and their purpose.</caption>
 		<TableRow>
 			<TableCell class="text-left" header>Name</TableCell>
 			<TableCell class="text-left" header>Provider</TableCell>
