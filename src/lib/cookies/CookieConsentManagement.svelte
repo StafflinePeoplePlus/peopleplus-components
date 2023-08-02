@@ -25,7 +25,7 @@
 		<Typography variant="body" class="mt-4">
 			For more detailed information about the cookies we use, see our <a
 				href={cookiePolicy}
-				class="font-semibold text-primary-500 hover:underline">Cookie policy</a
+				class="font-semibold text-primary-600 hover:underline">Cookie policy</a
 			>.
 		</Typography>
 	{/if}
