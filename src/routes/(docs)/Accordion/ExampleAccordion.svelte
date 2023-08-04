@@ -16,7 +16,7 @@
 				   contentClass="p-0 border-t-0"
 				   class="bg-white border-none p-0">
 			<p class="text-gray-500 bg-gray-100 p-2 rounded-b-lg text-sm">
-				Cameron is an experienced project manager with vast experience in overseeing diverse teams. He excels in strategic planning, risk management, and is highly skilled in nurturing strong client relationships.
+				Alexander is an experienced project manager with vast experience in overseeing diverse teams. He excels in strategic planning, risk management, and is highly skilled in nurturing strong client relationships.
 			</p>
 		</Accordion>
 	</AccordionGroup>
