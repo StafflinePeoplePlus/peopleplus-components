@@ -41,7 +41,7 @@
 			)}
 			use:disclosure.button
 		>
-			<span class={className}>{label}</span>
+			<span>{label}</span>
 			<svg
 				class="h-6 w-6 shrink-0 transition"
 				class:rotate-180={$disclosure.expanded}
