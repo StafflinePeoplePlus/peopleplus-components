@@ -18,7 +18,8 @@
 </Button>
 <Button on:click={submit} disabled={isLoading} data-testId="loadingButton">
 	{#if isLoading}
-		<SpinnerLoader />Loading...
+		<SpinnerLoader class="mr-2" />
+		Loading...
 	{:else}
 		Submit Form
 	{/if}
