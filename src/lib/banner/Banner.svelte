@@ -6,7 +6,7 @@
 
 	type $$Props = SvelteHTMLElements['section'] & { dismissable?: boolean; use?: UseActions };
 
-	const dispatch = createEventDispatcher<{ dismiss: never }>();
+	const dispatch = createEventDispatcher<{ dismiss: void }>();
 
 	let className: $$Props['class'] = undefined;
 	export { className as class };
