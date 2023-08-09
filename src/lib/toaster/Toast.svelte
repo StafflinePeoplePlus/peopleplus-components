@@ -4,10 +4,12 @@
 	import { twMerge } from 'tailwind-merge';
 	import { onMount, createEventDispatcher } from 'svelte';
 	import { XCircleIcon, CheckCircleIcon, XIcon, AlertCircle } from 'lucide-svelte';
+
 	const dispatch = createEventDispatcher<{ dismiss: undefined }>();
 	export let toast: ToastMessage;
+
 	onMount(() => {
-		let id;
+		let id: ReturnType<typeof setTimeout> | undefined = undefined;
 		if (toast.duration !== null) {
 			id = setTimeout(() => {
 				dispatch('dismiss');

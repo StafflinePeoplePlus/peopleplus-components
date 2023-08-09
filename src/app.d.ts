@@ -9,3 +9,9 @@ declare namespace App {
 }
 
 export {};
+
+declare module 'svelte/elements' {
+	export interface HTMLAttributes<T extends EventTarget> extends AriaAttributes, DOMAttributes<T> {
+		'data-testId'?: undefined | string;
+	}
+}
