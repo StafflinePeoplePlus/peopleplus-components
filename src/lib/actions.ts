@@ -100,12 +100,12 @@ export function toggleableAction<
 	enabled: Readable<boolean>,
 	action: Action<Element, Parameter, Attributes>,
 ): Action<Element, Parameter, Attributes> {
-	return (node: Element, params) => {
+	return (...args) => {
 		let activeAction: void | ActionReturn<Parameter, Attributes> = undefined;
 		const unsub = enabled.subscribe((enabled) => {
 			if (enabled) {
 				if (!activeAction) {
-					activeAction = action(node, params);
+					activeAction = action(...args);
 				}
 			} else {
 				if (activeAction) {
@@ -116,7 +116,7 @@ export function toggleableAction<
 		});
 		return {
 			update(newParams) {
-				params = newParams;
+				args[1] = newParams;
 				if (activeAction) {
 					activeAction?.update?.(newParams);
 				}

@@ -6,6 +6,8 @@
 
 	let className = '';
 	export { className as class };
+	export let contentClass = '';
+	export let labelClass = '';
 	export let label: string;
 	export let use: UseActions = [];
 
@@ -36,6 +38,7 @@
 				'relative flex w-full items-center justify-between p-5 text-left font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-2 focus:ring-red-400 dark:text-gray-100 dark:hover:bg-gray-600',
 				group != null ? 'group-first:rounded-t-xl' : 'rounded-t-xl',
 				!$disclosure.expanded && (group != null ? 'group-last:rounded-b-xl' : 'rounded-b-xl'),
+				labelClass,
 			)}
 			use:disclosure.button
 		>
@@ -57,7 +60,7 @@
 	</h2>
 	<div
 		class:hidden={!$disclosure.expanded}
-		class="border-t border-gray-200 p-5"
+		class={twMerge('border-t border-gray-200 p-5', contentClass)}
 		use:disclosure.panel
 	>
 		<slot />
