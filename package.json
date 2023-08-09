@@ -47,7 +47,7 @@
 		"esm-env": "^1.0.0",
 		"just-debounce-it": "^3.2.0",
 		"just-throttle": "^4.2.0",
-		"lucide-svelte": "^0.263.0",
+		"lucide-svelte": "^0.265.0",
 		"svelte-floating-ui": "^1.5.3",
 		"svelte-headlessui": "^0.0.21",
 		"tailwind-merge": "^1.13.0"
@@ -69,7 +69,7 @@
 		"@vitest/coverage-istanbul": "^0.34.1",
 		"autoprefixer": "^10.4.14",
 		"eslint": "^8.44.0",
-		"eslint-config-prettier": "^8.8.0",
+		"eslint-config-prettier": "^9.0.0",
 		"eslint-plugin-svelte": "^2.32.0",
 		"istanbul": "^0.4.5",
 		"jsdom": "^22.0.0",
