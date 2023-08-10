@@ -2,10 +2,10 @@ import type { Action, ActionReturn } from 'svelte/action';
 import type { Readable } from 'svelte/store';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type UseAction<P = any> = Action<HTMLElement, P> | [Action<HTMLElement, P>, P];
-export type UseActions = UseAction[];
+type UseAction<E = Element, P = any> = Action<E, P> | [Action<E, P>, P];
+export type UseActions<E = HTMLElement> = UseAction<E>[];
 
-export function actions(node: HTMLElement, actions: UseActions) {
+export function actions<E extends Element>(node: E, actions: UseActions<E>) {
 	const instances = new Map<Action<unknown, unknown>, ActionReturn<unknown>>();
 
 	for (const useAction of actions) {
@@ -21,7 +21,7 @@ export function actions(node: HTMLElement, actions: UseActions) {
 	}
 
 	return {
-		update(actions: UseActions) {
+		update(actions: UseActions<E>) {
 			const handledActions = new Set<Action<unknown, unknown>>();
 			for (const useAction of actions) {
 				const [action, params] = Array.isArray(useAction) ? useAction : [useAction, undefined];
@@ -54,8 +54,8 @@ export function actions(node: HTMLElement, actions: UseActions) {
 	};
 }
 
-export function combineActions(useActions: UseActions) {
-	return (element: HTMLElement) => {
+export function combineActions<E extends Element>(useActions: UseActions<E>) {
+	return (element: E) => {
 		const { destroy } = actions(element, useActions);
 		return { destroy };
 	};
