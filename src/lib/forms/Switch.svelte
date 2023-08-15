@@ -6,6 +6,7 @@
 
 	type $$Props = Omit<HTMLInputAttributes, 'type' | 'role' | `${string}:${string}`> & {
 		use?: UseActions;
+		group?: string[];
 	};
 
 	const dispatch = createEventDispatcher<{ change: boolean }>();
@@ -14,6 +15,7 @@
 	export { className as class };
 	export let checked: $$Props['checked'] = undefined;
 	export let use: UseActions = [];
+	export let group: string[] = [];
 </script>
 
 <input
@@ -25,6 +27,13 @@
 	)}
 	bind:checked
 	use:actions={use}
-	on:change={(evt) => dispatch('change', evt.currentTarget.checked)}
+	on:change={(evt) => {
+		if (evt.currentTarget.checked) {
+			group = [...group, evt.currentTarget.value];
+		} else {
+			group = group.filter((item) => item !== evt.currentTarget.value);
+		}
+		dispatch('change', evt.currentTarget.checked);
+	}}
 	{...$$restProps}
 />
