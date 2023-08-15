@@ -2,7 +2,7 @@
 	import { InputLabel, Switch } from '$lib';
 	import Typography from '$lib/Typography.svelte';
 
-	let group: string[] = [];
+	let group: string[] = ['b'];
 </script>
 
 <div class="w-60 space-y-2">
