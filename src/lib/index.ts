@@ -11,6 +11,7 @@ export * from './toaster';
 export * from './video';
 export * from './sortableList';
 export * from './sortableGrid';
+export { default as Avatar } from './Avatar.svelte';
 export { default as BackgroundImage } from './BackgroundImage.svelte';
 export { default as Banner } from './banner/Banner.svelte';
 export { default as BottomNav } from './BottomNav.svelte';
