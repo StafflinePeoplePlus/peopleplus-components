@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button, createSortable, reorderList } from '$lib';
+	import { Button, createSortableList, reorderList } from '$lib';
 	import { crossfade } from 'svelte/transition';
 	import { twMerge } from 'tailwind-merge';
 	import { flip } from 'svelte/animate';
@@ -12,7 +12,7 @@
 	}));
 	const [send, receive] = crossfade({});
 	const sortingEnabled = writable(true);
-	const sortable = createSortable({
+	const sortable = createSortableList({
 		enabled: sortingEnabled,
 		onReorder: (op) => (items = reorderList(items, (item) => item.id, op)),
 	});

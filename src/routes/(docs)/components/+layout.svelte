@@ -4,6 +4,7 @@
 
 	const components = [
 		{ name: 'Accordion' },
+		{ name: 'Avatar' },
 		{ name: 'Banner' },
 		{ name: 'Breadcrumbs' },
 		{ name: 'Button' },
