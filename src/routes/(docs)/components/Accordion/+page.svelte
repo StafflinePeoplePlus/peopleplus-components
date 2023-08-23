@@ -3,10 +3,9 @@
 	import CodeSnippet from '../CodeSnippet.svelte';
 	import PageHeader from '../PageHeader.svelte';
 	import UsageSection from '../UsageSection.svelte';
-	import usage from '../../../usage/accordion/+page.svelte?raw';
-	import exclusiveUsage from '../../../usage/accordion/exclusive/+page.svelte?raw';
-
-	const importUsage = `import { Accordion, AccordionGroup } from 'pp-svelte-components';`;
+	import * as usage from '../../../usage/accordion/+page.svelte?usage';
+	import * as exclusiveUsage from '../../../usage/accordion/exclusive/+page.svelte?usage';
+	import * as importUsage from 'virtual:usage/Accordion,AccordionGroup';
 </script>
 
 <PageHeader

@@ -3,10 +3,9 @@
 	import CodeSnippet from '../CodeSnippet.svelte';
 	import PageHeader from '../PageHeader.svelte';
 	import UsageSection from '../UsageSection.svelte';
-	import imageTopUsage from '../../../usage/card/image-top/+page.svelte?raw';
-	import imageLeftUsage from '../../../usage/card/image-left/+page.svelte?raw';
-
-	const importUsage = `import { Card } from 'pp-svelte-components';`;
+	import * as imageTopUsage from '../../../usage/card/image-top/+page.svelte?usage';
+	import * as imageLeftUsage from '../../../usage/card/image-left/+page.svelte?usage';
+	import * as importUsage from 'virtual:usage/Card';
 </script>
 
 <PageHeader title="Card" subtitle="Self contained sections with optional hero images" />

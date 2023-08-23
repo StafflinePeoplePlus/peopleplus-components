@@ -3,9 +3,8 @@
 	import CodeSnippet from '../CodeSnippet.svelte';
 	import PageHeader from '../PageHeader.svelte';
 	import UsageSection from '../UsageSection.svelte';
-	import usage from '../../../usage/video-player/+page.svelte?raw';
-
-	const importUsage = `import { VideoPlayer, ScrubBar, VolumeControl, FullscreenButton } from 'pp-svelte-components';`;
+	import * as usage from '../../../usage/video-player/+page.svelte?usage';
+	import * as importUsage from 'virtual:usage/VideoPlayer,ScrubBar,VolumeControl,FullscreenButton';
 </script>
 
 <PageHeader title="Video Player Controls" subtitle="Video player agnostic video controls" />

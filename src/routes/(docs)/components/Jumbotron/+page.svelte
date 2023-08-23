@@ -3,9 +3,8 @@
 	import CodeSnippet from '../CodeSnippet.svelte';
 	import PageHeader from '../PageHeader.svelte';
 	import UsageSection from '../UsageSection.svelte';
-	import usage from '../../../usage/jumbotron/+page.svelte?raw';
-
-	const importUsage = `import { Jumbotron } from 'pp-svelte-components';`;
+	import * as usage from '../../../usage/jumbotron/+page.svelte?usage';
+	import * as importUsage from 'virtual:usage/Jumbotron';
 </script>
 
 <PageHeader title="Jumbotron" subtitle="Large hero section at the start of a page" />

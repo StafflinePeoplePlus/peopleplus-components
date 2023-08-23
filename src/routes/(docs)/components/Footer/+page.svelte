@@ -3,9 +3,8 @@
 	import CodeSnippet from '../CodeSnippet.svelte';
 	import PageHeader from '../PageHeader.svelte';
 	import UsageSection from '../UsageSection.svelte';
-	import usage from '../../../usage/footer/+page.svelte?raw';
-
-	const importUsage = `import { Footer } from 'pp-svelte-components';`;
+	import * as usage from '../../../usage/footer/+page.svelte?usage';
+	import * as importUsage from 'virtual:usage/Footer';
 </script>
 
 <PageHeader

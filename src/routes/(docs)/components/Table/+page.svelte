@@ -3,10 +3,9 @@
 	import CodeSnippet from '../CodeSnippet.svelte';
 	import PageHeader from '../PageHeader.svelte';
 	import UsageSection from '../UsageSection.svelte';
-	import usage from '../../../usage/table/+page.svelte?raw';
-	import complexUsage from '../../../usage/table/complex/+page.svelte?raw';
-
-	const importUsage = `import { Table, TableRow, TableCell } from 'pp-svelte-components';`;
+	import * as usage from '../../../usage/table/+page.svelte?usage';
+	import * as complexUsage from '../../../usage/table/complex/+page.svelte?usage';
+	import * as importUsage from 'virtual:usage/Table,TableRow,TableCell';
 </script>
 
 <PageHeader title="Table" subtitle="Small stylistic wrapper over html tables" />

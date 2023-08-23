@@ -3,11 +3,10 @@
 	import CodeSnippet from '../CodeSnippet.svelte';
 	import PageHeader from '../PageHeader.svelte';
 	import UsageSection from '../UsageSection.svelte';
-	import usage from '../../../usage/avatar/+page.svelte?raw';
-	import usageSizes from '../../../usage/avatar/sizes/+page.svelte?raw';
-	import usageFallback from '../../../usage/avatar/fallback/+page.svelte?raw';
-
-	const importUsage = `import { Avatar } from 'pp-svelte-components';`;
+	import * as usage from '../../../usage/avatar/+page.svelte?usage';
+	import * as usageSizes from '../../../usage/avatar/sizes/+page.svelte?usage';
+	import * as usageFallback from '../../../usage/avatar/fallback/+page.svelte?usage';
+	import * as importUsage from 'virtual:usage/Avatar';
 </script>
 
 <PageHeader title="Avatar" subtitle="Avatar of varying sizes with fallback on error" />

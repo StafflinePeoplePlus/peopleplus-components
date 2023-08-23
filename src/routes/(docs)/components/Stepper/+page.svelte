@@ -3,9 +3,8 @@
 	import CodeSnippet from '../CodeSnippet.svelte';
 	import PageHeader from '../PageHeader.svelte';
 	import UsageSection from '../UsageSection.svelte';
-	import usage from '../../../usage/stepper/+page.svelte?raw';
-
-	const importUsage = `import { Stepper } from 'pp-svelte-components';`;
+	import * as usage from '../../../usage/stepper/+page.svelte?usage';
+	import * as importUsage from 'virtual:usage/Stepper';
 </script>
 
 <PageHeader

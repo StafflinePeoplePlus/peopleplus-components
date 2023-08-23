@@ -3,10 +3,9 @@
 	import CodeSnippet from '../CodeSnippet.svelte';
 	import PageHeader from '../PageHeader.svelte';
 	import UsageSection from '../UsageSection.svelte';
-	import bannerUsage from '../../../usage/cookie-consent/banner/+page.svelte?raw';
-	import formUsage from '../../../usage/cookie-consent/form/+page.svelte?raw';
-
-	const importUsage = `import { CookieConsentBanner, CookieConsentManagement } from 'pp-svelte-components';`;
+	import * as bannerUsage from '../../../usage/cookie-consent/banner/+page.svelte?usage';
+	import * as formUsage from '../../../usage/cookie-consent/form/+page.svelte?usage';
+	import * as importUsage from 'virtual:usage/CookieConsentBanner,CookieConsentManagement';
 </script>
 
 <PageHeader

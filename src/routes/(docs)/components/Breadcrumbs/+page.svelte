@@ -3,9 +3,8 @@
 	import CodeSnippet from '../CodeSnippet.svelte';
 	import PageHeader from '../PageHeader.svelte';
 	import UsageSection from '../UsageSection.svelte';
-	import usage from '../../../usage/breadcrumbs/+page.svelte?raw';
-
-	const importUsage = `import { Breadcrumbs, Breadcrumb } from 'pp-svelte-components';`;
+	import * as usage from '../../../usage/breadcrumbs/+page.svelte?usage';
+	import * as importUsage from 'virtual:usage/Breadcrumbs,Breadcrumb';
 </script>
 
 <PageHeader title="Breadcrumbs" subtitle="Display the navigation hierarchy" />

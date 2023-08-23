@@ -7,11 +7,10 @@
 	import Switch from '$lib/forms/Switch.svelte';
 	import { slide } from 'svelte/transition';
 
-	export let code: string;
+	export let code: { html: string; text: string };
 	export let src: string;
 	export let title: string;
 	export let frameHeight: number | undefined = undefined;
-	$: usage = extractUsage(code).replaceAll('$lib', 'pp-svelte-components');
 	let showCode = false;
 
 	const DEFAULT_FRAME_HEIGHT = 1;
@@ -24,29 +23,6 @@
 		}
 		calculatedFrameHeight = frame.contentDocument.body.scrollHeight ?? DEFAULT_FRAME_HEIGHT;
 		frameLoaded = true;
-	}
-
-	function fixIndentation(source: string): string {
-		const leadingWhitespace = source.match(/^\s+/)?.[0];
-		if (leadingWhitespace) {
-			source = source.slice(leadingWhitespace.length).replaceAll(`\n${leadingWhitespace}`, '\n');
-		}
-		return source;
-	}
-
-	function extractUsage(source: string): string {
-		if (!source.includes('<!-- START USAGE -->')) {
-			return source;
-		}
-
-		const usage = fixIndentation(
-			source
-				.split('<!-- START USAGE -->\n')
-				.filter((_part, i) => i % 2 === 1)
-				.map((part) => part.split('<!-- END USAGE -->')[0])
-				.join('\n'),
-		);
-		return usage;
 	}
 </script>
 
@@ -82,7 +58,7 @@
 	{/if}
 	{#if showCode}
 		<div transition:slide>
-			<CodeSnippet class="rounded-t-none" code={usage} />
+			<CodeSnippet class="rounded-t-none" {code} />
 		</div>
 	{/if}
 </section>

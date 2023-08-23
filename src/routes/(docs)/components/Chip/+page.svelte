@@ -3,10 +3,9 @@
 	import CodeSnippet from '../CodeSnippet.svelte';
 	import PageHeader from '../PageHeader.svelte';
 	import UsageSection from '../UsageSection.svelte';
-	import usage from '../../../usage/chip/+page.svelte?raw';
-	import dismissableUsage from '../../../usage/chip/dismissable/+page.svelte?raw';
-
-	const importUsage = `import { Chip } from 'pp-svelte-components';`;
+	import * as usage from '../../../usage/chip/+page.svelte?usage';
+	import * as dismissableUsage from '../../../usage/chip/dismissable/+page.svelte?usage';
+	import * as importUsage from 'virtual:usage/Chip';
 </script>
 
 <PageHeader

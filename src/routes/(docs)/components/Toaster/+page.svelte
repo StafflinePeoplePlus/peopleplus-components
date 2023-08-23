@@ -3,9 +3,8 @@
 	import CodeSnippet from '../CodeSnippet.svelte';
 	import PageHeader from '../PageHeader.svelte';
 	import UsageSection from '../UsageSection.svelte';
-	import usage from '../../../usage/toaster/+page.svelte?raw';
-
-	const importUsage = `import { Toaster, showToast } from 'pp-svelte-components';`;
+	import * as usage from '../../../usage/toaster/+page.svelte?usage';
+	import * as importUsage from 'virtual:usage/Toaster,showToast';
 </script>
 
 <PageHeader title="Toaster" subtitle="Site wide alerts that disappear after a set timeout" />

@@ -3,9 +3,8 @@
 	import CodeSnippet from '../CodeSnippet.svelte';
 	import PageHeader from '../PageHeader.svelte';
 	import UsageSection from '../UsageSection.svelte';
-	import usage from '../../../usage/drawer/+page.svelte?raw';
-
-	const importUsage = `import { Drawer } from 'pp-svelte-components';`;
+	import * as usage from '../../../usage/drawer/+page.svelte?usage';
+	import * as importUsage from 'virtual:usage/Drawer';
 </script>
 
 <PageHeader title="Drawer" subtitle="Slide out section typically used for navigation" />

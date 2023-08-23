@@ -3,9 +3,8 @@
 	import CodeSnippet from '../CodeSnippet.svelte';
 	import PageHeader from '../PageHeader.svelte';
 	import UsageSection from '../UsageSection.svelte';
-	import usage from '../../../usage/button/+page.svelte?raw';
-
-	const importUsage = `import { Button } from 'pp-svelte-components';`;
+	import * as usage from '../../../usage/button/+page.svelte?usage';
+	import * as importUsage from 'virtual:usage/Button';
 </script>
 
 <PageHeader title="Button" subtitle="Form buttons and button style links with variants" />

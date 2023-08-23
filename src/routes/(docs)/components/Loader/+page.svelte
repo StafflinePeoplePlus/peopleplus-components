@@ -3,10 +3,9 @@
 	import CodeSnippet from '../CodeSnippet.svelte';
 	import PageHeader from '../PageHeader.svelte';
 	import UsageSection from '../UsageSection.svelte';
-	import spinnerUsage from '../../../usage/loader/spinner/+page.svelte?raw';
-	import horizontalUsage from '../../../usage/loader/horizontal/+page.svelte?raw';
-
-	const importUsage = `import { SpinnerLoader, HorizontalLoader } from 'pp-svelte-components';`;
+	import * as spinnerUsage from '../../../usage/loader/spinner/+page.svelte?usage';
+	import * as horizontalUsage from '../../../usage/loader/horizontal/+page.svelte?usage';
+	import * as importUsage from 'virtual:usage/SpinnerLoader,HorizontalLoader';
 </script>
 
 <PageHeader title="Loader" subtitle="Loading indicators" />

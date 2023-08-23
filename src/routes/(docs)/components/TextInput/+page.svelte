@@ -3,9 +3,8 @@
 	import CodeSnippet from '../CodeSnippet.svelte';
 	import PageHeader from '../PageHeader.svelte';
 	import UsageSection from '../UsageSection.svelte';
-	import usage from '../../../usage/text-input/+page.svelte?raw';
-
-	const importUsage = `import { TextInput, InputLabel, InputError, InputArea } from 'pp-svelte-components';`;
+	import * as usage from '../../../usage/text-input/+page.svelte?usage';
+	import * as importUsage from 'virtual:usage/TextInput,InputLabel,InputError,InputArea';
 </script>
 
 <PageHeader title="Text Input" subtitle="Single line text input field" />
@@ -14,6 +13,6 @@
 	<Typography variant="heading" as="h3" class="mb-8">Usage</Typography>
 
 	<div class="space-y-8">
-		<UsageSection title="Textarea" src="/usage/text-input" code={usage} />
+		<UsageSection title="Text Input" src="/usage/text-input" code={usage} />
 	</div>
 </div>

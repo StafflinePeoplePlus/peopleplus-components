@@ -3,9 +3,8 @@
 	import CodeSnippet from '../CodeSnippet.svelte';
 	import PageHeader from '../PageHeader.svelte';
 	import UsageSection from '../UsageSection.svelte';
-	import usage from '../../../usage/textarea/+page.svelte?raw';
-
-	const importUsage = `import { TextArea, InputLabel, InputError, InputArea } from 'pp-svelte-components';`;
+	import * as usage from '../../../usage/textarea/+page.svelte?usage';
+	import * as importUsage from 'virtual:usage/TextArea,InputLabel,InputError,InputArea';
 </script>
 
 <PageHeader title="Text Area" subtitle="Multi-line text input field" />

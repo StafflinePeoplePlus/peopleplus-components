@@ -3,10 +3,9 @@
 	import CodeSnippet from '../CodeSnippet.svelte';
 	import PageHeader from '../PageHeader.svelte';
 	import UsageSection from '../UsageSection.svelte';
-	import horizontalUsage from '../../../usage/sortable/horizontal/+page.svelte?raw';
-	import verticalUsage from '../../../usage/sortable/vertical/+page.svelte?raw';
-
-	const importUsage = `import { createSortable } from 'pp-svelte-components';`;
+	import * as horizontalUsage from '../../../usage/sortable/horizontal/+page.svelte?usage';
+	import * as verticalUsage from '../../../usage/sortable/vertical/+page.svelte?usage';
+	import * as importUsage from 'virtual:usage/createSortableList';
 </script>
 
 <PageHeader title="Sortable" subtitle="Reorder a list of items horizontally or vertically" />

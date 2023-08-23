@@ -3,9 +3,8 @@
 	import CodeSnippet from '../CodeSnippet.svelte';
 	import PageHeader from '../PageHeader.svelte';
 	import UsageSection from '../UsageSection.svelte';
-	import usage from '../../../usage/banner/+page.svelte?raw';
-
-	const importUsage = `import { Banner } from 'pp-svelte-components';`;
+	import * as usage from '../../../usage/banner/+page.svelte?usage';
+	import * as importUsage from 'virtual:usage/Banner';
 </script>
 
 <PageHeader

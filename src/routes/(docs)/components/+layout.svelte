@@ -22,8 +22,8 @@
 		{ name: 'Stepper' },
 		{ name: 'Switch' },
 		{ name: 'Table' },
-		{ name: 'Text Input', href: '/components/TextInput' },
 		{ name: 'Text Area', href: '/components/TextArea' },
+		{ name: 'Text Input', href: '/components/TextInput' },
 		{ name: 'Toaster' },
 		{ name: 'Video Player Controls', href: '/components/VideoPlayer' },
 	];

@@ -1,19 +1,16 @@
 <script lang="ts">
 	import { ClipboardCheckIcon, ClipboardIcon } from 'lucide-svelte';
-	import Highlight, { HighlightSvelte } from 'svelte-highlight';
-	import typescript from 'svelte-highlight/languages/typescript';
-	import 'svelte-highlight/styles/github-dark-dimmed.css';
 	import { twMerge } from 'tailwind-merge';
 
 	let className = '';
 	export { className as class };
-	export let code: string;
+	export let code: { html: string; text: string };
 	export let lang: 'typescript' | 'svelte' = 'svelte';
 
 	let copied = false;
 	async function copyCode() {
 		try {
-			await navigator.clipboard.writeText(code);
+			await navigator.clipboard.writeText(code.text);
 			copied = true;
 			setTimeout(() => {
 				copied = false;
@@ -39,9 +36,13 @@
 			{/if}
 		</button>
 	</div>
-	{#if lang === 'svelte'}
+	<!-- {#if lang === 'svelte'}
 		<HighlightSvelte class="text-white" {code} />
 	{:else}
 		<Highlight class="text-white" language={typescript} {code} />
-	{/if}
+	{/if} -->
+	<div class="p-4">
+		<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+		{@html code.html}
+	</div>
 </div>
