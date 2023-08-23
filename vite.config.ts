@@ -106,7 +106,7 @@ function codeUsage() {
 					encoding: 'utf8',
 				});
 				const highlighter = await getHighlighter({ theme: 'github-dark-dimmed' });
-				const code = extractUsage(contents);
+				const code = extractUsage(contents).replaceAll('$lib', 'pp-svelte-components');
 				const highlighted = highlighter.codeToHtml(code, { lang: lang });
 
 				return {
