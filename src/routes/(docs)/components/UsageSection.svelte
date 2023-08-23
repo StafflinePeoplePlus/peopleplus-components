@@ -4,12 +4,15 @@
 	import { browser } from '$app/environment';
 	import HorizontalLoader from '$lib/loader/HorizontalLoader.svelte';
 	import { twMerge } from 'tailwind-merge';
+	import Switch from '$lib/forms/Switch.svelte';
+	import { slide } from 'svelte/transition';
 
 	export let code: string;
 	export let src: string;
 	export let title: string;
 	export let frameHeight: number | undefined = undefined;
 	$: usage = extractUsage(code).replaceAll('$lib', 'pp-svelte-components');
+	let showCode = false;
 
 	const DEFAULT_FRAME_HEIGHT = 1;
 	let frame: HTMLIFrameElement | undefined = undefined;
@@ -50,8 +53,14 @@
 <svelte:window on:resize={resizeFrame} />
 
 <section class="relative overflow-clip rounded-lg border border-gray-300 shadow-sm">
-	<header class="border-b border-gray-300 bg-gray-100 p-4">
+	<header class="flex items-center justify-between border-b border-gray-300 bg-gray-100 p-4">
 		<Typography variant="sub-heading">{title}</Typography>
+		<!-- eslint-disable-next-line svelte/valid-compile -->
+		<!-- svelte-ignore a11y-label-has-associated-control -->
+		<label>
+			<span class="mr-2 text-sm font-medium">Show Code</span>
+			<Switch bind:checked={showCode} />
+		</label>
 	</header>
 	{#if browser}
 		<iframe
@@ -71,5 +80,9 @@
 			<HorizontalLoader class="w-auto">Loading example...</HorizontalLoader>
 		</div>
 	{/if}
-	<CodeSnippet class="rounded-t-none" code={usage} />
+	{#if showCode}
+		<div transition:slide>
+			<CodeSnippet class="rounded-t-none" code={usage} />
+		</div>
+	{/if}
 </section>
