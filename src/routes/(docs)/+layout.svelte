@@ -1,11 +1,7 @@
 <script lang="ts">
-	import { NavBar, NavBarNav, NavItem } from '$lib';
-
-	const routes = [
-		{ href: '/', label: 'Introduction' },
-		{ href: '/components/Accordion', label: 'Components' },
-		{ href: '/guidelines', label: 'Implementation Guidelines' },
-	];
+	import { browser } from '$app/environment';
+	import { NavBar, NavBarNav, NavItem, screenMd } from '$lib';
+	import { components } from './components';
 </script>
 
 <div class="flex h-full flex-col pt-16">
@@ -18,9 +14,16 @@
 			</svelte:fragment>
 
 			<NavBarNav slot="end">
-				{#each routes as route}
-					<NavItem href={route.href}>{route.label}</NavItem>
-				{/each}
+				<NavItem href="/">Introduction</NavItem>
+				<NavItem href="/guidelines">Implementation Guidelines</NavItem>
+				{#if !browser || $screenMd}
+					<NavItem href="/components/Accordion">Components</NavItem>
+				{:else}
+					{#each components as component}
+						{@const href = component.href ?? `/components/${component.name}`}
+						<NavItem {href}>{component.name}</NavItem>
+					{/each}
+				{/if}
 			</NavBarNav>
 		</NavBar>
 	</div>

@@ -1,36 +1,13 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { twMerge } from 'tailwind-merge';
-
-	const components = [
-		{ name: 'Accordion' },
-		{ name: 'Avatar' },
-		{ name: 'Banner' },
-		{ name: 'Breadcrumbs' },
-		{ name: 'Button' },
-		{ name: 'Card' },
-		{ name: 'Carousel' },
-		{ name: 'Chip' },
-		{ name: 'Cookie Consent', href: '/components/CookieConsent' },
-		{ name: 'Drawer' },
-		{ name: 'Footer' },
-		{ name: 'Jumbotron' },
-		{ name: 'Loader' },
-		{ name: 'Nav Bar', href: '/components/NavBar' },
-		{ name: 'Popover' },
-		{ name: 'Sortable' },
-		{ name: 'Stepper' },
-		{ name: 'Switch' },
-		{ name: 'Table' },
-		{ name: 'Text Area', href: '/components/TextArea' },
-		{ name: 'Text Input', href: '/components/TextInput' },
-		{ name: 'Toaster' },
-		{ name: 'Video Player Controls', href: '/components/VideoPlayer' },
-	];
+	import { components } from './index';
 </script>
 
 <div class="grow">
-	<aside class="fixed h-full w-60 shrink-0 border-r border-gray-200 bg-gray-100 p-8">
+	<aside
+		class="fixed hidden h-full w-60 shrink-0 border-r border-gray-200 bg-gray-100 p-8 md:block"
+	>
 		<nav>
 			<ul>
 				{#each components as component}
@@ -48,7 +25,7 @@
 			</ul>
 		</nav>
 	</aside>
-	<main class="h-full bg-white pl-60">
-		<div class="mx-auto max-w-screen-xl px-12 py-8"><slot /></div>
+	<main class="h-full bg-white md:pl-60">
+		<div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-8 md:px-12"><slot /></div>
 	</main>
 </div>
