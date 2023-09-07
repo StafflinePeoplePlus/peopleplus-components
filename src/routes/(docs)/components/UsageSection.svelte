@@ -6,6 +6,7 @@
 	import { twMerge } from 'tailwind-merge';
 	import Switch from '$lib/forms/Switch.svelte';
 	import { slide } from 'svelte/transition';
+	import { darkMode } from '../../darkMode';
 
 	export let code: { html: string; text: string };
 	export let src: string;
@@ -28,13 +29,17 @@
 
 <svelte:window on:resize={resizeFrame} />
 
-<section class="relative overflow-clip rounded-lg border border-gray-300 shadow-sm">
-	<header class="flex items-center justify-between border-b border-gray-300 bg-gray-100 p-4">
+<section
+	class="relative overflow-clip rounded-lg border border-gray-300 shadow-sm dark:border-gray-700"
+>
+	<header
+		class="flex items-center justify-between border-b border-gray-300 bg-gray-100 p-4 dark:border-gray-700 dark:bg-gray-800"
+	>
 		<Typography variant="sub-heading">{title}</Typography>
 		<!-- eslint-disable-next-line svelte/valid-compile -->
 		<!-- svelte-ignore a11y-label-has-associated-control -->
 		<label>
-			<span class="mr-2 text-sm font-medium">Show Code</span>
+			<span class="mr-2 text-sm font-medium dark:text-white">Show Code</span>
 			<Switch bind:checked={showCode} />
 		</label>
 	</header>
@@ -46,7 +51,7 @@
 				frameLoaded && 'pointer-events-auto relative opacity-100',
 			)}
 			{title}
-			{src}
+			src={$darkMode ? `${src}?dark=true` : src}
 			style:height="{frameHeight ?? calculatedFrameHeight}px"
 			on:load={resizeFrame}
 		/>

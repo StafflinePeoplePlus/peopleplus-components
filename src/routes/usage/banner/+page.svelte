@@ -20,9 +20,9 @@
 					understand the artistry behind creating impactful lyrics.
 				</Typography>
 			</div>
-			<Button href="https://peopleplus.co.uk" class="h-12 w-full md:w-1/2 lg:w-1/4">
-				View Course
-			</Button>
+			<Button href="https://peopleplus.co.uk" class="h-12 w-full shrink-0 px-8 md:w-auto"
+				>View Course</Button
+			>
 		</div>
 	</Banner>
 {/if}

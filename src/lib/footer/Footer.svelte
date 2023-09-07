@@ -13,7 +13,7 @@
 
 <div
 	class={twMerge(
-		'max-w-screen-2xl bg-white p-4 text-sm dark:bg-gray-700 sm:p-10 2xl:mx-auto',
+		'max-w-screen-2xl bg-white p-4 text-sm dark:bg-gray-800 sm:p-10 2xl:mx-auto',
 		className,
 	)}
 	use:actions={use}
@@ -33,7 +33,7 @@
 		</div>
 	</div>
 
-	<div class={twMerge('mt-5 border-t border-gray-100 pt-5', bottomClass)}>
+	<div class={twMerge('mt-5 border-t border-gray-100 pt-5 dark:border-gray-700', bottomClass)}>
 		<slot name="bottom" />
 	</div>
 </div>

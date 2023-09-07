@@ -6,7 +6,7 @@
 
 {#if showChip}
 	<Chip
-		class="inline-flex items-center rounded-full border border-gray-300 bg-gray-200 text-gray-800 dark:bg-gray-100"
+		class="inline-flex items-center rounded-full border border-gray-300 bg-gray-200 pl-2 dark:border-gray-700 dark:bg-gray-800"
 	>
 		<span>Open Now</span>
 		<Button

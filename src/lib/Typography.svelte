@@ -4,9 +4,9 @@
 			'text-4xl font-extrabold tracking-tight leading-none text-black md:text-5xl lg:text-6xl dark:text-white',
 		heading: 'text-2xl md:text-4xl tracking-tight font-extrabold text-black dark:text-white',
 		'sub-heading': 'text-xl font-bold text-black dark:text-white',
-		'body-xl': 'text-lg sm:text-xl text-gray-700 dark:text-gray-400',
-		'body-lg': 'text-md sm:text-lg text-gray-700 dark:text-gray-400',
-		body: 'text-gray-700 dark:text-gray-400',
+		'body-xl': 'text-lg sm:text-xl text-gray-700 dark:text-gray-200',
+		'body-lg': 'text-md sm:text-lg text-gray-700 dark:text-gray-200',
+		body: 'text-gray-700 dark:text-gray-200',
 		caption: 'text-sm text-gray-500 dark:text-gray-300',
 	};
 </script>

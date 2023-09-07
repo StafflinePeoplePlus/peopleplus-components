@@ -11,7 +11,7 @@
 	data-testId="loader"
 	aria-hidden="true"
 	class={twMerge(
-		'h-4 w-4 animate-spin fill-primary-600 text-primary-300 dark:text-gray-400',
+		'h-4 w-4 animate-spin fill-primary-600 text-primary-300 dark:fill-primary-400 dark:text-gray-700',
 		className,
 	)}
 	viewBox="0 0 100 101"

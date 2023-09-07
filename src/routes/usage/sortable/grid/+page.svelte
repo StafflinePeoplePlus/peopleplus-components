@@ -30,8 +30,8 @@
 	{#each items as item (item.id)}
 		<div
 			class={twMerge(
-				'flex aspect-square select-none flex-col items-center rounded-lg bg-gray-300',
-				$sortingEnabled && 'cursor-grab hover:bg-gray-400',
+				'flex aspect-square select-none flex-col items-center rounded-lg bg-gray-300 dark:bg-gray-700 dark:text-white',
+				$sortingEnabled && 'cursor-grab hover:bg-gray-400 dark:hover:bg-gray-600',
 			)}
 			use:sortable.item={item.id}
 			in:receive={{ key: item.id }}
