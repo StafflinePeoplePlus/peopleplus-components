@@ -12,7 +12,7 @@ test('Carousel next & previous', async ({ page, viewport }) => {
 		throw new Error('test requires viewport');
 	}
 
-	await page.goto('/test/carousel');
+	await page.goto('/usage/carousel');
 	const carousel = page.getByRole('list');
 	const prev = page.getByRole('button', { name: 'Previous Item' });
 	const next = page.getByRole('button', { name: 'Next Item' });

@@ -25,12 +25,12 @@
 
 <nav
 	class={twMerge(
-		'flex flex-wrap items-center justify-between gap-x-8 overflow-hidden bg-gray-100 p-4 dark:bg-gray-700 md:gap-y-2',
+		'flex flex-wrap items-center justify-between gap-x-8 overflow-hidden bg-gray-100 dark:bg-gray-700 md:gap-y-2',
 		className,
 	)}
 	use:actions={use}
 >
-	<div class={twMerge('flex w-full shrink-0 items-center md:w-auto', startClass)}>
+	<div class={twMerge('flex w-full shrink-0 items-center p-4 md:w-auto', startClass)}>
 		<slot name="start" />
 		{#if showHamburger}
 			<div class="ml-auto md:hidden">
@@ -61,7 +61,7 @@
 		{/if}
 	</div>
 	<div
-		class={twMerge('mt-4 w-full md:mt-0 md:contents md:w-auto', panelClass)}
+		class={twMerge('mt-4 max-h-[80vh] w-full overflow-y-auto px-4 md:mt-0 md:contents', panelClass)}
 		use:popoverPanel
 		class:hidden={!$popover.expanded}
 	>
