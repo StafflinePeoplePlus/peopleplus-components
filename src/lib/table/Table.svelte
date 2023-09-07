@@ -27,7 +27,7 @@
 <table
 	class={twMerge(
 		'border-separate border-spacing-0 rounded-md shadow-sm',
-		borders ? 'border-spacing-px' : 'border border-gray-300 dark:border-gray-500',
+		borders ? 'border-spacing-px' : 'border border-gray-300 dark:border-gray-600',
 		className,
 	)}
 	use:actions={use}

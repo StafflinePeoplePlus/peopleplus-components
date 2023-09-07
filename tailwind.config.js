@@ -13,6 +13,7 @@ export default {
 			},
 			colors: {
 				primary: colors.red,
+				gray: colors.zinc,
 			},
 		},
 	},

@@ -30,8 +30,8 @@
 	{#each items as item (item.id)}
 		<li
 			class={twMerge(
-				'mb-2 flex select-none items-center gap-1 rounded bg-gray-300 p-2 px-3 transition',
-				$sortingEnabled && 'cursor-grab hover:bg-gray-400',
+				'mb-2 flex select-none items-center gap-1 rounded bg-gray-300 p-2 px-3 transition dark:bg-gray-700 dark:text-white',
+				$sortingEnabled && 'cursor-grab hover:bg-gray-400 dark:hover:bg-gray-600',
 			)}
 			in:receive={{ key: item.id }}
 			out:send={{ key: item.id }}

@@ -23,9 +23,9 @@
 <Drawer bind:open>
 	<Typography variant="body-lg" class="font-bold">Measurements</Typography>
 	<Typography variant="body">Neck width: Seam to seam width</Typography>
-	<div class="mt-4 flex-col space-y-4 text-sm">
+	<div class="mt-4 flex-col space-y-4 text-sm dark:text-white">
 		{#each columns as column}
-			<div class="flex justify-between border-t pt-4">
+			<div class="flex justify-between border-t pt-4 dark:border-gray-600">
 				<div>{column.label}</div>
 				<div>
 					{#if column.label === 'Status'}

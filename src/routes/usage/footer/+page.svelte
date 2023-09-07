@@ -19,9 +19,7 @@
 		<address class="not-italic">
 			<ul class="mt-3 text-gray-600 dark:text-gray-400">
 				<li class="mb-4">
-					<a href="mailto:customerexperience@peopleplus.co.uk" class="hover:underline">
-						customerexperience@peopleplus.co.uk
-					</a>
+					<a href="mailto:support@example.com" class="hover:underline"> support@example.com </a>
 				</li>
 				<li class="mb-4">
 					<a href="tel:0800345666" class="hover:underline"> 0800 345666 </a>
@@ -39,7 +37,7 @@
 	</div>
 
 	<div slot="end">
-		<ul class="dark:text-gray-40 space-y-2 text-gray-600">
+		<ul class="dark:text-gray-40 space-y-2 text-gray-600 dark:text-gray-400">
 			<li><a href="#privacy" class="hover:underline">Privacy Policy</a></li>
 			<li><a href="#cookies" class="hover:underline">Cookies Policy</a></li>
 			<li><a href="#terms" class="hover:underline">Terms And Conditions</a></li>

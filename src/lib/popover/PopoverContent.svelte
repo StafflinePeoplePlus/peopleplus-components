@@ -24,7 +24,11 @@
 		{...$content}
 	>
 		{#if arrow}
-			<div {...$arrowEl} use:arrowEl class="border-l border-t" />
+			<div
+				{...$arrowEl}
+				use:arrowEl
+				class="border-l border-t border-gray-200 dark:border-gray-600"
+			/>
 		{/if}
 		<slot />
 	</div>
