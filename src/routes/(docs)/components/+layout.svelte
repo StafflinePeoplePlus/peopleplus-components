@@ -2,6 +2,7 @@
 	import { page } from '$app/stores';
 	import { twMerge } from 'tailwind-merge';
 	import { components } from './index';
+	import Copyright from '../Copyright.svelte';
 </script>
 
 <div class="grow">
@@ -27,5 +28,6 @@
 	</aside>
 	<main class="h-full bg-white md:pl-60">
 		<div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-8 md:px-12"><slot /></div>
+		<Copyright />
 	</main>
 </div>
