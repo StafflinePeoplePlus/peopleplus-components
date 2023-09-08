@@ -11,7 +11,7 @@
 </script>
 
 <div
-	class={twMerge('font-semibold text-red-700 dark:text-red-400', className)}
+	class={twMerge('text-xs font-medium text-red-700 dark:text-red-400', className)}
 	use:actions={use}
 	{...$$restProps}
 >
