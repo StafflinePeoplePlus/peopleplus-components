@@ -3,7 +3,8 @@
 	import CodeSnippet from '../CodeSnippet.svelte';
 	import PageHeader from '../PageHeader.svelte';
 	import UsageSection from '../UsageSection.svelte';
-	import * as usage from '../../../usage/video-player/+page.svelte?usage';
+	import * as cloudflareStreamUsage from '../../../usage/video-player/cloudflare-stream/+page.svelte?usage';
+	import * as youtubeUsage from '../../../usage/video-player/youtube/+page.svelte?usage';
 	import * as importUsage from 'virtual:usage/VideoPlayer,ScrubBar,VolumeControl,FullscreenButton';
 </script>
 
@@ -13,6 +14,11 @@
 	<Typography variant="heading" as="h3" class="mb-8">Usage</Typography>
 
 	<div class="space-y-8">
-		<UsageSection title="Cloudflare stream" src="/usage/video-player" code={usage} />
+		<UsageSection
+			title="Cloudflare Stream"
+			src="/usage/video-player/cloudflare-stream"
+			code={cloudflareStreamUsage}
+		/>
+		<UsageSection title="YouTube" src="/usage/video-player/youtube" code={youtubeUsage} />
 	</div>
 </div>

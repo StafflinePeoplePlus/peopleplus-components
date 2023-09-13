@@ -1,15 +1,9 @@
 <script lang="ts">
-	import {
-		CloudflareStreamPlayer,
-		FullscreenButton,
-		ScrubBar,
-		VideoPlayer,
-		VolumeControl,
-	} from '$lib';
+	import { YouTubePlayer, FullscreenButton, ScrubBar, VideoPlayer, VolumeControl } from '$lib';
 
 	let playerElement: HTMLElement | undefined = undefined;
 	let playing = false;
-	let player: CloudflareStreamPlayer;
+	let player: YouTubePlayer;
 	let volume = 1;
 	let duration: number | undefined = undefined;
 	let currentTime = 0;
@@ -24,14 +18,12 @@
 	on:pause={() => player.pause()}
 >
 	<div slot="top">
-		<h2 class="text-center text-lg">Big Buck Bunny</h2>
+		<h2 class="text-center text-lg">Never Gonna Give You Up</h2>
 	</div>
 
-	<CloudflareStreamPlayer
+	<YouTubePlayer
 		bind:this={player}
-		code="j8h7q0ly0igrpwgg"
-		videoId="4920d2fd1fde191adfda65f3b7453282"
-		preload
+		videoId="dQw4w9WgXcQ"
 		controls={false}
 		{volume}
 		bind:playing

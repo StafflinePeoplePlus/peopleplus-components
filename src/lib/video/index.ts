@@ -4,3 +4,4 @@ export { default as FullscreenButton } from './FullscreenButton.svelte';
 export { default as ScrubBar } from './ScrubBar.svelte';
 export { default as VideoPlayer } from './VideoPlayer.svelte';
 export { default as VolumeControl } from './VolumeControl.svelte';
+export { default as YouTubePlayer } from './YouTubePlayer.svelte';
