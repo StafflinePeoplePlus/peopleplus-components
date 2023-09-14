@@ -16,7 +16,7 @@
 
 <section
 	class={twMerge(
-		'mx-auto max-w-screen-2xl items-center justify-between gap-4 bg-white p-2 shadow-sm sm:p-4 md:flex',
+		'mx-auto max-w-screen-2xl items-center justify-between gap-4 bg-white p-2 shadow-sm dark:bg-gray-800 sm:p-4 md:flex',
 		className,
 	)}
 	use:actions={use}

@@ -1,4 +1,4 @@
-import Breadcrumbs from '../../routes/(docs)/Breadcrumbs/ExampleBreadcrumbs.svelte';
+import Breadcrumbs from './test/BreadcrumbsTest.svelte';
 import { test, expect, afterEach } from 'vitest';
 import { cleanup, render, within } from '@testing-library/svelte';
 import matchers from '@testing-library/jest-dom/matchers';

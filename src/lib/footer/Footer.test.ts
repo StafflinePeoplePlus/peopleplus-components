@@ -1,6 +1,6 @@
 import { test, expect, afterEach } from 'vitest';
 import { cleanup, render } from '@testing-library/svelte';
-import ExampleFooter from '../../routes/(docs)/Footer/ExampleFooter.svelte';
+import ExampleFooter from './test/FooterTest.svelte';
 
 afterEach(cleanup);
 

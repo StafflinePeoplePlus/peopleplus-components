@@ -1,4 +1,4 @@
-import ExampleDrawer from '../../routes/(docs)/Drawer/ExampleDrawer.svelte';
+import ExampleDrawer from './test/DrawerTest.svelte';
 import { test, expect, afterEach } from 'vitest';
 import { cleanup, fireEvent, render } from '@testing-library/svelte';
 import matchers from '@testing-library/jest-dom/matchers';

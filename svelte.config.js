@@ -16,7 +16,11 @@ const config = {
 			mode: 'auto',
 			directives: {
 				// Not able to be strict-dynamic due to https://github.com/sveltejs/kit/issues/3558
-				'script-src': ['self', 'https://embed.cloudflarestream.com/embed/sdk.latest.js'],
+				'script-src': [
+					'self',
+					'https://embed.cloudflarestream.com/embed/sdk.latest.js',
+					'www.youtube.com',
+				],
 				'style-src': [
 					'self',
 					// bind:clientWidth/Height requires this - https://github.com/sveltejs/svelte/issues/8607
