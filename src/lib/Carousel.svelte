@@ -124,7 +124,7 @@
 	<ul
 		bind:this={containerEl}
 		class={twMerge(
-			'flex touch-pan-y touch-pinch-zoom select-none',
+			'flex touch-pan-y select-none',
 			BROWSER ? 'overflow-x-hidden' : 'overflow-x-auto',
 			listClass,
 		)}
