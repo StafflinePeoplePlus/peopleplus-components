@@ -1,4 +1,4 @@
-name: Publish on version change
+name: CI Main
 
 on:
   push:
@@ -9,6 +9,7 @@ permissions:
 
 jobs:
   publish:
+    name: 'Publish to NPM'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛒
@@ -25,6 +26,76 @@ jobs:
 
       - name: Lint 🧽
         run: npm run lint
+
+      - name: Run Vi tests 🏃
+        run: npm run test:unit
+
+      - name: Install playwright browsers 🛒
+        run: npx playwright install --with-deps
+
+      - name: Run Playwrite tests 🏃
+        run: npm run test
+
+      - name: Publish to npm if needed 🚀
+        id: publish
+        uses: JS-DevTools/npm-publish@v2
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          strategy: upgrade
+
+      - name: Comment version on commit 💬
+        if: ${{ steps.publish.outputs.type }}
+        uses: peter-evans/commit-comment@v2
+        with:
+          body: |
+            This has been published to NPM as [${{steps.publish.outputs.id}}][1] 🚀
+
+            [1]: https://www.npmjs.com/package/${{steps.publish.outputs.name}}/v/${{steps.publish.outputs.version}}
+
+      - name: Create tag v${{ steps.publish.outputs.version }}
+        if: ${{ steps.publish.outputs.type }}
+        uses: actions/github-script@v5
+        with:
+          script: |
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: 'refs/tags/v${{ steps.publish.outputs.version }}',
+              sha: context.sha
+            })
+
+      - name: Build changelog
+        if: ${{ steps.publish.outputs.type }}
+        id: github_release
+        uses: mikepenz/release-changelog-builder-action@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          ignorePreReleases: true
+          toTag: 'v${{ steps.publish.outputs.version }}'
+
+      - name: Create release v${{ steps.publish.outputs.version }}
+        if: ${{ steps.publish.outputs.type }}
+        uses: mikepenz/action-gh-release@v0.2.0-a03
+        with:
+          body: ${{steps.github_release.outputs.changelog}}
+          tag_name: 'v${{ steps.publish.outputs.version }}'
+
+  coverage:
+    name: 'Update Coverage Badges'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛒
+        uses: actions/checkout@v3
+
+      - name: Use Node.js 18 🛒
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install Node Packages 🛒
+        run: npm ci
 
       - name: Run Vi tests 🏃
         run: npm run test:unit-coverage
@@ -83,48 +154,3 @@ jobs:
           label: branches
           message: '${{ env.coverage_summary_total_branches_pct }}%'
           color: ${{ env.coverage_summary_total_branches_pct > 80 && 'bright-green' || env.coverage_summary_total_branches_pct > 50 && 'yellow' || 'red' }}
-
-      - name: Publish to npm if needed 🚀
-        id: publish
-        uses: JS-DevTools/npm-publish@v2
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
-          strategy: upgrade
-
-      - name: Comment version on commit 💬
-        if: ${{ steps.publish.outputs.type }}
-        uses: peter-evans/commit-comment@v2
-        with:
-          body: |
-            This has been published to NPM as [${{steps.publish.outputs.id}}][1] 🚀
-
-            [1]: https://www.npmjs.com/package/${{steps.publish.outputs.name}}/v/${{steps.publish.outputs.version}}
-
-      - name: Create tag v${{ steps.publish.outputs.version }}
-        if: ${{ steps.publish.outputs.type }}
-        uses: actions/github-script@v5
-        with:
-          script: |
-            github.rest.git.createRef({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              ref: 'refs/tags/v${{ steps.publish.outputs.version }}',
-              sha: context.sha
-            })
-
-      - name: Build changelog
-        if: ${{ steps.publish.outputs.type }}
-        id: github_release
-        uses: mikepenz/release-changelog-builder-action@v3
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          ignorePreReleases: true
-          toTag: 'v${{ steps.publish.outputs.version }}'
-
-      - name: Create release v${{ steps.publish.outputs.version }}
-        if: ${{ steps.publish.outputs.type }}
-        uses: mikepenz/action-gh-release@v0.2.0-a03
-        with:
-          body: ${{steps.github_release.outputs.changelog}}
-          tag_name: 'v${{ steps.publish.outputs.version }}'
