@@ -4,7 +4,7 @@
 	let playerElement: HTMLElement | undefined = undefined;
 	let playing = false;
 	let player: YouTubePlayer;
-	let volume = 1;
+	let volume = 0.5;
 	let duration: number | undefined = undefined;
 	let currentTime = 0;
 	let buffered: [number, number][] = [];

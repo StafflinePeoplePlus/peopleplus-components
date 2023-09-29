@@ -40,6 +40,7 @@
 					events: {
 						onReady() {
 							onDurationChange();
+							player?.setVolume(volume * 100);
 						},
 						onStateChange(evt) {
 							switch (evt.data) {
