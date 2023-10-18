@@ -12,7 +12,7 @@
 	export let steps: Step[];
 	export let activeStep: Step | undefined = undefined;
 
-	$: if (steps && steps.length > 0) {
+	$: if (!activeStep && steps && steps.length > 0) {
 		activeStep = steps[0];
 	}
 
