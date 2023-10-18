@@ -1,9 +1,6 @@
-import matchers from '@testing-library/jest-dom/matchers';
 import { afterEach, expect, test, vi } from 'vitest';
 import { act, cleanup, fireEvent, render } from '@testing-library/svelte';
 import CookieConsentManagement from './CookieConsentManagement.svelte';
-
-expect.extend(matchers);
 
 afterEach(cleanup);
 const categories = [

@@ -9,9 +9,9 @@ afterEach(cleanup);
 test('should render the steps', () => {
 	const { getByText } = render(Stepper, { steps });
 
-	getByText('Step 1');
-	getByText('Step 2');
-	getByText('Step 3');
+	expect(getByText('Step 1')).toHaveAttribute('aria-current', 'step');
+	expect(getByText('Step 2')).toHaveAttribute('aria-current', 'false');
+	expect(getByText('Step 3')).toHaveAttribute('aria-current', 'false');
 });
 
 test('should fire the changeStep event on step click', () => {
@@ -22,4 +22,11 @@ test('should fire the changeStep event on step click', () => {
 	component.$on('changeStep', changeStep);
 	fireEvent.click(step2);
 	expect(changeStep).toHaveBeenCalledOnce();
+});
+
+test('should mark the provided step as active', () => {
+	const { getByText } = render(Stepper, { steps, activeStep: steps[1] });
+	expect(getByText('Step 1')).toHaveAttribute('aria-current', 'false');
+	expect(getByText('Step 2')).toHaveAttribute('aria-current', 'step');
+	expect(getByText('Step 3')).toHaveAttribute('aria-current', 'false');
 });

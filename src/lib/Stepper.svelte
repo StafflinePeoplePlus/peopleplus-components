@@ -37,6 +37,7 @@
 				step === activeStep ? 'bg-primary-500 text-white' : ''
 			}`}
 			on:click={() => changeStep(step)}
+			aria-current={step === activeStep ? 'step' : 'false'}
 		>
 			<span
 				class={`rounded-full bg-gray-500 px-2 py-1 text-xs text-white ${
