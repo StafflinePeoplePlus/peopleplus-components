@@ -42,6 +42,8 @@ export default defineConfig({
 		},
 		include: ['src/**/*.{test,spec}.{js,ts}'],
 		environment: 'jsdom',
+		globals: true,
+		setupFiles: ['./vitest-setup.ts'],
 	},
 	build: {
 		sourcemap: !!process.env.VITE_COVERAGE,

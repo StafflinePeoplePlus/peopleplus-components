@@ -48,7 +48,7 @@
 		"esm-env": "^1.0.0",
 		"just-debounce-it": "^3.2.0",
 		"just-throttle": "^4.2.0",
-		"lucide-svelte": "^0.287.0",
+		"lucide-svelte": "^0.288.0",
 		"svelte-headlessui": "^0.0.27",
 		"tailwind-merge": "^1.13.0"
 	},
@@ -62,7 +62,6 @@
 		"@sveltejs/kit": "^1.22.2",
 		"@sveltejs/package": "^2.2.0",
 		"@tailwindcss/typography": "^0.5.9",
-		"@testing-library/jest-dom": "^5.16.5",
 		"@testing-library/svelte": "^4.0.0",
 		"@types/youtube": "^0.0.48",
 		"@typescript-eslint/eslint-plugin": "^6.0.0",
@@ -91,6 +90,7 @@
 		"vite": "^4.4.3",
 		"vite-plugin-istanbul": "^5.0.0",
 		"vitest": "^0.33.0",
+		"vitest-dom": "^0.1.1",
 		"wrangler": "^3.2.0"
 	},
 	"svelte": "./dist/index.js",

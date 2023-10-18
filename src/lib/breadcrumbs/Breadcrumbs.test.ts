@@ -1,9 +1,7 @@
 import Breadcrumbs from './test/BreadcrumbsTest.svelte';
 import { test, expect, afterEach } from 'vitest';
 import { cleanup, render, within } from '@testing-library/svelte';
-import matchers from '@testing-library/jest-dom/matchers';
 
-expect.extend(matchers);
 afterEach(cleanup);
 
 const ITEM_LABEL_1 = 'Find Flights';

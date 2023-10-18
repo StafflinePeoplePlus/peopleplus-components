@@ -1,9 +1,6 @@
-import matchers from '@testing-library/jest-dom/matchers';
 import { afterEach, expect, test } from 'vitest';
 import { act, cleanup, render } from '@testing-library/svelte';
 import CookieConsentCategory from './CookieConsentCategory.svelte';
-
-expect.extend(matchers);
 
 afterEach(cleanup);
 
