@@ -49,7 +49,7 @@
 		"just-debounce-it": "^3.2.0",
 		"just-throttle": "^4.2.0",
 		"lucide-svelte": "^0.288.0",
-		"svelte-headlessui": "^0.0.27",
+		"svelte-headlessui": "^0.0.29",
 		"tailwind-merge": "^1.13.0"
 	},
 	"peerDependencies": {
