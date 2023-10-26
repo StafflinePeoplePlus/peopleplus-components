@@ -6,7 +6,7 @@
 </script>
 
 <div class="flex grow flex-row overflow-hidden">
-	<Sidebar class="hidden w-60 shrink-0 border-t md:block">
+	<Sidebar class="hidden w-60 shrink-0 border-t dark:border-gray-600 md:block">
 		<ul class="flex grow flex-col gap-1">
 			{#each components as component}
 				{@const href = component.href ?? `/components/${component.name}`}

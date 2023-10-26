@@ -10,7 +10,9 @@
 	} from 'lucide-svelte';
 </script>
 
-<div class="h-[600px] overflow-clip rounded-xl border bg-gray-100 shadow-md">
+<div
+	class="h-[600px] overflow-clip rounded-xl border bg-gray-100 shadow-md dark:border-gray-700 dark:bg-gray-900"
+>
 	<!-- START USAGE -->
 	<Sidebar>
 		<img src="/peopleplus-logo.svg" class="mb-10 mt-4 h-10" alt="PeoplePlus Logo" />

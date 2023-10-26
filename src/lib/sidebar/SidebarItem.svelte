@@ -21,8 +21,9 @@
 		role={href ? 'link' : 'button'}
 		{href}
 		class={twMerge(
-			'flex items-center gap-4 rounded-lg px-3 py-2.5 font-medium text-gray-600 transition hover:bg-gray-100',
-			active && 'bg-gray-200 text-gray-900 hover:bg-gray-200',
+			'flex items-center gap-4 rounded-lg px-3 py-2.5 font-medium text-gray-600 transition hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700',
+			active &&
+				'bg-gray-200 text-gray-900 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-700',
 			className,
 		)}
 		on:click
