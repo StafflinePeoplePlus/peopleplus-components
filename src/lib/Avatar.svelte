@@ -54,6 +54,7 @@
 		sizes[size].container,
 		className,
 	)}
+	{...$$restProps}
 >
 	<img
 		{...$image}

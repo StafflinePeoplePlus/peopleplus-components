@@ -9,6 +9,7 @@ export * from './popover';
 export * from './table';
 export * from './toaster';
 export * from './video';
+export * from './sidebar';
 export * from './sortableList';
 export * from './sortableGrid';
 export { default as Avatar } from './Avatar.svelte';
