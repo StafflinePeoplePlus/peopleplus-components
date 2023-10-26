@@ -7,6 +7,7 @@
 	import Switch from '$lib/forms/Switch.svelte';
 	import { slide } from 'svelte/transition';
 	import { darkMode } from '../../darkMode';
+	import { Card } from '$lib';
 
 	export let code: { html: string; text: string };
 	export let src: string;
@@ -29,11 +30,9 @@
 
 <svelte:window on:resize={resizeFrame} />
 
-<section
-	class="relative overflow-clip rounded-lg border border-gray-300 shadow-sm dark:border-gray-700"
->
+<Card class="overflow-hidden">
 	<header
-		class="flex items-center justify-between border-b border-gray-300 bg-gray-100 p-4 dark:border-gray-700 dark:bg-gray-800"
+		class="flex items-center justify-between border-b border-gray-300 p-4 dark:border-gray-700"
 	>
 		<Typography variant="sub-heading">{title}</Typography>
 		<!-- eslint-disable-next-line svelte/valid-compile -->
@@ -47,7 +46,7 @@
 		<iframe
 			bind:this={frame}
 			class={twMerge(
-				'pointer-events-none absolute w-full opacity-0',
+				'pointer-events-none absolute w-full bg-gray-100 opacity-0',
 				frameLoaded && 'pointer-events-auto relative opacity-100',
 			)}
 			{title}
@@ -66,4 +65,4 @@
 			<CodeSnippet class="rounded-t-none" {code} />
 		</div>
 	{/if}
-</section>
+</Card>

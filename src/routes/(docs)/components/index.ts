@@ -14,6 +14,7 @@ export const components = [
 	{ name: 'Loader' },
 	{ name: 'Nav Bar', href: '/components/NavBar' },
 	{ name: 'Popover' },
+	{ name: 'Sidebar' },
 	{ name: 'Sortable' },
 	{ name: 'Stepper' },
 	{ name: 'Switch' },
