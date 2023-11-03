@@ -2,7 +2,7 @@
 	"name": "pp-svelte-components",
 	"description": "A collection of Svelte components using tailwind.",
 	"license": "MIT",
-	"version": "0.0.30",
+	"version": "0.0.31",
 	"homepage": "https://peopleplus-components.pages.dev",
 	"repository": {
 		"type": "git",
