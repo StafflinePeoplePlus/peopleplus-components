@@ -14,3 +14,4 @@ coverage
 .wrangler
 test-results
 .nyc_output
+package-lock.json

@@ -21,10 +21,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
 
       - name: Install Node Packages 🛒
-        run: npm ci
+        run: npm i
 
       - name: Lint 🧽
         run: npm run lint
@@ -52,10 +51,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
 
       - name: Install Node Packages 🛒
-        run: npm ci
+        run: npm i
 
       - name: Build app 🧱
         run: npm run build
@@ -88,10 +86,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
 
       - name: Install Node Packages 🛒
-        run: npm ci
+        run: npm i
 
       - name: Build app 🧱
         run: npm run build
