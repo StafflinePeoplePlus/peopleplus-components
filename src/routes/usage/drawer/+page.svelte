@@ -18,7 +18,7 @@
 <Button on:click={toggleDrawer}>Open Measurements</Button>
 
 <!-- START USAGE -->
-<Drawer bind:open class="h-full w-80" overlayClass="bg-white/30 backdrop-blur-sm ">
+<Drawer bind:open class="h-full w-80" overlayClass="bg-white/30 backdrop-blur-sm">
 	<div>
 		<div class="flex justify-between">
 			<Typography variant="body-lg" class="font-bold place-self-center">Measurements</Typography>

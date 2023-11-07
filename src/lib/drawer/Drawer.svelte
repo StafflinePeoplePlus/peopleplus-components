@@ -2,13 +2,17 @@
 	import { twMerge } from 'tailwind-merge';
 	import { fly } from 'svelte/transition';
 	import { clickOutside } from './clickOutside.js';
+
 	let className = '';
 	export { className as class };
 	export let overlayClass = '';
 	export let open = false;
+	export let disableClickOutside = false;
 
-	function handleClickOutside() {
-		open = false;
+	function handleClickOutside(): void {
+		if (!disableClickOutside) {
+			open = false;
+		}
 	}
 </script>
 
@@ -21,13 +25,19 @@
 			overlayClass,
 		)}
 	>
-		<div
-			class={twMerge('bg-white p-4 pb-20 shadow-lg', className)}
-			{...$$restProps}
-			use:clickOutside
-			on:click_outside={handleClickOutside}
-		>
-			<slot />
-		</div>
+		{#if disableClickOutside}
+			<div class={twMerge('bg-white p-4 pb-20 shadow-lg', className)} {...$$restProps}>
+				<slot />
+			</div>
+		{:else}
+			<div
+				class={twMerge('bg-white p-4 pb-20 shadow-lg', className)}
+				{...$$restProps}
+				use:clickOutside
+				on:click_outside={handleClickOutside}
+			>
+				<slot />
+			</div>
+		{/if}
 	</div>
 {/if}
