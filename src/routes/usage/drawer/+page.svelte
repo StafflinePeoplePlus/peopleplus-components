@@ -15,12 +15,10 @@
 	}
 </script>
 
-<Button on:click={toggleDrawer}>
-	{open ? 'Close' : 'Open'} Measurements
-</Button>
+<Button on:click={toggleDrawer}>Open Measurements</Button>
 
 <!-- START USAGE -->
-<Drawer bind:open on:click={toggleDrawer} class="h-screen">
+<Drawer bind:open class="bg-green-500" overlayClass="backdrop-blur bg-white/20">
 	<div class="flex justify-between">
 		<Typography variant="body-lg" class="font-bold">Measurements</Typography>
 
