@@ -15,14 +15,14 @@
 {#if open}
 	<div
 		tabindex="-1"
-		transition:fly={{ x: '100%', duration: 300 }}
-		class={twMerge('fixed bottom-0 right-0 top-0 z-50 h-full', overlayClass)}
+		transition:fly={{ x: '100%', duration: 200 }}
+		class={twMerge(
+			'fixed inset-0 z-50 overflow-y-auto transition-transform duration-300 flex justify-end',
+			overlayClass,
+		)}
 	>
 		<div
-			class={twMerge(
-				'h-full p-4 pt-2 overflow-y-auto bg-white shadow-xl dark:border-gray-600 dark:bg-gray-800 border w-80',
-				className,
-			)}
+			class={twMerge('bg-white p-4 pb-20 shadow-lg', className)}
 			{...$$restProps}
 			use:clickOutside
 			on:click_outside={handleClickOutside}
