@@ -9,5 +9,6 @@
 The changes aim to expand customisation capabilities allowing it to fit a wider range of use cases.
 
 #### How to Update Your Code:
+
 - If you rely on the 'Close Drawer' button, you will now need to add it manually to the slot.
 - To prevent the drawer from being dismissible by clicking outside, add `disableClickOutside` to the component props.
