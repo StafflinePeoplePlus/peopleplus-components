@@ -1,11 +1,8 @@
-export function clickOutside(node: HTMLElement, ignore?: string) {
+export function clickOutside(node: HTMLElement, onClick: () => void) {
 	const handleClick = (event: Event) => {
 		const target = event.target as HTMLElement;
-		if (!event.target || (ignore && target.closest(ignore))) {
-			return;
-		}
 		if (node && !node.contains(target) && !event.defaultPrevented) {
-			node.dispatchEvent(new CustomEvent('click_outside'));
+			onClick();
 		}
 	};
 

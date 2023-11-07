@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { twMerge } from 'tailwind-merge';
-	import { fly } from 'svelte/transition';
 	import { clickOutside } from './clickOutside.js';
+	import { fly } from 'svelte/transition';
 
 	let className = '';
 	export { className as class };
@@ -19,25 +19,26 @@
 {#if open}
 	<div
 		tabindex="-1"
-		transition:fly={{ x: '100%', duration: 200 }}
-		class={twMerge(
-			'fixed inset-0 z-50 overflow-y-auto transition-transform duration-300 flex justify-end',
-			overlayClass,
-		)}
+		class={twMerge('fixed inset-0 z-50 overflow-y-auto flex justify-end', overlayClass)}
 	>
-		{#if disableClickOutside}
-			<div class={twMerge('bg-white p-4', className)} {...$$restProps}>
-				<slot />
-			</div>
-		{:else}
-			<div
-				class={twMerge('bg-white p-4', className)}
-				{...$$restProps}
-				use:clickOutside
-				on:click_outside={handleClickOutside}
-			>
-				<slot />
-			</div>
-		{/if}
+		<div transition:fly={{ x: '100%', duration: 200 }}>
+			{#if disableClickOutside}
+				<div
+					class={twMerge('bg-white p-4', className)}
+					class:translate-x-100={open != null}
+					{...$$restProps}
+				>
+					<slot />
+				</div>
+			{:else}
+				<div
+					class={twMerge('bg-white p-4', className)}
+					{...$$restProps}
+					use:clickOutside={handleClickOutside}
+				>
+					<slot />
+				</div>
+			{/if}
+		</div>
 	</div>
 {/if}
