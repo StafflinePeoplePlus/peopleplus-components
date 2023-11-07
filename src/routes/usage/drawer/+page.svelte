@@ -20,8 +20,16 @@
 </Button>
 
 <!-- START USAGE -->
-<Drawer bind:open>
-	<Typography variant="body-lg" class="font-bold">Measurements</Typography>
+<Drawer bind:open on:click={toggleDrawer} class="h-screen">
+	<div class="flex justify-between">
+		<Typography variant="body-lg" class="font-bold">Measurements</Typography>
+
+		<Button on:click={toggleDrawer}>
+			<span class="sr-only">Close</span>
+			&times;
+		</Button>
+	</div>
+
 	<Typography variant="body">Neck width: Seam to seam width</Typography>
 	<div class="mt-4 flex-col space-y-4 text-sm dark:text-white">
 		{#each columns as column}

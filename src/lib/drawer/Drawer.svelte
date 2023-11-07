@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { SvelteHTMLElements } from 'svelte/elements';
 	import { twMerge } from 'tailwind-merge';
-	import Button from '$lib/Button.svelte';
 	import { fly } from 'svelte/transition';
 
 	type $$Props = SvelteHTMLElements['div'] & { open?: boolean };
@@ -9,10 +8,6 @@
 	let className: $$Props['class'] = undefined;
 	export { className as class };
 	export let open = false;
-
-	function closeDrawer() {
-		open = false;
-	}
 </script>
 
 {#if open}
@@ -25,17 +20,6 @@
 		)}
 		{...$$restProps}
 	>
-		<div class="flex justify-end">
-			<Button
-				on:click={closeDrawer}
-				variant="secondary"
-				class="h-8 p-3 text-gray-500"
-				data-testId="closeDrawer"
-			>
-				&times;
-				<span class="sr-only">Close</span>
-			</Button>
-		</div>
 		<div>
 			<slot />
 		</div>
