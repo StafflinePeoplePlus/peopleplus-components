@@ -23,7 +23,7 @@
 		<div class="flex justify-between">
 			<Typography variant="body-lg" class="font-bold place-self-center">Measurements</Typography>
 
-			<Button on:click={toggleDrawer} variant="secondary">
+			<Button on:click={toggleDrawer} variant="secondary" data-testId="closeDrawer">
 				<span class="sr-only">Close</span>
 				&times;
 			</Button>
