@@ -26,12 +26,12 @@
 		)}
 	>
 		{#if disableClickOutside}
-			<div class={twMerge('bg-white p-4 pb-20 shadow-lg', className)} {...$$restProps}>
+			<div class={twMerge('bg-white p-4', className)} {...$$restProps}>
 				<slot />
 			</div>
 		{:else}
 			<div
-				class={twMerge('bg-white p-4 pb-20 shadow-lg', className)}
+				class={twMerge('bg-white p-4', className)}
 				{...$$restProps}
 				use:clickOutside
 				on:click_outside={handleClickOutside}
