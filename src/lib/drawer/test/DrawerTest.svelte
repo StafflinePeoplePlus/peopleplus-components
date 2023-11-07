@@ -19,21 +19,31 @@
 	{open ? 'Close' : 'Open'} Measurements
 </Button>
 
-<Drawer bind:open>
-	<Typography variant="body-lg" class="font-bold">Measurements</Typography>
-	<Typography variant="body">Neck width: Seam to seam width</Typography>
-	<div class="mt-4 flex-col space-y-4 text-sm">
-		{#each columns as column}
-			<div class="flex justify-between border-t pt-4">
-				<div>{column.label}</div>
-				<div>
-					{#if column.label === 'Status'}
-						<Chip>{column.value}</Chip>
-					{:else}
-						{column.value}
-					{/if}
+<Drawer bind:open class="h-full w-80 shadow-lg" overlayClass="bg-white/30 backdrop-blur-sm">
+	<div>
+		<div class="flex justify-between">
+			<Typography variant="body-lg" class="font-bold place-self-center">Measurements</Typography>
+
+			<Button on:click={toggleDrawer} variant="secondary" data-testId="closeDrawer">
+				<span class="sr-only">Close</span>
+				&times;
+			</Button>
+		</div>
+
+		<Typography variant="body" class="mt-2">Neck width: Seam to seam width</Typography>
+		<div class="mt-4 flex-col space-y-4 text-sm dark:text-white">
+			{#each columns as column}
+				<div class="flex justify-between border-t pt-4 dark:border-gray-600">
+					<div>{column.label}</div>
+					<div>
+						{#if column.label === 'Status'}
+							<Chip>{column.value}</Chip>
+						{:else}
+							{column.value}
+						{/if}
+					</div>
 				</div>
-			</div>
-		{/each}
+			{/each}
+		</div>
 	</div>
 </Drawer>
