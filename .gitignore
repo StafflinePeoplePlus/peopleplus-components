@@ -15,3 +15,4 @@ coverage
 test-results
 .nyc_output
 package-lock.json
+/playwright-report

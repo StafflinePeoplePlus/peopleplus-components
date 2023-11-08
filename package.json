@@ -45,7 +45,7 @@
 	],
 	"dependencies": {
 		"@floating-ui/core": "^1.5.0",
-		"@melt-ui/svelte": "^0.58.2",
+		"@melt-ui/svelte": "^0.59.0",
 		"esm-env": "^1.0.0",
 		"just-debounce-it": "^3.2.0",
 		"just-throttle": "^4.2.0",
@@ -65,7 +65,7 @@
 		"@sveltejs/package": "^2.2.0",
 		"@tailwindcss/typography": "^0.5.9",
 		"@testing-library/svelte": "^4.0.0",
-		"@types/youtube": "^0.0.49",
+		"@types/youtube": "^0.0.50",
 		"@typescript-eslint/eslint-plugin": "^6.0.0",
 		"@typescript-eslint/parser": "^6.0.0",
 		"@vitest/coverage-istanbul": "^0.34.1",
