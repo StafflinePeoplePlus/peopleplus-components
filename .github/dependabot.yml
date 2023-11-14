@@ -5,3 +5,10 @@ updates:
     schedule:
       interval: 'daily'
     target-branch: 'uat'
+    groups:
+      all:
+        patterns:
+          - '*'
+        update-types:
+          - 'minor'
+          - 'patch'
