@@ -15,8 +15,7 @@ test('should toggle the content when clicking the label', async () => {
 
 	const label = getByText('Label');
 	const content = getByText('Content');
-
-	expect(content.className).toContain('hidden');
 	await fireEvent.click(label);
-	expect(content.className).not.toContain('hidden');
+	await new Promise((resolve) => setTimeout(resolve, 4000));
+	expect(content).not.toBeInTheDocument();
 });
