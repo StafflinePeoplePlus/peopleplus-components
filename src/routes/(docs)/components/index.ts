@@ -7,6 +7,7 @@ export const components = [
 	{ name: 'Card' },
 	{ name: 'Carousel' },
 	{ name: 'Chip' },
+	{ name: 'Collapsible' },
 	{ name: 'Cookie Consent', href: '/components/CookieConsent' },
 	{ name: 'Drawer' },
 	{ name: 'Footer' },
