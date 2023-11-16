@@ -19,6 +19,7 @@ export { default as Button } from './Button.svelte';
 export { default as Card } from './card/Card.svelte';
 export { default as Carousel } from './Carousel.svelte';
 export { default as Chip } from './chip/Chip.svelte';
+export { default as Collapsible } from './collapsible/Collapsible.svelte';
 export { default as Drawer } from './drawer/Drawer.svelte';
 export { default as Footer } from './footer/Footer.svelte';
 export { default as Jumbotron } from './jumbotron/Jumbotron.svelte';
