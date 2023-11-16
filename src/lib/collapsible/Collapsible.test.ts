@@ -16,6 +16,5 @@ test('should toggle the content when clicking the label', async () => {
 	const label = getByText('Label');
 	await fireEvent.click(label);
 	const content = getByText('Content');
-	await new Promise((resolve) => setTimeout(resolve, 4000));
 	expect(content).toBeInTheDocument();
 });

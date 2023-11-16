@@ -4,6 +4,7 @@
 	import PageHeader from '../PageHeader.svelte';
 	import UsageSection from '../UsageSection.svelte';
 	import * as collapsible from '../../../usage/collapsible/+page.svelte?usage';
+	import * as customCollapsible from '../../../usage/collapsible/custom/+page.svelte?usage';
 	import * as importUsage from 'virtual:usage/Collapsible';
 </script>
 
@@ -17,5 +18,10 @@
 
 	<div class="space-y-8">
 		<UsageSection title="Basic Collapsible" src="/usage/collapsible" code={collapsible} />
+		<UsageSection
+			title="Custom Collapsible"
+			src="/usage/collapsible/custom"
+			code={customCollapsible}
+		/>
 	</div>
 </div>
