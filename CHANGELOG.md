@@ -1,5 +1,11 @@
 # pp-svelte-components
 
+## 0.0.33
+
+### Patch Changes
+
+- 62e7035: Added 'Collapsible', an interactive component which expands/collapses a panel.
+
 ## 0.0.32
 
 ### Patch Changes
