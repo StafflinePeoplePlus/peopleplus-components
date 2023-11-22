@@ -2,6 +2,7 @@ export * from './accordion';
 export * from './actions';
 export * from './breadcrumbs';
 export * from './cookies';
+export * from './dropdownMenu';
 export * from './forms';
 export * from './loader';
 export * from './navbar';
