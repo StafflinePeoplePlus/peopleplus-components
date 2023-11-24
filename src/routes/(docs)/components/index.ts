@@ -10,6 +10,7 @@ export const components = [
 	{ name: 'Collapsible' },
 	{ name: 'Cookie Consent', href: '/components/CookieConsent' },
 	{ name: 'Drawer' },
+	{ name: 'Dropdown Menu', href: '/components/DropdownMenu' },
 	{ name: 'Footer' },
 	{ name: 'Jumbotron' },
 	{ name: 'Loader' },
