@@ -4,7 +4,7 @@
 
 	export let className: string | undefined = undefined;
 	export let use: UseActions = [];
-	export let percentage: number | 0;
+	export let percentage: number = 0;
 	export let leftLabel: string = '';
 	export let rightLabel: string = '';
 
