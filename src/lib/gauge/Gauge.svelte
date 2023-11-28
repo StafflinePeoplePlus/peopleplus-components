@@ -5,8 +5,8 @@
 	export let className: string | undefined = undefined;
 	export let use: UseActions = [];
 	export let percentage: number | 0;
-	export let leftText: string = '';
-	export let rightText: string = '';
+	export let leftLabel: string = '';
+	export let rightLabel: string = '';
 
 	const max = 100;
 	const min = 0;
@@ -69,11 +69,11 @@
 		</text>
 
 		<text x="0%" y="65%" font-size="40%" class="text-gray-700" text-anchor="start">
-			{leftText}
+			{leftLabel}
 		</text>
 
 		<text x="100%" y="65%" font-size="40%" class="text-gray-700" text-anchor="end">
-			{rightText}
+			{rightLabel}
 		</text>
 	</svg>
 </div>

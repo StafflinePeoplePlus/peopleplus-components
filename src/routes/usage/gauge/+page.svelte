@@ -3,5 +3,5 @@
 </script>
 
 <!-- START USAGE -->
-<Gauge percentage={80} />
+<Gauge percentage={100} leftLabel="Start" rightLabel="Complete" />
 <!-- END USAGE -->
