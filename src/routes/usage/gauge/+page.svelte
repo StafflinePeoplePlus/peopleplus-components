@@ -3,5 +3,5 @@
 </script>
 
 <!-- START USAGE -->
-<Gauge percentage={80} leftText="Incomplete" rightText="Complete" />
+<Gauge percentage={80} />
 <!-- END USAGE -->

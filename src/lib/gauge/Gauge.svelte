@@ -5,8 +5,8 @@
 	export let className: string | undefined = undefined;
 	export let use: UseActions = [];
 	export let percentage: number | 0;
-	export let leftText: string;
-	export let rightText: string;
+	export let leftText: string = '';
+	export let rightText: string = '';
 
 	const max = 100;
 	const min = 0;
