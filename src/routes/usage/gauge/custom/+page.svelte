@@ -3,5 +3,5 @@
 </script>
 
 <!-- START USAGE -->
-<Gauge value={65} start="Start" end="Complete" isPercentage={true} />
+<Gauge value={90} min={0} max={180} start="0 km/h" end="180 km/h" isPercentage={false} />
 <!-- END USAGE -->

@@ -4,17 +4,18 @@
 
 	export let className: string | undefined = undefined;
 	export let use: UseActions = [];
-	export let percentage: number;
+	export let value: number;
 	export let start: string;
 	export let end: string;
+	export let max: number = 100;
+	export let min: number = 0;
+	export let isPercentage: boolean = true;
 
-	const max = 100;
-	const min = 0;
-	const range = max - min;
 	const gaugeAngle = 180;
 
-	$: percent = (percentage - min) / range;
-	$: needleAngle = gaugeAngle * percent - gaugeAngle / 2;
+	$: range = max - min;
+	$: normalizedValue = isPercentage ? (value - min) / range : value;
+	$: needleAngle = gaugeAngle * normalizedValue - gaugeAngle / 2;
 </script>
 
 <div class={twMerge('h-52 w-52', className)}>
@@ -47,7 +48,7 @@
 				stroke-linecap="round"
 			/>
 
-			<circle r="7%" stroke-width="2%" class="fill-white/60 stroke-slate-900" />
+			<circle cx="50%" cy="10%" r="7%" stroke-width="2%" class="fill-white/60 stroke-slate-900" />
 		</g>
 
 		<text
@@ -55,10 +56,9 @@
 			y="52.5%"
 			font-size="135%"
 			class="bg-slate-900 place-self-center dark:fill-white"
-			class:text-lg={percentage === 100}
 			text-anchor="middle"
 		>
-			{percentage}%
+			{isPercentage ? `${Math.round(normalizedValue * 100)}%` : value}
 		</text>
 
 		<text x="0%" y="65%" font-size="40%" class="text-gray-700 dark:fill-white" text-anchor="start">
