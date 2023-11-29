@@ -12,6 +12,7 @@ export const components = [
 	{ name: 'Drawer' },
 	{ name: 'Dropdown Menu', href: '/components/DropdownMenu' },
 	{ name: 'Footer' },
+	{ name: 'Gauge' },
 	{ name: 'Jumbotron' },
 	{ name: 'Loader' },
 	{ name: 'Nav Bar', href: '/components/NavBar' },
