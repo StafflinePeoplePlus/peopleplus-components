@@ -8,6 +8,6 @@ test('should render everything', () => {
 	const { getByText } = render(TestGauge);
 
 	getByText('90%');
-	getByText('Left');
-	getByText('Right');
+	getByText('Start');
+	getByText('End');
 });

@@ -9,7 +9,7 @@
 	export let end: string;
 	export let max: number = 100;
 	export let min: number = 0;
-	export let isPercentage: boolean = true;
+	export let formatLabel: (value: number) => string;
 	export let reverseGradient: boolean = false;
 
 	const gaugeAngle = 180;
@@ -64,7 +64,7 @@
 			class="bg-slate-900 place-self-center dark:fill-white"
 			text-anchor="middle"
 		>
-			{isPercentage ? `${Math.round(normalizedValue * 100)}%` : value}
+			{formatLabel ? formatLabel(value) : value}
 		</text>
 
 		<text x="0%" y="65%" font-size="40%" class="text-gray-700 dark:fill-white" text-anchor="start">
