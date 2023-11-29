@@ -3,5 +3,5 @@
 </script>
 
 <!-- START USAGE -->
-<Gauge value={90} min={0} max={180} start="0 km/h" end="180 km/h" isPercentage={false} />
+<Gauge value={70} min={0} max={100} start="0°C" end="100°C" isPercentage={false} reverseGradient />
 <!-- END USAGE -->
