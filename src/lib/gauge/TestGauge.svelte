@@ -2,4 +2,4 @@
 	import { Gauge } from '$lib';
 </script>
 
-<Gauge percentage={90} leftLabel="Left" rightLabel="Right" />
+<Gauge value={90} start="Left" end="Right" />

@@ -14,8 +14,7 @@
 
 	const gaugeAngle = 180;
 
-	$: range = max - min;
-	$: normalizedValue = isPercentage ? (value - min) / range : value;
+	$: normalizedValue = (value - min) / (max - min);
 	$: needleAngle = gaugeAngle * normalizedValue - gaugeAngle / 2;
 </script>
 
@@ -25,18 +24,12 @@
 			<linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
 				{#if reverseGradient}
 					<stop offset="0%" style="stop-color:#0de50d;" />
-					<!-- Green first -->
 					<stop offset="50%" style="stop-color:#ffff00;" />
-					<!-- Yellow middle -->
 					<stop offset="100%" style="stop-color:#ff0000;" />
-					<!-- Red last -->
 				{:else}
 					<stop offset="0%" style="stop-color:#ff0000;" />
-					<!-- Red first -->
 					<stop offset="50%" style="stop-color:#ffff00;" />
-					<!-- Yellow middle -->
 					<stop offset="100%" style="stop-color:#0de50d;" />
-					<!-- Green last -->
 				{/if}
 			</linearGradient>
 		</defs>
