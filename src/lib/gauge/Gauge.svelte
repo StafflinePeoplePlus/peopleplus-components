@@ -9,7 +9,7 @@
 	export let end: string;
 	export let max: number = 100;
 	export let min: number = 0;
-	export let formatLabel: (value: number) => string;
+	export let formatLabel = (value: number) => value.toString();
 	export let reverseGradient: boolean = false;
 
 	const gaugeAngle = 180;
