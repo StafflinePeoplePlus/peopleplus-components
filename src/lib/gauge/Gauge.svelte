@@ -4,9 +4,9 @@
 
 	export let className: string | undefined = undefined;
 	export let use: UseActions = [];
-	export let percentage: number = 0;
-	export let leftLabel: string = '';
-	export let rightLabel: string = '';
+	export let percentage: number;
+	export let start: string;
+	export let end: string;
 
 	const max = 100;
 	const min = 0;
@@ -17,7 +17,7 @@
 	$: needleAngle = gaugeAngle * percent - gaugeAngle / 2;
 </script>
 
-<div class={twMerge('-mb-10 h-52 w-52', className)}>
+<div class={twMerge('h-52 w-52', className)}>
 	<svg use:actions={use} {...$$restProps} viewBox="0 0 100 100">
 		<defs>
 			<linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -42,38 +42,31 @@
 				y1="22%"
 				x2="50%"
 				y2="18%"
-				class="stroke-slate-900"
+				class="stroke-slate-900 dark:stroke-white/80"
 				stroke-width="1.5%"
 				stroke-linecap="round"
 			/>
 
-			<circle
-				cx="50%"
-				cy="10%"
-				r="7%"
-				stroke="#718096"
-				stroke-width="2%"
-				class="fill-white/60 stroke-slate-900"
-			/>
+			<circle r="7%" stroke-width="2%" class="fill-white/60 stroke-slate-900" />
 		</g>
 
 		<text
 			x="50%"
 			y="52.5%"
 			font-size="135%"
-			class="bg-slate-900 place-self-center"
+			class="bg-slate-900 place-self-center dark:fill-white"
 			class:text-lg={percentage === 100}
 			text-anchor="middle"
 		>
 			{percentage}%
 		</text>
 
-		<text x="0%" y="65%" font-size="40%" class="text-gray-700" text-anchor="start">
-			{leftLabel}
+		<text x="0%" y="65%" font-size="40%" class="text-gray-700 dark:fill-white" text-anchor="start">
+			{start}
 		</text>
 
-		<text x="100%" y="65%" font-size="40%" class="text-gray-700" text-anchor="end">
-			{rightLabel}
+		<text x="100%" y="65%" font-size="40%" class="text-gray-700 dark:fill-white" text-anchor="end">
+			{end}
 		</text>
 	</svg>
 </div>
