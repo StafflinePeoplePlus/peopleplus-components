@@ -1,5 +1,13 @@
 # pp-svelte-components
 
+## 0.0.34
+
+### Patch Changes
+
+- f71aec5: Added a Gauge component to use data as a measure of speed or progress towards a goal.
+- 63e2b87: The SidebarItem active colour is now set to primary colour.
+- 63e2b87: Add dropdown menu component
+
 ## 0.0.33
 
 ### Patch Changes
