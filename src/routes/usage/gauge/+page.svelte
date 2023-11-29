@@ -3,5 +3,5 @@
 </script>
 
 <!-- START USAGE -->
-<Gauge value={65} start="Start" end="Complete" isPercentage={true} />
+<Gauge value={65} start="Start" end="Complete" />
 <!-- END USAGE -->
