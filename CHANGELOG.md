@@ -1,5 +1,11 @@
 # pp-svelte-components
 
+## 0.0.35
+
+### Patch Changes
+
+- 900d619: spread restprops onto the dropdown menu components
+
 ## 0.0.34
 
 ### Patch Changes
