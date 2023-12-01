@@ -25,6 +25,7 @@
 		transition:fly={{ duration: 150, y: -10 }}
 		{...$dropdownMenu}
 		use:dropdownMenu
+		{...$$restProps}
 	>
 		<slot />
 	</div>
