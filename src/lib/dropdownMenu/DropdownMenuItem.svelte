@@ -47,6 +47,7 @@
 	use:item
 	use:actions={use}
 	on:m-click={() => dispatch('click')}
+	{...$$restProps}
 >
 	<slot />
 </svelte:element>
