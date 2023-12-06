@@ -25,5 +25,6 @@ export const components = [
 	{ name: 'Text Area', href: '/components/TextArea' },
 	{ name: 'Text Input', href: '/components/TextInput' },
 	{ name: 'Toaster' },
+	{ name: 'Tooltip' },
 	{ name: 'Video Player', href: '/components/VideoPlayer' },
 ];
