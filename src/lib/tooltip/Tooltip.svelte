@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { createTooltip } from '@melt-ui/svelte';
 	import { fade } from 'svelte/transition';
+	import { twMerge } from 'tailwind-merge';
+	import {Button} from "$lib/index";
 	const {
 		elements: { trigger, content, arrow },
 		states: { open },
@@ -13,19 +15,25 @@
 		closeOnPointerDown: false,
 		forceVisible: true,
 	});
+
+	let className = "";
+	export { className as class };
+	export let tooltipClass = '';
 </script>
 
-<button type="button" class="" {...$trigger} use:trigger>
+<button type="button" {...$trigger} use:trigger class={className} 	{...$$restProps}>
 	<slot />
 </button>
 
 {#if $open}
 	<div
-			{...$content} use:content
-			transition:fade={{ duration: 100 }}
-			class="z-10 rounded-lg bg-white shadow"
+		{...$content}
+		use:content
+		transition:fade={{ duration: 100 }}
+		class={twMerge(
+			'z-10 rounded-lg bg-white shadow',tooltipClass)}
 	>
-		<div {...$arrow} use:arrow />
-		<p class="px-4 py-1 text-magnum-700">Add item to library</p>
+		<div {...$arrow} use:arrow class="border-l" />
+		<slot name="tooltip" />
 	</div>
 {/if}

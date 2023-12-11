@@ -8,7 +8,10 @@
 	import * as importUsage from 'virtual:usage/Tooltip';
 </script>
 
-<PageHeader title="Tooltip" subtitle="An interactive overlay that presents details about a component when it is on keyboard focus or hovered." />
+<PageHeader
+	title="Tooltip"
+	subtitle="An interactive overlay that presents details about a component when it is on keyboard focus or hovered."
+/>
 
 <CodeSnippet code={importUsage} lang="typescript" />
 <div class="mt-12">

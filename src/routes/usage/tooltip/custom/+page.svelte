@@ -1,10 +1,10 @@
 <script lang="ts">
-	import {Tooltip} from '$lib';
-    import { BookmarkPlus } from 'lucide-svelte';
+	import { Tooltip } from '$lib';
+	import { BookmarkPlus } from 'lucide-svelte';
 </script>
 
 <!-- START USAGE -->
-<Tooltip >
-    <BookmarkPlus />
+<Tooltip>
+	<BookmarkPlus />
 </Tooltip>
 <!-- END USAGE -->
