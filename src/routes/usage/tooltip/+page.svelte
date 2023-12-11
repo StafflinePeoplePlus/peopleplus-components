@@ -9,6 +9,6 @@
 		<BookmarkPlus />
 	</Button>
 
-	<div slot="tooltip" class="">Save Bookmark</div>
+	<div slot="tooltip">Save Bookmark</div>
 </Tooltip>
 <!-- END USAGE -->

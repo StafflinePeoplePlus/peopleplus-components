@@ -1,16 +1,16 @@
-import TestCard from './TestCard.svelte';
+import TestTooltip from './TestTooltip.svelte';
 import { test, expect, afterEach } from 'vitest';
-import { cleanup, render } from '@testing-library/svelte';
+import { cleanup, render, fireEvent } from '@testing-library/svelte';
 
 afterEach(cleanup);
 
-test('should render everything', () => {
-	const { getByText } = render(TestCard);
+test('should render tooltip content when hovered', async () => {
+	const { getByText, getByTestId } = render(TestTooltip);
 
-	getByText('This is a title');
-	getByText('This is a subtitle');
-	const primaryAction = getByText('Primary');
+	const tooltipTrigger = getByText('Tooltip Component');
 
-	expect(primaryAction.tagName).toBe('A');
-	expect(primaryAction.getAttribute('href')).toBe('https://peopleplus.co.uk');
+	await fireEvent.mouseOver(tooltipTrigger);
+	await new Promise(r => setTimeout(r, 1000));
+	const tooltipContent = getByTestId('content');
+	expect(tooltipContent).toBeVisible();
 });
