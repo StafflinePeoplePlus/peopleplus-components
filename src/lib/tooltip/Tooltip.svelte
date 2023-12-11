@@ -3,22 +3,23 @@
 	import { fade } from 'svelte/transition';
 	import { twMerge } from 'tailwind-merge';
 
+	export let placement = 'top';
+	export let tooltipClass = '';
+	export { className as class };
+	let className: string | undefined = undefined;
+
 	const {
 		elements: { trigger, content, arrow },
 		states: { open },
 	} = createTooltip({
 		positioning: {
-			placement: 'top',
+			placement,
 		},
 		openDelay: 0,
 		closeDelay: 0,
 		closeOnPointerDown: false,
 		forceVisible: true,
 	});
-
-	let className = '';
-	export { className as class };
-	export let tooltipClass = '';
 </script>
 
 <div class={twMerge('w-fit', className)} {...$trigger} use:trigger>
