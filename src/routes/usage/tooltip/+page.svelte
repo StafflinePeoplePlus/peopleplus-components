@@ -1,11 +1,14 @@
 <script lang="ts">
-	import { Tooltip } from '$lib';
+	import { Button, Tooltip } from '$lib';
 	import { BookmarkPlus } from 'lucide-svelte';
 </script>
 
 <!-- START USAGE -->
-<Tooltip>
-	<BookmarkPlus />
-	<div slot="tooltip" class="p-2 shadow">Save Bookmark</div>
+<Tooltip class="my-6">
+	<Button href="/">
+		<BookmarkPlus />
+	</Button>
+
+	<div slot="tooltip" class="">Save Bookmark</div>
 </Tooltip>
 <!-- END USAGE -->

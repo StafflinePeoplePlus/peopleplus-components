@@ -2,13 +2,13 @@
 	import { createTooltip } from '@melt-ui/svelte';
 	import { fade } from 'svelte/transition';
 	import { twMerge } from 'tailwind-merge';
-	import {Button} from "$lib/index";
+
 	const {
 		elements: { trigger, content, arrow },
 		states: { open },
 	} = createTooltip({
 		positioning: {
-			placement: 'top',
+			placement: 'bottom-start',
 		},
 		openDelay: 0,
 		closeDelay: 0,
@@ -16,24 +16,23 @@
 		forceVisible: true,
 	});
 
-	let className = "";
+	let className = '';
 	export { className as class };
 	export let tooltipClass = '';
 </script>
 
-<button type="button" {...$trigger} use:trigger class={className} 	{...$$restProps}>
+<div {...$trigger} class={twMerge('w-fit', className)} use:trigger {...$$restProps}>
 	<slot />
-</button>
+</div>
 
 {#if $open}
 	<div
 		{...$content}
 		use:content
 		transition:fade={{ duration: 100 }}
-		class={twMerge(
-			'z-10 rounded-lg bg-white shadow',tooltipClass)}
+		class={twMerge('z-10 rounded-lg bg-white p-2 border', tooltipClass)}
 	>
-		<div {...$arrow} use:arrow class="border-l" />
+		<div {...$arrow} use:arrow class="border-l border-t" />
 		<slot name="tooltip" />
 	</div>
 {/if}
