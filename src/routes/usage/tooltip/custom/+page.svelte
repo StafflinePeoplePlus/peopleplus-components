@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { InputArea, InputLabel, TextInput, Tooltip } from '$lib';
+	import { InputLabel, Tooltip } from '$lib';
 </script>
 
 <!-- START USAGE -->
 <Tooltip placement="right" class="mb-10">
 	<InputLabel for="example">Password</InputLabel>
-	<InputArea>
-		<TextInput name="example" id="example" />
-	</InputArea>
+	<div>
+		<input name="example" id="example" type="password" class="rounded border p-2 mt-1" />
+	</div>
 
 	<div slot="tooltip">
 		Password should contain at least:
