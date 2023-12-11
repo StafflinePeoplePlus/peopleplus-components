@@ -4,11 +4,13 @@
 </script>
 
 <!-- START USAGE -->
-<Tooltip class="my-6">
-	<Button href="/">
-		<BookmarkPlus />
-	</Button>
+<div class="pt-6 pb-4">
+	<Tooltip>
+		<Button href="/">
+			<BookmarkPlus />
+		</Button>
 
-	<div slot="tooltip" class="">Save Bookmark</div>
-</Tooltip>
+		<div slot="tooltip" class="">Save Bookmark</div>
+	</Tooltip>
+</div>
 <!-- END USAGE -->

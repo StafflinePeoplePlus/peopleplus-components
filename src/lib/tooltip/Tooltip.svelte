@@ -8,7 +8,7 @@
 		states: { open },
 	} = createTooltip({
 		positioning: {
-			placement: 'bottom-start',
+			placement: 'top',
 		},
 		openDelay: 0,
 		closeDelay: 0,
@@ -21,7 +21,7 @@
 	export let tooltipClass = '';
 </script>
 
-<div {...$trigger} class={twMerge('w-fit', className)} use:trigger {...$$restProps}>
+<div class={twMerge('w-fit', className)} {...$trigger} use:trigger>
 	<slot />
 </div>
 
@@ -30,9 +30,9 @@
 		{...$content}
 		use:content
 		transition:fade={{ duration: 100 }}
-		class={twMerge('z-10 rounded-lg bg-white p-2 border', tooltipClass)}
+		class={twMerge('z-10 rounded-lg bg-white shadow p-2', tooltipClass)}
 	>
-		<div {...$arrow} use:arrow class="border-l border-t" />
+		<div {...$arrow} use:arrow class="border-t border-l" />
 		<slot name="tooltip" />
 	</div>
 {/if}
