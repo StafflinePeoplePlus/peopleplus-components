@@ -3,10 +3,23 @@
 	import { fade } from 'svelte/transition';
 	import { twMerge } from 'tailwind-merge';
 
-	export let placement = 'top';
-	export let tooltipClass = '';
-	export { className as class };
+	export let placement:
+		| 'top'
+		| 'top-start'
+		| 'top-end'
+		| 'right'
+		| 'right-start'
+		| 'right-end'
+		| 'bottom'
+		| 'bottom-start'
+		| 'bottom-end'
+		| 'left'
+		| 'left-start'
+		| 'left-end'
+		| undefined = 'top';
+	export let tooltipClass: string | undefined = undefined;
 	let className: string | undefined = undefined;
+	export { className as class };
 
 	const {
 		elements: { trigger, content, arrow },
@@ -31,7 +44,7 @@
 		{...$content}
 		use:content
 		transition:fade={{ duration: 100 }}
-		class={twMerge('z-10 rounded-lg bg-white shadow p-2', tooltipClass)}
+		class={twMerge('z-10 rounded-lg shadow p-2 bg-white', tooltipClass)}
 	>
 		<div {...$arrow} use:arrow class="border-t border-l" />
 		<slot name="tooltip" />

@@ -3,7 +3,7 @@
 </script>
 
 <!-- START USAGE -->
-<Tooltip placement="right" class="mb-10">
+<Tooltip placement="right" class="mb-10" tooltipClass="text-xs rounded">
 	<InputLabel for="example">Password</InputLabel>
 	<div>
 		<input name="example" id="example" type="password" class="rounded border p-2 mt-1" />
@@ -11,7 +11,7 @@
 
 	<div slot="tooltip">
 		Password should contain at least:
-		<ul class="text-sm">
+		<ul>
 			<li>&check; 8 characters in length</li>
 			<li>&check; Lower case letters (a-z)</li>
 			<li>&check; Upper case letters (A-Z)</li>
