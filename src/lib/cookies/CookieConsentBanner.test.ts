@@ -12,7 +12,7 @@ const categories = [
 test('clicking customise shows the categories', async () => {
 	const { getByRole, queryByRole } = render(CookieConsentBanner, { categories });
 
-	const customiseButton = getByRole('button', { name: 'Customise cookies' });
+	const customiseButton = getByRole('button', { name: /Customise cookies/ });
 
 	expect(queryByRole('switch', { name: 'Category 1' })).toBeNull();
 	await fireEvent.click(customiseButton);
@@ -22,7 +22,7 @@ test('clicking customise shows the categories', async () => {
 test('clicking accept all button fires the accept event', async () => {
 	const { getByRole, component } = render(CookieConsentBanner, { categories });
 
-	const button = getByRole('button', { name: 'Accept all cookies' });
+	const button = getByRole('button', { name: /Accept all cookies/ });
 	const onAccept = vi.fn();
 	component.$on('accept', onAccept);
 	await fireEvent.click(button);
@@ -32,9 +32,9 @@ test('clicking accept all button fires the accept event', async () => {
 test('clicking reject all button fires the reject event', async () => {
 	const { getByRole, component } = render(CookieConsentBanner, { categories });
 
-	await fireEvent.click(getByRole('button', { name: 'Customise cookies' }));
+	await fireEvent.click(getByRole('button', { name: /Customise cookies/ }));
 
-	const button = getByRole('button', { name: 'Reject all cookies' });
+	const button = getByRole('button', { name: /Reject all cookies/ });
 	const onReject = vi.fn();
 	component.$on('reject', onReject);
 	await fireEvent.click(button);
@@ -47,7 +47,7 @@ test('clicking save button fires the save event with the correct consent', async
 		consent: { 'category-2': true },
 	});
 
-	await fireEvent.click(getByRole('button', { name: 'Customise cookies' }));
+	await fireEvent.click(getByRole('button', { name: /Customise cookies/ }));
 
 	const button = getByRole('button', { name: 'Save and close' });
 	const onSave = vi.fn((evt: CustomEvent<Record<string, boolean | undefined>>) => evt.detail);
