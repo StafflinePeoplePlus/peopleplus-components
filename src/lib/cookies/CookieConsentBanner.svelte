@@ -6,6 +6,7 @@
 	import type { CookieCategory } from './types';
 	import CookieConsentCategory from './CookieConsentCategory.svelte';
 	import { twMerge } from 'tailwind-merge';
+	import { defaultCookieStrings } from './i18n';
 
 	const dispatch = createEventDispatcher<{
 		save: Record<string, boolean | undefined>;
@@ -16,10 +17,10 @@
 	let className: string | undefined = undefined;
 	export { className as class };
 	export let categories: CookieCategory[];
-	export let cookiePolicy: string | undefined = undefined;
 	export let consent: Record<string, boolean | undefined> = {};
 	export let acceptAction: string | undefined = undefined;
 	export let rejectAction: string | undefined = undefined;
+	export let strings = defaultCookieStrings;
 
 	let expanded = false;
 </script>
@@ -33,11 +34,9 @@
 >
 	<div class="flex flex-col gap-4 md:flex-row md:items-center">
 		<div class="grow">
-			<Typography variant="sub-heading" as="h2">Cookie consent</Typography>
+			<Typography variant="sub-heading" as="h2">{strings.cookieConsent}</Typography>
 			<Typography variant="body" class="mt-3 max-w-prose">
-				We use necessary cookies to make our site work. We'd also like to set analytics cookies that
-				help us make improvements by measuring how you use the site. These will be set only if you
-				accept.
+				{strings.cookiesDescription}
 			</Typography>
 		</div>
 		<div
@@ -50,7 +49,8 @@
 				class="md:w-56"
 				on:click={() => dispatch('accept')}
 			>
-				<span>Accept all <span class="hidden md:inline">cookies</span></span>
+				<span class="md:hidden">{strings.acceptAll}</span>
+				<span class="hidden md:inline">{strings.acceptAllCookies}</span>
 			</Button>
 			<Button
 				class="md:w-56"
@@ -61,9 +61,10 @@
 			>
 				<span>
 					{#if expanded}
-						Cancel
+						{strings.cancel}
 					{:else}
-						Customise <span class="hidden md:inline">cookies</span>
+						<span class="md:hidden">{strings.customise}</span>
+						<span class="hidden md:inline">{strings.customiseCookies}</span>
 					{/if}
 				</span>
 			</Button>
@@ -71,14 +72,7 @@
 	</div>
 	{#if expanded}
 		<div transition:slide class="max-w-prose" id="consent-content">
-			{#if cookiePolicy}
-				<Typography variant="body" class="mt-4">
-					For more detailed information about the cookies we use, see our <a
-						href={cookiePolicy}
-						class="font-semibold text-primary-500 hover:underline">Cookie policy</a
-					>.
-				</Typography>
-			{/if}
+			<slot />
 
 			<div class="divide-y dark:divide-gray-700">
 				<div class="mb-8">
@@ -89,7 +83,8 @@
 							formaction={acceptAction}
 							on:click={() => dispatch('accept')}
 						>
-							<span>Accept all <span class="hidden md:inline">cookies</span></span>
+							<span class="md:hidden">{strings.acceptAll}</span>
+							<span class="hidden md:inline">{strings.acceptAllCookies}</span>
 						</Button>
 						<Button
 							variant="secondary"
@@ -97,7 +92,8 @@
 							formaction={rejectAction}
 							on:click={() => dispatch('reject')}
 						>
-							<span>Reject all <span class="hidden md:inline">cookies</span></span>
+							<span class="md:hidden">{strings.rejectAll}</span>
+							<span class="hidden md:inline">{strings.rejectAllCookies}</span>
 						</Button>
 					</div>
 				</div>
@@ -105,6 +101,7 @@
 				{#each categories as category}
 					<CookieConsentCategory
 						class="py-6 last:pb-0"
+						{strings}
 						name={category.name}
 						title={category.title}
 						body={category.body}
@@ -123,7 +120,7 @@
 							dispatch('save', consent);
 						}}
 					>
-						Save and close
+						{strings.saveAndClose}
 					</Button>
 					<Button
 						class="md:hidden"
@@ -133,7 +130,7 @@
 							expanded = false;
 						}}
 					>
-						Cancel
+						{strings.cancel}
 					</Button>
 				</div>
 			</div>
