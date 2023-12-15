@@ -4,6 +4,7 @@
 	import { createEventDispatcher } from 'svelte';
 	import CookieConsentCategory from './CookieConsentCategory.svelte';
 	import type { CookieCategory } from './types';
+	import { defaultCookieStrings } from './i18n';
 
 	const dispatch = createEventDispatcher<{
 		save: Record<string, boolean | undefined>;
@@ -11,28 +12,20 @@
 
 	export let categories: CookieCategory[];
 	export let consent: Record<string, boolean | undefined>;
-	export let cookiePolicy: string | undefined = undefined;
+	export let strings = defaultCookieStrings;
 </script>
 
 <header class="mb-8">
-	<Typography variant="heading" as="h1">Manage Cookies</Typography>
+	<Typography variant="heading" as="h1">{strings.manageCookies}</Typography>
 	<Typography variant="body-lg" class="mt-3">
-		We use necessary cookies to make our site work. We'd also like to set analytics cookies that
-		help us make improvements by measuring how you use the site. These will be set only if you
-		accept.
+		{strings.cookiesDescription}
 	</Typography>
-	{#if cookiePolicy}
-		<Typography variant="body" class="mt-4">
-			For more detailed information about the cookies we use, see our <a
-				href={cookiePolicy}
-				class="font-semibold text-primary-600 hover:underline">Cookie policy</a
-			>.
-		</Typography>
-	{/if}
+	<slot />
 </header>
 <div class="space-y-8">
 	{#each categories as category}
 		<CookieConsentCategory
+			{strings}
 			name={category.name}
 			title={category.title}
 			body={category.body}
@@ -50,6 +43,6 @@
 		on:click={() => dispatch('save', consent)}
 		class="w-full sm:w-auto"
 	>
-		Save changes
+		{strings.saveChanges}
 	</Button>
 </div>

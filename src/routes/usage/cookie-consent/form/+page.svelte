@@ -40,6 +40,6 @@
 
 <!-- START USAGE -->
 <Card class="mt-4 max-w-prose p-6">
-	<CookieConsentManagement {categories} bind:consent cookiePolicy="/" />
+	<CookieConsentManagement {categories} bind:consent />
 </Card>
 <!-- END USAGE -->

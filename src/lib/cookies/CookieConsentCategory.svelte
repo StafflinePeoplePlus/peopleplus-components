@@ -2,6 +2,7 @@
 	import Typography from '$lib/Typography.svelte';
 	import Switch from '$lib/forms/Switch.svelte';
 	import CookiesTable from './CookiesTable.svelte';
+	import { defaultCookieStrings } from './i18n';
 	import type { CookieDescription } from './types';
 
 	let className: string | undefined = undefined;
@@ -13,6 +14,8 @@
 	export let checked = required;
 	export let cookies: CookieDescription[] = [];
 	export let expanded = false;
+
+	export let strings = defaultCookieStrings;
 </script>
 
 <section class={className}>
@@ -33,13 +36,13 @@
 	</Typography>
 	{#if cookies.length > 0}
 		{#if expanded}
-			<CookiesTable {cookies} class="mt-4 w-full" />
+			<CookiesTable {strings} {cookies} class="mt-4 w-full" />
 		{:else}
 			<details class="mt-3">
 				<summary
 					class="inline-flex cursor-pointer list-none items-center gap-0.5 text-sm font-medium text-primary-700 hover:underline dark:text-primary-400"
 				>
-					View Cookies
+					{strings.viewCookies}
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						viewBox="0 0 20 20"
@@ -55,7 +58,7 @@
 					</svg>
 				</summary>
 
-				<CookiesTable {cookies} class="mt-2 w-full" />
+				<CookiesTable {strings} {cookies} class="mt-2 w-full" />
 			</details>
 		{/if}
 	{/if}
