@@ -1,5 +1,13 @@
 # pp-svelte-components
 
+## 0.0.36
+
+### Patch Changes
+
+- 618202b: add ability to change/translate the cookie consent text
+- c6d0a4a: Add a tooltip as an interactive overlay that presents details about a component when it is on keyboard focus or hovered, and the position to be configurable.
+- f4d8590: Fix stepper border radius for consistency
+
 ## 0.0.35
 
 ### Patch Changes
