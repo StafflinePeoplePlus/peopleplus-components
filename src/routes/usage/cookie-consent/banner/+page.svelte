@@ -52,7 +52,6 @@
 	<CookieConsentBanner
 		class="absolute"
 		{categories}
-		cookiePolicy="/"
 		bind:consent
 		on:accept={() => {
 			consent = { neccesary: true, analytics: true };
