@@ -45,11 +45,11 @@
 	],
 	"dependencies": {
 		"@floating-ui/core": "^1.5.0",
-		"@melt-ui/svelte": "^0.65.0",
+		"@melt-ui/svelte": "^0.66.0",
 		"esm-env": "^1.0.0",
 		"just-debounce-it": "^3.2.0",
 		"just-throttle": "^4.2.0",
-		"lucide-svelte": "^0.297.0",
+		"lucide-svelte": "^0.298.0",
 		"svelte-headlessui": "^0.0.32",
 		"tailwind-merge": "^2.0.0"
 	},
