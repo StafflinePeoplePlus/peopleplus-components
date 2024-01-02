@@ -94,7 +94,7 @@
 		"vite-plugin-istanbul": "^5.0.0",
 		"vitest": "^1.1.1",
 		"vitest-dom": "^0.1.1",
-		"wrangler": "^3.2.0"
+		"wrangler": "^3.22.1"
 	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",
