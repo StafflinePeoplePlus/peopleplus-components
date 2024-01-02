@@ -62,7 +62,7 @@
 							}
 						},
 					},
-			  })
+				})
 			: null;
 
 	$: if (player?.setVolume) {
