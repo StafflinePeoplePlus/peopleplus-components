@@ -18,7 +18,7 @@
 	$: popoverPanel = $screenMd
 		? () => {
 				// Do nothing
-		  }
+			}
 		: popover.panel;
 	$: showHamburger = $$slots.middle || $$slots.end;
 </script>

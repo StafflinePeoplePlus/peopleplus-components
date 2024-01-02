@@ -30,7 +30,7 @@ export default defineConfig({
 						extension: ['.js', '.ts', '.svelte'],
 						forceBuildInstrument: true,
 					}),
-			  ]
+				]
 			: []),
 		codeUsage(),
 	],
