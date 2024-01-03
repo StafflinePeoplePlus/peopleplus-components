@@ -30,7 +30,7 @@ export default defineConfig({
 						extension: ['.js', '.ts', '.svelte'],
 						forceBuildInstrument: true,
 					}),
-			  ]
+				]
 			: []),
 		codeUsage(),
 	],
@@ -94,7 +94,7 @@ function codeUsage() {
 				});
 
 				const imports = id.slice(('\0' + usageVirtual).length).split(',');
-				const code = `import { ${imports.join(', ')} } from 'pp-svelte-components';`;
+				const code = `import { ${imports.join(', ')} } from '@peopleplus/components';`;
 				const highlighted = highlighter.codeToHtml(code, { lang: 'typescript' });
 				return `export const html = ${JSON.stringify(highlighted)};
 						export const text = ${JSON.stringify(code)};`;
@@ -108,7 +108,7 @@ function codeUsage() {
 					encoding: 'utf8',
 				});
 				const highlighter = await getHighlighter({ theme: 'github-dark-dimmed' });
-				const code = extractUsage(contents).replaceAll('$lib', 'pp-svelte-components');
+				const code = extractUsage(contents).replaceAll('$lib', '@peopleplus/components');
 				const highlighted = highlighter.codeToHtml(code, { lang: lang });
 
 				return {
