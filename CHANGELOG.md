@@ -1,4 +1,4 @@
-# pp-svelte-components
+# @peopleplus/components
 
 ## 0.0.36
 
