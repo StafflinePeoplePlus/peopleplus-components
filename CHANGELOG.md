@@ -1,5 +1,11 @@
 # @peopleplus/components
 
+## 0.1.0
+
+### Minor Changes
+
+- 503e607: move package into peopleplus npm organisation
+
 ## 0.0.36
 
 ### Patch Changes
