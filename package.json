@@ -60,7 +60,7 @@
 		"@changesets/cli": "^2.26.2",
 		"@cloudflare/workers-types": "^4.20230511.0",
 		"@playwright/test": "^1.33.0",
-		"@sveltejs/adapter-cloudflare": "^3.0.1",
+		"@sveltejs/adapter-cloudflare": "^4.1.0",
 		"@sveltejs/kit": "^2.0.6",
 		"@sveltejs/package": "^2.2.5",
 		"@sveltejs/vite-plugin-svelte": "^3.0.1",
