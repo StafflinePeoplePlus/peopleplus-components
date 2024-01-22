@@ -2,7 +2,7 @@
 	import { createCollapsible } from '@melt-ui/svelte';
 	import { slide } from 'svelte/transition';
 	import { actions, type UseActions } from '$lib/actions';
-	import { ChevronDown } from 'lucide-svelte';
+	import ChevronDown from 'lucide-svelte/icons/chevron-down';
 	import { twMerge } from 'tailwind-merge';
 
 	const {
@@ -16,16 +16,16 @@
 	export let use: UseActions = [];
 </script>
 
-<div class={twMerge('bg-white shadow rounded-xl', className)} use:actions={use} {...$$restProps}>
+<div class={twMerge('rounded-xl bg-white shadow', className)} use:actions={use} {...$$restProps}>
 	<div {...$root} use:root>
 		<div
-			class="flex hover:cursor-pointer hover:bg-gray-50 rounded-xl justify-between"
+			class="flex justify-between rounded-xl hover:cursor-pointer hover:bg-gray-50"
 			{...$trigger}
 			use:trigger
 		>
 			<slot name="label" />
 			<div
-				class={twMerge('place-self-end sm:place-self-center max-sm:mb-2 mx-3', iconClass)}
+				class={twMerge('mx-3 place-self-end max-sm:mb-2 sm:place-self-center', iconClass)}
 				class:rotate-180={$open}
 			>
 				<ChevronDown />
