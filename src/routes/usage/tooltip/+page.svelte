@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Button, Tooltip } from '$lib';
-	import { BookmarkPlus } from 'lucide-svelte';
+	import BookmarkPlus from 'lucide-svelte/icons/bookmark-plus';
 </script>
 
 <!-- START USAGE -->

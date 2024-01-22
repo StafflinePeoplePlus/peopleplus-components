@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { NavBar, NavBarNav, NavItem, TextInput, InputArea } from '$lib';
-	import { SearchIcon } from 'lucide-svelte';
+	import SearchIcon from 'lucide-svelte/icons/search';
 </script>
 
 <!-- START USAGE -->
