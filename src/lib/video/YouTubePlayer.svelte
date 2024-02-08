@@ -62,7 +62,7 @@
 							}
 						},
 					},
-				})
+			  })
 			: null;
 
 	$: if (player?.setVolume) {
@@ -87,7 +87,7 @@
 		playing = false;
 	}
 	function onTimeUpdate() {
-		if (!player) return;
+		if (!player || typeof player.getCurrentTime !== 'function') return;
 		playerTime = currentTime = player.getCurrentTime();
 		dispatchEvent('timeupdate', currentTime);
 	}
