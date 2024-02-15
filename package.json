@@ -14,6 +14,7 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
+		"build:coverage": "env VITE_COVERAGE=true vite build",
 		"preview": "wrangler pages dev --port 4173 --compatibility-date=2023-05-18 .svelte-kit/cloudflare/",
 		"package": "svelte-kit sync && svelte-package && publint",
 		"prepublishOnly": "npm run package",
@@ -26,7 +27,7 @@
 		"test:unit-coverage": "vitest run --coverage",
 		"lint": "prettier --plugin prettier-plugin-svelte --check . && eslint . && npm run check",
 		"format": "prettier --plugin prettier-plugin-svelte --write .",
-		"merge-coverage": "istanbul report -v --include='coverage/**/coverage-final.json' json-summary"
+		"merge-coverage": "cp coverage/playwright/coverage-final.json coverage/coverage-playwright.json && cp coverage/vitest/coverage-final.json coverage/coverage-vitest.json && npx nyc@14 report -r json -r json-summary -r html -r text -t coverage --report-dir coverage/summary"
 	},
 	"exports": {
 		".": {
@@ -75,7 +76,6 @@
 		"eslint": "^8.44.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.32.0",
-		"istanbul": "^0.4.5",
 		"jsdom": "^24.0.0",
 		"nyc": "^15.1.0",
 		"playwright-test-coverage": "^1.2.12",

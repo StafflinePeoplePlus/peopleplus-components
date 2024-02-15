@@ -75,7 +75,7 @@ jobs:
       - name: Extract coverage summary
         uses: antifree/json-to-variables@v1.0.1
         with:
-          filename: 'coverage/coverage-summary.json'
+          filename: 'coverage/summary/coverage-summary.json'
           prefix: coverage_summary
 
       - name: Upload test coverage (lines)
