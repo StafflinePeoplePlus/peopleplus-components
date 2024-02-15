@@ -89,13 +89,16 @@ function codeUsage() {
 		async load(id: string) {
 			if (id.startsWith('\0' + usageVirtual)) {
 				const highlighter = await getHighlighter({
-					theme: 'github-dark-dimmed',
+					themes: ['github-dark-dimmed'],
 					langs: ['typescript'],
 				});
 
 				const imports = id.slice(('\0' + usageVirtual).length).split(',');
 				const code = `import { ${imports.join(', ')} } from '@peopleplus/components';`;
-				const highlighted = highlighter.codeToHtml(code, { lang: 'typescript' });
+				const highlighted = highlighter.codeToHtml(code, {
+					theme: 'github-dark-dimmed',
+					lang: 'typescript',
+				});
 				return `export const html = ${JSON.stringify(highlighted)};
 						export const text = ${JSON.stringify(code)};`;
 			}
@@ -107,9 +110,16 @@ function codeUsage() {
 				const contents = await readFile(filePath, {
 					encoding: 'utf8',
 				});
-				const highlighter = await getHighlighter({ theme: 'github-dark-dimmed' });
+				const highlighter = await getHighlighter({
+					themes: ['github-dark-dimmed'],
+					langs: ['typescript', 'svelte'],
+				});
+
 				const code = extractUsage(contents).replaceAll('$lib', '@peopleplus/components');
-				const highlighted = highlighter.codeToHtml(code, { lang: lang });
+				const highlighted = highlighter.codeToHtml(code, {
+					theme: 'github-dark-dimmed',
+					lang: lang,
+				});
 
 				return {
 					code: `export const html = ${JSON.stringify(highlighted)};
