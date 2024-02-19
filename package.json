@@ -81,7 +81,7 @@
 		"playwright-test-coverage": "^1.2.12",
 		"postcss": "^8.4.21",
 		"prettier": "~3.2.5",
-		"prettier-plugin-svelte": "~3.1.2",
+		"prettier-plugin-svelte": "~3.2.1",
 		"prettier-plugin-tailwindcss": "^0.5.10",
 		"publint": "^0.2.0",
 		"shiki": "^1.1.2",
