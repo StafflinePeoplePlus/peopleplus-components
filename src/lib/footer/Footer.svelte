@@ -11,29 +11,27 @@
 	export let use: UseActions = [];
 </script>
 
-<div
+<footer
 	class={twMerge(
-		'max-w-screen-2xl bg-white p-4 text-sm dark:bg-gray-800 sm:p-10 2xl:mx-auto',
+		'max-w-screen-2xl bg-white p-2 text-sm dark:bg-gray-800 sm:p-10 2xl:mx-auto',
 		className,
 	)}
 	use:actions={use}
 	{...$$restProps}
 >
-	<div class={'justify-between lg:flex'}>
-		<div class={twMerge('flex w-full md:w-auto', startClass)}>
+	<div class="md:flex flex-row">
+		<div class={twMerge('md:basis-1/2 p-4', startClass)}>
 			<slot name="start" />
 		</div>
-		<div class={'md:contents md:w-auto'}>
-			<div class={twMerge('max-lg:my-5', middleClass)}>
-				<slot name="middle" />
-			</div>
-			<div class={endClass}>
-				<slot name="end" />
-			</div>
+		<div class={twMerge('md:basis-1/3 p-4', middleClass)}>
+			<slot name="middle" />
+		</div>
+		<div class={twMerge('md:basis-1/4 p-4', endClass)}>
+			<slot name="end" />
 		</div>
 	</div>
 
-	<div class={twMerge('mt-5 border-t border-gray-100 pt-5 dark:border-gray-700', bottomClass)}>
+	<div class={twMerge('mt-4 border-t border-gray-100 pt-5 dark:border-gray-700', bottomClass)}>
 		<slot name="bottom" />
 	</div>
-</div>
+</footer>

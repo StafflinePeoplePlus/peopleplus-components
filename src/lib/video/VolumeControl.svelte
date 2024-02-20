@@ -1,5 +1,7 @@
 <script lang="ts">
-	import { Volume1Icon, Volume2Icon, VolumeXIcon } from 'lucide-svelte';
+	import Volume1Icon from 'lucide-svelte/icons/volume-1';
+	import Volume2Icon from 'lucide-svelte/icons/volume-2';
+	import VolumeXIcon from 'lucide-svelte/icons/volume-x';
 	import VerticalRange from './VerticalRange.svelte';
 
 	export let volume = 1;
