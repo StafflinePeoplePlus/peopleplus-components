@@ -1,5 +1,12 @@
 # @peopleplus/components
 
+## 0.1.1
+
+### Patch Changes
+
+- 8ba3c7f: import lucide icons directly for faster build times
+- 8307712: Fixing the footer flex basis ratio to fix the email overlap bug.
+
 ## 0.1.0
 
 ### Minor Changes
