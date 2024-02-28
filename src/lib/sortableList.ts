@@ -128,6 +128,9 @@ export function createSortableList(opts: SortableOpts = {}): SortableList {
 					items.delete(id);
 				},
 				addEventListener(el, 'dragstart', (evt) => {
+					// Allow nested sortables to take precedence over their parents
+					evt.stopPropagation();
+
 					el.style.opacity = '0.5';
 
 					const scrollArea = getScrollArea(el, axis);

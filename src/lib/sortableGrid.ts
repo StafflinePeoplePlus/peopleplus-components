@@ -48,7 +48,9 @@ export function createSortableGrid(opts: SortableGridOpts = {}): SortableGrid {
 					el.removeAttribute('draggable');
 					el.style.removeProperty('opacity');
 				},
-				addEventListener(el, 'dragstart', () => {
+				addEventListener(el, 'dragstart', (evt) => {
+					// Allow nested sortables to take precedence over their parents
+					evt.stopPropagation();
 					el.style.opacity = '0.5';
 					draggingId = id;
 					dragging.set(true);
