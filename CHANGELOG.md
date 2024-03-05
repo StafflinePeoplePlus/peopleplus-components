@@ -1,5 +1,11 @@
 # @peopleplus/components
 
+## 0.1.2
+
+### Patch Changes
+
+- 3bf27aa: support nested sortable grid/lists, with child sortables taking precedence
+
 ## 0.1.1
 
 ### Patch Changes
