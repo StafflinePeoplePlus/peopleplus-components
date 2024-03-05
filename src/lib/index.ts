@@ -3,6 +3,7 @@ export * from './actions';
 export * from './breadcrumbs';
 export * from './cookies';
 export * from './dropdownMenu';
+export * from './floating';
 export * from './forms';
 export * from './loader';
 export * from './navbar';

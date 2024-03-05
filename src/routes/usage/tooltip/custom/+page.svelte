@@ -3,11 +3,9 @@
 </script>
 
 <!-- START USAGE -->
-<Tooltip placement="right" class="mb-10" tooltipClass="text-xs rounded">
-	<InputLabel for="example">Password</InputLabel>
-	<div>
-		<input name="example" id="example" type="password" class="rounded border p-2 mt-1" />
-	</div>
+<InputLabel for="example">Password</InputLabel>
+<Tooltip placement="right" tooltipClass="text-xs rounded" closeOnPointerDown={false}>
+	<input name="example" id="example" type="password" class="mt-1 rounded border p-2" />
 
 	<div slot="tooltip">
 		Password should contain at least:
