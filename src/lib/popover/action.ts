@@ -1,14 +1,12 @@
 import { createPopover as createMeltPopover } from '@melt-ui/svelte';
+import type { FloatingPlacement, FloatingStrategy } from '../floating';
 
-type Alignment = 'start' | 'end';
-type Side = 'top' | 'right' | 'bottom' | 'left';
-type AlignedPlacement = `${Side}-${Alignment}`;
-export type Placement = Side | AlignedPlacement;
-export type Strategy = 'absolute' | 'fixed';
+// for backwards compatibility
+export type { FloatingPlacement as Placement, FloatingStrategy as Strategy };
 
 export type PopoverOptions = {
-	placement?: Placement;
-	strategy?: Strategy;
+	placement?: FloatingPlacement;
+	strategy?: FloatingStrategy;
 };
 export type PopoverInstance = ReturnType<typeof createPopover>;
 export function createPopover({ placement = 'top', strategy = 'absolute' }: PopoverOptions = {}) {
