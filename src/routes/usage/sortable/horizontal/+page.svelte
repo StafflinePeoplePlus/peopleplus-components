@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { Button, createSortableList, reorderList } from '$lib';
-	import { crossfade } from 'svelte/transition';
-	import { twMerge } from 'tailwind-merge';
+	import GripVerticalIcon from 'lucide-svelte/icons/grip-vertical';
 	import { flip } from 'svelte/animate';
 	import { writable } from 'svelte/store';
-	import { GripVerticalIcon } from 'lucide-svelte';
+	import { crossfade } from 'svelte/transition';
+	import { twMerge } from 'tailwind-merge';
 
 	let items = Array.from({ length: 20 }).map((_, i) => ({
 		id: i.toString(),

@@ -1,5 +1,8 @@
 <script lang="ts">
-	import { AlertCircle, CheckCircleIcon, XCircleIcon, XIcon } from 'lucide-svelte';
+	import AlertCircle from 'lucide-svelte/icons/circle-alert';
+	import CheckCircleIcon from 'lucide-svelte/icons/circle-check';
+	import XCircleIcon from 'lucide-svelte/icons/circle-x';
+	import XIcon from 'lucide-svelte/icons/x';
 	import { createEventDispatcher, onMount } from 'svelte';
 	import { fly, slide } from 'svelte/transition';
 	import { twMerge } from 'tailwind-merge';

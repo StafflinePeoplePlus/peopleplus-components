@@ -1,6 +1,7 @@
 <script lang="ts">
 	import debounce from 'just-debounce-it';
-	import { PauseIcon, PlayIcon } from 'lucide-svelte';
+	import PauseIcon from 'lucide-svelte/icons/pause';
+	import PlayIcon from 'lucide-svelte/icons/play';
 	import { createEventDispatcher } from 'svelte';
 	import { twJoin, twMerge } from 'tailwind-merge';
 

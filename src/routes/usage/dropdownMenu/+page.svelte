@@ -6,7 +6,10 @@
 		DropdownMenuItem,
 		createDropdownMenu,
 	} from '$lib';
-	import { EyeIcon, MoreHorizontalIcon, PenIcon, Trash2Icon } from 'lucide-svelte';
+	import MoreHorizontalIcon from 'lucide-svelte/icons/ellipsis';
+	import EyeIcon from 'lucide-svelte/icons/eye';
+	import PenIcon from 'lucide-svelte/icons/pen';
+	import Trash2Icon from 'lucide-svelte/icons/trash-2';
 
 	const { trigger, menu } = createDropdownMenu();
 </script>

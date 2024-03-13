@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { actions, type UseActions } from '$lib/actions';
 	import { createCollapsible } from '@melt-ui/svelte';
-	import { ChevronDown } from 'lucide-svelte';
+	import ChevronDown from 'lucide-svelte/icons/square-chevron-down';
 	import { slide } from 'svelte/transition';
 	import { twMerge } from 'tailwind-merge';
 
