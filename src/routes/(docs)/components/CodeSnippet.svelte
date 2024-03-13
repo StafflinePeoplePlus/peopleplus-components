@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { ClipboardCheckIcon } from 'lucide-svelte';
-	import { ClipboardIcon } from 'lucide-svelte';
+	import { ClipboardCheckIcon, ClipboardIcon } from 'lucide-svelte';
 	import { twMerge } from 'tailwind-merge';
 
 	let className = '';

@@ -1,11 +1,13 @@
 <script lang="ts">
 	import { Avatar, Sidebar, SidebarItem } from '$lib';
-	import { BellIcon } from 'lucide-svelte';
-	import { HomeIcon } from 'lucide-svelte';
-	import { ListTodo } from 'lucide-svelte';
-	import { LogOutIcon } from 'lucide-svelte';
-	import { MessagesSquareIcon } from 'lucide-svelte';
-	import { SettingsIcon } from 'lucide-svelte';
+	import {
+		BellIcon,
+		HomeIcon,
+		ListTodo,
+		LogOutIcon,
+		MessagesSquareIcon,
+		SettingsIcon,
+	} from 'lucide-svelte';
 </script>
 
 <div

@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { MaximizeIcon } from 'lucide-svelte';
-	import { MinimizeIcon } from 'lucide-svelte';
+	import { MaximizeIcon, MinimizeIcon } from 'lucide-svelte';
 	import { onMount } from 'svelte';
 
 	export let fullscreen = false;
