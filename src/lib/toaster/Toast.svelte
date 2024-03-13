@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { slide, fly } from 'svelte/transition';
-	import type { ToastMessage } from './types';
-	import { twMerge } from 'tailwind-merge';
-	import { onMount, createEventDispatcher } from 'svelte';
-	import XCircleIcon from 'lucide-svelte/icons/x-circle';
-	import CheckCircleIcon from 'lucide-svelte/icons/check-circle';
+	import AlertCircle from 'lucide-svelte/icons/circle-alert';
+	import CheckCircleIcon from 'lucide-svelte/icons/circle-check';
+	import XCircleIcon from 'lucide-svelte/icons/circle-x';
 	import XIcon from 'lucide-svelte/icons/x';
-	import AlertCircle from 'lucide-svelte/icons/alert-circle';
+	import { createEventDispatcher, onMount } from 'svelte';
+	import { fly, slide } from 'svelte/transition';
+	import { twMerge } from 'tailwind-merge';
+	import type { ToastMessage } from './types';
 
 	const dispatch = createEventDispatcher<{ dismiss: undefined }>();
 	export let toast: ToastMessage;
