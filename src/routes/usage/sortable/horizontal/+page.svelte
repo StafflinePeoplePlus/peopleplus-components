@@ -4,7 +4,7 @@
 	import { twMerge } from 'tailwind-merge';
 	import { flip } from 'svelte/animate';
 	import { writable } from 'svelte/store';
-	import GripVerticalIcon from 'lucide-svelte/icons/grip-vertical';
+	import { GripVerticalIcon } from 'lucide-svelte';
 
 	let items = Array.from({ length: 20 }).map((_, i) => ({
 		id: i.toString(),

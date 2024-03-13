@@ -3,10 +3,10 @@
 	import type { ToastMessage } from './types';
 	import { twMerge } from 'tailwind-merge';
 	import { onMount, createEventDispatcher } from 'svelte';
-	import XCircleIcon from 'lucide-svelte/icons/x-circle';
-	import CheckCircleIcon from 'lucide-svelte/icons/check-circle';
-	import XIcon from 'lucide-svelte/icons/x';
-	import AlertCircle from 'lucide-svelte/icons/alert-circle';
+	import { XCircleIcon } from 'lucide-svelte';
+	import { CheckCircleIcon } from 'lucide-svelte';
+	import { XIcon } from 'lucide-svelte';
+	import { AlertCircle } from 'lucide-svelte';
 
 	const dispatch = createEventDispatcher<{ dismiss: undefined }>();
 	export let toast: ToastMessage;
