@@ -3,12 +3,14 @@
 	import BookmarkPlus from 'lucide-svelte/icons/bookmark-plus';
 </script>
 
-<!-- START USAGE -->
-<Tooltip class="my-5">
-	<Button href="/">
-		<BookmarkPlus />
-	</Button>
+<div class="mt-8 flex justify-center">
+	<!-- START USAGE -->
+	<Tooltip>
+		<div slot="tooltip">Save Bookmark</div>
 
-	<div slot="tooltip">Save Bookmark</div>
-</Tooltip>
-<!-- END USAGE -->
+		<Button>
+			<BookmarkPlus />
+		</Button>
+	</Tooltip>
+	<!-- END USAGE -->
+</div>
