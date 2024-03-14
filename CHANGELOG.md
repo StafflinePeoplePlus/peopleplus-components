@@ -1,5 +1,15 @@
 # @peopleplus/components
 
+## 0.2.0
+
+### Minor Changes
+
+- 855f8a0: support dark mode on tooltips, improve default behaviour whilst making it configurable
+
+### Patch Changes
+
+- 4a20b15: Update lucide-svelte icon paths
+
 ## 0.1.2
 
 ### Patch Changes
