@@ -12,10 +12,7 @@
 </script>
 
 <footer
-	class={twMerge(
-		'max-w-screen-2xl bg-white p-2 text-sm dark:bg-gray-800 sm:p-10 2xl:mx-auto',
-		className,
-	)}
+	class={twMerge('bg-white p-2 text-sm dark:bg-gray-800 sm:p-10', className)}
 	use:actions={use}
 	{...$$restProps}
 >
