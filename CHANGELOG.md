@@ -1,5 +1,11 @@
 # @peopleplus/components
 
+## 0.2.1
+
+### Patch Changes
+
+- 972e49d: Remove the width restriction from footer
+
 ## 0.2.0
 
 ### Minor Changes
