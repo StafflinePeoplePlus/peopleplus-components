@@ -6,6 +6,7 @@
 	import * as horizontalUsage from '../../../usage/sortable/horizontal/+page.svelte?usage';
 	import * as verticalUsage from '../../../usage/sortable/vertical/+page.svelte?usage';
 	import * as gridUsage from '../../../usage/sortable/grid/+page.svelte?usage';
+	import * as gridWithHandleUsage from '../../../usage/sortable/grid-with-handle/+page.svelte?usage';
 	import * as importUsage from 'virtual:usage/createSortableList,createSortableGrid';
 </script>
 
@@ -31,5 +32,11 @@
 			frameHeight={400}
 		/>
 		<UsageSection title="Grid" src="/usage/sortable/grid" code={gridUsage} frameHeight={400} />
+		<UsageSection
+			title="Grid w/ Drag Handle"
+			src="/usage/sortable/grid-with-handle"
+			code={gridWithHandleUsage}
+			frameHeight={400}
+		/>
 	</div>
 </div>
