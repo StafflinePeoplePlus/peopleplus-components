@@ -8,6 +8,7 @@
 	export let middleClass = '';
 	export let endClass = '';
 	export let bottomClass = '';
+	export let topClass = '';
 	export let use: UseActions = [];
 </script>
 
@@ -16,7 +17,7 @@
 	use:actions={use}
 	{...$$restProps}
 >
-	<div class="md:flex flex-row">
+	<div class={twMerge('md:flex flex-row', topClass)}>
 		<div class={twMerge('md:basis-1/2 p-4', startClass)}>
 			<slot name="start" />
 		</div>
