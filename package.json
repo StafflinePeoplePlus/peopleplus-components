@@ -2,7 +2,7 @@
 	"name": "@peopleplus/components",
 	"description": "A collection of Svelte components using tailwind.",
 	"license": "MIT",
-	"version": "0.2.1",
+	"version": "0.3.0",
 	"homepage": "https://peopleplus-components.pages.dev",
 	"repository": {
 		"type": "git",
@@ -50,7 +50,7 @@
 		"esm-env": "^1.0.0",
 		"just-debounce-it": "^3.2.0",
 		"just-throttle": "^4.2.0",
-		"lucide-svelte": "^0.367.0",
+		"lucide-svelte": "^0.359.0",
 		"svelte-headlessui": "^0.0.33",
 		"tailwind-merge": "^2.0.0"
 	},
