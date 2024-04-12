@@ -1,5 +1,11 @@
 # @peopleplus/components
 
+## 0.3.1
+
+### Patch Changes
+
+- 67833a6: Add topClass prop in the footer to allow changes on breakpoint
+
 ## 0.3.0
 
 ### Minor Changes
