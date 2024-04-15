@@ -4,6 +4,7 @@ export const components = [
 	{ name: 'Banner' },
 	{ name: 'Breadcrumbs' },
 	{ name: 'Button' },
+	{ name: 'Calendar' },
 	{ name: 'Card' },
 	{ name: 'Carousel' },
 	{ name: 'Chip' },

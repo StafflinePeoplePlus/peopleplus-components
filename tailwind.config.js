@@ -17,5 +17,9 @@ export default {
 			},
 		},
 	},
-	plugins: [require('@tailwindcss/typography'), ppSvelteComponents()],
+	plugins: [
+		require('@tailwindcss/typography'),
+		require('@tailwindcss/container-queries'),
+		ppSvelteComponents(),
+	],
 };
