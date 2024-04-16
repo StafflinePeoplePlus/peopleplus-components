@@ -18,7 +18,7 @@
 		class?: string;
 		variant?: keyof typeof variants;
 		use?: UseActions;
-		icon?: boolean;
+		icon?: boolean | 'default' | 'md' | 'sm';
 	};
 	type $$Props =
 		| (Props & { href: string } & SvelteHTMLElements['a'])
@@ -29,7 +29,13 @@
 	export let href: string | undefined = undefined;
 	export let variant: $$Props['variant'] = undefined;
 	export let use: UseActions = [];
-	export let icon = false;
+	export let icon: $$Props['icon'] = false;
+
+	const iconClasses = {
+		default: 'h-12 w-12 text-2xl',
+		md: 'h-10 w-10 text-lg',
+		sm: 'h-8 w-8 text-base',
+	};
 </script>
 
 <svelte:element
@@ -38,7 +44,7 @@
 	class={twMerge(
 		'inline-flex items-center justify-center rounded-lg border border-transparent text-center text-base font-medium transition focus:outline-none focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-500',
 		variants[variant ?? 'primary'],
-		icon ? 'h-12 w-12 text-2xl' : 'px-4 py-2',
+		icon ? iconClasses[icon === true ? 'default' : icon] : 'px-4 py-2',
 		className,
 	)}
 	role={href ? 'link' : 'button'}
