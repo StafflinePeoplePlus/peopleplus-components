@@ -4,6 +4,7 @@
 	import PageHeader from '../PageHeader.svelte';
 	import UsageSection from '../UsageSection.svelte';
 	import * as defaultUsage from '../../../usage/calendar/+page.svelte?usage';
+	import * as interactiveUsage from '../../../usage/calendar/interactive/+page.svelte?usage';
 	import * as importUsage from 'virtual:usage/Calendar';
 </script>
 
@@ -15,5 +16,6 @@
 
 	<div class="space-y-8">
 		<UsageSection title="Default" src="/usage/calendar" code={defaultUsage} />
+		<UsageSection title="Interactive" src="/usage/calendar/interactive" code={interactiveUsage} />
 	</div>
 </div>

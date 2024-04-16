@@ -14,6 +14,7 @@ export * from './video';
 export * from './sidebar';
 export * from './sortableList';
 export * from './sortableGrid';
+export * from './calendar';
 export { default as Avatar } from './Avatar.svelte';
 export { default as BackgroundImage } from './BackgroundImage.svelte';
 export { default as Banner } from './banner/Banner.svelte';

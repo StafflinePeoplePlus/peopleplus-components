@@ -1,26 +1,26 @@
 <script lang="ts">
 	import Calendar from '$lib/calendar/Calendar.svelte';
-	import { CalendarDate } from '@internationalized/date';
+	import { CalendarDate } from '$lib/date';
 
 	const entries = [
 		{
-			from: new Date('2024-04-12'),
-			to: new Date('2024-04-26'),
+			from: new CalendarDate(2024, 4, 12),
+			to: new CalendarDate(2024, 4, 26),
 			item: { icon: '🍔', name: 'Eating Burgers!' },
 		},
 		{
-			from: new Date('2024-04-10'),
-			to: new Date('2024-04-12'),
+			from: new CalendarDate(2024, 4, 10),
+			to: new CalendarDate(2024, 4, 12),
 			item: { icon: '🌮', name: 'Eating Tacos!' },
 		},
 		{
-			from: new Date('2024-03-28'),
-			to: new Date('2024-04-03'),
+			from: new CalendarDate(2024, 3, 28),
+			to: new CalendarDate(2024, 4, 3),
 			item: { icon: '🥩', name: 'Eating Steak!' },
 		},
 		{
-			from: new Date('2024-04-30'),
-			to: new Date('2024-05-03'),
+			from: new CalendarDate(2024, 4, 30),
+			to: new CalendarDate(2024, 5, 3),
 			item: { icon: '🍕', name: 'Eating Pizza!' },
 		},
 	];

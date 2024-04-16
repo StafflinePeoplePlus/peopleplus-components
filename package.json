@@ -37,6 +37,10 @@
 		"./tailwind": {
 			"types": "./dist/tailwind.d.ts",
 			"default": "./dist/tailwind.js"
+		},
+		"./date": {
+			"types": "./dist/date.d.ts",
+			"default": "./dist/date.js"
 		}
 	},
 	"files": [

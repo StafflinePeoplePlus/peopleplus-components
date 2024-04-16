@@ -1,32 +1,77 @@
 <script context="module" lang="ts">
 	export type CalendarEntry<I> = {
-		from: Date;
-		to: Date;
+		from: DateValue;
+		to: DateValue;
 		item: I;
+	};
+	export type NewEntry = {
+		from: DateValue;
+		to: DateValue;
+		started: DateValue;
+		interactive: boolean;
+		element: HTMLElement;
+		item?: void;
+	};
+	export type NewEntryEvent = {
+		from: DateValue;
+		to: DateValue;
+		/**
+		 * The element that was clicked to start creating a new entry.
+		 * Note that this may correspond to either the from or to date.
+		 */
+		startElement: HTMLElement;
+		/**
+		 * The element that was clicked to finish creating a new entry.
+		 * Note that this may correspond to either the from or to date.
+		 */
+		endElement: HTMLElement;
+		/**
+		 * Removes the temporary new entry from the calendar. It is assumed that the new entry has
+		 * been added to the entries array, though not required.
+		 */
+		finish(): void;
+		/**
+		 * Cancels the new entry creation, leaving the temporary new entry on the calendar where the
+		 * user can continue to interact with it.
+		 */
+		cancel(): void;
 	};
 </script>
 
 <script lang="ts">
-	import { CalendarDate, isToday, type DateValue } from '@internationalized/date';
+	import { isToday, type DateValue, isSameDay, getDayOfWeek } from '@internationalized/date';
 
 	import Button from '$lib/Button.svelte';
 	import { createCalendar } from '@melt-ui/svelte';
-	import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-svelte';
+	import { ChevronLeftIcon, ChevronRightIcon, PlusIcon } from 'lucide-svelte';
 	import { twMerge } from 'tailwind-merge';
 	import Select from '$lib/Select.svelte';
 
 	type EntryItem = $$Generic;
 
-	let className: string | undefined = undefined;
+	let className: string | null | undefined = undefined;
 	export { className as class };
-	export let initialDate: DateValue | undefined = undefined;
+	export let addButtonClass: string | null | undefined = undefined;
+	export let initialDate: DateValue | null | undefined = undefined;
 	/**
 	 * Entries to display on the calendar. These must not overlap as the calendar display does not
 	 * support this and will render incorrectly.
 	 */
 	export let entries: CalendarEntry<EntryItem>[] = [];
+	/**
+	 * Called when the user clicks the last date when creating a new entry. You are then expected to
+	 * call either finish or cancel on the event depending on the outcome.
+	 */
+	export let onNewEntry: ((event: NewEntryEvent) => void) | null | undefined = undefined;
 
-	let hoveredEntry: CalendarEntry<EntryItem> | undefined = undefined;
+	let hoveredEntry: CalendarEntry<EntryItem> | NewEntry | undefined = undefined;
+	let newEntry: NewEntry | undefined = undefined;
+	$: sortedEntries = [...entries, ...(newEntry ? [newEntry] : [])].toSorted((a, b) => {
+		return a.from.compare(b.from);
+	});
+	$: newEntryIndex = sortedEntries.findIndex((entry) => entry === newEntry);
+	$: beforeNewEntry = newEntryIndex > 0 ? sortedEntries.at(newEntryIndex - 1) : undefined;
+	$: afterNewEntry = sortedEntries.at(newEntryIndex + 1);
 
 	const {
 		elements: { calendar, heading, grid, prevButton, nextButton },
@@ -34,7 +79,7 @@
 		helpers: { setMonth, setYear },
 	} = createCalendar({
 		locale: 'en-GB',
-		defaultPlaceholder: initialDate,
+		defaultPlaceholder: initialDate ?? undefined,
 	});
 
 	const monthOptions = [
@@ -58,31 +103,26 @@
 		(_, i) => $placeholder.add({ years: i - yearSpan / 2 }).year,
 	);
 
-	function entryForDay(
-		entries: CalendarEntry<EntryItem>[],
-		date: DateValue,
-	): CalendarEntry<EntryItem> | undefined {
-		return entries.find((entry) => {
-			const from = new CalendarDate(
-				date.calendar,
-				entry.from.getFullYear(),
-				entry.from.getMonth() + 1,
-				entry.from.getDate(),
-			);
-			const to = new CalendarDate(
-				date.calendar,
-				entry.to.getFullYear(),
-				entry.to.getMonth() + 1,
-				entry.to.getDate(),
-			);
-			return date.compare(from) >= 0 && date.compare(to) < 0;
+	$: entryForDay = (date: DateValue): CalendarEntry<EntryItem> | NewEntry | undefined => {
+		return sortedEntries.find((entry) => {
+			return date.compare(entry.from) >= 0 && date.compare(entry.to) < 0;
 		});
-	}
+	};
 
-	function daysDiff(from: Date, to: Date): number {
-		return Math.floor((to.getTime() - from.getTime()) / (1000 * 60 * 60 * 24));
+	function daysDiff(from: DateValue, to: DateValue): number {
+		return Math.floor(
+			(to.toDate('UTC').getTime() - from.toDate('UTC').getTime()) / (1000 * 60 * 60 * 24),
+		);
 	}
 </script>
+
+<svelte:window
+	on:keyup={(evt) => {
+		if (newEntry && evt.key === 'Escape') {
+			newEntry = undefined;
+		}
+	}}
+/>
 
 <div
 	class={twMerge(
@@ -107,7 +147,6 @@
 				options={monthOptions}
 				value={$placeholder.month}
 				onChange={({ next }) => {
-					console.log(next);
 					if (next != null) setMonth(next);
 				}}
 			/>
@@ -139,19 +178,55 @@
 					</div>
 				{/each}
 				{#each month.dates as date, i}
-					<div
+					<!-- svelte-ignore a11y-mouse-events-have-key-events -->
+					<button
 						aria-hidden="true"
 						class={twMerge(
-							'border-gray-300 p-2  pb-12 text-gray-600 @lg:aspect-square @lg:pb-0 dark:border-gray-700 dark:text-gray-400',
-							i % 7 !== 6 && 'border-r',
+							'flex border-gray-300 p-2 pb-12 text-gray-600 @lg:aspect-square @lg:pb-0 dark:border-gray-700 dark:text-gray-400',
+							getDayOfWeek(date, 'en-GB') !== 6 && 'border-r',
 							i < month.dates.length - 7 && 'border-b',
 							date.month !== month.value.month &&
 								'bg-gray-100 text-gray-500 dark:bg-gray-900 dark:text-gray-500',
 							isToday(date, 'UTC') &&
 								'bg-primary-50 font-medium text-primary-600 dark:bg-primary-950 dark:text-primary-300',
 						)}
+						on:mouseover={() => {
+							if (newEntry && newEntry.interactive) {
+								if (beforeNewEntry && date.compare(beforeNewEntry.to) < 0) {
+									newEntry.from = beforeNewEntry.to;
+									newEntry.to = newEntry.started.add({ days: 1 });
+								} else if (afterNewEntry && date.compare(afterNewEntry.from) >= 0) {
+									newEntry.from = newEntry.started;
+									newEntry.to = afterNewEntry.from;
+								} else if (newEntry.started.compare(date) <= 0) {
+									newEntry.from = newEntry.started;
+									newEntry.to = date.add({ days: 1 });
+								} else {
+									newEntry.from = date;
+									newEntry.to = newEntry.started.add({ days: 1 });
+								}
+							}
+						}}
+						on:click={(evt) => {
+							if (newEntry) {
+								newEntry.interactive = false;
+								onNewEntry?.({
+									from: newEntry.from,
+									to: newEntry.to,
+									startElement: newEntry.element,
+									endElement: evt.currentTarget,
+									finish() {
+										newEntry = undefined;
+									},
+									cancel() {
+										if (!newEntry) return;
+										newEntry.interactive = true;
+									},
+								});
+							}
+						}}
 					>
-						<div class="flex items-center">
+						<div class="flex w-full items-center">
 							{#if isToday(date, 'UTC')}
 								<div class="hidden text-xs font-semibold uppercase tracking-wide @2xl:block">
 									Today
@@ -161,10 +236,15 @@
 								{date.day}
 							</div>
 						</div>
-					</div>
+					</button>
 				{/each}
 			</div>
-			<div class="absolute inset-0 grid auto-rows-fr grid-cols-7 grid-rows-[min-content]">
+			<div
+				class={twMerge(
+					'absolute inset-0 grid auto-rows-fr grid-cols-7 grid-rows-[min-content]',
+					newEntry && 'pointer-events-none',
+				)}
+			>
 				{#each weekdays as day}
 					<div
 						aria-hidden="true"
@@ -173,14 +253,18 @@
 						{day}
 					</div>
 				{/each}
-				{#each month.dates as date, i}
-					{@const dayOfWeek = i % 7}
-					{@const entry = entryForDay(entries, date)}
-					{@const span = entry
-						? Math.min(daysDiff(date.toDate('UTC'), entry.to), 7 - dayOfWeek)
-						: 1}
-					{#if !entry || dayOfWeek === 0 || entry.from.getDate() === date.day}
-						<div class="flex items-end p-2" style:grid-column="span {span}">
+				{#each month.dates as date}
+					{@const dayOfWeek = getDayOfWeek(date, 'en-GB')}
+					{@const entry = entryForDay(date)}
+					{@const span = entry ? Math.min(daysDiff(date, entry.to), 7 - dayOfWeek) : 1}
+					{#if !entry || dayOfWeek === 0 || isSameDay(date, entry.from)}
+						<div
+							class={twMerge(
+								'group flex items-end p-2 focus:bg-red-600',
+								newEntry && 'pointer-events-none',
+							)}
+							style:grid-column="span {span}"
+						>
 							{#if entry}
 								<!-- svelte-ignore a11y-no-static-element-interactions -->
 								<div
@@ -197,10 +281,31 @@
 									<slot
 										name="entry"
 										{entry}
-										entryProps={{ 'data-entry-hover': hoveredEntry === entry ? 'true' : undefined }}
+										entryProps={{
+											'data-entry-hover': hoveredEntry === entry ? 'true' : undefined,
+											'data-new-entry': newEntry === entry ? 'true' : undefined,
+										}}
 										hovered={hoveredEntry === entry}
 									/>
 								</div>
+							{:else if onNewEntry}
+								<button
+									class={twMerge(
+										'flex w-full items-center justify-center rounded-md border border-primary-300 bg-primary-100 p-1 text-xs text-primary-950 opacity-0 transition-opacity group-hover:opacity-100 @3xl:rounded-lg @3xl:p-2 dark:border-primary-700 dark:bg-primary-900 dark:text-white',
+										addButtonClass,
+									)}
+									on:mousedown={(evt) => {
+										newEntry = {
+											from: date,
+											to: date.add({ days: 1 }),
+											started: date,
+											interactive: true,
+											element: evt.currentTarget,
+										};
+									}}
+								>
+									<PlusIcon class="h-3.5 w-3.5 @3xl:h-6 @3xl:w-6" />
+								</button>
 							{/if}
 						</div>
 					{/if}
