@@ -37,6 +37,10 @@
 		"./tailwind": {
 			"types": "./dist/tailwind.d.ts",
 			"default": "./dist/tailwind.js"
+		},
+		"./date": {
+			"types": "./dist/date.d.ts",
+			"default": "./dist/date.js"
 		}
 	},
 	"files": [
@@ -46,11 +50,12 @@
 	],
 	"dependencies": {
 		"@floating-ui/core": "^1.5.0",
+		"@internationalized/date": "^3.5.2",
 		"@melt-ui/svelte": "^0.76.0",
 		"esm-env": "^1.0.0",
 		"just-debounce-it": "^3.2.0",
 		"just-throttle": "^4.2.0",
-		"lucide-svelte": "^0.359.0",
+		"lucide-svelte": "^0.368.0",
 		"svelte-headlessui": "^0.0.33",
 		"tailwind-merge": "^2.0.0"
 	},
@@ -65,6 +70,7 @@
 		"@sveltejs/kit": "^2.0.6",
 		"@sveltejs/package": "^2.2.5",
 		"@sveltejs/vite-plugin-svelte": "^3.0.1",
+		"@tailwindcss/container-queries": "^0.1.1",
 		"@tailwindcss/typography": "^0.5.9",
 		"@testing-library/svelte": "^4.0.0",
 		"@types/youtube": "^0.0.50",
