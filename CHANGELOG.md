@@ -1,5 +1,17 @@
 # @peopleplus/components
 
+## 0.4.0
+
+### Minor Changes
+
+- 306fe27: Add Calendar component
+- fc16e7e: Add Select input component
+
+### Patch Changes
+
+- 4c81711: add small and medium icon sizes to Button component
+- a03b75a: allow settings flip, overlap, and sameWidth on popover
+
 ## 0.3.1
 
 ### Patch Changes
