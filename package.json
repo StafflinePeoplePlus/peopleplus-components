@@ -55,7 +55,7 @@
 		"esm-env": "^1.0.0",
 		"just-debounce-it": "^3.2.0",
 		"just-throttle": "^4.2.0",
-		"lucide-svelte": "^0.368.0",
+		"lucide-svelte": "^0.370.0",
 		"svelte-headlessui": "^0.0.33",
 		"tailwind-merge": "^2.0.0"
 	},
