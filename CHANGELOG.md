@@ -1,5 +1,15 @@
 # @peopleplus/components
 
+## 0.4.1
+
+### Patch Changes
+
+- ff3492b: fix typo in year label on calendar
+- ff3492b: add more useful labels to calendar entries and days
+- ff3492b: pass index to calendar entry slot
+- a388644: allow passing 'open' store to popover
+- ff3492b: allow setting arbitrary props on the calendar
+
 ## 0.4.0
 
 ### Minor Changes
