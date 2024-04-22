@@ -131,6 +131,7 @@
 	)}
 	{...$calendar}
 	use:calendar
+	{...$$restProps}
 >
 	<header
 		class="grid grid-cols-[auto,1fr,auto] items-center gap-4 border-b border-gray-300 p-2 dark:border-gray-700"
@@ -152,7 +153,7 @@
 			/>
 			<Select
 				buttonClass="w-24 min-w-0"
-				label="Yearh"
+				label="Year"
 				labelClass="sr-only"
 				placeholder="Year"
 				options={yearOptions}
@@ -181,6 +182,7 @@
 					<!-- svelte-ignore a11y-mouse-events-have-key-events -->
 					<button
 						aria-hidden="true"
+						aria-label={date.toString()}
 						class={twMerge(
 							'flex border-gray-300 p-2 pb-12 text-gray-600 @lg:aspect-square @lg:pb-0 dark:border-gray-700 dark:text-gray-400',
 							getDayOfWeek(date, 'en-GB') !== 6 && 'border-r',
@@ -253,7 +255,7 @@
 						{day}
 					</div>
 				{/each}
-				{#each month.dates as date}
+				{#each month.dates as date, index}
 					{@const dayOfWeek = getDayOfWeek(date, 'en-GB')}
 					{@const entry = entryForDay(date)}
 					{@const span = entry ? Math.min(daysDiff(date, entry.to), 7 - dayOfWeek) : 1}
@@ -263,6 +265,7 @@
 								'group flex items-end p-2 focus:bg-red-600',
 								newEntry && 'pointer-events-none',
 							)}
+							inert={newEntry != null}
 							style:grid-column="span {span}"
 						>
 							{#if entry}
@@ -280,6 +283,7 @@
 								>
 									<slot
 										name="entry"
+										{index}
 										{entry}
 										entryProps={{
 											'data-entry-hover': hoveredEntry === entry ? 'true' : undefined,
@@ -294,6 +298,7 @@
 										'flex w-full items-center justify-center rounded-md border border-primary-300 bg-primary-100 p-1 text-xs text-primary-950 opacity-0 transition-opacity group-hover:opacity-100 @3xl:rounded-lg @3xl:p-2 dark:border-primary-700 dark:bg-primary-900 dark:text-white',
 										addButtonClass,
 									)}
+									aria-label="Start entry on {date}"
 									on:mousedown={(evt) => {
 										newEntry = {
 											from: date,
