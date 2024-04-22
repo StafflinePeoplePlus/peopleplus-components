@@ -136,7 +136,7 @@
 	<header
 		class="grid grid-cols-[auto,1fr,auto] items-center gap-4 border-b border-gray-300 p-2 dark:border-gray-700"
 	>
-		<Button {...$prevButton} icon="md" variant="secondary" use={[prevButton]}>
+		<Button {...$prevButton} icon variant="secondary" use={[prevButton]}>
 			<ChevronLeftIcon />
 		</Button>
 		<div {...$heading} use:heading class="text-center">
@@ -163,7 +163,7 @@
 				}}
 			/>
 		</div>
-		<Button {...$nextButton} icon="md" variant="secondary" use={[nextButton]}>
+		<Button {...$nextButton} icon variant="secondary" use={[nextButton]}>
 			<ChevronRightIcon />
 		</Button>
 	</header>

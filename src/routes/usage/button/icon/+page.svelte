@@ -16,13 +16,5 @@
 		<span aria-hidden="true">&RightArrow;</span>
 		<span class="sr-only">Right</span>
 	</Button>
-	<Button icon="md" variant="secondary">
-		<span aria-hidden="true">&RightArrow;</span>
-		<span class="sr-only">Right</span>
-	</Button>
-	<Button icon="sm" variant="secondary">
-		<span aria-hidden="true">&RightArrow;</span>
-		<span class="sr-only">Right</span>
-	</Button>
 	<!-- END USAGE -->
 </div>

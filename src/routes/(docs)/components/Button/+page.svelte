@@ -5,6 +5,8 @@
 	import UsageSection from '../UsageSection.svelte';
 	import * as usage from '../../../usage/button/+page.svelte?usage';
 	import * as iconUsage from '../../../usage/button/icon/+page.svelte?usage';
+	import * as shapesUsage from '../../../usage/button/shapes/+page.svelte?usage';
+	import * as sizeUsage from '../../../usage/button/sizes/+page.svelte?usage';
 	import * as importUsage from 'virtual:usage/Button';
 </script>
 
@@ -16,5 +18,7 @@
 	<div class="space-y-8">
 		<UsageSection title="Simple Buttons" src="/usage/button" code={usage} />
 		<UsageSection title="Icon Buttons" src="/usage/button/icon" code={iconUsage} />
+		<UsageSection title="Shaped Buttons" src="/usage/button/shapes" code={shapesUsage} />
+		<UsageSection title="Sizes" src="/usage/button/sizes" code={sizeUsage} />
 	</div>
 </div>
