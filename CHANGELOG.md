@@ -1,5 +1,29 @@
 # @peopleplus/components
 
+## 0.5.0
+
+### Minor Changes
+
+- 3468e1b: ### Breaking Change
+  Remove size option from icon buttons in favour of the new dedicated size property.
+
+  #### Migration
+
+  Replace instances of `icon`, `icon="sm"` and `icon="md"` with `icon size="lg"`, `icon size="sm"` and
+  `icon` respectively.
+
+  Note that what was `md` is now the default, and what was the default is now `lg`.
+
+- 3468e1b: ### Breaking Change
+
+  The default height of regular and icon buttonsa are now the same as the select component
+
+### Patch Changes
+
+- 3468e1b: add muted variant to buttons
+- 3468e1b: add size variants to buttons
+- 3468e1b: add shape variants to buttons
+
 ## 0.4.1
 
 ### Patch Changes
