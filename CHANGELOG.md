@@ -1,5 +1,11 @@
 # @peopleplus/components
 
+## 0.5.1
+
+### Patch Changes
+
+- d273173: add ability to configure cloudflare sdk src
+
 ## 0.5.0
 
 ### Minor Changes
