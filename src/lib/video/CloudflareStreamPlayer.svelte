@@ -21,6 +21,7 @@
 	export let duration: number | undefined = undefined;
 	export let currentTime = 0;
 	export let progress: [number, number][] = [];
+	export let sdkSrc: string | undefined = undefined;
 
 	let url: URL;
 	$: {
@@ -47,7 +48,7 @@
 	}
 
 	let videoElement: HTMLIFrameElement | undefined = undefined;
-	const Stream = useCloudflareStream();
+	const Stream = useCloudflareStream(sdkSrc);
 	$: player = videoElement && $Stream ? $Stream(videoElement) : null;
 
 	$: if (player) {
