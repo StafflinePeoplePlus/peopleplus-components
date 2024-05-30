@@ -2,7 +2,7 @@
 	"name": "@peopleplus/components",
 	"description": "A collection of Svelte components using tailwind.",
 	"license": "MIT",
-	"version": "0.5.1",
+	"version": "0.5.2",
 	"homepage": "https://peopleplus-components.pages.dev",
 	"repository": {
 		"type": "git",
