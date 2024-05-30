@@ -184,7 +184,7 @@
 						aria-hidden="true"
 						aria-label={date.toString()}
 						class={twMerge(
-							'flex border-gray-300 p-2 pb-12 text-gray-600 @lg:aspect-square @lg:pb-0 dark:border-gray-700 dark:text-gray-400',
+							'flex items-start border-gray-300 p-2 pb-12 text-gray-600 @lg:aspect-square @lg:pb-0 dark:border-gray-700 dark:text-gray-400',
 							getDayOfWeek(date, 'en-GB') !== 6 && 'border-r',
 							i < month.dates.length - 7 && 'border-b',
 							date.month !== month.value.month &&
