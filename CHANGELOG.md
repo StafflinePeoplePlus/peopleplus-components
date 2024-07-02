@@ -1,5 +1,11 @@
 # @peopleplus/components
 
+## 0.5.2
+
+### Patch Changes
+
+- 047abad: fix alignment of calendar text in firefox
+
 ## 0.5.1
 
 ### Patch Changes
@@ -79,16 +85,14 @@
 
   ```svelte
   <div
-      class="transition-opacity data-[dragging-over]:opacity-50 data-[dragging]:opacity-0"
-      use:sortable.target={item.id}
-      use:sortable.image={item.id}
+  	class="transition-opacity data-[dragging-over]:opacity-50 data-[dragging]:opacity-0"
+  	use:sortable.target={item.id}
+  	use:sortable.image={item.id}
   >
-      <div
-          use:sortable.handle={item.id}
-      >
-          <GripHorizontalIcon />
-      </div>
-      My Grid Item
+  	<div use:sortable.handle={item.id}>
+  		<GripHorizontalIcon />
+  	</div>
+  	My Grid Item
   </div>
   ```
 
