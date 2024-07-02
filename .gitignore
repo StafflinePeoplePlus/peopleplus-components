@@ -16,3 +16,12 @@ test-results
 .nyc_output
 package-lock.json
 /playwright-report
+# Devenv
+.devenv*
+devenv.local.nix
+
+# direnv
+.direnv
+
+# pre-commit
+.pre-commit-config.yaml
