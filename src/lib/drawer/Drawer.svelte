@@ -8,10 +8,15 @@
 	export let overlayClass = '';
 	export let open = false;
 	export let disableClickOutside = false;
+	export let onClose: (() => void) | null | undefined = undefined;
 
 	function handleClickOutside(): void {
 		if (!disableClickOutside) {
-			open = false;
+			if (onClose) {
+				onClose();
+			} else {
+				open = false;
+			}
 		}
 	}
 </script>
