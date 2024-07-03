@@ -1,5 +1,12 @@
 # @peopleplus/components
 
+## 0.5.4
+
+### Patch Changes
+
+- 6de9a28: z-order `Toaster` and `Tooltip` components above `Drawer` component
+- 6de9a28: allow adding custom classes to `Toaster` component
+
 ## 0.5.3
 
 ### Patch Changes
