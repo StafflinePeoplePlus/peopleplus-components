@@ -26,9 +26,18 @@
 
 <script lang="ts">
 	import Toast from './Toast.svelte';
+	import { twMerge } from 'tailwind-merge';
+
+	let className: string | null | undefined = undefined;
+	export { className as class };
 </script>
 
-<div class="fixed inset-x-2 bottom-0 flex flex-col-reverse sm:bottom-2 sm:left-auto sm:right-3">
+<div
+	class={twMerge(
+		'fixed inset-x-2 bottom-0 z-50 flex flex-col-reverse sm:bottom-2 sm:left-auto sm:right-3',
+		className,
+	)}
+>
 	{#each $store.toasts as toast, index (toast.id)}
 		<Toast
 			{toast}
