@@ -24,7 +24,7 @@
 {#if open}
 	<div
 		tabindex="-1"
-		class={twMerge('fixed inset-0 z-50 overflow-y-auto flex justify-end', overlayClass)}
+		class={twMerge('fixed inset-0 z-40 flex justify-end overflow-y-auto', overlayClass)}
 	>
 		<div transition:fly={{ x: '100%', duration: 200 }}>
 			{#if disableClickOutside}
