@@ -1,4 +1,4 @@
-import ExampleDrawer from './test/DrawerTest.svelte';
+import ExampleDrawer from '../../routes/usage/drawer/+page.svelte';
 import { test, expect, afterEach } from 'vitest';
 import { cleanup, fireEvent, render } from '@testing-library/svelte';
 
@@ -14,7 +14,7 @@ test('should show the drawer once "Open" is clicked', async () => {
 	const openButton = getByText(OPEN_BUTTON);
 	await fireEvent.click(openButton);
 
-	const drawer = await getByText(DRAWER);
+	const drawer = getByText(DRAWER);
 	expect(drawer).toBeInTheDocument();
 });
 
@@ -26,8 +26,6 @@ test('should dismiss the drawer once "close" button is clicked', async () => {
 
 	const closeButton = getByTestId(CLOSE_BUTTON);
 	await fireEvent.click(closeButton);
-
-	await new Promise((resolve) => setTimeout(resolve, 4000));
 
 	const drawer = queryByTestId(DRAWER);
 	expect(drawer).not.toBeInTheDocument();
