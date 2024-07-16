@@ -1,5 +1,11 @@
 # @peopleplus/components
 
+## 0.6.0
+
+### Minor Changes
+
+- 9745f29: reimplement drawer using melt-ui dialog
+
 ## 0.5.4
 
 ### Patch Changes
