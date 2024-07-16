@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Button, Drawer, Typography, Chip } from '$lib';
+	import { XIcon } from 'lucide-svelte';
 
 	const columns = [
 		{ label: 'Size', value: 'XS' },
@@ -18,18 +19,36 @@
 <Button on:click={toggleDrawer}>Open Measurements</Button>
 
 <!-- START USAGE -->
-<Drawer bind:open class="h-full w-80 shadow-lg" overlayClass="bg-white/30 backdrop-blur-sm">
+<Drawer bind:open class="w-80" let:title let:description let:close>
 	<div>
 		<div class="flex justify-between">
-			<Typography variant="body-lg" class="font-bold place-self-center">Measurements</Typography>
+			<Typography
+				as="h2"
+				variant="body-lg"
+				class="place-self-center font-bold"
+				{...title.props}
+				use={[title.action]}
+			>
+				Measurements
+			</Typography>
 
-			<Button on:click={toggleDrawer} variant="secondary" data-testId="closeDrawer">
+			<Button
+				variant="borderless"
+				shape="pill"
+				size="sm"
+				icon
+				data-testId="closeDrawer"
+				{...close.props}
+				use={[close.action]}
+			>
 				<span class="sr-only">Close</span>
-				&times;
+				<XIcon size={16} />
 			</Button>
 		</div>
 
-		<Typography variant="body" class="mt-2">Neck width: Seam to seam width</Typography>
+		<Typography variant="body" class="mt-2" {...description.props} use={[description.action]}>
+			Neck width: Seam to seam width
+		</Typography>
 		<div class="mt-4 flex-col space-y-4 text-sm dark:text-white">
 			{#each columns as column}
 				<div class="flex justify-between border-t pt-4 dark:border-gray-600">
