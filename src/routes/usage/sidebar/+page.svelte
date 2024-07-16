@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Avatar, Sidebar, SidebarItem } from '$lib';
 	import BellIcon from 'lucide-svelte/icons/bell';
-	import HomeIcon from 'lucide-svelte/icons/home';
+	import HomeIcon from 'lucide-svelte/icons/house';
 	import ListTodo from 'lucide-svelte/icons/list-todo';
 	import LogOutIcon from 'lucide-svelte/icons/log-out';
 	import MessagesSquareIcon from 'lucide-svelte/icons/messages-square';
