@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { setContext } from 'svelte';
-	import { dropdownMenuContext, type DropdownMenu } from './menu.js';
+	import { dropdownMenuContext, type DropdownMenu as DropdownMenuType } from './menu.js';
 	import { fly } from 'svelte/transition';
 	import { twMerge } from 'tailwind-merge';
 
 	let className: string | undefined = undefined;
 	export { className as class };
-	export let menu: DropdownMenu;
+	export let menu: DropdownMenuType;
 
 	setContext(dropdownMenuContext, menu);
 
