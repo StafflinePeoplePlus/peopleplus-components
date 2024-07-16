@@ -1,5 +1,11 @@
 # @peopleplus/components
 
+## 0.6.1
+
+### Patch Changes
+
+- 1b5a6d3: fix generated type name overwriting imported type name cause the DropdownMenu `menu` prop to be typed incorrectly
+
 ## 0.6.0
 
 ### Minor Changes
