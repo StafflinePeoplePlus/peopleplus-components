@@ -4,6 +4,11 @@
 	import { twMerge } from 'tailwind-merge';
 
 	type $$Props = Omit<HTMLInputAttributes, 'type'> & { use?: UseActions };
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	interface $$Events {
+		input: Event & { currentTarget: HTMLInputElement };
+		change: Event & { currentTarget: HTMLInputElement };
+	}
 
 	let className: $$Props['class'] = undefined;
 	export { className as class };
