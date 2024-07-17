@@ -1,5 +1,11 @@
 # @peopleplus/components
 
+## 0.6.3
+
+### Patch Changes
+
+- f7e38d2: add correct type to currentTarget on TextInput and TextArea events
+
 ## 0.6.2
 
 ### Patch Changes
