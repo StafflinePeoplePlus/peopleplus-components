@@ -12,6 +12,7 @@ export type PopoverOptions = {
 	overlap?: boolean;
 	sameWidth?: boolean;
 	open?: Writable<boolean>;
+	disableClickOutside?: boolean;
 };
 export type PopoverInstance = ReturnType<typeof createPopover>;
 export function createPopover({
@@ -20,19 +21,22 @@ export function createPopover({
 	flip = true,
 	overlap = false,
 	sameWidth = false,
+	disableClickOutside = false,
 	open,
 }: PopoverOptions = {}) {
 	const {
-		elements: { trigger, content, arrow },
+		elements: { trigger, content, arrow, close },
 		states: { open: openState },
 	} = createMeltPopover({
 		positioning: { placement, strategy, flip, overlap, sameWidth },
 		forceVisible: true,
 		open,
+		closeOnOutsideClick: !disableClickOutside,
 	});
 
 	return {
 		button: trigger,
+		closeButton: close,
 		content,
 		arrow,
 		expanded: openState,
