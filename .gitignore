@@ -16,6 +16,7 @@ test-results
 .nyc_output
 package-lock.json
 /playwright-report
+*.svelte.d.ts
 # Devenv
 .devenv*
 devenv.local.nix
