@@ -1,5 +1,12 @@
 # @peopleplus/components
 
+## 0.6.2
+
+### Patch Changes
+
+- f076c23: expose close action/props from melt-ui popover
+- f076c23: allow disabling click outside on popovers
+
 ## 0.6.1
 
 ### Patch Changes
