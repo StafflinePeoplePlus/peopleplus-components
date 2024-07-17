@@ -4,6 +4,11 @@
 	import { twMerge } from 'tailwind-merge';
 
 	type $$Props = HTMLTextareaAttributes & { use?: UseActions };
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	interface $$Events {
+		input: Event & { currentTarget: HTMLTextAreaElement };
+		change: Event & { currentTarget: HTMLTextAreaElement };
+	}
 
 	let className: $$Props['class'] = undefined;
 	export { className as class };
