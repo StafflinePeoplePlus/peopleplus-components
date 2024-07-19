@@ -1,5 +1,11 @@
 # @peopleplus/components
 
+## 0.6.4
+
+### Patch Changes
+
+- 0842360: add `multiple` option to Select input
+
 ## 0.6.3
 
 ### Patch Changes
