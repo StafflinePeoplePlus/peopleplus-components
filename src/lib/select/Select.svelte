@@ -9,7 +9,7 @@
 
 	type ItemValueWithLabel = { value: ItemValue; label?: string; id?: string };
 	type WhenTrue<When extends boolean, OnTrue, OnFalse> = [When] extends [true] ? OnTrue : OnFalse;
-	type Value = WhenTrue<Multiple, ItemValue[], ItemValue>;
+	type Value = WhenTrue<Multiple, readonly ItemValue[], ItemValue>;
 	type ValueWithLabel = WhenTrue<Multiple, ItemValueWithLabel[], ItemValueWithLabel>;
 	type ChangeFn<T> = (change: { curr: T | undefined; next: T | undefined }) => void;
 
@@ -21,8 +21,8 @@
 			/**
 			 * @deprecated Use `selected` instead
 			 */
-			item: WhenTrue<Multiple, ItemValueWithLabel[], ItemValueWithLabel> | undefined;
-			selected: WhenTrue<Multiple, ItemValueWithLabel[], ItemValueWithLabel> | undefined;
+			item: WhenTrue<Multiple, readonly ItemValueWithLabel[], ItemValueWithLabel> | undefined;
+			selected: WhenTrue<Multiple, readonly ItemValueWithLabel[], ItemValueWithLabel> | undefined;
 		};
 		option: { item: ItemValue };
 	}
@@ -35,7 +35,7 @@
 
 	export let label: string | null | undefined = undefined;
 	export let placeholder: string | null | undefined = undefined;
-	export let options: (ItemValue | ItemValueWithLabel)[] = [];
+	export let options: readonly (ItemValue | ItemValueWithLabel)[] = [];
 	export let value: Value | null | undefined = undefined;
 	export let multiple: Multiple | undefined = undefined;
 	export let noneLabel: WhenTrue<Multiple, string | null | undefined, never> = undefined as never;
@@ -71,7 +71,10 @@
 		},
 	});
 
-	const valueWithLabel = (options: (ItemValue | ItemValueWithLabel)[], value: ItemValue) => {
+	const valueWithLabel = (
+		options: readonly (ItemValue | ItemValueWithLabel)[],
+		value: ItemValue,
+	) => {
 		const option = options.find(
 			(option) => (isObjectOption(option) ? option.value : option) === value,
 		);
@@ -80,7 +83,7 @@
 			label: option && isObjectOption(option) ? option.label : String(value),
 		};
 	};
-	const haveSameItems = <A,>(a: A[], b: A[]) =>
+	const haveSameItems = <A,>(a: readonly A[], b: readonly A[]) =>
 		a.length === b.length && a.every((a) => b.includes(a));
 	$: if (value == null) {
 		$selected = undefined;
@@ -89,10 +92,10 @@
 			if (
 				!haveSameItems(
 					value,
-					($selected as ItemValueWithLabel[] | null)?.map((item) => item.value) ?? [],
+					($selected as readonly ItemValueWithLabel[] | null)?.map((item) => item.value) ?? [],
 				)
 			) {
-				$selected = (value as ItemValue[]).map((value) =>
+				$selected = (value as readonly ItemValue[]).map((value) =>
 					valueWithLabel(options, value as ItemValue),
 				) as ValueWithLabel;
 			}
@@ -110,7 +113,7 @@
 
 	// TODO(svelte-5): cast at call site
 	const castToValueWithLabel = (
-		value: ItemValueWithLabel | ItemValueWithLabel[] | undefined,
+		value: ItemValueWithLabel | readonly ItemValueWithLabel[] | undefined,
 	): ValueWithLabel | undefined => value as ValueWithLabel | undefined;
 </script>
 
