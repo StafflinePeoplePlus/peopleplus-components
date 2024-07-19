@@ -80,13 +80,22 @@
 			label: option && isObjectOption(option) ? option.label : String(value),
 		};
 	};
+	const haveSameItems = <A,>(a: A[], b: A[]) =>
+		a.length === b.length && a.every((a) => b.includes(a));
 	$: if (value == null) {
 		$selected = undefined;
 	} else {
 		if (Array.isArray(value)) {
-			$selected = (value as ItemValue[]).map((value) =>
-				valueWithLabel(options, value as ItemValue),
-			) as ValueWithLabel;
+			if (
+				!haveSameItems(
+					value,
+					($selected as ItemValueWithLabel[] | null)?.map((item) => item.value) ?? [],
+				)
+			) {
+				$selected = (value as ItemValue[]).map((value) =>
+					valueWithLabel(options, value as ItemValue),
+				) as ValueWithLabel;
+			}
 		} else if (($selected as ItemValueWithLabel | null)?.value !== value) {
 			$selected = valueWithLabel(options, value as ItemValue) as ValueWithLabel;
 		}
