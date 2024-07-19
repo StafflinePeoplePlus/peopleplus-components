@@ -30,4 +30,7 @@ module.exports = {
 	globals: {
 		$$Generic: 'readonly',
 	},
+	rules: {
+		'no-undef': 'off',
+	},
 };

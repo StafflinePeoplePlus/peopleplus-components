@@ -45,7 +45,7 @@
 	import { createCalendar } from '@melt-ui/svelte';
 	import { ChevronLeftIcon, ChevronRightIcon, PlusIcon } from 'lucide-svelte';
 	import { twMerge } from 'tailwind-merge';
-	import Select from '$lib/Select.svelte';
+	import Select from '$lib/select/Select.svelte';
 
 	type EntryItem = $$Generic;
 
