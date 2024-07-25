@@ -1,6 +1,7 @@
 <script lang="ts" context="module">
 	import { writable } from 'svelte/store';
 	import type { ToastKind, ToastMessage } from './types';
+	import { BROWSER, DEV } from 'esm-env';
 	const store = writable<{ nextId: number; toasts: ToastMessage[] }>({ nextId: 0, toasts: [] });
 
 	export function showToast({
@@ -12,6 +13,11 @@
 		message: string;
 		timeout?: number | null;
 	}) {
+		if (DEV && !BROWSER) {
+			throw new Error(
+				'showToast cannot be used on the server, ensure it is only called from client code',
+			);
+		}
 		store.update((state) => {
 			state.toasts.push({
 				id: state.nextId++,
