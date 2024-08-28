@@ -1,6 +1,0 @@
-10027	IGNORE	(Information Disclosure - Suspicious Comments)
-10049	IGNORE	(Storable and Cacheable Content)
-10055	IGNORE	(CSP: Wildcard Directive)
-10104	IGNORE	(User Agent Fuzzer)
-10106	IGNORE	(HTTP Only Site)
-10109	IGNORE	(Modern Web Application)
