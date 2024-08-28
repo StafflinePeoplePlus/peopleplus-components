@@ -1,5 +1,12 @@
 # @peopleplus/components
 
+## 0.6.5
+
+### Patch Changes
+
+- 7b0f319: throw error in dev when trying to use showToast on the server
+- 8213096: Add new slot to add content at the end of a collapsible component
+
 ## 0.6.4
 
 ### Patch Changes
