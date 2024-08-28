@@ -30,6 +30,7 @@
 			>
 				<ChevronDown />
 			</div>
+			<slot name="labelEnd" />
 		</div>
 
 		<div style:top="calc(100% + 10px)" style:right="0" style:left="0">
