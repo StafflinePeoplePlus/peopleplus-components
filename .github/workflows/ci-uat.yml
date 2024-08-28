@@ -37,7 +37,7 @@ jobs:
         run: npm run test
 
   zap:
-    name: ZAP Full Scan
+    name: ZAP Baseline Scan
     runs-on: ubuntu-latest
     concurrency:
       group: zap-uat
@@ -63,15 +63,14 @@ jobs:
       - name: Wait for app to start ☕️
         run: sleep 10
 
-      - name: OWASP ZAP Full Scan - Cloudflare - UAT 🩻
-        uses: zaproxy/action-full-scan@v0.4.0
+      - name: Run ZAP Automation Framework
+        uses: StafflinePeoplePlus/zap-automation-framework@1.0.0
         with:
-          issue_title: 'ZAP Full Scan Report - UAT'
-          target: ${{ vars.UAT_URL }}
-          rules_file_name: '.zap/rules.tsv'
-          cmd_options:
-            #AJAX Spider
-            '-j'
+          config-dir: 'zap-config'
+          autorun-file: 'baseline.yaml'
+          create-issue: true
+          fail-action-on-warning: true
+          issue-title: 'ZAP Report - ${{ github.head_ref || github.ref_name }}'
 
   a11y:
     name: Accessibility Scan
