@@ -82,7 +82,7 @@
 		"eslint": "^8.44.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.32.0",
-		"jsdom": "^24.0.0",
+		"jsdom": "^25.0.1",
 		"nyc": "^17.0.0",
 		"playwright-test-coverage": "^1.2.12",
 		"postcss": "^8.4.21",
