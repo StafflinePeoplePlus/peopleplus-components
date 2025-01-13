@@ -6,7 +6,7 @@ on:
       - uat
 
 env:
-  NODE_VERSION: 18.x
+  NODE_VERSION: 20.x
 
 jobs:
   test:
@@ -97,7 +97,7 @@ jobs:
         run: sleep 10
 
       - name: Accessibility scan 🩻
-        uses: a11ywatch/github-actions@v1.14.1
+        uses: a11ywatch/github-actions@v2.1.10
         with:
           WEBSITE_URL: ${{ vars.UAT_URL }}
           SUBDOMAINS: false
