@@ -79,10 +79,10 @@ jobs:
       - name: Checkout 🛒
         uses: actions/checkout@v3
 
-      - name: Use Node.js 18 🛒
+      - name: Use Node.js ${{ env.NODE_VERSION }} 🛒
         uses: actions/setup-node@v3
         with:
-          node-version: 18.x
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Install Node Packages 🛒
         run: npm i
@@ -97,7 +97,7 @@ jobs:
         run: sleep 10
 
       - name: Accessibility scan 🩻
-        uses: a11ywatch/github-actions@v1.14.1
+        uses: a11ywatch/github-actions@v2.1.10
         with:
           WEBSITE_URL: ${{ vars.UAT_URL }}
           SUBDOMAINS: false
