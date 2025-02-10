@@ -6,10 +6,10 @@
 	import { crossfade } from 'svelte/transition';
 	import { twMerge } from 'tailwind-merge';
 
-	let items = Array.from({ length: 20 }).map((_, i) => ({
+	let items = $state(Array.from({ length: 20 }).map((_, i) => ({
 		id: i.toString(),
 		name: `Item ${i + 1}`,
-	}));
+	})));
 	const [send, receive] = crossfade({});
 	const sortingEnabled = writable(true);
 	const sortable = createSortableGrid({

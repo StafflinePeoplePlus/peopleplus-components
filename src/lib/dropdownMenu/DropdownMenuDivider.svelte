@@ -2,8 +2,13 @@
 	import { twMerge } from 'tailwind-merge';
 	import { getDropdownMenuContext } from './menu';
 
-	let className: string | undefined = undefined;
-	export { className as class };
+	interface Props {
+		class?: string | undefined;
+		[key: string]: any
+	}
+
+	let { class: className = undefined, ...rest }: Props = $props();
+	
 
 	const {
 		elements: { separator },
@@ -14,5 +19,5 @@
 	class={twMerge('my-1.5 border-gray-200 dark:border-gray-600', className)}
 	{...$separator}
 	use:separator
-	{...$$restProps}
+	{...rest}
 />

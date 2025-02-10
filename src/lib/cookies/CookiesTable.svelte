@@ -3,10 +3,14 @@
 	import { defaultCookieStrings } from './i18n';
 	import type { CookieDescription } from './types';
 
-	let className: string | undefined = undefined;
-	export { className as class };
-	export let cookies: CookieDescription[];
-	export let strings = defaultCookieStrings;
+	
+	interface Props {
+		class?: string | undefined;
+		cookies: CookieDescription[];
+		strings?: any;
+	}
+
+	let { class: className = undefined, cookies, strings = defaultCookieStrings }: Props = $props();
 </script>
 
 <div class="overflow-x-auto">

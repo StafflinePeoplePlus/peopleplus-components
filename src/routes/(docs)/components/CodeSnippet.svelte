@@ -3,12 +3,16 @@
 	import ClipboardCheckIcon from 'lucide-svelte/icons/clipboard-check';
 	import { twMerge } from 'tailwind-merge';
 
-	let className = '';
-	export { className as class };
-	export let code: { html: string; text: string };
-	export let lang: 'typescript' | 'svelte' = 'svelte';
+	
+	interface Props {
+		class?: string;
+		code: { html: string; text: string };
+		lang?: 'typescript' | 'svelte';
+	}
 
-	let copied = false;
+	let { class: className = '', code, lang = 'svelte' }: Props = $props();
+
+	let copied = $state(false);
 	async function copyCode() {
 		try {
 			await navigator.clipboard.writeText(code.text);
@@ -27,7 +31,7 @@
 		<p class="text-xs font-semibold uppercase text-gray-200">{lang}</p>
 		<button
 			class="rounded-lg bg-gray-600 p-1.5 text-white shadow-sm transition hover:bg-gray-500"
-			on:click={copyCode}
+			onclick={copyCode}
 		>
 			<span class="sr-only">Copy code to clipboard</span>
 			{#if copied}

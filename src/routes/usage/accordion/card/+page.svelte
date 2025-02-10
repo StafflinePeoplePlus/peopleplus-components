@@ -6,7 +6,7 @@
 	<div
 		class="h-36 rounded-t-xl bg-cover bg-center"
 		style="background-image: url('/jumbotron.jpg');"
-	/>
+	></div>
 	<div class="p-3">
 		<strong>Alexander Bryne</strong>
 		<p class="text-sm italic text-gray-500">Project Manager</p>

@@ -1,4 +1,7 @@
 <script lang="ts">
+	import { createBubbler } from 'svelte/legacy';
+
+	const bubble = createBubbler();
 	import { actions, type UseActions } from '$lib/actions';
 	import type { HTMLTextareaAttributes } from 'svelte/elements';
 	import { twMerge } from 'tailwind-merge';
@@ -10,17 +13,22 @@
 		change: Event & { currentTarget: HTMLTextAreaElement };
 	}
 
-	let className: $$Props['class'] = undefined;
-	export { className as class };
-	export let value: $$Props['value'] = undefined;
-	export let use: UseActions = [];
+	
+	interface Props {
+		class?: $$Props['class'];
+		value?: $$Props['value'];
+		use?: UseActions;
+		[key: string]: any
+	}
+
+	let { class: className = undefined, value = $bindable(undefined), use = [], ...rest }: Props = $props();
 </script>
 
 <textarea
-	{...$$restProps}
+	{...rest}
 	class={twMerge('block w-full bg-transparent py-2.5 focus:outline-none', className)}
 	bind:value
 	use:actions={use}
-	on:input
-	on:change
-/>
+	oninput={bubble('input')}
+	onchange={bubble('change')}
+></textarea>

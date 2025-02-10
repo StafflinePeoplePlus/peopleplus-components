@@ -15,7 +15,7 @@
 		{ value: 11, label: 'November' },
 		{ value: 12, label: 'December' },
 	];
-	let value = [4, 8];
+	let value = $state([4, 8]);
 </script>
 
 <Select label="Month" options={months} multiple noneLabel="Never" bind:value />

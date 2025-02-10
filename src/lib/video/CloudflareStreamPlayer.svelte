@@ -1,71 +1,57 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { createEventDispatcher, onDestroy } from 'svelte';
 	import { twMerge } from 'tailwind-merge';
 	import { useCloudflareStream } from './cloudflareStream';
 
 	const dispatchEvent = createEventDispatcher();
 
-	let className = '';
-	export { className as class };
-	export let code: string;
-	export let videoId: string;
-	export let autoplay = false;
-	export let preload = false;
-	export let loop = false;
-	export let muted = false;
-	export let controls = true;
-	export let primaryColor: string | undefined = undefined;
-	export let poster: string | undefined = undefined;
-	export let playing = false;
-	export let volume = 1;
-	export let duration: number | undefined = undefined;
-	export let currentTime = 0;
-	export let progress: [number, number][] = [];
-	export let sdkSrc: string | undefined = undefined;
-
-	let url: URL;
-	$: {
-		url = new URL(`https://customer-${code}.cloudflarestream.com/${videoId}/iframe`);
-		if (autoplay) {
-			url.searchParams.set('autoplay', 'true');
-		}
-		if (preload) {
-			url.searchParams.set('preload', 'true');
-		}
-		if (loop) {
-			url.searchParams.set('loop', 'true');
-		}
-		if (muted) {
-			url.searchParams.set('muted', 'true');
-		}
-		url.searchParams.set('controls', controls.toString());
-		if (primaryColor) {
-			url.searchParams.set('primaryColor', primaryColor);
-		}
-		if (poster) {
-			url.searchParams.set('poster', poster);
-		}
+	
+	interface Props {
+		class?: string;
+		code: string;
+		videoId: string;
+		autoplay?: boolean;
+		preload?: boolean;
+		loop?: boolean;
+		muted?: boolean;
+		controls?: boolean;
+		primaryColor?: string | undefined;
+		poster?: string | undefined;
+		playing?: boolean;
+		volume?: number;
+		duration?: number | undefined;
+		currentTime?: number;
+		progress?: [number, number][];
+		sdkSrc?: string | undefined;
 	}
 
-	let videoElement: HTMLIFrameElement | undefined = undefined;
+	let {
+		class: className = '',
+		code,
+		videoId,
+		autoplay = false,
+		preload = false,
+		loop = false,
+		muted = false,
+		controls = true,
+		primaryColor = undefined,
+		poster = undefined,
+		playing = $bindable(false),
+		volume = 1,
+		duration = $bindable(undefined),
+		currentTime = $bindable(0),
+		progress = $bindable([]),
+		sdkSrc = undefined
+	}: Props = $props();
+
+	let url: URL = $state();
+
+	let videoElement: HTMLIFrameElement | undefined = $state(undefined);
 	const Stream = useCloudflareStream(sdkSrc);
-	$: player = videoElement && $Stream ? $Stream(videoElement) : null;
 
-	$: if (player) {
-		player.volume = volume;
-	}
-	$: if (player && player.currentTime !== currentTime) {
-		player.currentTime = currentTime;
-	}
 
-	$: if (player) {
-		player.addEventListener('play', onPlay);
-		player.addEventListener('pause', onPause);
-		player.addEventListener('ended', onEnded);
-		player.addEventListener('timeupdate', onTimeUpdate);
-		player.addEventListener('durationchange', onDurationChange);
-		player.addEventListener('progress', onProgress);
-	}
 	onDestroy(() => {
 		if (player) {
 			player.removeEventListener('play', onPlay);
@@ -124,6 +110,49 @@
 
 		player.pause();
 	}
+	run(() => {
+		url = new URL(`https://customer-${code}.cloudflarestream.com/${videoId}/iframe`);
+		if (autoplay) {
+			url.searchParams.set('autoplay', 'true');
+		}
+		if (preload) {
+			url.searchParams.set('preload', 'true');
+		}
+		if (loop) {
+			url.searchParams.set('loop', 'true');
+		}
+		if (muted) {
+			url.searchParams.set('muted', 'true');
+		}
+		url.searchParams.set('controls', controls.toString());
+		if (primaryColor) {
+			url.searchParams.set('primaryColor', primaryColor);
+		}
+		if (poster) {
+			url.searchParams.set('poster', poster);
+		}
+	});
+	let player = $derived(videoElement && $Stream ? $Stream(videoElement) : null);
+	run(() => {
+		if (player) {
+			player.volume = volume;
+		}
+	});
+	run(() => {
+		if (player && player.currentTime !== currentTime) {
+			player.currentTime = currentTime;
+		}
+	});
+	run(() => {
+		if (player) {
+			player.addEventListener('play', onPlay);
+			player.addEventListener('pause', onPause);
+			player.addEventListener('ended', onEnded);
+			player.addEventListener('timeupdate', onTimeUpdate);
+			player.addEventListener('durationchange', onDurationChange);
+			player.addEventListener('progress', onProgress);
+		}
+	});
 </script>
 
 <iframe
@@ -132,4 +161,4 @@
 	src={url.toString()}
 	allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
 	title="Video Player"
-/>
+></iframe>

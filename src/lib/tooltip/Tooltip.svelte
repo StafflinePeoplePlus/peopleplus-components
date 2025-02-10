@@ -4,15 +4,31 @@
 	import { fade } from 'svelte/transition';
 	import { twMerge } from 'tailwind-merge';
 
-	export let placement: FloatingPlacement | undefined = 'top';
-	export let tooltipClass: string | undefined = undefined;
-	export let openDelay: number = 300;
-	export let closeDelay: number = 0;
-	export let closeOnPointerDown: boolean = true;
-	export let allowHoverableContent: boolean = false;
 
-	let className: string | undefined = undefined;
-	export { className as class };
+	interface Props {
+		placement?: FloatingPlacement | undefined;
+		tooltipClass?: string | undefined;
+		openDelay?: number;
+		closeDelay?: number;
+		closeOnPointerDown?: boolean;
+		allowHoverableContent?: boolean;
+		class?: string | undefined;
+		children?: import('svelte').Snippet;
+		tooltip?: import('svelte').Snippet;
+	}
+
+	let {
+		placement = 'top',
+		tooltipClass = undefined,
+		openDelay = 300,
+		closeDelay = 0,
+		closeOnPointerDown = true,
+		allowHoverableContent = false,
+		class: className = undefined,
+		children,
+		tooltip
+	}: Props = $props();
+	
 
 	const {
 		elements: { trigger, content, arrow },
@@ -30,7 +46,7 @@
 </script>
 
 <div class={twMerge('w-fit', className)} {...$trigger} use:trigger>
-	<slot />
+	{@render children?.()}
 </div>
 
 {#if $open}
@@ -43,7 +59,7 @@
 			tooltipClass,
 		)}
 	>
-		<div {...$arrow} use:arrow class="border-l border-t border-gray-200 dark:border-gray-600" />
-		<slot name="tooltip" />
+		<div {...$arrow} use:arrow class="border-l border-t border-gray-200 dark:border-gray-600"></div>
+		{@render tooltip?.()}
 	</div>
 {/if}

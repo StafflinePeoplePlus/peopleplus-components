@@ -9,7 +9,11 @@
 	import type { ToastMessage } from './types';
 
 	const dispatch = createEventDispatcher<{ dismiss: undefined }>();
-	export let toast: ToastMessage;
+	interface Props {
+		toast: ToastMessage;
+	}
+
+	let { toast }: Props = $props();
 
 	onMount(() => {
 		let id: ReturnType<typeof setTimeout> | undefined = undefined;
@@ -46,7 +50,7 @@
 	<span id="toast-{toast.id}-message">{toast.content.message}</span>
 	<button
 		class="-my-0.5 ml-auto flex items-center justify-center rounded-full p-1.5 transition hover:bg-white/20"
-		on:click={() => dispatch('dismiss')}
+		onclick={() => dispatch('dismiss')}
 	>
 		<XIcon size="16" />
 	</button>

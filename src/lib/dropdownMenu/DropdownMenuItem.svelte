@@ -13,11 +13,24 @@
 	type $$Props =
 		| (Props & { href: string } & SvelteHTMLElements['a'])
 		| (Props & { href?: undefined } & SvelteHTMLElements['button']);
-	let className: $$Props['class'] = undefined;
-	export { className as class };
-	export let href: string | undefined = undefined;
-	export let variant: $$Props['variant'] = undefined;
-	export let use: UseActions = [];
+	
+	interface Props {
+		class?: $$Props['class'];
+		href?: string | undefined;
+		variant?: $$Props['variant'];
+		use?: UseActions;
+		children?: import('svelte').Snippet;
+		[key: string]: any
+	}
+
+	let {
+		class: className = undefined,
+		href = undefined,
+		variant = undefined,
+		use = [],
+		children,
+		...rest
+	}: Props = $props();
 
 	const variants = {
 		default: 'text-gray-700 focus:bg-gray-200 dark:text-gray-200 focus:dark:bg-gray-700',
@@ -26,7 +39,7 @@
 			'text-primary-700 focus:bg-primary-500/20 dark:text-primary-400 dark:focus:text-primary-50',
 	};
 
-	$: activeVariant = variants[variant ?? 'default'];
+	let activeVariant = $derived(variants[variant ?? 'default']);
 
 	export const dispatch = createEventDispatcher();
 
@@ -46,8 +59,8 @@
 	{...$item}
 	use:item
 	use:actions={use}
-	on:m-click={() => dispatch('click')}
-	{...$$restProps}
+	onm-click={() => dispatch('click')}
+	{...rest}
 >
-	<slot />
+	{@render children?.()}
 </svelte:element>

@@ -6,7 +6,9 @@
 <div class="mt-8 flex justify-center">
 	<!-- START USAGE -->
 	<Tooltip>
-		<div slot="tooltip">Save Bookmark</div>
+		{#snippet tooltip()}
+				<div >Save Bookmark</div>
+			{/snippet}
 
 		<Button>
 			<BookmarkPlus />

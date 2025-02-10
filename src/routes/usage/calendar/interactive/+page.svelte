@@ -34,15 +34,17 @@
 		event.finish();
 	}}
 >
-	<div
-		slot="entry"
-		let:entry
-		let:entryProps
-		class="flex items-center gap-2 rounded-lg border border-sky-300 bg-sky-100 p-1 text-sky-900 backdrop-blur-sm transition-colors data-[new-entry]:border-opacity-75 data-[entry-hover]:bg-sky-200 data-[new-entry]:bg-opacity-50 @3xl:p-2 dark:border-sky-700 dark:bg-sky-900 dark:text-sky-50 dark:data-[entry-hover]:bg-sky-800"
-		{...entryProps}
-	>
-		<div class="block truncate text-xs font-medium @3xl:text-lg">
-			{entry.item ?? 'New Entry'}
+	{#snippet entry({ entry, entryProps })}
+		<div
+			
+			
+			
+			class="flex items-center gap-2 rounded-lg border border-sky-300 bg-sky-100 p-1 text-sky-900 backdrop-blur-sm transition-colors data-[new-entry]:border-opacity-75 data-[entry-hover]:bg-sky-200 data-[new-entry]:bg-opacity-50 @3xl:p-2 dark:border-sky-700 dark:bg-sky-900 dark:text-sky-50 dark:data-[entry-hover]:bg-sky-800"
+			{...entryProps}
+		>
+			<div class="block truncate text-xs font-medium @3xl:text-lg">
+				{entry.item ?? 'New Entry'}
+			</div>
 		</div>
-	</div>
+	{/snippet}
 </Calendar>

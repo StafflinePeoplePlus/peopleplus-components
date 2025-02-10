@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { createEventDispatcher } from 'svelte';
 	import type { SvelteHTMLElements } from 'svelte/elements';
 	import { twMerge } from 'tailwind-merge';
@@ -6,15 +8,29 @@
 	export type Step = $$Generic<{ label: string }>;
 	type $$Props = SvelteHTMLElements['section'] & { steps: Step[]; activeStep?: Step };
 
-	export { className as class };
-	let className: $$Props['class'] = undefined;
+	
 
-	export let steps: Step[];
-	export let activeStep: Step | undefined = undefined;
-
-	$: if (!activeStep && steps && steps.length > 0) {
-		activeStep = steps[0];
+	interface Props {
+		class?: $$Props['class'];
+		steps: Step[];
+		activeStep?: Step | undefined;
+		children?: import('svelte').Snippet;
+		[key: string]: any
 	}
+
+	let {
+		class: className = undefined,
+		steps,
+		activeStep = $bindable(undefined),
+		children,
+		...rest
+	}: Props = $props();
+
+	run(() => {
+		if (!activeStep && steps && steps.length > 0) {
+			activeStep = steps[0];
+		}
+	});
 
 	const dispatchEvent = createEventDispatcher<{ changeStep: Step }>();
 
@@ -29,14 +45,14 @@
 		'mb-5 rounded-xl border border-gray-200 bg-white p-2 font-medium shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 md:flex md:px-0',
 		className,
 	)}
-	{...$$restProps}
+	{...rest}
 >
 	{#each steps as step, index}
 		<button
 			class={`w-full rounded-lg p-2 text-left text-gray-500 md:mx-2 md:w-3/4 md:text-center ${
 				step === activeStep ? 'bg-primary-500 text-white' : ''
 			}`}
-			on:click={() => changeStep(step)}
+			onclick={() => changeStep(step)}
 			aria-current={step === activeStep ? 'step' : 'false'}
 		>
 			<span
@@ -52,8 +68,8 @@
 		{#if index !== steps.length - 1}
 			<div
 				class="after:border-1 flex items-center after:hidden after:h-1 after:w-full after:border-b after:border-gray-200 after:content-[''] dark:after:border-gray-700 md:w-full md:after:inline-block"
-			/>
+			></div>
 		{/if}
 	{/each}
-	<slot />
+	{@render children?.()}
 </section>

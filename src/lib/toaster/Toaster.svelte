@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import { writable } from 'svelte/store';
 	import type { ToastKind, ToastMessage } from './types';
 	import { BROWSER, DEV } from 'esm-env';
@@ -34,8 +34,12 @@
 	import Toast from './Toast.svelte';
 	import { twMerge } from 'tailwind-merge';
 
-	let className: string | null | undefined = undefined;
-	export { className as class };
+	interface Props {
+		class?: string | null | undefined;
+	}
+
+	let { class: className = undefined }: Props = $props();
+	
 </script>
 
 <div

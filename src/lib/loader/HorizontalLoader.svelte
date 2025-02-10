@@ -2,9 +2,14 @@
 	import { actions, type UseActions } from '$lib/actions';
 	import { twMerge } from 'tailwind-merge';
 
-	let className: string | undefined = undefined;
-	export { className as class };
-	export let use: UseActions = [];
+	
+	interface Props {
+		class?: string | undefined;
+		use?: UseActions;
+		children?: import('svelte').Snippet;
+	}
+
+	let { class: className = undefined, use = [], children }: Props = $props();
 </script>
 
 <div
@@ -14,5 +19,5 @@
 	)}
 	use:actions={use}
 >
-	<slot />
+	{@render children?.()}
 </div>

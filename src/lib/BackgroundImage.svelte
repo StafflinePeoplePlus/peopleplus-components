@@ -1,10 +1,14 @@
 <script lang="ts">
 	import { twMerge } from 'tailwind-merge';
 
-	let className = '';
-	export { className as class };
-	export let overlayClass: string | undefined = undefined;
-	export let src: string;
+	
+	interface Props {
+		class?: string;
+		overlayClass?: string | undefined;
+		src: string;
+	}
+
+	let { class: className = '', overlayClass = undefined, src }: Props = $props();
 </script>
 
 <div class="absolute inset-0 -z-10">
@@ -17,5 +21,5 @@
 			aria-hidden="true"
 		/>
 	{/if}
-	<div class={twMerge('absolute inset-0 bg-gray-900/75', overlayClass)} />
+	<div class={twMerge('absolute inset-0 bg-gray-900/75', overlayClass)}></div>
 </div>

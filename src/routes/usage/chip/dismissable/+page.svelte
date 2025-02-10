@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Chip, Button } from '$lib';
 
-	let showChip = true;
+	let showChip = $state(true);
 </script>
 
 {#if showChip}

@@ -1,78 +1,47 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { createEventDispatcher, onMount } from 'svelte';
 	import { twMerge } from 'tailwind-merge';
 	import { useYouTubeIFrameAPI } from './youtubePlayer';
 
 	const dispatchEvent = createEventDispatcher();
 
-	let className = '';
-	export { className as class };
-	export let videoId: string;
-	export let autoplay = false;
-	export let loop = false;
-	export let muted = false;
-	export let controls = true;
-	export let playing = false;
-	export let volume = 1;
-	export let duration: number | undefined = undefined;
-	export let currentTime = 0;
-	export let progress: [number, number][] = [];
+	
+	interface Props {
+		class?: string;
+		videoId: string;
+		autoplay?: boolean;
+		loop?: boolean;
+		muted?: boolean;
+		controls?: boolean;
+		playing?: boolean;
+		volume?: number;
+		duration?: number | undefined;
+		currentTime?: number;
+		progress?: [number, number][];
+	}
 
-	let videoElement: HTMLElement | undefined = undefined;
+	let {
+		class: className = '',
+		videoId,
+		autoplay = false,
+		loop = false,
+		muted = false,
+		controls = true,
+		playing = $bindable(false),
+		volume = 1,
+		duration = $bindable(undefined),
+		currentTime = $bindable(0),
+		progress = $bindable([])
+	}: Props = $props();
+
+	let videoElement: HTMLElement | undefined = $state(undefined);
 	const YouTubePlayer = useYouTubeIFrameAPI();
 
-	$: player =
-		videoElement && $YouTubePlayer
-			? new $YouTubePlayer.Player(videoElement, {
-					videoId,
-					playerVars: {
-						autoplay: autoplay ? 1 : 0,
-						playsinline: 1,
-						showinfo: controls ? 1 : 0,
-						modestbranding: controls ? 0 : 1,
-						controls: controls ? 1 : 0,
-						disablekb: controls ? 0 : 1,
-						loop: loop ? 1 : 0,
-						mute: muted ? 1 : 0,
-						rel: controls ? 1 : 0,
-						fs: controls ? 1 : 0,
-					},
-					events: {
-						onReady() {
-							onDurationChange();
-							player?.setVolume(volume * 100);
-						},
-						onStateChange(evt) {
-							switch (evt.data) {
-								case window.YT.PlayerState.UNSTARTED:
-									break;
-								case window.YT.PlayerState.ENDED:
-									onEnded();
-									break;
-								case window.YT.PlayerState.PLAYING:
-									onPlay();
-									break;
-								case window.YT.PlayerState.PAUSED:
-									onPause();
-									break;
-								case window.YT.PlayerState.BUFFERING:
-									break;
-								case window.YT.PlayerState.CUED:
-									break;
-							}
-						},
-					},
-				})
-			: null;
 
-	$: if (player?.setVolume) {
-		player.setVolume(volume * 100);
-	}
 
-	let playerTime = currentTime;
-	$: if (player && playerTime !== currentTime) {
-		player.seekTo(currentTime, true);
-	}
+	let playerTime = $state(currentTime);
 
 	function onPlay() {
 		dispatchEvent('play');
@@ -128,6 +97,59 @@
 			player?.destroy();
 		};
 	});
+	let player =
+		$derived(videoElement && $YouTubePlayer
+			? new $YouTubePlayer.Player(videoElement, {
+					videoId,
+					playerVars: {
+						autoplay: autoplay ? 1 : 0,
+						playsinline: 1,
+						showinfo: controls ? 1 : 0,
+						modestbranding: controls ? 0 : 1,
+						controls: controls ? 1 : 0,
+						disablekb: controls ? 0 : 1,
+						loop: loop ? 1 : 0,
+						mute: muted ? 1 : 0,
+						rel: controls ? 1 : 0,
+						fs: controls ? 1 : 0,
+					},
+					events: {
+						onReady() {
+							onDurationChange();
+							player?.setVolume(volume * 100);
+						},
+						onStateChange(evt) {
+							switch (evt.data) {
+								case window.YT.PlayerState.UNSTARTED:
+									break;
+								case window.YT.PlayerState.ENDED:
+									onEnded();
+									break;
+								case window.YT.PlayerState.PLAYING:
+									onPlay();
+									break;
+								case window.YT.PlayerState.PAUSED:
+									onPause();
+									break;
+								case window.YT.PlayerState.BUFFERING:
+									break;
+								case window.YT.PlayerState.CUED:
+									break;
+							}
+						},
+					},
+				})
+			: null);
+	run(() => {
+		if (player?.setVolume) {
+			player.setVolume(volume * 100);
+		}
+	});
+	run(() => {
+		if (player && playerTime !== currentTime) {
+			player.seekTo(currentTime, true);
+		}
+	});
 </script>
 
-<div bind:this={videoElement} class={twMerge('h-full w-full bg-black', className)} />
+<div bind:this={videoElement} class={twMerge('h-full w-full bg-black', className)}></div>

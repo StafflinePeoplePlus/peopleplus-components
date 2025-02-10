@@ -5,7 +5,9 @@
 <Tooltip placement="right">
 	Component
 
-	<div slot="tooltip">
-		<div data-testid="content">Content</div>
-	</div>
+	{#snippet tooltip()}
+		<div >
+			<div data-testid="content">Content</div>
+		</div>
+	{/snippet}
 </Tooltip>

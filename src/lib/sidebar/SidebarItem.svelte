@@ -1,4 +1,7 @@
 <script lang="ts">
+	import { createBubbler } from 'svelte/legacy';
+
+	const bubble = createBubbler();
 	import { actions, type UseActions } from '../actions';
 	import type { SvelteHTMLElements } from 'svelte/elements';
 	import { twMerge } from 'tailwind-merge';
@@ -8,11 +11,24 @@
 		| (Props & { href: string } & SvelteHTMLElements['a'])
 		| (Props & { href?: undefined } & SvelteHTMLElements['button']);
 
-	let className: string | undefined = undefined;
-	export { className as class };
-	export let href: string | undefined = undefined;
-	export let active: $$Props['active'] = false;
-	export let use: UseActions = [];
+	
+	interface Props {
+		class?: string | undefined;
+		href?: string | undefined;
+		active?: $$Props['active'];
+		use?: UseActions;
+		children?: import('svelte').Snippet;
+		[key: string]: any
+	}
+
+	let {
+		class: className = undefined,
+		href = undefined,
+		active = false,
+		use = [],
+		children,
+		...rest
+	}: Props = $props();
 </script>
 
 <li class="contents">
@@ -26,10 +42,10 @@
 				'bg-primary-700 text-white hover:bg-primary-700 active:bg-primary-800 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-700',
 			className,
 		)}
-		on:click
+		onclick={bubble('click')}
 		use:actions={use}
-		{...$$restProps}
+		{...rest}
 	>
-		<slot />
+		{@render children?.()}
 	</svelte:element>
 </li>

@@ -5,17 +5,31 @@
 	import { defaultCookieStrings } from './i18n';
 	import type { CookieDescription } from './types';
 
-	let className: string | undefined = undefined;
-	export { className as class };
-	export let title: string;
-	export let body: string;
-	export let name: string;
-	export let required = false;
-	export let checked = required;
-	export let cookies: CookieDescription[] = [];
-	export let expanded = false;
+	
 
-	export let strings = defaultCookieStrings;
+	interface Props {
+		class?: string | undefined;
+		title: string;
+		body: string;
+		name: string;
+		required?: boolean;
+		checked?: any;
+		cookies?: CookieDescription[];
+		expanded?: boolean;
+		strings?: any;
+	}
+
+	let {
+		class: className = undefined,
+		title,
+		body,
+		name,
+		required = false,
+		checked = $bindable(required),
+		cookies = [],
+		expanded = false,
+		strings = defaultCookieStrings
+	}: Props = $props();
 </script>
 
 <section class={className}>

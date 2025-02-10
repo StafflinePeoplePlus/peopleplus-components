@@ -1,8 +1,12 @@
 <script lang="ts">
 	import Typography from '$lib/Typography.svelte';
 
-	export let title: string;
-	export let subtitle: string;
+	interface Props {
+		title: string;
+		subtitle: string;
+	}
+
+	let { title, subtitle }: Props = $props();
 </script>
 
 <svelte:head>

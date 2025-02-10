@@ -10,33 +10,49 @@
 		states: { open },
 	} = createCollapsible();
 
-	let className = '';
-	export { className as class };
-	export let iconClass = '';
-	export let use: UseActions = [];
+	
+	interface Props {
+		class?: string;
+		iconClass?: string;
+		use?: UseActions;
+		label?: import('svelte').Snippet;
+		labelEnd?: import('svelte').Snippet;
+		children?: import('svelte').Snippet;
+		[key: string]: any
+	}
+
+	let {
+		class: className = '',
+		iconClass = '',
+		use = [],
+		label,
+		labelEnd,
+		children,
+		...rest
+	}: Props = $props();
 </script>
 
-<div class={twMerge('rounded-xl bg-white shadow', className)} use:actions={use} {...$$restProps}>
+<div class={twMerge('rounded-xl bg-white shadow', className)} use:actions={use} {...rest}>
 	<div {...$root} use:root>
 		<div
 			class="flex justify-between rounded-xl hover:cursor-pointer hover:bg-gray-50"
 			{...$trigger}
 			use:trigger
 		>
-			<slot name="label" />
+			{@render label?.()}
 			<div
 				class={twMerge('mx-3 place-self-end max-sm:mb-2 sm:place-self-center', iconClass)}
 				class:rotate-180={$open}
 			>
 				<ChevronDown />
 			</div>
-			<slot name="labelEnd" />
+			{@render labelEnd?.()}
 		</div>
 
 		<div style:top="calc(100% + 10px)" style:right="0" style:left="0">
 			{#if $open}
 				<div {...$content} use:content transition:slide>
-					<slot />
+					{@render children?.()}
 				</div>
 			{/if}
 		</div>

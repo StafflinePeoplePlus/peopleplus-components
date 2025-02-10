@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Button, Typography, Banner } from '$lib';
-	let showBanner = true;
+	let showBanner = $state(true);
 </script>
 
 {#if showBanner}

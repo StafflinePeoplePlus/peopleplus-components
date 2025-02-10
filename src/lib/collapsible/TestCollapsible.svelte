@@ -3,6 +3,8 @@
 </script>
 
 <Collapsible>
-	<div slot="label">Label</div>
+	{#snippet label()}
+		<div >Label</div>
+	{/snippet}
 	Content
 </Collapsible>

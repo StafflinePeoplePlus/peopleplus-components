@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	const variants = {
 		'main-heading':
 			'text-4xl font-extrabold tracking-tight leading-none text-black md:text-5xl lg:text-6xl dark:text-white',
@@ -26,16 +26,29 @@
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	type $$Props = Props & T & ElementAttrs;
 
-	let className = '';
-	export { className as class };
-	export let variant: Props['variant'];
-	export let as: keyof SvelteHTMLElements | undefined = undefined;
-	export let use: UseActions = [];
+	
+	interface Props {
+		class?: string;
+		variant: Props['variant'];
+		as?: keyof SvelteHTMLElements | undefined;
+		use?: UseActions;
+		children?: import('svelte').Snippet;
+		[key: string]: any
+	}
+
+	let {
+		class: className = '',
+		variant,
+		as = undefined,
+		use = [],
+		children,
+		...rest
+	}: Props = $props();
 </script>
 
 <svelte:element
 	this={as ?? 'p'}
 	class={twMerge(variants[variant], className)}
 	use:actions={use}
-	{...$$restProps}><slot /></svelte:element
+	{...rest}>{@render children?.()}</svelte:element
 >

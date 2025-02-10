@@ -8,10 +8,22 @@
 
 	const dispatch = createEventDispatcher<{ dismiss: void }>();
 
-	let className: $$Props['class'] = undefined;
-	export { className as class };
-	export let dismissable = false;
-	export let use: UseActions = [];
+	
+	interface Props {
+		class?: $$Props['class'];
+		dismissable?: boolean;
+		use?: UseActions;
+		children?: import('svelte').Snippet;
+		[key: string]: any
+	}
+
+	let {
+		class: className = undefined,
+		dismissable = false,
+		use = [],
+		children,
+		...rest
+	}: Props = $props();
 </script>
 
 <section
@@ -20,9 +32,9 @@
 		className,
 	)}
 	use:actions={use}
-	{...$$restProps}
+	{...rest}
 >
-	<slot />
+	{@render children?.()}
 	{#if dismissable}
 		<Button
 			variant="secondary"

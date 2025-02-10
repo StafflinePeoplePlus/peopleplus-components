@@ -15,7 +15,7 @@
 		{ value: 11, label: 'November' },
 		{ value: 12, label: 'December' },
 	];
-	let value = new Date().getMonth() + 1;
+	let value = $state(new Date().getMonth() + 1);
 </script>
 
 <Select label="Month" options={months} bind:value />

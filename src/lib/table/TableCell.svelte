@@ -14,17 +14,32 @@
 		| (Props & { header: true } & SvelteHTMLElements['th'])
 		| (Props & { header?: false } & SvelteHTMLElements['td']);
 
-	let className: $$Props['class'] = undefined;
-	export { className as class };
-	export let header: $$Props['header'] = false;
-	export let number: $$Props['number'] = false;
-	/**
+	
+	
+	interface Props {
+		class?: $$Props['class'];
+		header?: $$Props['header'];
+		number?: $$Props['number'];
+		/**
 	 * Override the visual position of the cell. In table layouts utilising row/colspan it can be
 	 * difficult to determine in css which cells are visually in the corners to apply the correct
 	 * border radius to.
 	 */
-	export let visualPosition: $$Props['visualPosition'] = undefined;
-	export let use: UseActions = [];
+		visualPosition?: $$Props['visualPosition'];
+		use?: UseActions;
+		children?: import('svelte').Snippet;
+		[key: string]: any
+	}
+
+	let {
+		class: className = undefined,
+		header = false,
+		number = false,
+		visualPosition = undefined,
+		use = [],
+		children,
+		...rest
+	}: Props = $props();
 
 	const table = getTableContext();
 </script>
@@ -51,7 +66,7 @@
 		className,
 	)}
 	use:actions={use}
-	{...$$restProps}
+	{...rest}
 >
-	<slot />
+	{@render children?.()}
 </svelte:element>

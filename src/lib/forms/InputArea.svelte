@@ -5,9 +5,24 @@
 
 	type $$Props = HTMLAttributes<HTMLDivElement> & { use?: UseActions };
 
-	let className: $$Props['class'] = undefined;
-	export { className as class };
-	export let use: UseActions = [];
+	
+	interface Props {
+		class?: $$Props['class'];
+		use?: UseActions;
+		start?: import('svelte').Snippet;
+		children?: import('svelte').Snippet;
+		end?: import('svelte').Snippet;
+		[key: string]: any
+	}
+
+	let {
+		class: className = undefined,
+		use = [],
+		start,
+		children,
+		end,
+		...rest
+	}: Props = $props();
 </script>
 
 <div
@@ -16,11 +31,11 @@
 		className,
 	)}
 	use:actions={use}
-	{...$$restProps}
+	{...rest}
 >
-	<slot name="start" />
-	<slot />
-	<slot name="end" />
+	{@render start?.()}
+	{@render children?.()}
+	{@render end?.()}
 </div>
 
 <style lang="postcss">

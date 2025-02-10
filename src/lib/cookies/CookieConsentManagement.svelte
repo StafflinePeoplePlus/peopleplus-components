@@ -10,9 +10,19 @@
 		save: Record<string, boolean | undefined>;
 	}>();
 
-	export let categories: CookieCategory[];
-	export let consent: Record<string, boolean | undefined>;
-	export let strings = defaultCookieStrings;
+	interface Props {
+		categories: CookieCategory[];
+		consent: Record<string, boolean | undefined>;
+		strings?: any;
+		children?: import('svelte').Snippet;
+	}
+
+	let {
+		categories,
+		consent = $bindable(),
+		strings = defaultCookieStrings,
+		children
+	}: Props = $props();
 </script>
 
 <header class="mb-8">
@@ -20,7 +30,7 @@
 	<Typography variant="body-lg" class="mt-3">
 		{strings.cookiesDescription}
 	</Typography>
-	<slot />
+	{@render children?.()}
 </header>
 <div class="space-y-8">
 	{#each categories as category}

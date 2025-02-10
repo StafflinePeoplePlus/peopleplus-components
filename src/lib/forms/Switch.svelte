@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { actions, type UseActions } from '$lib/actions';
 	import { createEventDispatcher } from 'svelte';
 	import type { HTMLInputAttributes } from 'svelte/elements';
@@ -11,15 +13,28 @@
 
 	const dispatch = createEventDispatcher<{ change: boolean }>();
 
-	let className: $$Props['class'] = undefined;
-	export { className as class };
-	export let checked: $$Props['checked'] = undefined;
-	export let use: UseActions = [];
-	export let group: string[] = [];
-
-	$: if ($$restProps.value != null && group.includes($$restProps.value) !== checked) {
-		checked = group.includes($$restProps.value);
+	
+	interface Props {
+		class?: $$Props['class'];
+		checked?: $$Props['checked'];
+		use?: UseActions;
+		group?: string[];
+		[key: string]: any
 	}
+
+	let {
+		class: className = undefined,
+		checked = $bindable(undefined),
+		use = [],
+		group = $bindable([]),
+		...rest
+	}: Props = $props();
+
+	run(() => {
+		if (rest.value != null && group.includes(rest.value) !== checked) {
+			checked = group.includes(rest.value);
+		}
+	});
 </script>
 
 <input
@@ -31,7 +46,7 @@
 	)}
 	{checked}
 	use:actions={use}
-	on:change={(evt) => {
+	onchange={(evt) => {
 		if (evt.currentTarget.checked) {
 			group = [...group, evt.currentTarget.value];
 		} else {
@@ -40,5 +55,5 @@
 		checked = evt.currentTarget.checked;
 		dispatch('change', evt.currentTarget.checked);
 	}}
-	{...$$restProps}
+	{...rest}
 />

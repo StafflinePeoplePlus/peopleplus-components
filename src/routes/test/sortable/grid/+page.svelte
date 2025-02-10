@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { createSortableGrid, reorderGrid } from '$lib';
 
-	let items = Array.from({ length: 100 }).map((_, i) => ({
+	let items = $state(Array.from({ length: 100 }).map((_, i) => ({
 		id: i.toString(),
 		name: `Item ${i + 1}`,
-	}));
+	})));
 	const sortable = createSortableGrid({
 		onReorder: (op) => (items = reorderGrid(items, (item) => item.id, op)),
 	});

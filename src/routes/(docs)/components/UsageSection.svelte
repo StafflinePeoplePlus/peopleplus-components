@@ -9,16 +9,25 @@
 	import { darkMode } from '../../darkMode';
 	import { Card } from '$lib';
 
-	export let code: { html: string; text: string };
-	export let src: string;
-	export let title: string;
-	export let frameHeight: number | undefined = undefined;
-	let showCode = false;
+	interface Props {
+		code: { html: string; text: string };
+		src: string;
+		title: string;
+		frameHeight?: number | undefined;
+	}
+
+	let {
+		code,
+		src,
+		title,
+		frameHeight = undefined
+	}: Props = $props();
+	let showCode = $state(false);
 
 	const DEFAULT_FRAME_HEIGHT = 1;
-	let frame: HTMLIFrameElement | undefined = undefined;
-	let calculatedFrameHeight = DEFAULT_FRAME_HEIGHT;
-	let frameLoaded = false;
+	let frame: HTMLIFrameElement | undefined = $state(undefined);
+	let calculatedFrameHeight = $state(DEFAULT_FRAME_HEIGHT);
+	let frameLoaded = $state(false);
 	function resizeFrame() {
 		if (!frame || !frame.contentDocument) {
 			return;
@@ -28,7 +37,7 @@
 	}
 </script>
 
-<svelte:window on:resize={resizeFrame} />
+<svelte:window onresize={resizeFrame} />
 
 <Card class="overflow-hidden">
 	<header
@@ -36,7 +45,7 @@
 	>
 		<Typography variant="sub-heading">{title}</Typography>
 		<!-- eslint-disable-next-line svelte/valid-compile -->
-		<!-- svelte-ignore a11y-label-has-associated-control -->
+		<!-- svelte-ignore a11y_label_has_associated_control -->
 		<label>
 			<span class="mr-2 text-sm font-medium dark:text-white">Show Code</span>
 			<Switch bind:checked={showCode} />
@@ -52,8 +61,8 @@
 			{title}
 			src={$darkMode ? `${src}?dark=true` : src}
 			style:height="{frameHeight ?? calculatedFrameHeight}px"
-			on:load={resizeFrame}
-		/>
+			onload={resizeFrame}
+		></iframe>
 	{/if}
 	{#if !frameLoaded}
 		<div class="flex items-center justify-center p-6">

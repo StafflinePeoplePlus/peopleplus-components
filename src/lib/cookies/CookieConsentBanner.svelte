@@ -14,15 +14,28 @@
 		reject: void;
 	}>();
 
-	let className: string | undefined = undefined;
-	export { className as class };
-	export let categories: CookieCategory[];
-	export let consent: Record<string, boolean | undefined> = {};
-	export let acceptAction: string | undefined = undefined;
-	export let rejectAction: string | undefined = undefined;
-	export let strings = defaultCookieStrings;
+	
+	interface Props {
+		class?: string | undefined;
+		categories: CookieCategory[];
+		consent?: Record<string, boolean | undefined>;
+		acceptAction?: string | undefined;
+		rejectAction?: string | undefined;
+		strings?: any;
+		children?: import('svelte').Snippet;
+	}
 
-	let expanded = false;
+	let {
+		class: className = undefined,
+		categories,
+		consent = $bindable({}),
+		acceptAction = undefined,
+		rejectAction = undefined,
+		strings = defaultCookieStrings,
+		children
+	}: Props = $props();
+
+	let expanded = $state(false);
 </script>
 
 <section
@@ -72,7 +85,7 @@
 	</div>
 	{#if expanded}
 		<div transition:slide class="max-w-prose" id="consent-content">
-			<slot />
+			{@render children?.()}
 
 			<div class="divide-y dark:divide-gray-700">
 				<div class="mb-8">
