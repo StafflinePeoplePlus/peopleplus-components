@@ -23,7 +23,7 @@
 		body,
 		name,
 		required = false,
-		checked = $bindable(required),
+		checked = $bindable(),
 		cookies = [],
 		expanded = false,
 		strings = defaultCookieStrings,

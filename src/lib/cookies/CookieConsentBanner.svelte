@@ -6,7 +6,7 @@
 	import type { CookieCategory } from './types';
 	import CookieConsentCategory from './CookieConsentCategory.svelte';
 	import { twMerge } from 'tailwind-merge';
-	import { defaultCookieStrings } from './i18n';
+	import { defaultCookieStrings, type CookieStrings } from './i18n';
 
 	const dispatch = createEventDispatcher<{
 		save: Record<string, boolean | undefined>;
@@ -20,8 +20,7 @@
 		consent?: Record<string, boolean | undefined>;
 		acceptAction?: string | undefined;
 		rejectAction?: string | undefined;
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		strings?: any;
+		strings?: CookieStrings;
 		children?: import('svelte').Snippet;
 	}
 

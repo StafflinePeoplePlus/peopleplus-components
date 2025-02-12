@@ -28,10 +28,11 @@
 	}: Props = $props();
 
 	const table = getTableContext();
+	let elementType = $derived(header ? 'th' : 'td');
 </script>
 
 <svelte:element
-	this={header ? 'th' : 'td'}
+	this={elementType}
 	class={twMerge(
 		'px-3 py-2 text-gray-800 dark:text-white',
 		header && 'bg-gray-200 font-semibold text-gray-800 dark:bg-gray-700 dark:text-white',

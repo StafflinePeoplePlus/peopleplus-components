@@ -21,7 +21,7 @@
 		...rest
 	}: Props = $props();
 
-	run(() => {
+	$effect(() => {
 		if (!activeStep && steps && steps.length > 0) {
 			activeStep = steps[0];
 		}
@@ -41,16 +41,18 @@
 	{...rest}
 >
 	{#each steps as step, index}
+		{@const isActive = step.label === activeStep?.label}
 		<button
-			class={`w-full rounded-lg p-2 text-left text-gray-500 md:mx-2 md:w-3/4 md:text-center ${
-				step === activeStep ? 'bg-primary-500 text-white' : ''
-			}`}
+			class={twMerge(
+				`w-full rounded-lg p-2 text-left text-gray-500 md:mx-2 md:w-3/4 md:text-center`,
+				isActive && 'bg-primary-500 text-white',
+			)}
 			onclick={() => changeStep(step)}
-			aria-current={step === activeStep ? 'step' : 'false'}
+			aria-current={isActive ? 'step' : 'false'}
 		>
 			<span
 				class={`rounded-full bg-gray-500 px-2 py-1 text-xs text-white max-md:mr-2 ${
-					step === activeStep ? 'border border-white bg-primary-500' : ''
+					isActive ? 'border border-white bg-primary-500' : ''
 				}`}
 			>
 				{index + 1}
