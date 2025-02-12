@@ -10,8 +10,9 @@
 		end: string;
 		max?: number;
 		min?: number;
-		formatLabel?: any;
+		formatLabel?: (value: number) => string;
 		reverseGradient?: boolean;
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		[key: string]: any;
 	}
 
@@ -77,7 +78,7 @@
 			x="50%"
 			y="52.5%"
 			font-size="135%"
-			class="bg-slate-900 place-self-center dark:fill-white"
+			class="place-self-center bg-slate-900 dark:fill-white"
 			text-anchor="middle"
 		>
 			{formatLabel ? formatLabel(value) : value}

@@ -22,6 +22,7 @@
 		name?: string | undefined;
 		initials?: string | undefined;
 		size?: keyof typeof sizes;
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		[key: string]: any;
 	}
 

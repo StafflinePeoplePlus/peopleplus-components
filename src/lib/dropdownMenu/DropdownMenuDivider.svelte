@@ -4,6 +4,7 @@
 
 	interface Props {
 		class?: string | undefined;
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		[key: string]: any;
 	}
 

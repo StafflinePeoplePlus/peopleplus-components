@@ -2,7 +2,7 @@
 	import Typography from '$lib/Typography.svelte';
 	import Switch from '$lib/forms/Switch.svelte';
 	import CookiesTable from './CookiesTable.svelte';
-	import { defaultCookieStrings } from './i18n';
+	import { defaultCookieStrings, type CookieStrings } from './i18n';
 	import type { CookieDescription } from './types';
 
 	interface Props {
@@ -11,10 +11,10 @@
 		body: string;
 		name: string;
 		required?: boolean;
-		checked?: any;
+		checked?: boolean;
 		cookies?: CookieDescription[];
 		expanded?: boolean;
-		strings?: any;
+		strings?: CookieStrings;
 	}
 
 	let {

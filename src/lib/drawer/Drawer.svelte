@@ -16,7 +16,8 @@
 		/**
 		 * Allows overriding of the melt-ui dialog for more custom use cases.
 		 */
-		dialog?: any;
+		dialog?: ReturnType<typeof createDialog>;
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		children?: import('svelte').Snippet<[any]>;
 	}
 

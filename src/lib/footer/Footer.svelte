@@ -14,6 +14,7 @@
 		middle?: import('svelte').Snippet;
 		end?: import('svelte').Snippet;
 		bottom?: import('svelte').Snippet;
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		[key: string]: any;
 	}
 
@@ -38,14 +39,14 @@
 	use:actions={use}
 	{...rest}
 >
-	<div class={twMerge('md:flex flex-row', topClass)}>
-		<div class={twMerge('md:basis-1/2 p-4', startClass)}>
+	<div class={twMerge('flex-row md:flex', topClass)}>
+		<div class={twMerge('p-4 md:basis-1/2', startClass)}>
 			{@render start?.()}
 		</div>
-		<div class={twMerge('md:basis-1/3 p-4', middleClass)}>
+		<div class={twMerge('p-4 md:basis-1/3', middleClass)}>
 			{@render middle?.()}
 		</div>
-		<div class={twMerge('md:basis-1/4 p-4', endClass)}>
+		<div class={twMerge('p-4 md:basis-1/4', endClass)}>
 			{@render end?.()}
 		</div>
 	</div>

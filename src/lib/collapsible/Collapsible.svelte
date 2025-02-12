@@ -17,6 +17,7 @@
 		label?: import('svelte').Snippet;
 		labelEnd?: import('svelte').Snippet;
 		children?: import('svelte').Snippet;
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		[key: string]: any;
 	}
 

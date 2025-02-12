@@ -40,7 +40,6 @@
 	>
 		<Typography variant="sub-heading">{title}</Typography>
 		<!-- eslint-disable-next-line svelte/valid-compile -->
-		<!-- svelte-ignore a11y_label_has_associated_control -->
 		<label>
 			<span class="mr-2 text-sm font-medium dark:text-white">Show Code</span>
 			<Switch bind:checked={showCode} />

@@ -59,21 +59,6 @@
 		| (PropsContent & { href: string } & SvelteHTMLElements['a'])
 		| (PropsContent & { href?: undefined } & SvelteHTMLElements['button']);
 
-	// interface Props {
-	// 	class?: string;
-	// 	href?: string | undefined;
-	// 	variant?: $$Props['variant'];
-	// 	/**
-	// 	 * Visual shape of the button, defaults to `rounded`
-	// 	 */
-	// 	shape?: $$Props['shape'];
-	// 	size?: $$Props['size'];
-	// 	use?: UseActions;
-	// 	icon?: $$Props['icon'];
-	// 	children?: import('svelte').Snippet;
-	// 	[key: string]: any;
-	// }
-
 	let {
 		class: className = '',
 		href = undefined,

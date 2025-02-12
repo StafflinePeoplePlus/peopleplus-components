@@ -6,6 +6,7 @@
 		class?: string | undefined;
 		use?: UseActions;
 		children?: import('svelte').Snippet;
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		[key: string]: any;
 	}
 

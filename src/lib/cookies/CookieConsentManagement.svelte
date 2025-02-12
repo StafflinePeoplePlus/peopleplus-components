@@ -4,7 +4,7 @@
 	import { createEventDispatcher } from 'svelte';
 	import CookieConsentCategory from './CookieConsentCategory.svelte';
 	import type { CookieCategory } from './types';
-	import { defaultCookieStrings } from './i18n';
+	import { defaultCookieStrings, type CookieStrings } from './i18n';
 
 	const dispatch = createEventDispatcher<{
 		save: Record<string, boolean | undefined>;
@@ -13,7 +13,7 @@
 	interface Props {
 		categories: CookieCategory[];
 		consent: Record<string, boolean | undefined>;
-		strings?: any;
+		strings?: CookieStrings;
 		children?: import('svelte').Snippet;
 	}
 

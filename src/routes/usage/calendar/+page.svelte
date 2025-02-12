@@ -27,6 +27,7 @@
 </script>
 
 <Calendar {entries} initialDate={new CalendarDate(2024, 4, 1)}>
+	<!-- eslint-disable-next-line @typescript-eslint/no-explicit-any -->
 	{#snippet entry({ entry, entryProps }: { entry: (typeof entries)[0]; entryProps: any })}
 		<div
 			class="flex items-center gap-2 rounded-lg border border-sky-300 bg-sky-100 p-1 text-sky-900 transition-colors data-[entry-hover]:bg-sky-200 @3xl:p-2 dark:border-sky-700 dark:bg-sky-900 dark:text-sky-50 dark:data-[entry-hover]:bg-sky-800"

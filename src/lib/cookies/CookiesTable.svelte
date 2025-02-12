@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { Table, TableCell, TableRow } from '$lib/table';
-	import { defaultCookieStrings } from './i18n';
+	import { defaultCookieStrings, type CookieStrings } from './i18n';
 	import type { CookieDescription } from './types';
 
 	interface Props {
 		class?: string | undefined;
 		cookies: CookieDescription[];
-		strings?: any;
+		strings?: CookieStrings;
 	}
 
 	let { class: className = undefined, cookies, strings = defaultCookieStrings }: Props = $props();

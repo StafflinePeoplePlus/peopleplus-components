@@ -20,6 +20,7 @@
 		consent?: Record<string, boolean | undefined>;
 		acceptAction?: string | undefined;
 		rejectAction?: string | undefined;
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		strings?: any;
 		children?: import('svelte').Snippet;
 	}

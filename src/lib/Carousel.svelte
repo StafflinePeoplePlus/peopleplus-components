@@ -10,6 +10,7 @@
 		items: Item[];
 		listClass?: string;
 		itemClass?: string;
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		children?: import('svelte').Snippet<[any]>;
 	}
 
