@@ -8,20 +8,12 @@
 	import { writable } from 'svelte/store';
 	import { actions, type UseActions } from '$lib/actions';
 
-	type $$Props = SvelteHTMLElements['table'] & {
+	type Props = SvelteHTMLElements['table'] & {
 		borders?: boolean;
 		striped?: boolean;
 		use?: UseActions;
+		class?: string;
 	};
-	
-	interface Props {
-		class?: $$Props['class'];
-		borders?: boolean;
-		striped?: boolean;
-		use?: UseActions;
-		children?: import('svelte').Snippet;
-		[key: string]: any
-	}
 
 	let {
 		class: className = undefined,

@@ -6,22 +6,23 @@
 	import type { HTMLInputAttributes } from 'svelte/elements';
 	import { twMerge } from 'tailwind-merge';
 
-	type $$Props = Omit<HTMLInputAttributes, 'type'> & { use?: UseActions };
+	type Props = Omit<HTMLInputAttributes, 'type'> & {
+		use?: UseActions;
+		class?: string;
+		children?: import('svelte').Snippet;
+	};
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	interface $$Events {
 		input: Event & { currentTarget: HTMLInputElement };
 		change: Event & { currentTarget: HTMLInputElement };
 	}
 
-	
-	interface Props {
-		class?: $$Props['class'];
-		value?: $$Props['value'];
-		use?: UseActions;
-		[key: string]: any
-	}
-
-	let { class: className = undefined, value = $bindable(undefined), use = [], ...rest }: Props = $props();
+	let {
+		class: className = undefined,
+		value = $bindable(undefined),
+		use = [],
+		...rest
+	}: Props = $props();
 </script>
 
 <input

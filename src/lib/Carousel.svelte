@@ -4,7 +4,6 @@
 	import { twMerge } from 'tailwind-merge';
 	import throttle from 'just-throttle';
 
-	
 	type Item = $$Generic;
 	interface Props {
 		class?: string;
@@ -14,13 +13,7 @@
 		children?: import('svelte').Snippet<[any]>;
 	}
 
-	let {
-		class: className = '',
-		items,
-		listClass = '',
-		itemClass = '',
-		children
-	}: Props = $props();
+	let { class: className = '', items, listClass = '', itemClass = '', children }: Props = $props();
 
 	const DRAG_THRESHOLD = 10;
 	let containerEl: HTMLElement | undefined = $state(undefined);
@@ -165,7 +158,7 @@
 					}
 				}}
 			>
-				{@render children?.({ item, index, dragging, })}
+				{@render children?.({ item, index, dragging })}
 			</li>
 		{/each}
 	</ul>

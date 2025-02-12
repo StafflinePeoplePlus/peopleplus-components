@@ -14,7 +14,6 @@
 		'3xl': { container: 'h-40 w-40', fallback: 'text-[5rem]' },
 	};
 
-	
 	interface Props {
 		class?: string | undefined;
 		imageClass?: string | undefined;
@@ -23,7 +22,7 @@
 		name?: string | undefined;
 		initials?: string | undefined;
 		size?: keyof typeof sizes;
-		[key: string]: any
+		[key: string]: any;
 	}
 
 	let {

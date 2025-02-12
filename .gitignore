@@ -24,5 +24,9 @@ devenv.local.nix
 # direnv
 .direnv
 
+# npm/bun
+package-lock.json
+bun.lock
+
 # pre-commit
 .pre-commit-config.yaml

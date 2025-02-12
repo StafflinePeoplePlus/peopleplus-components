@@ -10,7 +10,6 @@
 		states: { open },
 	} = createCollapsible();
 
-	
 	interface Props {
 		class?: string;
 		iconClass?: string;
@@ -18,7 +17,7 @@
 		label?: import('svelte').Snippet;
 		labelEnd?: import('svelte').Snippet;
 		children?: import('svelte').Snippet;
-		[key: string]: any
+		[key: string]: any;
 	}
 
 	let {

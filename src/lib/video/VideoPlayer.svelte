@@ -9,7 +9,6 @@
 
 	const dispatchEvent = createEventDispatcher();
 
-	
 	interface Props {
 		class?: string;
 		element?: HTMLElement | undefined;
@@ -29,7 +28,7 @@
 		children,
 		top,
 		bottom,
-		overlay
+		overlay,
 	}: Props = $props();
 
 	let interacting = $state(false);

@@ -6,8 +6,6 @@
 	import { fade, fly } from 'svelte/transition';
 	import { quadInOut } from 'svelte/easing';
 
-	
-	
 	interface Props {
 		class?: string | null | undefined;
 		overlayClass?: string | null | undefined;
@@ -16,8 +14,8 @@
 		disableClickOutside?: boolean;
 		onClose?: (() => void) | null | undefined;
 		/**
-	 * Allows overriding of the melt-ui dialog for more custom use cases.
-	 */
+		 * Allows overriding of the melt-ui dialog for more custom use cases.
+		 */
 		dialog?: any;
 		children?: import('svelte').Snippet<[any]>;
 	}
@@ -30,10 +28,10 @@
 		disableClickOutside = false,
 		onClose = undefined,
 		dialog = createDialog({
-		closeOnOutsideClick: !disableClickOutside,
-		forceVisible: true,
-	}),
-		children
+			closeOnOutsideClick: !disableClickOutside,
+			forceVisible: true,
+		}),
+		children,
 	}: Props = $props();
 
 	const {
@@ -49,7 +47,8 @@
 				onClose();
 			}
 
-			open = v;
+			// TODO: investigate typing
+			open = v as boolean;
 		});
 	});
 
@@ -72,7 +71,11 @@
 			class={twMerge('fixed inset-y-0 right-0 z-40 bg-white p-4 shadow-xl', className)}
 			transition:fly={{ easing: quadInOut, x: '100%', duration: 200 }}
 		>
-			{@render children?.({ title: { props: $title, action: title }, description: { props: $description, action: description }, close: { props: $close, action: close }, })}
+			{@render children?.({
+				title: { props: $title, action: title },
+				description: { props: $description, action: description },
+				close: { props: $close, action: close },
+			})}
 		</div>
 	</div>
 {/if}

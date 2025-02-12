@@ -3,15 +3,7 @@
 	import type { SvelteHTMLElements } from 'svelte/elements';
 	import { twMerge } from 'tailwind-merge';
 
-	type $$Props = SvelteHTMLElements['section'] & { use?: UseActions };
-
-	
-	interface Props {
-		class?: $$Props['class'];
-		use?: UseActions;
-		children?: import('svelte').Snippet;
-		[key: string]: any
-	}
+	type Props = SvelteHTMLElements['section'] & { use?: UseActions; class?: string };
 
 	let { class: className = undefined, use = [], children, ...rest }: Props = $props();
 </script>

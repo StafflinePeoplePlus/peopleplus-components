@@ -14,7 +14,6 @@
 		reject: void;
 	}>();
 
-	
 	interface Props {
 		class?: string | undefined;
 		categories: CookieCategory[];
@@ -32,7 +31,7 @@
 		acceptAction = undefined,
 		rejectAction = undefined,
 		strings = defaultCookieStrings,
-		children
+		children,
 	}: Props = $props();
 
 	let expanded = $state(false);
@@ -60,7 +59,7 @@
 				type={acceptAction ? 'submit' : 'button'}
 				formaction={acceptAction}
 				class="md:w-56"
-				on:click={() => dispatch('accept')}
+				onclick={() => dispatch('accept')}
 			>
 				<span class="md:hidden">{strings.acceptAll}</span>
 				<span class="hidden md:inline">{strings.acceptAllCookies}</span>
@@ -68,7 +67,7 @@
 			<Button
 				class="md:w-56"
 				type="button"
-				on:click={() => (expanded = !expanded)}
+				onclick={() => (expanded = !expanded)}
 				aria-expanded={expanded ? 'true' : 'false'}
 				aria-controls="consent-content"
 			>
@@ -94,7 +93,7 @@
 							variant="secondary"
 							type={acceptAction ? 'submit' : 'button'}
 							formaction={acceptAction}
-							on:click={() => dispatch('accept')}
+							onclick={() => dispatch('accept')}
 						>
 							<span class="md:hidden">{strings.acceptAll}</span>
 							<span class="hidden md:inline">{strings.acceptAllCookies}</span>
@@ -103,7 +102,7 @@
 							variant="secondary"
 							type={rejectAction ? 'submit' : 'button'}
 							formaction={rejectAction}
-							on:click={() => dispatch('reject')}
+							onclick={() => dispatch('reject')}
 						>
 							<span class="md:hidden">{strings.rejectAll}</span>
 							<span class="hidden md:inline">{strings.rejectAllCookies}</span>
@@ -128,7 +127,7 @@
 					<Button
 						variant="primary"
 						type="submit"
-						on:click={() => {
+						onclick={() => {
 							expanded = false;
 							dispatch('save', consent);
 						}}
@@ -139,7 +138,7 @@
 						class="md:hidden"
 						variant="secondary"
 						type="button"
-						on:click={() => {
+						onclick={() => {
 							expanded = false;
 						}}
 					>

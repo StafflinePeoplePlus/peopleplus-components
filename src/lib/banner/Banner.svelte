@@ -2,26 +2,21 @@
 	import type { SvelteHTMLElements } from 'svelte/elements';
 	import { twMerge } from 'tailwind-merge';
 	import { Button, actions, type UseActions } from '$lib';
-	import { createEventDispatcher } from 'svelte';
 
-	type $$Props = SvelteHTMLElements['section'] & { dismissable?: boolean; use?: UseActions };
-
-	const dispatch = createEventDispatcher<{ dismiss: void }>();
-
-	
-	interface Props {
-		class?: $$Props['class'];
+	type Props = SvelteHTMLElements['section'] & {
 		dismissable?: boolean;
 		use?: UseActions;
+		class?: string;
 		children?: import('svelte').Snippet;
-		[key: string]: any
-	}
+		onDismiss?: () => void;
+	};
 
 	let {
 		class: className = undefined,
 		dismissable = false,
 		use = [],
 		children,
+		onDismiss,
 		...rest
 	}: Props = $props();
 </script>
@@ -39,7 +34,9 @@
 		<Button
 			variant="secondary"
 			class="h-12 max-md:my-2 max-md:w-full"
-			on:click={() => dispatch('dismiss')}
+			onclick={() => {
+				if (onDismiss) onDismiss();
+			}}
 		>
 			<span aria-hidden="true" class="max-md:hidden">&times;</span>
 			<span aria-hidden="true" class="md:hidden">Dismiss</span>

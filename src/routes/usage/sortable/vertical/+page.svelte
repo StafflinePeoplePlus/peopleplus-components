@@ -6,10 +6,12 @@
 	import { crossfade } from 'svelte/transition';
 	import { twMerge } from 'tailwind-merge';
 
-	let items = $state(Array.from({ length: 20 }).map((_, i) => ({
-		id: i.toString(),
-		name: `Item ${i + 1}`,
-	})));
+	let items = $state(
+		Array.from({ length: 20 }).map((_, i) => ({
+			id: i.toString(),
+			name: `Item ${i + 1}`,
+		})),
+	);
 	const [send, receive] = crossfade({});
 	const sortingEnabled = writable(true);
 	const sortable = createSortableList({
@@ -21,7 +23,7 @@
 <Button
 	class="mb-4"
 	variant="secondary"
-	on:click={() => {
+	onclick={() => {
 		$sortingEnabled = !$sortingEnabled;
 	}}>Toggle Sortable</Button
 >

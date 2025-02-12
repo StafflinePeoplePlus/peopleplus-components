@@ -4,11 +4,10 @@
 
 	interface Props {
 		class?: string | undefined;
-		[key: string]: any
+		[key: string]: any;
 	}
 
 	let { class: className = undefined, ...rest }: Props = $props();
-	
 
 	const {
 		elements: { separator },

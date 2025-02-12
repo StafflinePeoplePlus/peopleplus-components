@@ -16,12 +16,7 @@
 		frameHeight?: number | undefined;
 	}
 
-	let {
-		code,
-		src,
-		title,
-		frameHeight = undefined
-	}: Props = $props();
+	let { code, src, title, frameHeight = undefined }: Props = $props();
 	let showCode = $state(false);
 
 	const DEFAULT_FRAME_HEIGHT = 1;

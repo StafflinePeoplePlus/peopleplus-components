@@ -6,14 +6,13 @@
 	import { CheckIcon } from 'lucide-svelte';
 	import { twMerge } from 'tailwind-merge';
 
-	
 	interface Props {
 		class?: string | null | undefined;
 		checkClass?: string | null | undefined;
 		selected?: boolean;
 		use?: UseActions;
 		children?: import('svelte').Snippet;
-		[key: string]: any
+		[key: string]: any;
 	}
 
 	let {

@@ -1,28 +1,23 @@
 <script lang="ts">
 	import { run } from 'svelte/legacy';
-
-	import { createEventDispatcher } from 'svelte';
 	import type { SvelteHTMLElements } from 'svelte/elements';
 	import { twMerge } from 'tailwind-merge';
 
 	export type Step = $$Generic<{ label: string }>;
-	type $$Props = SvelteHTMLElements['section'] & { steps: Step[]; activeStep?: Step };
-
-	
-
-	interface Props {
-		class?: $$Props['class'];
+	type Props = SvelteHTMLElements['section'] & {
 		steps: Step[];
-		activeStep?: Step | undefined;
+		activeStep?: Step;
+		class?: string;
 		children?: import('svelte').Snippet;
-		[key: string]: any
-	}
+		onStepChange?: (step: Step) => void;
+	};
 
 	let {
 		class: className = undefined,
 		steps,
 		activeStep = $bindable(undefined),
 		children,
+		onStepChange,
 		...rest
 	}: Props = $props();
 
@@ -32,11 +27,9 @@
 		}
 	});
 
-	const dispatchEvent = createEventDispatcher<{ changeStep: Step }>();
-
 	function changeStep(step: Step) {
 		activeStep = step;
-		dispatchEvent('changeStep', step);
+		if (onStepChange) onStepChange(step);
 	}
 </script>
 

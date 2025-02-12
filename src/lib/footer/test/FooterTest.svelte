@@ -4,7 +4,7 @@
 
 <Footer>
 	{#snippet start()}
-		<div >
+		<div>
 			<a href="/">
 				<img src="/peopleplus-logo.svg" class="h-8" alt="PeoplePlus Logo" />
 			</a>
@@ -16,7 +16,7 @@
 	{/snippet}
 
 	{#snippet middle()}
-		<div >
+		<div>
 			<Typography variant="sub-heading" as="h3">Help and Support</Typography>
 			<address class="not-italic">
 				<ul class="mt-3 text-gray-600 dark:text-gray-400">
@@ -42,7 +42,7 @@
 	{/snippet}
 
 	{#snippet end()}
-		<div >
+		<div>
 			<ul class="dark:text-gray-40 space-y-2 text-gray-600">
 				<li><a href="#privacy" class="hover:underline">Privacy Policy</a></li>
 				<li><a href="#cookies" class="hover:underline">Cookies Policy</a></li>
@@ -55,7 +55,7 @@
 	{/snippet}
 
 	{#snippet bottom()}
-		<div >
+		<div>
 			<Typography variant="caption">All Rights Reserved | PeoplePlus &copy; 2023</Typography>
 		</div>
 	{/snippet}

@@ -45,34 +45,34 @@
 	import { twMerge } from 'tailwind-merge';
 	import { actions, type UseActions } from './actions';
 
-	type Props = {
+	type PropsContent = {
 		class?: string;
 		variant?: keyof typeof variants;
 		use?: UseActions;
 		icon?: boolean;
 		shape?: keyof typeof shapes;
 		size?: ButtonSize;
-	};
-	type $$Props =
-		| (Props & { href: string } & SvelteHTMLElements['a'])
-		| (Props & { href?: undefined } & SvelteHTMLElements['button']);
-
-	
-	
-	interface Props {
-		class?: string;
-		href?: string | undefined;
-		variant?: $$Props['variant'];
-		/**
-	 * Visual shape of the button, defaults to `rounded`
-	 */
-		shape?: $$Props['shape'];
-		size?: $$Props['size'];
-		use?: UseActions;
-		icon?: $$Props['icon'];
+		href?: string;
 		children?: import('svelte').Snippet;
-		[key: string]: any
-	}
+	};
+	type Props =
+		| (PropsContent & { href: string } & SvelteHTMLElements['a'])
+		| (PropsContent & { href?: undefined } & SvelteHTMLElements['button']);
+
+	// interface Props {
+	// 	class?: string;
+	// 	href?: string | undefined;
+	// 	variant?: $$Props['variant'];
+	// 	/**
+	// 	 * Visual shape of the button, defaults to `rounded`
+	// 	 */
+	// 	shape?: $$Props['shape'];
+	// 	size?: $$Props['size'];
+	// 	use?: UseActions;
+	// 	icon?: $$Props['icon'];
+	// 	children?: import('svelte').Snippet;
+	// 	[key: string]: any;
+	// }
 
 	let {
 		class: className = '',

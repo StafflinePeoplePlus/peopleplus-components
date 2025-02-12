@@ -3,26 +3,15 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 	import { actions, type UseActions } from '$lib/actions';
 
-	type $$Props = HTMLAttributes<HTMLDivElement> & { use?: UseActions };
-
-	
-	interface Props {
-		class?: $$Props['class'];
+	type Props = HTMLAttributes<HTMLDivElement> & {
 		use?: UseActions;
+		class?: string;
 		start?: import('svelte').Snippet;
 		children?: import('svelte').Snippet;
 		end?: import('svelte').Snippet;
-		[key: string]: any
-	}
+	};
 
-	let {
-		class: className = undefined,
-		use = [],
-		start,
-		children,
-		end,
-		...rest
-	}: Props = $props();
+	let { class: className = undefined, use = [], start, children, end, ...rest }: Props = $props();
 </script>
 
 <div

@@ -8,7 +8,7 @@
 	<input name="example" id="example" type="password" class="mt-1 rounded border p-2" />
 
 	{#snippet tooltip()}
-		<div >
+		<div>
 			Password should contain at least:
 			<ul>
 				<li>&check; 8 characters in length</li>

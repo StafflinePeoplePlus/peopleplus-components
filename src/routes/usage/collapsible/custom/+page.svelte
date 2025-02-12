@@ -12,7 +12,7 @@
 <!-- START USAGE -->
 <Collapsible>
 	{#snippet label()}
-		<div  class="p-3 max-sm:-mr-12">
+		<div class="p-3 max-sm:-mr-12">
 			<div class="flex items-center justify-between">
 				<div class="gap-4 flex flex-col sm:flex-row">
 					<div class="rounded-xl bg-white bg-cover">

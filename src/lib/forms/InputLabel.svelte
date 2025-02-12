@@ -4,15 +4,11 @@
 	import type { HTMLLabelAttributes } from 'svelte/elements';
 	import { twMerge } from 'tailwind-merge';
 
-	type $$Props = HTMLLabelAttributes & { use?: UseActions };
-
-	
-	interface Props {
-		class?: $$Props['class'];
+	type Props = HTMLLabelAttributes & {
 		use?: UseActions;
+		class?: string;
 		children?: import('svelte').Snippet;
-		[key: string]: any
-	}
+	};
 
 	let { class: className = undefined, use = [], children, ...rest }: Props = $props();
 

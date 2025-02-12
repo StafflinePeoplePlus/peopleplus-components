@@ -19,24 +19,17 @@
 	import { setContext } from 'svelte';
 	import { actions, type UseActions } from '$lib/actions';
 
-	
-	
 	interface Props {
 		class?: string;
 		/**
-	 * Only allow one accordion in the group to be open at a time
-	 */
+		 * Only allow one accordion in the group to be open at a time
+		 */
 		exclusive?: boolean;
 		use?: UseActions;
 		children?: import('svelte').Snippet;
 	}
 
-	let {
-		class: className = '',
-		exclusive = false,
-		use = [],
-		children
-	}: Props = $props();
+	let { class: className = '', exclusive = false, use = [], children }: Props = $props();
 
 	setContext<AccordionGroupContext>(ctxKey, {
 		disclosures: [],

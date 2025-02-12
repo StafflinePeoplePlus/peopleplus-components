@@ -3,7 +3,6 @@
 	import { defaultCookieStrings } from './i18n';
 	import type { CookieDescription } from './types';
 
-	
 	interface Props {
 		class?: string | undefined;
 		cookies: CookieDescription[];

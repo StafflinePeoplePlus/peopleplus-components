@@ -16,10 +16,10 @@
 	}
 </script>
 
-<Button on:click={toggleDrawer}>Open Measurements</Button>
+<Button onclick={toggleDrawer}>Open Measurements</Button>
 
 <!-- START USAGE -->
-<Drawer bind:open class="w-80"   >
+<Drawer bind:open class="w-80">
 	{#snippet children({ title, description, close })}
 		<div>
 			<div class="flex justify-between">

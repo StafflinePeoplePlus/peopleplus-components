@@ -40,7 +40,7 @@
 </script>
 
 <Button
-	on:click={() => {
+	onclick={() => {
 		consent = {};
 		dismissed = false;
 	}}

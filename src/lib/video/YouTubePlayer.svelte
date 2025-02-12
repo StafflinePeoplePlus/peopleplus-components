@@ -7,7 +7,6 @@
 
 	const dispatchEvent = createEventDispatcher();
 
-	
 	interface Props {
 		class?: string;
 		videoId: string;
@@ -33,13 +32,11 @@
 		volume = 1,
 		duration = $bindable(undefined),
 		currentTime = $bindable(0),
-		progress = $bindable([])
+		progress = $bindable([]),
 	}: Props = $props();
 
 	let videoElement: HTMLElement | undefined = $state(undefined);
 	const YouTubePlayer = useYouTubeIFrameAPI();
-
-
 
 	let playerTime = $state(currentTime);
 
@@ -97,8 +94,8 @@
 			player?.destroy();
 		};
 	});
-	let player =
-		$derived(videoElement && $YouTubePlayer
+	let player = $derived(
+		videoElement && $YouTubePlayer
 			? new $YouTubePlayer.Player(videoElement, {
 					videoId,
 					playerVars: {
@@ -139,7 +136,8 @@
 						},
 					},
 				})
-			: null);
+			: null,
+	);
 	run(() => {
 		if (player?.setVolume) {
 			player.setVolume(volume * 100);

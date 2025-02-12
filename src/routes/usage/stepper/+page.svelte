@@ -10,5 +10,5 @@
 	let currentStep = $state(steps[0]);
 </script>
 
-<Stepper {steps} on:changeStep={(evt) => (currentStep = evt.detail)} />
+<Stepper {steps} onStepChange={(evt) => (currentStep = evt)} />
 <div>{currentStep.label}</div>

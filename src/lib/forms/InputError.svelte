@@ -3,15 +3,11 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 	import { twMerge } from 'tailwind-merge';
 
-	type $$Props = HTMLAttributes<HTMLSpanElement> & { use?: UseActions };
-
-	
-	interface Props {
-		class?: $$Props['class'];
+	type Props = HTMLAttributes<HTMLSpanElement> & {
 		use?: UseActions;
+		class?: string;
 		children?: import('svelte').Snippet;
-		[key: string]: any
-	}
+	};
 
 	let { class: className = undefined, use = [], children, ...rest }: Props = $props();
 </script>

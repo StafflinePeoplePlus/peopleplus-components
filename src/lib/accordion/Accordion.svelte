@@ -6,7 +6,6 @@
 	import { twMerge } from 'tailwind-merge';
 	import { actions, type UseActions } from '$lib/actions';
 
-	
 	interface Props {
 		class?: string;
 		contentClass?: string;
@@ -22,7 +21,7 @@
 		labelClass = '',
 		label,
 		use = [],
-		children
+		children,
 	}: Props = $props();
 
 	const group = getAccordionGroup();

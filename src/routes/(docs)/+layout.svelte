@@ -16,24 +16,20 @@
 	<div class="fixed top-0 z-10 w-full shrink-0 bg-white shadow dark:bg-gray-700">
 		<NavBar class="container mx-auto bg-white">
 			{#snippet start()}
-					
-					<a href="/">
-						<img src="/peopleplus-logo.svg" class="h-8" alt="PeoplePlus Logo" />
-					</a>
-				
-					{/snippet}
+				<a href="/">
+					<img src="/peopleplus-logo.svg" class="h-8" alt="PeoplePlus Logo" />
+				</a>
+			{/snippet}
 
 			{#snippet middle()}
-					
-					<div class="flex items-center gap-2">
-						<InputLabel for="darkModeToggle">Dark Mode</InputLabel>
-						<Switch id="darkModeToggle" bind:checked={$darkMode} />
-					</div>
-				
-					{/snippet}
+				<div class="flex items-center gap-2">
+					<InputLabel for="darkModeToggle">Dark Mode</InputLabel>
+					<Switch id="darkModeToggle" bind:checked={$darkMode} />
+				</div>
+			{/snippet}
 
 			{#snippet end()}
-						<NavBarNav >
+				<NavBarNav>
 					<NavItem href="/">Introduction</NavItem>
 					<NavItem href="/guidelines">Implementation Guidelines</NavItem>
 					{#if !browser || $screenMd}
@@ -45,7 +41,7 @@
 						{/each}
 					{/if}
 				</NavBarNav>
-					{/snippet}
+			{/snippet}
 		</NavBar>
 	</div>
 	{@render children?.()}

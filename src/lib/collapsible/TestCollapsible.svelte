@@ -4,7 +4,7 @@
 
 <Collapsible>
 	{#snippet label()}
-		<div >Label</div>
+		<div>Label</div>
 	{/snippet}
 	Content
 </Collapsible>

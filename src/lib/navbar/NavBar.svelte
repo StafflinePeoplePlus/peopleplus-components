@@ -4,7 +4,6 @@
 	import { screenMd } from '$lib/media';
 	import { actions, type UseActions } from '$lib/actions';
 
-	
 	interface Props {
 		class?: string;
 		startClass?: string;
@@ -28,16 +27,18 @@
 		use = [],
 		middle,
 		end,
-		start
+		start,
 	}: Props = $props();
 
 	const popover = createPopover();
 
-	let popoverPanel = $derived($screenMd
-		? () => {
-				// Do nothing
-			}
-		: popover.panel);
+	let popoverPanel = $derived(
+		$screenMd
+			? () => {
+					// Do nothing
+				}
+			: popover.panel,
+	);
 	let showHamburger = $derived(middle || end);
 </script>
 

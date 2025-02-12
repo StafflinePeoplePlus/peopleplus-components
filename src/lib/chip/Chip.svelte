@@ -1,17 +1,10 @@
 <script lang="ts">
 	import { actions, type UseActions } from '$lib/actions';
+	import type { Snippet } from 'svelte';
 	import type { SvelteHTMLElements } from 'svelte/elements';
 	import { twMerge } from 'tailwind-merge';
 
-	type $$Props = SvelteHTMLElements['div'] & { use?: UseActions };
-
-	
-	interface Props {
-		class?: $$Props['class'];
-		use?: UseActions;
-		children?: import('svelte').Snippet;
-		[key: string]: any
-	}
+	type Props = SvelteHTMLElements['div'] & { use?: UseActions; class?: string; children?: Snippet };
 
 	let { class: className = undefined, use = [], children, ...rest }: Props = $props();
 </script>

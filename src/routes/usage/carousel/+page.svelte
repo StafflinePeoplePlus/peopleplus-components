@@ -5,7 +5,7 @@
 </script>
 
 <!-- START USAGE -->
-<Carousel class="-mx-8" listClass="gap-2 px-8" {items} >
+<Carousel class="-mx-8" listClass="gap-2 px-8" {items}>
 	{#snippet children({ item })}
 		<img src={item} width="400" height="400" alt="" class="w-[200px] rounded" />
 	{/snippet}

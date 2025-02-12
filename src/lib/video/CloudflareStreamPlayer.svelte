@@ -7,7 +7,6 @@
 
 	const dispatchEvent = createEventDispatcher();
 
-	
 	interface Props {
 		class?: string;
 		code: string;
@@ -43,14 +42,13 @@
 		duration = $bindable(undefined),
 		currentTime = $bindable(0),
 		progress = $bindable([]),
-		sdkSrc = undefined
+		sdkSrc = undefined,
 	}: Props = $props();
 
-	let url: URL = $state();
+	let url: URL = $state(new URL(`https://customer-${code}.cloudflarestream.com/${videoId}/iframe`));
 
 	let videoElement: HTMLIFrameElement | undefined = $state(undefined);
 	const Stream = useCloudflareStream(sdkSrc);
-
 
 	onDestroy(() => {
 		if (player) {
@@ -111,7 +109,6 @@
 		player.pause();
 	}
 	run(() => {
-		url = new URL(`https://customer-${code}.cloudflarestream.com/${videoId}/iframe`);
 		if (autoplay) {
 			url.searchParams.set('autoplay', 'true');
 		}

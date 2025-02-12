@@ -1,27 +1,19 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
 	import { getDropdownMenuContext } from './menu';
 	import type { SvelteHTMLElements } from 'svelte/elements';
 	import { twMerge } from 'tailwind-merge';
 	import { actions, type UseActions } from '../actions';
 
-	type Props = {
+	type PropsContent = {
 		class?: string;
 		variant?: 'default' | 'danger' | 'primary';
 		use?: UseActions;
-	};
-	type $$Props =
-		| (Props & { href: string } & SvelteHTMLElements['a'])
-		| (Props & { href?: undefined } & SvelteHTMLElements['button']);
-	
-	interface Props {
-		class?: $$Props['class'];
-		href?: string | undefined;
-		variant?: $$Props['variant'];
-		use?: UseActions;
 		children?: import('svelte').Snippet;
-		[key: string]: any
-	}
+		onClick?: () => void;
+	};
+	type Props =
+		| (PropsContent & { href: string } & SvelteHTMLElements['a'])
+		| (PropsContent & { href?: undefined } & SvelteHTMLElements['button']);
 
 	let {
 		class: className = undefined,
@@ -29,6 +21,7 @@
 		variant = undefined,
 		use = [],
 		children,
+		onClick,
 		...rest
 	}: Props = $props();
 
@@ -41,13 +34,13 @@
 
 	let activeVariant = $derived(variants[variant ?? 'default']);
 
-	export const dispatch = createEventDispatcher();
-
 	const {
 		elements: { item },
 	} = getDropdownMenuContext();
 </script>
 
+<!-- TODO: migrate melt ui stuff to svelte 5 -->
+<!-- svelte-ignore event_directive_deprecated -->
 <svelte:element
 	this={href ? 'a' : 'button'}
 	{href}
@@ -59,7 +52,9 @@
 	{...$item}
 	use:item
 	use:actions={use}
-	onm-click={() => dispatch('click')}
+	on:m-click={() => {
+		if (onClick) onClick();
+	}}
 	{...rest}
 >
 	{@render children?.()}

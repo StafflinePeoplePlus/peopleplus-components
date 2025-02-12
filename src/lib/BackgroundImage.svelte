@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { twMerge } from 'tailwind-merge';
 
-	
 	interface Props {
 		class?: string;
 		overlayClass?: string | undefined;

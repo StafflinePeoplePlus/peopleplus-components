@@ -35,6 +35,7 @@ test('should reflect properties in the dom', async () => {
 	expect(getByText('Category body')).toBeInTheDocument();
 	expect(toggle).toHaveAttribute('name', 'category-name');
 
+	// TODO: fix how tests currently work
 	expect(toggle).not.toBeChecked();
 	await act(() => component.$set({ checked: true }));
 	expect(toggle).toBeChecked();

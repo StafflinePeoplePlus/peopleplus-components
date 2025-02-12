@@ -4,7 +4,6 @@
 	import { scale } from 'svelte/transition';
 	import { backIn, backOut } from 'svelte/easing';
 
-	
 	interface Props {
 		class?: string | undefined;
 		popover: Omit<PopoverInstance, 'button'>;
@@ -12,12 +11,7 @@
 		children?: import('svelte').Snippet;
 	}
 
-	let {
-		class: className = undefined,
-		popover,
-		arrow = true,
-		children
-	}: Props = $props();
+	let { class: className = undefined, popover, arrow = true, children }: Props = $props();
 
 	const { expanded, content, arrow: arrowEl } = popover;
 </script>

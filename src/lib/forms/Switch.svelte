@@ -2,31 +2,23 @@
 	import { run } from 'svelte/legacy';
 
 	import { actions, type UseActions } from '$lib/actions';
-	import { createEventDispatcher } from 'svelte';
 	import type { HTMLInputAttributes } from 'svelte/elements';
 	import { twMerge } from 'tailwind-merge';
 
-	type $$Props = Omit<HTMLInputAttributes, 'type' | 'role' | `${string}:${string}`> & {
+	type Props = Omit<HTMLInputAttributes, 'type' | 'role' | `${string}:${string}`> & {
 		use?: UseActions;
 		group?: string[];
+		class?: string;
+		children?: import('svelte').Snippet;
+		onChange?: (value: boolean) => void;
 	};
-
-	const dispatch = createEventDispatcher<{ change: boolean }>();
-
-	
-	interface Props {
-		class?: $$Props['class'];
-		checked?: $$Props['checked'];
-		use?: UseActions;
-		group?: string[];
-		[key: string]: any
-	}
 
 	let {
 		class: className = undefined,
 		checked = $bindable(undefined),
 		use = [],
 		group = $bindable([]),
+		onChange,
 		...rest
 	}: Props = $props();
 
@@ -53,7 +45,7 @@
 			group = group.filter((item) => item !== evt.currentTarget.value);
 		}
 		checked = evt.currentTarget.checked;
-		dispatch('change', evt.currentTarget.checked);
+		if (onChange) onChange(evt.currentTarget.checked);
 	}}
 	{...rest}
 />

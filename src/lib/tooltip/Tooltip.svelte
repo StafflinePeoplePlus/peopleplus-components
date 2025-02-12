@@ -4,7 +4,6 @@
 	import { fade } from 'svelte/transition';
 	import { twMerge } from 'tailwind-merge';
 
-
 	interface Props {
 		placement?: FloatingPlacement | undefined;
 		tooltipClass?: string | undefined;
@@ -26,9 +25,8 @@
 		allowHoverableContent = false,
 		class: className = undefined,
 		children,
-		tooltip
+		tooltip,
 	}: Props = $props();
-	
 
 	const {
 		elements: { trigger, content, arrow },

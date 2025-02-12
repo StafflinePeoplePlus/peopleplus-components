@@ -3,7 +3,7 @@
 	import { Button, Typography } from '$lib';
 </script>
 
-<Banner dismissable on:dismiss>
+<Banner dismissable onDismiss={() => console.log('dismissed')}>
 	<div class="items-center gap-4 md:flex">
 		<div class="space-y-1 max-sm:pb-2">
 			<Typography variant="sub-heading">Banner Title</Typography>

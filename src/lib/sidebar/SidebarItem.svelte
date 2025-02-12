@@ -6,20 +6,15 @@
 	import type { SvelteHTMLElements } from 'svelte/elements';
 	import { twMerge } from 'tailwind-merge';
 
-	type Props = { active?: boolean; class?: string; use?: UseActions };
-	type $$Props =
-		| (Props & { href: string } & SvelteHTMLElements['a'])
-		| (Props & { href?: undefined } & SvelteHTMLElements['button']);
-
-	
-	interface Props {
-		class?: string | undefined;
-		href?: string | undefined;
-		active?: $$Props['active'];
+	type PropsContent = {
+		active?: boolean;
+		class?: string;
 		use?: UseActions;
 		children?: import('svelte').Snippet;
-		[key: string]: any
-	}
+	};
+	type Props =
+		| (PropsContent & { href: string } & SvelteHTMLElements['a'])
+		| (PropsContent & { href?: undefined } & SvelteHTMLElements['button']);
 
 	let {
 		class: className = undefined,

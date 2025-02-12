@@ -39,7 +39,6 @@
 	}
 
 	let { class: className = undefined }: Props = $props();
-	
 </script>
 
 <div

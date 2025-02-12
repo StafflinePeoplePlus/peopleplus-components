@@ -5,31 +5,17 @@
 	import { getTableContext } from './context';
 	import { actions, type UseActions } from '$lib/actions';
 
-	type Props = {
+	type PropsContent = {
+		class?: string;
 		visualPosition?: VisualPosition;
 		number?: boolean;
 		use?: UseActions;
-	};
-	type $$Props =
-		| (Props & { header: true } & SvelteHTMLElements['th'])
-		| (Props & { header?: false } & SvelteHTMLElements['td']);
-
-	
-	
-	interface Props {
-		class?: $$Props['class'];
-		header?: $$Props['header'];
-		number?: $$Props['number'];
-		/**
-	 * Override the visual position of the cell. In table layouts utilising row/colspan it can be
-	 * difficult to determine in css which cells are visually in the corners to apply the correct
-	 * border radius to.
-	 */
-		visualPosition?: $$Props['visualPosition'];
-		use?: UseActions;
 		children?: import('svelte').Snippet;
-		[key: string]: any
-	}
+	};
+
+	type Props =
+		| (PropsContent & { header: true } & SvelteHTMLElements['th'])
+		| (PropsContent & { header?: false } & SvelteHTMLElements['td']);
 
 	let {
 		class: className = undefined,

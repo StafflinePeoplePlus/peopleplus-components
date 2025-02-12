@@ -26,6 +26,6 @@
 <!-- Place this at the root of your app -->
 <Toaster />
 
-<Button on:click={remove}>Delete</Button>
-<Button on:click={save}>Save</Button>
-<Button on:click={upload} variant="secondary">Upload</Button>
+<Button onclick={remove}>Delete</Button>
+<Button onclick={save}>Save</Button>
+<Button onclick={upload} variant="secondary">Upload</Button>

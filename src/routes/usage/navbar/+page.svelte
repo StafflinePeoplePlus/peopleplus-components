@@ -6,22 +6,22 @@
 <!-- START USAGE -->
 <NavBar>
 	{#snippet start()}
-		<a href="/" >
+		<a href="/">
 			<img src="/peopleplus-logo.svg" class="h-8" alt="PeoplePlus Logo" />
 		</a>
 	{/snippet}
 	{#snippet middle()}
-		<div >
+		<div>
 			<InputArea>
 				{#snippet start()}
-						<div ><SearchIcon size={20} /></div>
-					{/snippet}
+					<div><SearchIcon size={20} /></div>
+				{/snippet}
 				<TextInput name="query" placeholder="Search" />
 			</InputArea>
 		</div>
 	{/snippet}
 	{#snippet end()}
-		<NavBarNav >
+		<NavBarNav>
 			<NavItem href="#home">Home</NavItem>
 			<NavItem href="#categories">Categories</NavItem>
 			<NavItem href="#about">About</NavItem>

@@ -21,7 +21,7 @@
 		categories,
 		consent = $bindable(),
 		strings = defaultCookieStrings,
-		children
+		children,
 	}: Props = $props();
 </script>
 
@@ -50,7 +50,7 @@
 	<Button
 		variant="primary"
 		type="submit"
-		on:click={() => dispatch('save', consent)}
+		onclick={() => dispatch('save', consent)}
 		class="w-full sm:w-auto"
 	>
 		{strings.saveChanges}

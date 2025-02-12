@@ -5,6 +5,7 @@ import Switch from './Switch.svelte';
 afterEach(cleanup);
 
 test('should update checked when switch is toggled', () => {
+	// TODO: fix how tests currently work
 	const { getByRole, component } = render(Switch, { checked: true });
 
 	const toggle = getByRole('switch');
@@ -15,10 +16,10 @@ test('should update checked when switch is toggled', () => {
 });
 
 test('should fire change event when switch is toggled', () => {
-	const { getByRole, component } = render(Switch);
+	const onChange = vi.fn((value: boolean) => value);
+	const { getByRole, component } = render(Switch, { onChange });
 
 	const toggle = getByRole('switch');
-	const onChange = vi.fn((evt: CustomEvent<boolean>) => evt.detail);
 	component.$on('change', onChange);
 	fireEvent.click(toggle);
 	expect(onChange).toHaveReturnedWith(true);

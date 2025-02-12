@@ -7,8 +7,8 @@
 	<!-- START USAGE -->
 	<Tooltip>
 		{#snippet tooltip()}
-				<div >Save Bookmark</div>
-			{/snippet}
+			<div>Save Bookmark</div>
+		{/snippet}
 
 		<Button>
 			<BookmarkPlus />

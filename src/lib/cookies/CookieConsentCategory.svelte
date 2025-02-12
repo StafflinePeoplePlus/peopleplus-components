@@ -5,8 +5,6 @@
 	import { defaultCookieStrings } from './i18n';
 	import type { CookieDescription } from './types';
 
-	
-
 	interface Props {
 		class?: string | undefined;
 		title: string;
@@ -28,7 +26,7 @@
 		checked = $bindable(required),
 		cookies = [],
 		expanded = false,
-		strings = defaultCookieStrings
+		strings = defaultCookieStrings,
 	}: Props = $props();
 </script>
 

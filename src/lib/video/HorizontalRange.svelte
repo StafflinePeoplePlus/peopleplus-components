@@ -6,8 +6,6 @@
 
 	const dispatchEvent = createEventDispatcher();
 
-	
-
 	let scrubbing = $state(false);
 	interface Props {
 		class?: string;
@@ -26,7 +24,7 @@
 		highlightRanges = [],
 		disabled = false,
 		label = undefined,
-		scrubValue = $bindable(0)
+		scrubValue = $bindable(0),
 	}: Props = $props();
 	let trackWidth = $state(0);
 

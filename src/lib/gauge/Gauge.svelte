@@ -12,7 +12,7 @@
 		min?: number;
 		formatLabel?: any;
 		reverseGradient?: boolean;
-		[key: string]: any
+		[key: string]: any;
 	}
 
 	let {

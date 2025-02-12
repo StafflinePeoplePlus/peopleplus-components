@@ -29,7 +29,7 @@
 			Edit
 		</DropdownMenuItem>
 		<DropdownMenuDivider />
-		<DropdownMenuItem variant="danger" on:click={() => confirm()}>
+		<DropdownMenuItem variant="danger" onclick={() => confirm()}>
 			<Trash2Icon size={16} aria-hidden="true" />
 			Delete
 		</DropdownMenuItem>

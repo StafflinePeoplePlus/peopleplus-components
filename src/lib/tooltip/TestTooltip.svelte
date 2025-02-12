@@ -6,7 +6,7 @@
 	Component
 
 	{#snippet tooltip()}
-		<div >
+		<div>
 			<div data-testid="content">Content</div>
 		</div>
 	{/snippet}

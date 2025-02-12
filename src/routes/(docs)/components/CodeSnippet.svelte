@@ -3,7 +3,6 @@
 	import ClipboardCheckIcon from 'lucide-svelte/icons/clipboard-check';
 	import { twMerge } from 'tailwind-merge';
 
-	
 	interface Props {
 		class?: string;
 		code: { html: string; text: string };

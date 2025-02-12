@@ -6,22 +6,23 @@
 	import type { HTMLTextareaAttributes } from 'svelte/elements';
 	import { twMerge } from 'tailwind-merge';
 
-	type $$Props = HTMLTextareaAttributes & { use?: UseActions };
+	type Props = HTMLTextareaAttributes & {
+		use?: UseActions;
+		class?: string;
+		children?: import('svelte').Snippet;
+	};
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	interface $$Events {
 		input: Event & { currentTarget: HTMLTextAreaElement };
 		change: Event & { currentTarget: HTMLTextAreaElement };
 	}
 
-	
-	interface Props {
-		class?: $$Props['class'];
-		value?: $$Props['value'];
-		use?: UseActions;
-		[key: string]: any
-	}
-
-	let { class: className = undefined, value = $bindable(undefined), use = [], ...rest }: Props = $props();
+	let {
+		class: className = undefined,
+		value = $bindable(undefined),
+		use = [],
+		...rest
+	}: Props = $props();
 </script>
 
 <textarea

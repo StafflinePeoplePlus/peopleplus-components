@@ -12,7 +12,7 @@
 		<Button
 			variant="secondary"
 			class="ml-2 h-1 rounded-full px-1 py-2 text-xs"
-			on:click={() => (showChip = false)}
+			onclick={() => (showChip = false)}
 		>
 			<span aria-hidden="true">&times;</span>
 			<span class="sr-only">Remove</span>

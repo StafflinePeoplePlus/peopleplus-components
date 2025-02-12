@@ -15,40 +15,34 @@
 	import { actions, type UseActions } from './actions';
 	import { twMerge } from 'tailwind-merge';
 	import type { HTMLAttributes, SvelteHTMLElements } from 'svelte/elements';
+	import type { Snippet } from 'svelte';
 
-	type Props = { class?: string; variant: keyof typeof variants; use?: UseActions };
-
-	// Extend the html element given in `as` or default to `<p />`
-	type T = $$Generic<{ as?: keyof SvelteHTMLElements }>;
 	type ElementAttrs = T['as'] extends keyof SvelteHTMLElements
 		? SvelteHTMLElements[T['as']]
 		: HTMLAttributes<HTMLParagraphElement>;
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	type $$Props = Props & T & ElementAttrs;
-
-	
-	interface Props {
+	type Props = {
 		class?: string;
-		variant: Props['variant'];
-		as?: keyof SvelteHTMLElements | undefined;
+		variant: keyof typeof variants;
 		use?: UseActions;
-		children?: import('svelte').Snippet;
-		[key: string]: any
-	}
+		children?: Snippet;
+	} & T &
+		ElementAttrs;
 
-	let {
-		class: className = '',
-		variant,
-		as = undefined,
-		use = [],
-		children,
-		...rest
-	}: Props = $props();
+	// Extend the html element given in `as` or default to `<p />`
+	type T = $$Generic<{ as?: keyof SvelteHTMLElements }>;
+
+	let { class: className, variant, as, use, children, ...rest }: Props = $props();
 </script>
 
-<svelte:element
-	this={as ?? 'p'}
-	class={twMerge(variants[variant], className)}
-	use:actions={use}
-	{...rest}>{@render children?.()}</svelte:element
->
+{#if use}
+	<svelte:element
+		this={as ?? 'p'}
+		class={twMerge(variants[variant], className)}
+		use:actions={use}
+		{...rest}>{@render children?.()}</svelte:element
+	>
+{:else}
+	<svelte:element this={as ?? 'p'} class={twMerge(variants[variant], className)} {...rest}
+		>{@render children?.()}</svelte:element
+	>
+{/if}

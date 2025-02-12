@@ -2,7 +2,6 @@
 	import { actions, type UseActions } from '$lib/actions';
 	import { twMerge } from 'tailwind-merge';
 
-	
 	interface Props {
 		class?: string | undefined;
 		use?: UseActions;

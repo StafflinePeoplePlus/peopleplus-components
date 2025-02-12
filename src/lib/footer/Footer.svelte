@@ -2,7 +2,6 @@
 	import { actions, type UseActions } from '$lib/actions';
 	import { twMerge } from 'tailwind-merge';
 
-	
 	interface Props {
 		class?: string;
 		startClass?: string;
@@ -15,7 +14,7 @@
 		middle?: import('svelte').Snippet;
 		end?: import('svelte').Snippet;
 		bottom?: import('svelte').Snippet;
-		[key: string]: any
+		[key: string]: any;
 	}
 
 	let {

@@ -4,12 +4,11 @@
 	import { fly } from 'svelte/transition';
 	import { twMerge } from 'tailwind-merge';
 
-	
 	interface Props {
 		class?: string | undefined;
 		menu: DropdownMenuType;
 		children?: import('svelte').Snippet;
-		[key: string]: any
+		[key: string]: any;
 	}
 
 	let { class: className = undefined, menu, children, ...rest }: Props = $props();

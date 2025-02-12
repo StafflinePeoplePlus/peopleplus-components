@@ -5,7 +5,6 @@
 
 	const dispatchEvent = createEventDispatcher();
 
-	
 	interface Props {
 		class?: string | undefined;
 		duration?: number | undefined;
@@ -17,7 +16,7 @@
 		class: className = undefined,
 		duration = undefined,
 		currentTime,
-		buffered = []
+		buffered = [],
 	}: Props = $props();
 
 	let scrubTime = $state(0);
