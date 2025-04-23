@@ -64,7 +64,7 @@ jobs:
         run: sleep 10
 
       - name: Run ZAP Automation Framework
-        uses: StafflinePeoplePlus/zap-automation-framework@1.0.0
+        uses: StafflinePeoplePlus/zap-automation-framework@1.0.4
         with:
           config-dir: 'zap-config'
           autorun-file: 'baseline.yaml'
@@ -76,32 +76,22 @@ jobs:
     name: Accessibility Scan
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 🛒
-        uses: actions/checkout@v3
-
-      - name: Use Node.js ${{ env.NODE_VERSION }} 🛒
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - name: Install Node ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
+          check-latest: true
 
-      - name: Install Node Packages 🛒
-        run: npm i
-
-      - name: Build app 🧱
-        run: npm run build
-
-      - name: Launch app 🚀
-        run: npm run preview &
-
-      - name: Wait for app to start ☕️
-        run: sleep 10
-
-      - name: Accessibility scan 🩻
-        uses: a11ywatch/github-actions@v2.1.10
-        with:
-          WEBSITE_URL: ${{ vars.UAT_URL }}
-          SUBDOMAINS: false
-          LIST: true
-          TLD: false
-          SITE_WIDE: true
-          UPGRADE: true
+      - run: npm i
+      - run: npm run a11y:pre
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - run: npx playwright install --with-deps
+      - run: npm run a11y
+        env:
+          MAX_REPORT_LENGTH: 60000
+      - run: npm run a11y:post
+        if: success() || failure()
+        env:
+          GITHUB_TOKEN: ${{ github.token }}

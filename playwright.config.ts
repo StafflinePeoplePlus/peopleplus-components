@@ -17,22 +17,29 @@ const config: PlaywrightTestConfig = {
 	},
 	projects: [
 		{
+			name: 'a11y',
+			use: { ...devices['Desktop Chrome'] },
+			testMatch: 'a11y.spec.ts',
+		},
+		{
 			name: 'chromium',
 			use: { ...devices['Desktop Chrome'] },
+			testIgnore: 'a11y.spec.ts',
 		},
 		{
 			name: 'firefox',
 			use: { ...devices['Desktop Firefox'] },
+			testIgnore: 'a11y.spec.ts',
 		},
 		{
 			name: 'webkit',
 			use: { ...devices['Desktop Safari'] },
+			testIgnore: 'a11y.spec.ts',
 		},
 		{
-			name: 'Mobile Safari',
-			use: {
-				...devices['iPhone 13'],
-			},
+			name: 'mobile',
+			use: { ...devices['Pixel 7'] },
+			testIgnore: 'a11y.spec.ts',
 		},
 	],
 };
