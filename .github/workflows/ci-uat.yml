@@ -64,7 +64,7 @@ jobs:
         run: sleep 10
 
       - name: Run ZAP Automation Framework
-        uses: StafflinePeoplePlus/zap-automation-framework@1.0.4
+        uses: StafflinePeoplePlus/zap-automation-framework@1.0.0
         with:
           config-dir: 'zap-config'
           autorun-file: 'baseline.yaml'
@@ -82,7 +82,7 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           check-latest: true
-          cache: 'npm'
+
       - run: npm ci
       - run: npm run a11y:pre
         env:
