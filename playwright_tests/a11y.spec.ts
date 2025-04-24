@@ -10,9 +10,7 @@ const MAX_REPORT_LENGTH = process.env.MAX_REPORT_LENGTH
 	? parseInt(process.env.MAX_REPORT_LENGTH)
 	: Infinity;
 
-test('kayle a11y test', async ({ browser, page, baseURL, cookieConsent }) => {
-	await cookieConsent.give({ neccesary: true, analytics: false });
-
+test('kayle a11y test', async ({ browser, page, baseURL }) => {
 	const audits = await kayle.autoKayle({
 		page,
 		browser,
