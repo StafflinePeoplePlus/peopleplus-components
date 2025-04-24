@@ -70,7 +70,7 @@
 		"@changesets/cli": "^2.26.2",
 		"@cloudflare/workers-types": "^4.20230511.0",
 		"@playwright/test": "^1.33.0",
-		"@sveltejs/adapter-cloudflare": "^5.0.0",
+		"@sveltejs/adapter-cloudflare": "^7.0.1",
 		"@sveltejs/kit": "^2.20.7",
 		"@sveltejs/package": "^2.3.7",
 		"@sveltejs/vite-plugin-svelte": "^5.0.3",
@@ -107,7 +107,7 @@
 		"vite-plugin-istanbul": "^7.0.0",
 		"vitest": "^3.1.2",
 		"vitest-dom": "^0.1.1",
-		"wrangler": "^3.22.1"
+		"wrangler": "^4.13.0"
 	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",
