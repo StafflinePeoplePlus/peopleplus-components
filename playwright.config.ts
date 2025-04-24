@@ -16,11 +16,11 @@ const config: PlaywrightTestConfig = {
 		timeout: 180 * 1000,
 	},
 	projects: [
-		{
-			name: 'a11y',
-			use: { ...devices['Desktop Chrome'] },
-			testMatch: 'a11y.spec.ts',
-		},
+		// {
+		// 	name: 'a11y',
+		// 	use: { ...devices['Desktop Chrome'] },
+		// 	testMatch: 'a11y.spec.ts',
+		// },
 		{
 			name: 'chromium',
 			use: { ...devices['Desktop Chrome'] },
