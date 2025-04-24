@@ -20,6 +20,11 @@
 		consent?: Record<string, boolean | undefined>;
 		acceptAction?: string | undefined;
 		rejectAction?: string | undefined;
+
+		save?: (consent: Record<string, boolean | undefined>) => void;
+		accept?: () => void;
+		reject?: () => void;
+
 		strings?: CookieStrings;
 		children?: import('svelte').Snippet;
 	}
@@ -32,6 +37,9 @@
 		rejectAction = undefined,
 		strings = defaultCookieStrings,
 		children,
+		save,
+		accept,
+		reject,
 	}: Props = $props();
 
 	let expanded = $state(false);
@@ -59,7 +67,10 @@
 				type={acceptAction ? 'submit' : 'button'}
 				formaction={acceptAction}
 				class="md:w-56"
-				onclick={() => dispatch('accept')}
+				onclick={() => {
+					dispatch('accept');
+					accept?.();
+				}}
 			>
 				<span class="md:hidden">{strings.acceptAll}</span>
 				<span class="hidden md:inline">{strings.acceptAllCookies}</span>
@@ -93,7 +104,10 @@
 							variant="secondary"
 							type={acceptAction ? 'submit' : 'button'}
 							formaction={acceptAction}
-							onclick={() => dispatch('accept')}
+							onclick={() => {
+								dispatch('accept');
+								accept?.();
+							}}
 						>
 							<span class="md:hidden">{strings.acceptAll}</span>
 							<span class="hidden md:inline">{strings.acceptAllCookies}</span>
@@ -102,7 +116,10 @@
 							variant="secondary"
 							type={rejectAction ? 'submit' : 'button'}
 							formaction={rejectAction}
-							onclick={() => dispatch('reject')}
+							onclick={() => {
+								dispatch('reject');
+								reject?.();
+							}}
 						>
 							<span class="md:hidden">{strings.rejectAll}</span>
 							<span class="hidden md:inline">{strings.rejectAllCookies}</span>
@@ -130,6 +147,7 @@
 						onclick={() => {
 							expanded = false;
 							dispatch('save', consent);
+							save?.(consent);
 						}}
 					>
 						{strings.saveAndClose}

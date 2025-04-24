@@ -42,7 +42,7 @@
 		if (evt.currentTarget.checked) {
 			group = [...group, evt.currentTarget.value];
 		} else {
-			group = group.filter((item) => item !== evt.currentTarget.value);
+			group = group.filter((item: string) => item !== evt.currentTarget.value);
 		}
 		checked = evt.currentTarget.checked;
 		if (onChange) onChange(evt.currentTarget.checked);

@@ -15,6 +15,7 @@
 		consent: Record<string, boolean | undefined>;
 		strings?: CookieStrings;
 		children?: import('svelte').Snippet;
+		save?: (consent: Record<string, boolean | undefined>) => void;
 	}
 
 	let {
@@ -22,6 +23,7 @@
 		consent = $bindable(),
 		strings = defaultCookieStrings,
 		children,
+		save,
 	}: Props = $props();
 </script>
 
@@ -50,7 +52,12 @@
 	<Button
 		variant="primary"
 		type="submit"
-		onclick={() => dispatch('save', consent)}
+		onclick={() => {
+			if (save) {
+				save(consent);
+			}
+			dispatch('save', consent);
+		}}
 		class="w-full sm:w-auto"
 	>
 		{strings.saveChanges}
