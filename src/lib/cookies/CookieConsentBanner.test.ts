@@ -2,6 +2,13 @@ import { afterEach, expect, test, vi } from 'vitest';
 import { cleanup, fireEvent, render } from '@testing-library/svelte';
 import CookieConsentBanner from './CookieConsentBanner.svelte';
 
+Element.prototype.animate ??= vi.fn().mockReturnValue({
+	finished: Promise.resolve(),
+	cancel: vi.fn(),
+	startTime: null,
+	currentTime: null,
+});
+
 afterEach(cleanup);
 
 const categories = [

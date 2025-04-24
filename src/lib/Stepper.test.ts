@@ -4,6 +4,13 @@ import { cleanup, fireEvent, render } from '@testing-library/svelte';
 
 const steps = [{ label: 'Step 1' }, { label: 'Step 2', foo: 'bar' }, { label: 'Step 3' }];
 
+Element.prototype.animate ??= vi.fn().mockReturnValue({
+	finished: Promise.resolve(),
+	cancel: vi.fn(),
+	startTime: null,
+	currentTime: null,
+});
+
 afterEach(cleanup);
 
 test('should render the steps', () => {
@@ -15,7 +22,7 @@ test('should render the steps', () => {
 });
 
 test('should fire the changeStep event on step click', () => {
-	const changeStep = vi.fn((evt) => expect(evt).toBe(steps[1]));
+	const changeStep = vi.fn((evt) => expect(evt).toStrictEqual(steps[1]));
 	const { getByText } = render(Stepper, { steps, onStepChange: changeStep });
 
 	const step2 = getByText('Step 2');
