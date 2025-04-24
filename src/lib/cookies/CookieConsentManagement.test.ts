@@ -39,8 +39,6 @@ test('clicking save button fires the save event with the selected consent', asyn
 	const saveButton = getByRole('button', { name: 'Save changes' });
 	await fireEvent.click(saveButton);
 	expect(onSave).toHaveReturnedWith({
-		'category-1': false,
 		'category-2': true,
-		'category-3': false,
 	});
 });
