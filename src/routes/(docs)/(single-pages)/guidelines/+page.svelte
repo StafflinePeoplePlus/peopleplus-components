@@ -4,10 +4,10 @@
 
 <div class="prose prose-red dark:prose-invert">
 	<h1>Implementation Guidelines</h1>
-	<p class="lead">
+	<h2 class="lead font-medium text-lg">
 		Below are some guidelines that components in this library should follow. Use this document to
 		help guide the design of the component APIs and their behaviour.
-	</p>
+	</h2>
 	<p>
 		The following principles apply to writing components for this component library. Some of the
 		guidelines here may not apply or make sense in an application context.
