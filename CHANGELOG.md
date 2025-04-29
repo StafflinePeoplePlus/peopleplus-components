@@ -1,5 +1,17 @@
 # @peopleplus/components
 
+## 0.7.0
+
+### Minor Changes
+
+- f7a701b: Bump tailwindcss from 3.4.17 to 4.1.4
+
+### Patch Changes
+
+- 9d3e681: Update a11y rules + fix headings on guidelines page
+- 5f1f04b: Update zap action to no longer use a version that depends on a deprecated api as well as update a11y checks
+- 9f936d8: Update github actions nodejs version
+
 ## 0.6.5
 
 ### Patch Changes
@@ -136,7 +148,7 @@
 
   ```svelte
   <div
-  	class="transition-opacity data-[dragging-over]:opacity-50 data-[dragging]:opacity-0"
+  	class="transition-opacity data-[dragging]:opacity-0 data-[dragging-over]:opacity-50"
   	use:sortable.target={item.id}
   	use:sortable.image={item.id}
   >
