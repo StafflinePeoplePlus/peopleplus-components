@@ -13,7 +13,7 @@
 		guidelines here may not apply or make sense in an application context.
 	</p>
 	<div>
-		<h3>Keep project goals in mind</h3>
+		<h2>Keep project goals in mind</h2>
 		<p>
 			Ensure all contributions consider the goals of the project layed out on the <a href="/#goals"
 				>homepage</a
@@ -23,31 +23,31 @@
 		</p>
 	</div>
 	<div>
-		<h3>Prefer slots over properties</h3>
+		<h2>Prefer slots over properties</h2>
 		<p>
 			Where a property will just be rendered into the DOM, prefer to provide it via slots instead of
 			props.
 		</p>
-		<h4>Example</h4>
+		<h3>Example</h3>
 		<p>Prefer this:</p>
 		<pre>{'<InputLabel>My input label</InputLabel>'}</pre>
 		<p>Over this:</p>
 		<pre>{'<InputLabel text="My input label" />'}</pre>
-		<h4>Rationale</h4>
+		<h3>Rationale</h3>
 		<p>Slots allow for more than just text, for example icons, bold & italics, links.</p>
 	</div>
 	<div>
-		<h3>Prefer components over multiple properties</h3>
+		<h2>Prefer components over multiple properties</h2>
 		<p>
 			Where there are multiple properties referring to one aspect of the component, prefer to
 			separate that section out into a component that can then be provided by a slot.
 		</p>
-		<h4>Example</h4>
+		<h3>Example</h3>
 		<p>Prefer this:</p>
 		<pre>{'<Navbar><NavBarTitle href="/">PeoplePlus</NavBarTitle></Navbar>'}</pre>
 		<p>Over this:</p>
 		<pre>{'<Navbar title="PeoplePlus" titleHref="/" />'}</pre>
-		<h4>Rationale</h4>
+		<h3>Rationale</h3>
 		<p>
 			Along with the benefits provided by using a slot over a property for the text content, this
 			also groups related properties, and makes it easier to expose many properties and events
