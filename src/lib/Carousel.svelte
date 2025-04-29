@@ -140,11 +140,7 @@
 	>
 		{#each items as item, index}
 			<li
-				class={twMerge(
-					'shrink-0',
-					!dragging && mounted && 'transition duration-300',
-					itemClass,
-				)}
+				class={twMerge('shrink-0', !dragging && mounted && 'transition duration-300', itemClass)}
 				style:transform={translation}
 				aria-hidden={isInRange(visibleRange, index) ? 'false' : 'true'}
 				aria-label="Item {index + 1}"

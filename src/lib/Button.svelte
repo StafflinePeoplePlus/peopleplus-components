@@ -71,9 +71,9 @@
 	this={href ? 'a' : 'button'}
 	{href}
 	class={twMerge(
-		'inline-flex items-center justify-center gap-2 border border-transparent text-center font-medium transition focus:outline-hidden focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-500',
+		'focus:ring-primary-300 dark:focus:ring-primary-500 inline-flex items-center justify-center gap-2 border border-transparent text-center font-medium transition focus:ring-4 focus:outline-hidden',
 		variants[variant ?? 'primary'],
-		shapes[shape ?? 'rounded-sm'],
+		shapes[shape ?? 'rounded'],
 		icon ? sizes.icon[size ?? 'default'] : sizes.default[size ?? 'default'],
 		!icon && shape === 'pill' && sizes.pill[size ?? 'default'],
 		className,

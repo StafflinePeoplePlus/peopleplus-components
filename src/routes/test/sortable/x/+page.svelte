@@ -14,7 +14,10 @@
 <div class="p-4">
 	<ul class="flex overflow-auto">
 		{#each items as item (item.id)}
-			<li class="mr-2 h-16 w-24 shrink-0 rounded-sm bg-gray-300 p-2 px-3" use:sortable.item={item.id}>
+			<li
+				class="mr-2 h-16 w-24 shrink-0 rounded-sm bg-gray-300 p-2 px-3"
+				use:sortable.item={item.id}
+			>
 				{item.name}
 			</li>
 		{/each}
