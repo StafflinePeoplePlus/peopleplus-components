@@ -366,7 +366,7 @@ function getRelativeRect(parent: DOMRect, child: DOMRect): DOMRect {
 
 function createDragCanvas(appendTo: Element) {
 	const el = document.createElement('div');
-	el.className = 'absolute top-0 left-0 z-[999] pointer-events-none';
+	el.className = 'absolute top-0 left-0 z-999 pointer-events-none';
 	el.style.width = `${appendTo.scrollWidth}px`;
 	el.style.height = `${appendTo.scrollHeight}px`;
 	appendTo.appendChild(el);
@@ -404,7 +404,7 @@ function createDropZone(
 	debug: boolean,
 ) {
 	const el = document.createElement('div');
-	el.className = 'absolute z-[999] pointer-events-auto';
+	el.className = 'absolute z-999 pointer-events-auto';
 	if (debug) {
 		el.className += ` bg-primary-400/40 ${
 			axis === 'x' ? 'border-r' : 'border-b'

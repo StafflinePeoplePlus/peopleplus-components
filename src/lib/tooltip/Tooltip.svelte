@@ -39,7 +39,7 @@
 		use:content
 		transition:fade={{ duration: 100 }}
 		class={twMerge(
-			'z-50 rounded-lg border border-gray-200 bg-white p-2 text-black shadow dark:border-gray-600 dark:bg-gray-700 dark:text-white',
+			'z-50 rounded-lg border border-gray-200 bg-white p-2 text-black shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white',
 			tooltipClass,
 		)}
 	>

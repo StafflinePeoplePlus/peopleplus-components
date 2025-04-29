@@ -38,16 +38,16 @@
 		$table.borders && 'ring-1 ring-gray-300 dark:ring-gray-500',
 		visualPosition
 			? isPosition(visualPosition, 'top-left') && 'rounded-tl-md'
-			: 'group-first-of-type/tr:first:rounded-tl-md',
+			: 'first:group-first-of-type/tr:rounded-tl-md',
 		visualPosition
 			? isPosition(visualPosition, 'top-right') && 'rounded-tr-md'
-			: 'group-first-of-type/tr:last:rounded-tr-md',
+			: 'last:group-first-of-type/tr:rounded-tr-md',
 		visualPosition
 			? isPosition(visualPosition, 'bottom-left') && 'rounded-bl-md'
-			: 'group-last-of-type/tr:first:rounded-bl-md',
+			: 'first:group-last-of-type/tr:rounded-bl-md',
 		visualPosition
 			? isPosition(visualPosition, 'bottom-right') && 'rounded-br-md'
-			: 'group-last-of-type/tr:last:rounded-br-md',
+			: 'last:group-last-of-type/tr:rounded-br-md',
 		className,
 	)}
 	use:actions={use}
