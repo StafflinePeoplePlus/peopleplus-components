@@ -2,7 +2,7 @@
 	"name": "@peopleplus/components",
 	"description": "A collection of Svelte components using tailwind.",
 	"license": "MIT",
-	"version": "0.6.4",
+	"version": "0.6.5",
 	"homepage": "https://peopleplus-components.pages.dev",
 	"repository": {
 		"type": "git",
@@ -58,9 +58,9 @@
 		"esm-env": "^1.0.0",
 		"just-debounce-it": "^3.2.0",
 		"just-throttle": "^4.2.0",
-		"lucide-svelte": "^0.471.0",
-		"svelte-headlessui": "^0.0.45",
-		"tailwind-merge": "^2.0.0"
+		"lucide-svelte": "^0.503.0",
+		"svelte-headlessui": "^0.0.46",
+		"tailwind-merge": "^3.2.0"
 	},
 	"peerDependencies": {
 		"svelte": ">=4.0.0"
@@ -87,7 +87,7 @@
 		"eslint": "^8.44.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.45.1",
-		"jsdom": "^24.0.0",
+		"jsdom": "^26.1.0",
 		"kayle": "^0.8.64",
 		"nyc": "^17.0.0",
 		"playwright-test-coverage": "^1.2.12",
