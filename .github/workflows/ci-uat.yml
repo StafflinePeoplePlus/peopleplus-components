@@ -6,7 +6,7 @@ on:
       - uat
 
 env:
-  NODE_VERSION: 18.x
+  NODE_VERSION: 20.x
 
 jobs:
   test:
@@ -37,7 +37,7 @@ jobs:
         run: npm run test
 
   zap:
-    name: ZAP Full Scan
+    name: ZAP Baseline Scan
     runs-on: ubuntu-latest
     concurrency:
       group: zap-uat
@@ -63,46 +63,35 @@ jobs:
       - name: Wait for app to start ☕️
         run: sleep 10
 
-      - name: OWASP ZAP Full Scan - Cloudflare - UAT 🩻
-        uses: zaproxy/action-full-scan@v0.4.0
+      - name: Run ZAP Automation Framework
+        uses: StafflinePeoplePlus/zap-automation-framework@1.0.4
         with:
-          issue_title: 'ZAP Full Scan Report - UAT'
-          target: ${{ vars.UAT_URL }}
-          rules_file_name: '.zap/rules.tsv'
-          cmd_options:
-            #AJAX Spider
-            '-j'
+          config-dir: 'zap-config'
+          autorun-file: 'baseline.yaml'
+          create-issue: true
+          fail-action-on-warning: true
+          issue-title: 'ZAP Report - ${{ github.head_ref || github.ref_name }}'
 
   a11y:
     name: Accessibility Scan
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 🛒
-        uses: actions/checkout@v3
-
-      - name: Use Node.js ${{ env.NODE_VERSION }} 🛒
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - name: Install Node ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
+          check-latest: true
 
-      - name: Install Node Packages 🛒
-        run: npm i
-
-      - name: Build app 🧱
-        run: npm run build
-
-      - name: Launch app 🚀
-        run: npm run preview &
-
-      - name: Wait for app to start ☕️
-        run: sleep 10
-
-      - name: Accessibility scan 🩻
-        uses: a11ywatch/github-actions@v1.14.1
-        with:
-          WEBSITE_URL: ${{ vars.UAT_URL }}
-          SUBDOMAINS: false
-          LIST: true
-          TLD: false
-          SITE_WIDE: true
-          UPGRADE: true
+      - run: npm i
+      - run: npm run a11y:pre
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - run: npx playwright install --with-deps
+      - run: npm run a11y
+        env:
+          MAX_REPORT_LENGTH: 60000
+      - run: npm run a11y:post
+        if: success() || failure()
+        env:
+          GITHUB_TOKEN: ${{ github.token }}

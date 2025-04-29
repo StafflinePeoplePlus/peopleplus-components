@@ -26,7 +26,7 @@
 	<div class="-mb-2 flex items-center justify-between pl-4 pr-3 pt-3">
 		<p class="text-xs font-semibold uppercase text-gray-200">{lang}</p>
 		<button
-			class="rounded-lg bg-gray-600 p-1.5 text-white shadow-sm transition hover:bg-gray-500"
+			class="rounded-lg bg-gray-600 p-1.5 text-white shadow-xs transition hover:bg-gray-500"
 			on:click={copyCode}
 		>
 			<span class="sr-only">Copy code to clipboard</span>

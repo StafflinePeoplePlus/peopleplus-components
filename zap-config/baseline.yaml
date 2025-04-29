@@ -1,0 +1,73 @@
+env:
+  contexts:
+    - excludePaths: []
+      name: baseline
+      urls:
+        - http://localhost:4173
+      technology:
+        # We don't use any of these technologies so there is no point in testing against them
+        exclude:
+          - Firebird
+          - HypersonicSQL
+          - IBM DB2
+          - Microsoft Access
+          - Microsoft SQL Server
+          - MongoDB
+          - MySQL
+          - Oracle
+          - PostgreSQL
+          - SAP MaxDB
+          - SQLite
+          - Sybase
+          - ASP
+          - C
+          - Java
+          - Spring
+          - PHP
+          - Apache
+          - IIS
+  parameters:
+    failOnError: true
+    progressToStdout: true
+jobs:
+  - type: alertFilter
+    alertFilters:
+      # Suspicious Comments
+      - ruleId: 10027
+        newRisk: False Positive
+      # Storable and Cacheable Content
+      - ruleId: 10049
+        newRisk: False Positive
+      # CSP: Wildcard Directive
+      - ruleId: 10055
+        newRisk: False Positive
+      # User Agent Fuzzer
+      - ruleId: 10104
+        newRisk: False Positive
+      # HTTP Only Site
+      - ruleId: 10106
+        newRisk: False Positive
+      # Modern Web Application
+      - ruleId: 10109
+        newRisk: False Positive
+  - type: passiveScan-config
+    parameters:
+      enableTags: false
+      maxAlertsPerRule: 10
+  - type: spider
+    parameters:
+      maxDuration: 5
+      url: http://localhost:4173
+  - type: passiveScan-wait
+    parameters:
+      maxDuration: 0
+  - type: report
+    parameters:
+      template: 'traditional-json'
+      reportFile: 'report.json'
+      reportDir: '/zap/reports'
+      displayReport: false
+  - type: outputSummary
+    parameters:
+      format: long
+      summaryFile: '/zap/reports/summary.json'

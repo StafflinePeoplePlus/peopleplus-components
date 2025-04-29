@@ -42,7 +42,7 @@
 		<div
 			{...$overlay}
 			use:overlay
-			class={twMerge('fixed inset-0 z-40 bg-black/10 backdrop-blur-sm', overlayClass)}
+			class={twMerge('fixed inset-0 z-40 bg-black/10 backdrop-blur-xs', overlayClass)}
 			transition:fade={{ easing: quadInOut, duration: 200 }}
 		/>
 		<div

@@ -19,7 +19,7 @@
 <input
 	{...$$restProps}
 	type="text"
-	class={twMerge('block w-full bg-transparent py-2.5 focus:outline-none', className)}
+	class={twMerge('block w-full bg-transparent py-2.5 focus:outline-hidden', className)}
 	bind:value
 	use:actions={use}
 	on:input
