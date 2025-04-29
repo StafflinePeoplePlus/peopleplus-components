@@ -20,7 +20,9 @@
 		</ul>
 	</Sidebar>
 	<main class="h-full grow overflow-auto bg-gray-50 dark:bg-gray-900">
-		<div class="mx-auto max-w-(--breakpoint-xl) px-4 py-8 sm:px-8 md:px-12">{@render children?.()}</div>
+		<div class="mx-auto max-w-(--breakpoint-xl) px-4 py-8 sm:px-8 md:px-12">
+			{@render children?.()}
+		</div>
 		<Copyright />
 	</main>
 </div>
