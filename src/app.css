@@ -9,8 +9,9 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-	--font-sans: Inter var, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
-		'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+	--font-sans:
+		Inter var, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+		'Segoe UI Symbol', 'Noto Color Emoji';
 
 	--color-primary-50: #fef2f2;
 	--color-primary-100: #fee2e2;
