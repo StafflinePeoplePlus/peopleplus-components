@@ -5,6 +5,7 @@ import istanbul from 'vite-plugin-istanbul';
 import { readFile } from 'fs/promises';
 import { extname } from 'path';
 import { getHighlighter } from 'shiki';
+import tailwindcss from '@tailwindcss/vite';
 
 const configureServer = (server: { middlewares: Connect.Server }) => {
 	server.middlewares.use((_req, res, next) => {
@@ -33,6 +34,7 @@ export default defineConfig({
 				]
 			: []),
 		codeUsage(),
+		tailwindcss(),
 	],
 	test: {
 		coverage: {
