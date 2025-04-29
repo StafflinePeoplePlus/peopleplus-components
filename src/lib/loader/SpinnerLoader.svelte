@@ -2,9 +2,12 @@
 	import { actions, type UseActions } from '$lib/actions';
 	import { twMerge } from 'tailwind-merge';
 
-	let className: string | undefined = undefined;
-	export { className as class };
-	export let use: UseActions<SVGElement> = [];
+	interface Props {
+		class?: string | undefined;
+		use?: UseActions<SVGElement>;
+	}
+
+	let { class: className = undefined, use = [] }: Props = $props();
 </script>
 
 <svg

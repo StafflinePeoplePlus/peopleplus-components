@@ -1,6 +1,13 @@
 import TestTooltip from './TestTooltip.svelte';
-import { test, expect, afterEach } from 'vitest';
+import { test, expect, afterEach, vi } from 'vitest';
 import { cleanup, render, fireEvent } from '@testing-library/svelte';
+
+Element.prototype.animate ??= vi.fn().mockReturnValue({
+	finished: Promise.resolve(),
+	cancel: vi.fn(),
+	startTime: null,
+	currentTime: null,
+});
 
 afterEach(cleanup);
 

@@ -5,13 +5,21 @@
 
 	const dispatchEvent = createEventDispatcher();
 
-	let className: string | undefined = undefined;
-	export { className as class };
-	export let duration: number | undefined = undefined;
-	export let currentTime: number;
-	export let buffered: [number, number][] = [];
+	interface Props {
+		class?: string | undefined;
+		duration?: number | undefined;
+		currentTime: number;
+		buffered?: [number, number][];
+	}
 
-	let scrubTime = 0;
+	let {
+		class: className = undefined,
+		duration = undefined,
+		currentTime,
+		buffered = [],
+	}: Props = $props();
+
+	let scrubTime = $state(0);
 
 	function formatSeconds(secs: number) {
 		const minutes = Math.floor(secs / 60);

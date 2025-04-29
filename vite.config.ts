@@ -5,6 +5,7 @@ import istanbul from 'vite-plugin-istanbul';
 import { readFile } from 'fs/promises';
 import { extname } from 'path';
 import { getHighlighter } from 'shiki';
+import { svelteTesting } from '@testing-library/svelte/vite';
 
 const configureServer = (server: { middlewares: Connect.Server }) => {
 	server.middlewares.use((_req, res, next) => {
@@ -22,6 +23,7 @@ const configureServer = (server: { middlewares: Connect.Server }) => {
 export default defineConfig({
 	plugins: [
 		sveltekit(),
+		svelteTesting(),
 		{ name: 'headers', configureServer },
 		...(process.env.VITE_COVERAGE
 			? [

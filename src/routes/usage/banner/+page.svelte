@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { Button, Typography, Banner } from '$lib';
-	let showBanner = true;
+	let showBanner = $state(true);
 </script>
 
 {#if showBanner}
-	<Banner dismissable on:dismiss={() => (showBanner = false)}>
+	<Banner dismissable onDismiss={() => (showBanner = false)}>
 		<div class="items-center gap-4 md:flex">
 			<div class="relative h-28 rounded-lg md:h-40 md:w-80 lg:h-20 lg:w-64">
 				<img

@@ -35,12 +35,12 @@
 		},
 	];
 
-	let consent = {};
-	let dismissed = false;
+	let consent = $state({});
+	let dismissed = $state(false);
 </script>
 
 <Button
-	on:click={() => {
+	onclick={() => {
 		consent = {};
 		dismissed = false;
 	}}

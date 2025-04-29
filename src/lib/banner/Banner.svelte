@@ -2,16 +2,23 @@
 	import type { SvelteHTMLElements } from 'svelte/elements';
 	import { twMerge } from 'tailwind-merge';
 	import { Button, actions, type UseActions } from '$lib';
-	import { createEventDispatcher } from 'svelte';
 
-	type $$Props = SvelteHTMLElements['section'] & { dismissable?: boolean; use?: UseActions };
+	type Props = SvelteHTMLElements['section'] & {
+		dismissable?: boolean;
+		use?: UseActions;
+		class?: string;
+		children?: import('svelte').Snippet;
+		onDismiss?: () => void;
+	};
 
-	const dispatch = createEventDispatcher<{ dismiss: void }>();
-
-	let className: $$Props['class'] = undefined;
-	export { className as class };
-	export let dismissable = false;
-	export let use: UseActions = [];
+	let {
+		class: className = undefined,
+		dismissable = false,
+		use = [],
+		children,
+		onDismiss,
+		...rest
+	}: Props = $props();
 </script>
 
 <section
@@ -20,14 +27,16 @@
 		className,
 	)}
 	use:actions={use}
-	{...$$restProps}
+	{...rest}
 >
-	<slot />
+	{@render children?.()}
 	{#if dismissable}
 		<Button
 			variant="secondary"
 			class="h-12 max-md:my-2 max-md:w-full"
-			on:click={() => dispatch('dismiss')}
+			onclick={() => {
+				if (onDismiss) onDismiss();
+			}}
 		>
 			<span aria-hidden="true" class="max-md:hidden">&times;</span>
 			<span aria-hidden="true" class="md:hidden">Dismiss</span>

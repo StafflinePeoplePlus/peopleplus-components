@@ -3,4 +3,4 @@
 	import { categories } from '../categories';
 </script>
 
-<CookieConsentManagement {categories} consent={{ 'category-2': true }} />
+<CookieConsentManagement {categories} consent={{ 'category-2': true, 'category-1': true }} />

@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { setContext } from 'svelte';
 	import type { SvelteHTMLElements } from 'svelte/elements';
 	import { twMerge } from 'tailwind-merge';
@@ -6,22 +8,31 @@
 	import { writable } from 'svelte/store';
 	import { actions, type UseActions } from '$lib/actions';
 
-	type $$Props = SvelteHTMLElements['table'] & {
+	type Props = SvelteHTMLElements['table'] & {
 		borders?: boolean;
 		striped?: boolean;
 		use?: UseActions;
+		class?: string;
 	};
-	let className: $$Props['class'] = undefined;
-	export { className as class };
-	export let borders = false;
-	export let striped = false;
-	export let use: UseActions = [];
+
+	let {
+		class: className = undefined,
+		borders = false,
+		striped = false,
+		use = [],
+		children,
+		...rest
+	}: Props = $props();
 
 	const ctx = writable<TableContext>({ borders, striped });
 	setContext(tableContextKey, ctx);
 
-	$: $ctx.borders = borders;
-	$: $ctx.striped = striped;
+	run(() => {
+		$ctx.borders = borders;
+	});
+	run(() => {
+		$ctx.striped = striped;
+	});
 </script>
 
 <table
@@ -31,7 +42,7 @@
 		className,
 	)}
 	use:actions={use}
-	{...$$restProps}
+	{...rest}
 >
-	<slot />
+	{@render children?.()}
 </table>

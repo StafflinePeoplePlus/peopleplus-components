@@ -1,25 +1,32 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { actions, type UseActions } from '$lib/actions';
-	import { createEventDispatcher } from 'svelte';
 	import type { HTMLInputAttributes } from 'svelte/elements';
 	import { twMerge } from 'tailwind-merge';
 
-	type $$Props = Omit<HTMLInputAttributes, 'type' | 'role' | `${string}:${string}`> & {
+	type Props = Omit<HTMLInputAttributes, 'type' | 'role' | `${string}:${string}`> & {
 		use?: UseActions;
 		group?: string[];
+		class?: string;
+		children?: import('svelte').Snippet;
+		onChange?: (value: boolean) => void;
 	};
 
-	const dispatch = createEventDispatcher<{ change: boolean }>();
+	let {
+		class: className = undefined,
+		checked = $bindable(undefined),
+		use = [],
+		group = $bindable([]),
+		onChange,
+		...rest
+	}: Props = $props();
 
-	let className: $$Props['class'] = undefined;
-	export { className as class };
-	export let checked: $$Props['checked'] = undefined;
-	export let use: UseActions = [];
-	export let group: string[] = [];
-
-	$: if ($$restProps.value != null && group.includes($$restProps.value) !== checked) {
-		checked = group.includes($$restProps.value);
-	}
+	run(() => {
+		if (rest.value != null && group.includes(rest.value) !== checked) {
+			checked = group.includes(rest.value);
+		}
+	});
 </script>
 
 <input
@@ -31,14 +38,14 @@
 	)}
 	{checked}
 	use:actions={use}
-	on:change={(evt) => {
+	onchange={(evt) => {
 		if (evt.currentTarget.checked) {
 			group = [...group, evt.currentTarget.value];
 		} else {
-			group = group.filter((item) => item !== evt.currentTarget.value);
+			group = group.filter((item: string) => item !== evt.currentTarget.value);
 		}
 		checked = evt.currentTarget.checked;
-		dispatch('change', evt.currentTarget.checked);
+		if (onChange) onChange(evt.currentTarget.checked);
 	}}
-	{...$$restProps}
+	{...rest}
 />

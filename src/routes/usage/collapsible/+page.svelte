@@ -11,7 +11,9 @@
 
 <!-- START USAGE -->
 <Collapsible class="max-w-md">
-	<div slot="label" class="p-3 max-sm:-mr-12 font-bold text-lg">4 Pages</div>
+	{#snippet label()}
+		<div class="p-3 max-sm:-mr-12 font-bold text-lg">4 Pages</div>
+	{/snippet}
 
 	<div class="p-3 pb-5 space-y-4">
 		{#each pages as page}

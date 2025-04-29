@@ -1,9 +1,21 @@
 <script lang="ts">
 	import Banner from '$lib/banner/Banner.svelte';
 	import { Button, Typography } from '$lib';
+
+	let {
+		dismiss,
+	}: {
+		dismiss: () => void;
+	} = $props();
 </script>
 
-<Banner dismissable on:dismiss>
+<Banner
+	dismissable
+	onDismiss={() => {
+		console.log('dismissed');
+		dismiss();
+	}}
+>
 	<div class="items-center gap-4 md:flex">
 		<div class="space-y-1 max-sm:pb-2">
 			<Typography variant="sub-heading">Banner Title</Typography>

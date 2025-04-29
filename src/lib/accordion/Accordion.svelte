@@ -1,24 +1,41 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { createDisclosure } from 'svelte-headlessui';
 	import { getAccordionGroup } from './AccordionGroup.svelte';
 	import { twMerge } from 'tailwind-merge';
 	import { actions, type UseActions } from '$lib/actions';
 
-	let className = '';
-	export { className as class };
-	export let contentClass = '';
-	export let labelClass = '';
-	export let label: string;
-	export let use: UseActions = [];
+	interface Props {
+		class?: string;
+		contentClass?: string;
+		labelClass?: string;
+		label: string;
+		use?: UseActions;
+		children?: import('svelte').Snippet;
+	}
+
+	let {
+		class: className = '',
+		contentClass = '',
+		labelClass = '',
+		label,
+		use = [],
+		children,
+	}: Props = $props();
 
 	const group = getAccordionGroup();
 	const disclosure = createDisclosure({ label });
 	group?.registerDisclosure(disclosure);
-	$: disclosure.set({ label });
+	run(() => {
+		disclosure.set({ label });
+	});
 
-	$: if (group && $disclosure.expanded) {
-		group.onDisclosureExpanded(disclosure);
-	}
+	run(() => {
+		if (group && $disclosure.expanded) {
+			group.onDisclosureExpanded(disclosure);
+		}
+	});
 </script>
 
 <div
@@ -66,6 +83,6 @@
 		)}
 		use:disclosure.panel
 	>
-		<slot />
+		{@render children?.()}
 	</div>
 </div>

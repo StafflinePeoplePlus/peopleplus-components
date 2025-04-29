@@ -16,10 +16,9 @@ test('should render everything', () => {
 });
 
 test('should trigger dismiss event once clicked', async () => {
-	const { component, getByText } = render(TestBanner);
-	const dismissButton = getByText('Dismiss');
 	const dismiss = vi.fn();
-	component.$on('dismiss', dismiss);
+	const { getByText } = render(TestBanner, { dismiss });
+	const dismissButton = getByText('Dismiss');
 	fireEvent.click(dismissButton);
 	expect(dismiss).toHaveBeenCalledOnce();
 });

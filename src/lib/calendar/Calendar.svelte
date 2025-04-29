@@ -1,3 +1,4 @@
+<!-- @migration-task Error while migrating Svelte code: This migration would change the name of a slot making the component unusable -->
 <script context="module" lang="ts">
 	export type CalendarEntry<I> = {
 		from: DateValue;
@@ -192,7 +193,7 @@
 							isToday(date, 'UTC') &&
 								'bg-primary-50 font-medium text-primary-600 dark:bg-primary-950 dark:text-primary-300',
 						)}
-						on:mouseover={() => {
+						onmouseover={() => {
 							if (newEntry && newEntry.interactive) {
 								if (beforeNewEntry && date.compare(beforeNewEntry.to) < 0) {
 									newEntry.from = beforeNewEntry.to;
@@ -209,7 +210,7 @@
 								}
 							}
 						}}
-						on:click={(evt) => {
+						onclick={(evt) => {
 							if (newEntry) {
 								newEntry.interactive = false;
 								onNewEntry?.({
@@ -272,10 +273,10 @@
 								<!-- svelte-ignore a11y-no-static-element-interactions -->
 								<div
 									class="w-full"
-									on:mouseenter={() => {
+									onmouseenter={() => {
 										hoveredEntry = entry;
 									}}
-									on:mouseleave={() => {
+									onmouseleave={() => {
 										if (hoveredEntry === entry) {
 											hoveredEntry = undefined;
 										}
@@ -299,7 +300,7 @@
 										addButtonClass,
 									)}
 									aria-label="Start entry on {date}"
-									on:mousedown={(evt) => {
+									onmousedown={(evt) => {
 										newEntry = {
 											from: date,
 											to: date.add({ days: 1 }),

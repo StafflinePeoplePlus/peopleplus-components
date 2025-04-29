@@ -1,6 +1,13 @@
 import ExampleDrawer from '../../routes/usage/drawer/+page.svelte';
-import { test, expect, afterEach } from 'vitest';
+import { test, expect, afterEach, vi } from 'vitest';
 import { cleanup, fireEvent, render } from '@testing-library/svelte';
+
+Element.prototype.animate ??= vi.fn().mockReturnValue({
+	finished: Promise.resolve(),
+	cancel: vi.fn(),
+	startTime: null,
+	currentTime: null,
+});
 
 afterEach(cleanup);
 

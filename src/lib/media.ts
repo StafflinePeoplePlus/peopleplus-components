@@ -3,7 +3,7 @@ import { readable } from 'svelte/store';
 
 export function createMediaQuery(query: string, defaultValue = false) {
 	return readable(defaultValue, (set) => {
-		if (!BROWSER) {
+		if (!BROWSER || !window || !window.matchMedia || typeof window.matchMedia !== 'function') {
 			return;
 		}
 

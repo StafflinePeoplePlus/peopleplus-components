@@ -4,23 +4,42 @@
 	import { screenMd } from '$lib/media';
 	import { actions, type UseActions } from '$lib/actions';
 
-	let className = '';
-	export { className as class };
-	export let startClass = '';
-	export let middleClass = '';
-	export let endClass = '';
-	export let panelClass = '';
-	export let hamburgerClass = '';
-	export let use: UseActions = [];
+	interface Props {
+		class?: string;
+		startClass?: string;
+		middleClass?: string;
+		endClass?: string;
+		panelClass?: string;
+		hamburgerClass?: string;
+		use?: UseActions;
+		middle?: import('svelte').Snippet;
+		end?: import('svelte').Snippet;
+		start?: import('svelte').Snippet;
+	}
+
+	let {
+		class: className = '',
+		startClass = '',
+		middleClass = '',
+		endClass = '',
+		panelClass = '',
+		hamburgerClass = '',
+		use = [],
+		middle,
+		end,
+		start,
+	}: Props = $props();
 
 	const popover = createPopover();
 
-	$: popoverPanel = $screenMd
-		? () => {
-				// Do nothing
-			}
-		: popover.panel;
-	$: showHamburger = $$slots.middle || $$slots.end;
+	let popoverPanel = $derived(
+		$screenMd
+			? () => {
+					// Do nothing
+				}
+			: popover.panel,
+	);
+	let showHamburger = $derived(middle || end);
 </script>
 
 <nav
@@ -31,7 +50,7 @@
 	use:actions={use}
 >
 	<div class={twMerge('flex w-full shrink-0 items-center p-4 md:w-auto', startClass)}>
-		<slot name="start" />
+		{@render start?.()}
 		{#if showHamburger}
 			<div class="ml-auto md:hidden">
 				<button
@@ -66,10 +85,10 @@
 		class:hidden={!$popover.expanded}
 	>
 		<div class={middleClass}>
-			<slot name="middle" />
+			{@render middle?.()}
 		</div>
-		<div class={twMerge('shrink-0 md:mt-0', $$slots.middle && 'mt-3', endClass)}>
-			<slot name="end" />
+		<div class={twMerge('shrink-0 md:mt-0', middle && 'mt-3', endClass)}>
+			{@render end?.()}
 		</div>
 	</div>
 </nav>

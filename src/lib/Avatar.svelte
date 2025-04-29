@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { createAvatar } from '@melt-ui/svelte';
 	import { twMerge } from 'tailwind-merge';
 
@@ -12,23 +14,39 @@
 		'3xl': { container: 'h-40 w-40', fallback: 'text-[5rem]' },
 	};
 
-	let className: string | undefined = undefined;
-	export { className as class };
-	export let imageClass: string | undefined = undefined;
-	export let fallbackClass: string | undefined = undefined;
-	export let src: string = '';
-	export let name: string | undefined = undefined;
-	export let initials: string | undefined = undefined;
-	export let size: keyof typeof sizes = 'md';
+	interface Props {
+		class?: string | undefined;
+		imageClass?: string | undefined;
+		fallbackClass?: string | undefined;
+		src?: string;
+		name?: string | undefined;
+		initials?: string | undefined;
+		size?: keyof typeof sizes;
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		[key: string]: any;
+	}
+
+	let {
+		class: className = undefined,
+		imageClass = undefined,
+		fallbackClass = undefined,
+		src = '',
+		name = undefined,
+		initials = undefined,
+		size = 'md',
+		...rest
+	}: Props = $props();
 
 	const {
 		elements: { image, fallback },
 		options: { src: avatarSrc },
 	} = createAvatar({ src });
 
-	$: if (src !== $avatarSrc) {
-		$avatarSrc = src;
-	}
+	run(() => {
+		if (src !== $avatarSrc) {
+			$avatarSrc = src;
+		}
+	});
 
 	function initialsFromName(text: string) {
 		let names: string[];
@@ -54,7 +72,7 @@
 		sizes[size].container,
 		className,
 	)}
-	{...$$restProps}
+	{...rest}
 >
 	<img
 		{...$image}

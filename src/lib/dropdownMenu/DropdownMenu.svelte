@@ -4,9 +4,15 @@
 	import { fly } from 'svelte/transition';
 	import { twMerge } from 'tailwind-merge';
 
-	let className: string | undefined = undefined;
-	export { className as class };
-	export let menu: DropdownMenuType;
+	interface Props {
+		class?: string | undefined;
+		menu: DropdownMenuType;
+		children?: import('svelte').Snippet;
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		[key: string]: any;
+	}
+
+	let { class: className = undefined, menu, children, ...rest }: Props = $props();
 
 	setContext(dropdownMenuContext, menu);
 
@@ -25,8 +31,8 @@
 		transition:fly={{ duration: 150, y: -10 }}
 		{...$dropdownMenu}
 		use:dropdownMenu
-		{...$$restProps}
+		{...rest}
 	>
-		<slot />
+		{@render children?.()}
 	</div>
 {/if}

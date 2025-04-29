@@ -1,23 +1,29 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
 	import { getDropdownMenuContext } from './menu';
 	import type { SvelteHTMLElements } from 'svelte/elements';
 	import { twMerge } from 'tailwind-merge';
 	import { actions, type UseActions } from '../actions';
 
-	type Props = {
+	type PropsContent = {
 		class?: string;
 		variant?: 'default' | 'danger' | 'primary';
 		use?: UseActions;
+		children?: import('svelte').Snippet;
+		onClick?: () => void;
 	};
-	type $$Props =
-		| (Props & { href: string } & SvelteHTMLElements['a'])
-		| (Props & { href?: undefined } & SvelteHTMLElements['button']);
-	let className: $$Props['class'] = undefined;
-	export { className as class };
-	export let href: string | undefined = undefined;
-	export let variant: $$Props['variant'] = undefined;
-	export let use: UseActions = [];
+	type Props =
+		| (PropsContent & { href: string } & SvelteHTMLElements['a'])
+		| (PropsContent & { href?: undefined } & SvelteHTMLElements['button']);
+
+	let {
+		class: className = undefined,
+		href = undefined,
+		variant = undefined,
+		use = [],
+		children,
+		onClick,
+		...rest
+	}: Props = $props();
 
 	const variants = {
 		default: 'text-gray-700 focus:bg-gray-200 dark:text-gray-200 dark:focus:bg-gray-700',
@@ -26,15 +32,15 @@
 			'text-primary-700 focus:bg-primary-500/20 dark:text-primary-400 dark:focus:text-primary-50',
 	};
 
-	$: activeVariant = variants[variant ?? 'default'];
-
-	export const dispatch = createEventDispatcher();
+	let activeVariant = $derived(variants[variant ?? 'default']);
 
 	const {
 		elements: { item },
 	} = getDropdownMenuContext();
 </script>
 
+<!-- TODO: migrate melt ui stuff to svelte 5 -->
+<!-- svelte-ignore event_directive_deprecated -->
 <svelte:element
 	this={href ? 'a' : 'button'}
 	{href}
@@ -46,8 +52,10 @@
 	{...$item}
 	use:item
 	use:actions={use}
-	on:m-click={() => dispatch('click')}
-	{...$$restProps}
+	on:m-click={() => {
+		if (onClick) onClick();
+	}}
+	{...rest}
 >
-	<slot />
+	{@render children?.()}
 </svelte:element>

@@ -1,18 +1,25 @@
 <script lang="ts">
-	export let value = 0;
-	export let min = 0;
-	export let max = 1;
-	export let label: string | undefined = undefined;
+	interface Props {
+		value?: number;
+		min?: number;
+		max?: number;
+		label?: string | undefined;
+	}
 
-	let trackHeight = 1;
+	let { value = $bindable(0), min = 0, max = 1, label = undefined }: Props = $props();
+
+	let trackHeight = $state(1);
 </script>
 
 <div class="relative flex h-32 w-5 items-center justify-center">
-	<div class="absolute inset-y-0 w-1 rounded-full bg-white/20" bind:clientHeight={trackHeight} />
+	<div
+		class="absolute inset-y-0 w-1 rounded-full bg-white/20"
+		bind:clientHeight={trackHeight}
+	></div>
 	<div
 		class="absolute bottom-0 w-1 rounded-full bg-primary-600"
 		style:height="{(value / max) * trackHeight}px"
-	/>
+	></div>
 	<input
 		type="range"
 		{min}

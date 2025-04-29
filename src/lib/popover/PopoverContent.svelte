@@ -4,10 +4,14 @@
 	import { scale } from 'svelte/transition';
 	import { backIn, backOut } from 'svelte/easing';
 
-	let className: string | undefined = undefined;
-	export { className as class };
-	export let popover: Omit<PopoverInstance, 'button'>;
-	export let arrow = true;
+	interface Props {
+		class?: string | undefined;
+		popover: Omit<PopoverInstance, 'button'>;
+		arrow?: boolean;
+		children?: import('svelte').Snippet;
+	}
+
+	let { class: className = undefined, popover, arrow = true, children }: Props = $props();
 
 	const { expanded, content, arrow: arrowEl } = popover;
 </script>
@@ -28,8 +32,8 @@
 				{...$arrowEl}
 				use:arrowEl
 				class="border-l border-t border-gray-200 dark:border-gray-600"
-			/>
+			></div>
 		{/if}
-		<slot />
+		{@render children?.()}
 	</div>
 {/if}

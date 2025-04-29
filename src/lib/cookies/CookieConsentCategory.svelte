@@ -2,20 +2,32 @@
 	import Typography from '$lib/Typography.svelte';
 	import Switch from '$lib/forms/Switch.svelte';
 	import CookiesTable from './CookiesTable.svelte';
-	import { defaultCookieStrings } from './i18n';
+	import { defaultCookieStrings, type CookieStrings } from './i18n';
 	import type { CookieDescription } from './types';
 
-	let className: string | undefined = undefined;
-	export { className as class };
-	export let title: string;
-	export let body: string;
-	export let name: string;
-	export let required = false;
-	export let checked = required;
-	export let cookies: CookieDescription[] = [];
-	export let expanded = false;
+	interface Props {
+		class?: string | undefined;
+		title: string;
+		body: string;
+		name: string;
+		required?: boolean;
+		checked?: boolean;
+		cookies?: CookieDescription[];
+		expanded?: boolean;
+		strings?: CookieStrings;
+	}
 
-	export let strings = defaultCookieStrings;
+	let {
+		class: className = undefined,
+		title,
+		body,
+		name,
+		required = false,
+		checked = $bindable(),
+		cookies = [],
+		expanded = false,
+		strings = defaultCookieStrings,
+	}: Props = $props();
 </script>
 
 <section class={className}>
