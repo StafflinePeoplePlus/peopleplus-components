@@ -4,8 +4,8 @@
 
 <!-- START USAGE -->
 <InputLabel for="example">Password</InputLabel>
-<Tooltip placement="right" tooltipClass="text-xs rounded" closeOnPointerDown={false}>
-	<input name="example" id="example" type="password" class="mt-1 rounded border p-2" />
+<Tooltip placement="right" tooltipClass="text-xs rounded-sm" closeOnPointerDown={false}>
+	<input name="example" id="example" type="password" class="mt-1 rounded-sm border p-2" />
 
 	{#snippet tooltip()}
 		<div>

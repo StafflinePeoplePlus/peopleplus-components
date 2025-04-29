@@ -15,7 +15,7 @@
 <ul class="p-4">
 	{#each items as item (item.id)}
 		<li
-			class="mb-2 flex select-none items-center gap-1 rounded bg-gray-300 p-2 px-3 transition"
+			class="mb-2 flex select-none items-center gap-1 rounded-sm bg-gray-300 p-2 px-3 transition"
 			use:sortable.item={item.id}
 		>
 			{item.name}

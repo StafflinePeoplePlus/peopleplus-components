@@ -1,13 +1,13 @@
 <script lang="ts" module>
 	const variants = {
 		primary:
-			'bg-primary-600 text-white shadow-sm hover:bg-primary-500 disabled:bg-primary-100 disabled:text-primary-300',
+			'bg-primary-600 text-white shadow-xs hover:bg-primary-500 disabled:bg-primary-100 disabled:text-primary-300',
 		secondary:
-			'border-gray-200 bg-white shadow-sm dark:bg-gray-700 dark:border-gray-600 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:border-gray-500 focus:border-transparent',
+			'border-gray-200 bg-white shadow-xs dark:bg-gray-700 dark:border-gray-600 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:border-gray-500 focus:border-transparent',
 		borderless:
-			'hover:bg-gray-100 border hover:shadow-sm border-transparent hover:border-gray-200 dark:text-white text-black dark:hover:bg-gray-600 dark:hover:border-gray-500',
+			'hover:bg-gray-100 border hover:shadow-xs border-transparent hover:border-gray-200 dark:text-white text-black dark:hover:bg-gray-600 dark:hover:border-gray-500',
 		muted:
-			'bg-gray-100 shadow-sm border border-gray-200 text-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:border-gray-600 hover:bg-gray-200 hover:border-gray-300 text-gray-800',
+			'bg-gray-100 shadow-xs border border-gray-200 text-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:border-gray-600 hover:bg-gray-200 hover:border-gray-300 text-gray-800',
 	};
 	const shapes = {
 		square: '',
@@ -76,7 +76,7 @@
 	this={href ? 'a' : 'button'}
 	{href}
 	class={twMerge(
-		'inline-flex items-center justify-center gap-2 border border-transparent text-center font-medium transition focus:outline-none focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-500',
+		'focus:ring-primary-300 dark:focus:ring-primary-500 inline-flex items-center justify-center gap-2 border border-transparent text-center font-medium transition focus:ring-4 focus:outline-hidden',
 		variants[variant ?? 'primary'],
 		shapes[shape ?? 'rounded'],
 		icon ? sizes.icon[size ?? 'default'] : sizes.default[size ?? 'default'],

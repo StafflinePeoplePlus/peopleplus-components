@@ -13,7 +13,7 @@
 </script>
 
 <div class="flex h-full flex-col pt-16">
-	<div class="fixed top-0 z-10 w-full shrink-0 bg-white shadow dark:bg-gray-700">
+	<div class="fixed top-0 z-10 w-full shrink-0 bg-white shadow-sm dark:bg-gray-700">
 		<NavBar class="container mx-auto bg-white">
 			{#snippet start()}
 				<a href="/">

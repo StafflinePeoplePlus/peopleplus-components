@@ -36,7 +36,7 @@
 	{/snippet}
 
 	<div class="p-3 pb-5">
-		<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 bg-slate-800 p-4 rounded-xl shadow">
+		<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 bg-slate-800 p-4 rounded-xl shadow-sm">
 			{#each cards as card}
 				<div
 					class="h-full min-h-[150px] overflow-hidden rounded-lg bg-gray-50/20 p-4 border-2 border-gray-300 border-dashed"

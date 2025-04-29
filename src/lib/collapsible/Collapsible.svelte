@@ -32,7 +32,7 @@
 	}: Props = $props();
 </script>
 
-<div class={twMerge('rounded-xl bg-white shadow', className)} use:actions={use} {...rest}>
+<div class={twMerge('rounded-xl bg-white shadow-sm', className)} use:actions={use} {...rest}>
 	<div {...$root} use:root>
 		<div
 			class="flex justify-between rounded-xl hover:cursor-pointer hover:bg-gray-50"

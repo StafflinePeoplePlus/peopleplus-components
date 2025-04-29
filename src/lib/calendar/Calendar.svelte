@@ -127,7 +127,7 @@
 
 <div
 	class={twMerge(
-		'select-none overflow-clip rounded-xl border border-gray-300 bg-white shadow @container dark:border-gray-700 dark:bg-gray-800',
+		'select-none overflow-clip rounded-xl border border-gray-300 bg-white shadow-sm @container dark:border-gray-700 dark:bg-gray-800',
 		className,
 	)}
 	{...$calendar}
@@ -135,7 +135,7 @@
 	{...$$restProps}
 >
 	<header
-		class="grid grid-cols-[auto,1fr,auto] items-center gap-4 border-b border-gray-300 p-2 dark:border-gray-700"
+		class="grid grid-cols-[auto_1fr_auto] items-center gap-4 border-b border-gray-300 p-2 dark:border-gray-700"
 	>
 		<Button {...$prevButton} icon variant="secondary" use={[prevButton]}>
 			<ChevronLeftIcon />
@@ -174,7 +174,7 @@
 				{#each weekdays as day}
 					<div
 						aria-hidden="true"
-						class="border-b border-r border-gray-300 p-2 text-center text-xs font-semibold text-gray-900 @md:text-sm @3xl:text-base @6xl:text-lg dark:border-gray-700 dark:text-white [&:nth-child(7)]:border-r-0"
+						class="border-b border-r border-gray-300 p-2 text-center text-xs font-semibold text-gray-900 @md:text-sm @3xl:text-base @6xl:text-lg dark:border-gray-700 dark:text-white nth-7:border-r-0"
 					>
 						{day}
 					</div>

@@ -15,7 +15,7 @@
 
 <section
 	class={twMerge(
-		'w-full rounded-xl border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800',
+		'w-full rounded-xl border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800',
 		className,
 	)}
 	use:actions={use}

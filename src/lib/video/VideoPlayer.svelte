@@ -73,7 +73,7 @@
 	<!-- Controls overlay -->
 	<div
 		class={twJoin(
-			'absolute inset-0 bg-gradient-to-b from-black/75 via-transparent to-black/75 transition duration-300',
+			'absolute inset-0 bg-linear-to-b from-black/75 via-transparent to-black/75 transition duration-300',
 			!showControls && 'pointer-events-none opacity-0',
 		)}
 	>
@@ -84,10 +84,10 @@
 			<div class="cursor-pointer rounded-full bg-black/50 p-4 text-center">
 				{#if playing}
 					<span class="sr-only">Pause video</span>
-					<PauseIcon class="h-12 w-12 drop-shadow" aria-hidden="true" />
+					<PauseIcon class="h-12 w-12 drop-shadow-sm" aria-hidden="true" />
 				{:else}
 					<span class="sr-only">Play video</span>
-					<PlayIcon class="h-12 w-12 drop-shadow" aria-hidden="true" />
+					<PlayIcon class="h-12 w-12 drop-shadow-sm" aria-hidden="true" />
 				{/if}
 			</div>
 		</button>

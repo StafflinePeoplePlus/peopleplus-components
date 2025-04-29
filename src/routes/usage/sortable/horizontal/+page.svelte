@@ -33,7 +33,7 @@
 	{#each items as item (item.id)}
 		<li
 			class={twMerge(
-				'w-26 mr-2 flex h-16 shrink-0 select-none items-center justify-center gap-1 rounded bg-gray-300 p-2 px-3 transition dark:bg-gray-700 dark:text-white',
+				'w-26 mr-2 flex h-16 shrink-0 select-none items-center justify-center gap-1 rounded-sm bg-gray-300 p-2 px-3 transition dark:bg-gray-700 dark:text-white',
 				$sortingEnabled && 'cursor-grab hover:bg-gray-400 dark:hover:bg-gray-600',
 			)}
 			in:receive={{ key: item.id }}

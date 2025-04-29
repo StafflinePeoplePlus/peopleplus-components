@@ -30,7 +30,7 @@
 <div class="mb-8 grid grid-cols-7 gap-2">
 	{#each items as item (item.id)}
 		<div
-			class="relative flex aspect-square flex-col items-center rounded-lg bg-gray-300 transition-opacity data-[dragging-over]:opacity-50 data-[dragging]:opacity-0 dark:bg-gray-700 dark:text-white"
+			class="relative flex aspect-square flex-col items-center rounded-lg bg-gray-300 transition-opacity data-dragging-over:opacity-50 data-dragging:opacity-0 dark:bg-gray-700 dark:text-white"
 			use:sortable.target={item.id}
 			use:sortable.image={item.id}
 			in:receive={{ key: item.id }}
@@ -39,7 +39,7 @@
 		>
 			{#if $sortingEnabled}
 				<div
-					class="absolute inset-x-2 top-2 flex cursor-grab select-none items-center justify-center rounded-lg bg-gray-100 shadow-sm"
+					class="absolute inset-x-2 top-2 flex cursor-grab select-none items-center justify-center rounded-lg bg-gray-100 shadow-xs"
 					use:sortable.handle={item.id}
 				>
 					<GripHorizontalIcon />
