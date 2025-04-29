@@ -24,6 +24,8 @@
 </div>
 
 <style lang="postcss">
+	@reference "tailwindcss";
+
 	div > :global(:first-child) {
 		@apply pl-2.5;
 	}
