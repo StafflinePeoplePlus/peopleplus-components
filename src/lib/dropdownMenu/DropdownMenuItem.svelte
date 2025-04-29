@@ -20,7 +20,7 @@
 	export let use: UseActions = [];
 
 	const variants = {
-		default: 'text-gray-700 focus:bg-gray-200 dark:text-gray-200 focus:dark:bg-gray-700',
+		default: 'text-gray-700 focus:bg-gray-200 dark:text-gray-200 dark:focus:bg-gray-700',
 		danger: 'text-red-700 focus:bg-red-500/20 dark:text-red-400 dark:focus:text-red-50',
 		primary:
 			'text-primary-700 focus:bg-primary-500/20 dark:text-primary-400 dark:focus:text-primary-50',
@@ -39,7 +39,7 @@
 	this={href ? 'a' : 'button'}
 	{href}
 	class={twMerge(
-		'flex w-full items-center gap-4 rounded-md px-4 py-2 text-left text-sm font-medium transition focus:outline-none',
+		'flex w-full items-center gap-4 rounded-md px-4 py-2 text-left text-sm font-medium transition focus:outline-hidden',
 		activeVariant,
 		className,
 	)}

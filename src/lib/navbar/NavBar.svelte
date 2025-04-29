@@ -37,7 +37,7 @@
 				<button
 					type="button"
 					class={twMerge(
-						'ml-1 inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-300 dark:hover:bg-gray-600 md:hidden',
+						'ml-1 inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-hidden focus:ring-2 focus:ring-gray-200 dark:text-gray-300 dark:hover:bg-gray-600 md:hidden',
 						hamburgerClass,
 					)}
 					use:popover.button

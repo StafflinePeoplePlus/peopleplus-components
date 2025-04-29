@@ -131,7 +131,7 @@
 		{...$trigger}
 		use:trigger
 		class={twMerge(
-			'flex h-10 w-full items-center gap-2 rounded-lg border border-gray-300 bg-white p-1.5 pl-3 text-gray-900 shadow-sm transition-colors focus-within:border-primary-400 focus-within:ring-1 focus-within:ring-primary-400 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus-within:border-primary-400 dark:focus-within:ring-primary-400',
+			'flex h-10 w-full items-center gap-2 rounded-lg border border-gray-300 bg-white p-1.5 pl-3 text-gray-900 shadow-xs transition-colors focus-within:border-primary-400 focus-within:ring-1 focus-within:ring-primary-400 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus-within:border-primary-400 dark:focus-within:ring-primary-400',
 			buttonClass,
 		)}
 	>

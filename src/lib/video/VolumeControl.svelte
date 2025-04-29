@@ -13,7 +13,7 @@
 		class="absolute bottom-8 z-10 hidden p-10 pb-2 group-focus-within/volume:block group-hover/volume:block"
 	>
 		<div
-			class="flex items-center justify-center rounded-lg border border-white/10 bg-black/70 px-2 py-3 shadow-lg backdrop-blur"
+			class="flex items-center justify-center rounded-lg border border-white/10 bg-black/70 px-2 py-3 shadow-lg backdrop-blur-sm"
 		>
 			<VerticalRange bind:value={volume} label="Volume Control" />
 		</div>

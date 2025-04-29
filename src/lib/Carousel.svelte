@@ -141,7 +141,7 @@
 		{#each items as item, index}
 			<li
 				class={twMerge(
-					'flex-shrink-0',
+					'shrink-0',
 					!dragging && mounted && 'transition duration-300',
 					itemClass,
 				)}
@@ -163,7 +163,7 @@
 		<div class="pointer-events-none absolute inset-0 z-10 flex items-center justify-between">
 			<button
 				type="button"
-				class="pointer-events-auto text-gray-300 drop-shadow disabled:opacity-50"
+				class="pointer-events-auto text-gray-300 drop-shadow-sm disabled:opacity-50"
 				disabled={visibleRange[0] === 0}
 				on:click={() => updateItemIndex((index) => index - 1)}
 			>
@@ -184,7 +184,7 @@
 			</button>
 			<button
 				type="button"
-				class="pointer-events-auto text-gray-300 drop-shadow disabled:opacity-50"
+				class="pointer-events-auto text-gray-300 drop-shadow-sm disabled:opacity-50"
 				disabled={visibleRange[1] === items.length - 1}
 				on:click={() => updateItemIndex((index) => index + 1)}
 			>
