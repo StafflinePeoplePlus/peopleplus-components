@@ -4,15 +4,27 @@
 	import { createEventDispatcher } from 'svelte';
 	import CookieConsentCategory from './CookieConsentCategory.svelte';
 	import type { CookieCategory } from './types';
-	import { defaultCookieStrings } from './i18n';
+	import { defaultCookieStrings, type CookieStrings } from './i18n';
 
 	const dispatch = createEventDispatcher<{
 		save: Record<string, boolean | undefined>;
 	}>();
 
-	export let categories: CookieCategory[];
-	export let consent: Record<string, boolean | undefined>;
-	export let strings = defaultCookieStrings;
+	interface Props {
+		categories: CookieCategory[];
+		consent: Record<string, boolean | undefined>;
+		strings?: CookieStrings;
+		children?: import('svelte').Snippet;
+		save?: (consent: Record<string, boolean | undefined>) => void;
+	}
+
+	let {
+		categories,
+		consent = $bindable(),
+		strings = defaultCookieStrings,
+		children,
+		save,
+	}: Props = $props();
 </script>
 
 <header class="mb-8">
@@ -20,7 +32,7 @@
 	<Typography variant="body-lg" class="mt-3">
 		{strings.cookiesDescription}
 	</Typography>
-	<slot />
+	{@render children?.()}
 </header>
 <div class="space-y-8">
 	{#each categories as category}
@@ -40,7 +52,12 @@
 	<Button
 		variant="primary"
 		type="submit"
-		on:click={() => dispatch('save', consent)}
+		onclick={() => {
+			if (save) {
+				save(consent);
+			}
+			dispatch('save', consent);
+		}}
 		class="w-full sm:w-auto"
 	>
 		{strings.saveChanges}

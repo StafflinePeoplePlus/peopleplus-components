@@ -1,7 +1,11 @@
 <script lang="ts">
 	import { Accordion, AccordionGroup } from '$lib';
 
-	export let exclusive = false;
+	interface Props {
+		exclusive?: boolean;
+	}
+
+	let { exclusive = false }: Props = $props();
 </script>
 
 <AccordionGroup {exclusive}>

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { InputLabel, Switch } from '$lib';
 
-	let group: string[] = ['b'];
+	let group: string[] = $state(['b']);
 </script>
 
 <div class="flex items-center justify-between">

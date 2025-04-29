@@ -35,7 +35,7 @@
 		},
 	];
 
-	let consent = {};
+	let consent = $state({});
 </script>
 
 <!-- START USAGE -->

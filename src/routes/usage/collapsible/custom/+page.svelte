@@ -11,27 +11,29 @@
 
 <!-- START USAGE -->
 <Collapsible>
-	<div slot="label" class="p-3 max-sm:-mr-12">
-		<div class="flex items-center justify-between">
-			<div class="gap-4 flex flex-col sm:flex-row">
-				<div class="rounded-xl bg-white bg-cover">
-					<img
-						src="/jumbotron.jpg"
-						alt="/jumbotron.jpg"
-						class="h-36 w-full sm:w-96 lg:h-full rounded-xl object-cover"
-					/>
-				</div>
+	{#snippet label()}
+		<div class="p-3 max-sm:-mr-12">
+			<div class="flex items-center justify-between">
+				<div class="gap-4 flex flex-col sm:flex-row">
+					<div class="rounded-xl bg-white bg-cover">
+						<img
+							src="/jumbotron.jpg"
+							alt="/jumbotron.jpg"
+							class="h-36 w-full sm:w-96 lg:h-full rounded-xl object-cover"
+						/>
+					</div>
 
-				<div class="space-y-4 place-self-center">
-					<h2 class="font-bold">{title}</h2>
-					<p class="text-sm text-gray-500 font-normal mt-auto">
-						{subtitle}
-					</p>
-					<Chip>4 Items</Chip><br />
+					<div class="space-y-4 place-self-center">
+						<h2 class="font-bold">{title}</h2>
+						<p class="text-sm text-gray-500 font-normal mt-auto">
+							{subtitle}
+						</p>
+						<Chip>4 Items</Chip><br />
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	{/snippet}
 
 	<div class="p-3 pb-5">
 		<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 bg-slate-800 p-4 rounded-xl shadow-sm">

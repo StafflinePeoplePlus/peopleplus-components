@@ -1,10 +1,12 @@
 <script lang="ts">
 	import { createSortableList, reorderList } from '$lib';
 
-	let items = Array.from({ length: 100 }).map((_, i) => ({
-		id: i.toString(),
-		name: `Item ${i + 1}`,
-	}));
+	let items = $state(
+		Array.from({ length: 100 }).map((_, i) => ({
+			id: i.toString(),
+			name: `Item ${i + 1}`,
+		})),
+	);
 	const sortable = createSortableList({
 		axis: 'x',
 		onReorder: (op) => (items = reorderList(items, (item) => item.id, op)),

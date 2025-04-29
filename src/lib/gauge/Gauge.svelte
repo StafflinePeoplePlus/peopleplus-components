@@ -2,24 +2,41 @@
 	import { actions, type UseActions } from '../actions';
 	import { twMerge } from 'tailwind-merge';
 
-	export let className: string | undefined = undefined;
-	export let use: UseActions = [];
-	export let value: number;
-	export let start: string;
-	export let end: string;
-	export let max: number = 100;
-	export let min: number = 0;
-	export let formatLabel = (value: number) => value.toString();
-	export let reverseGradient: boolean = false;
+	interface Props {
+		className?: string | undefined;
+		use?: UseActions;
+		value: number;
+		start: string;
+		end: string;
+		max?: number;
+		min?: number;
+		formatLabel?: (value: number) => string;
+		reverseGradient?: boolean;
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		[key: string]: any;
+	}
+
+	let {
+		className = undefined,
+		use = [],
+		value,
+		start,
+		end,
+		max = 100,
+		min = 0,
+		formatLabel = (value: number) => value.toString(),
+		reverseGradient = false,
+		...rest
+	}: Props = $props();
 
 	const gaugeAngle = 180;
 
-	$: normalizedValue = (value - min) / (max - min);
-	$: needleAngle = gaugeAngle * normalizedValue - gaugeAngle / 2;
+	let normalizedValue = $derived((value - min) / (max - min));
+	let needleAngle = $derived(gaugeAngle * normalizedValue - gaugeAngle / 2);
 </script>
 
 <div class={twMerge('h-52 w-52', className)}>
-	<svg use:actions={use} {...$$restProps} viewBox="0 0 100 100">
+	<svg use:actions={use} {...rest} viewBox="0 0 100 100">
 		<defs>
 			<linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
 				{#if reverseGradient}
@@ -61,7 +78,7 @@
 			x="50%"
 			y="52.5%"
 			font-size="135%"
-			class="bg-slate-900 place-self-center dark:fill-white"
+			class="place-self-center bg-slate-900 dark:fill-white"
 			text-anchor="middle"
 		>
 			{formatLabel ? formatLabel(value) : value}

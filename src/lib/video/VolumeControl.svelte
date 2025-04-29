@@ -4,8 +4,12 @@
 	import VolumeXIcon from 'lucide-svelte/icons/volume-x';
 	import VerticalRange from './VerticalRange.svelte';
 
-	export let volume = 1;
-	let restoreVolume = 1;
+	interface Props {
+		volume?: number;
+	}
+
+	let { volume = $bindable(1) }: Props = $props();
+	let restoreVolume = $state(1);
 </script>
 
 <div class="group/volume relative flex items-center justify-center">
@@ -20,7 +24,7 @@
 	</div>
 	<button
 		class="p-1"
-		on:pointerdown={(evt) => {
+		onpointerdown={(evt) => {
 			if (evt.pointerType === 'mouse' || document.activeElement === evt.currentTarget) {
 				if (volume > 0) {
 					restoreVolume = volume;

@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import type { createDisclosure } from 'svelte-headlessui';
 	import { getContext, onDestroy } from 'svelte';
 
@@ -19,13 +19,17 @@
 	import { setContext } from 'svelte';
 	import { actions, type UseActions } from '$lib/actions';
 
-	let className = '';
-	export { className as class };
-	/**
-	 * Only allow one accordion in the group to be open at a time
-	 */
-	export let exclusive = false;
-	export let use: UseActions = [];
+	interface Props {
+		class?: string;
+		/**
+		 * Only allow one accordion in the group to be open at a time
+		 */
+		exclusive?: boolean;
+		use?: UseActions;
+		children?: import('svelte').Snippet;
+	}
+
+	let { class: className = '', exclusive = false, use = [], children }: Props = $props();
 
 	setContext<AccordionGroupContext>(ctxKey, {
 		disclosures: [],
@@ -53,5 +57,5 @@
 </script>
 
 <div class={className} use:actions={use}>
-	<slot />
+	{@render children?.()}
 </div>

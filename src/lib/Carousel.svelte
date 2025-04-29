@@ -4,25 +4,30 @@
 	import { twMerge } from 'tailwind-merge';
 	import throttle from 'just-throttle';
 
-	let className = '';
-	export { className as class };
 	type Item = $$Generic;
-	export let items: Item[];
-	export let listClass = '';
-	export let itemClass = '';
+	interface Props {
+		class?: string;
+		items: Item[];
+		listClass?: string;
+		itemClass?: string;
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		children?: import('svelte').Snippet<[any]>;
+	}
+
+	let { class: className = '', items, listClass = '', itemClass = '', children }: Props = $props();
 
 	const DRAG_THRESHOLD = 10;
-	let containerEl: HTMLElement | undefined = undefined;
-	let dragging = false;
-	let mounted = false;
-	let movement = 0;
-	let x = 0;
-	let maxX = 0;
+	let containerEl: HTMLElement | undefined = $state(undefined);
+	let dragging = $state(false);
+	let mounted = $state(false);
+	let movement = $state(0);
+	let x = $state(0);
+	let maxX = $state(0);
 	let itemWidth = 0;
-	let totalVisisble = 0;
-	let visibleRange: [number, number] = [0, items.length - 1];
-	$: translation = BROWSER ? `translateX(-${x}px)` : undefined;
-	$: overflows = totalVisisble < items.length;
+	let totalVisisble = $state(0);
+	let visibleRange: [number, number] = $state([0, items.length - 1]);
+	let translation = $derived(BROWSER ? `translateX(-${x}px)` : undefined);
+	let overflows = $derived(totalVisisble < items.length);
 
 	function updateCachedValues(el: HTMLElement) {
 		const clientWidth = el.clientWidth;
@@ -107,7 +112,7 @@
 </script>
 
 <svelte:window
-	on:pointermove={(evt) => {
+	onpointermove={(evt) => {
 		if (!dragging) {
 			return;
 		}
@@ -115,9 +120,9 @@
 		movement += Math.abs(evt.movementX);
 		x = clamp(x - evt.movementX, 0, maxX);
 	}}
-	on:pointerup={stopDragging}
-	on:pointercancel={stopDragging}
-	on:resize={onResize}
+	onpointerup={stopDragging}
+	onpointercancel={stopDragging}
+	onresize={onResize}
 />
 
 <div class={twMerge('relative', className)}>
@@ -128,7 +133,7 @@
 			BROWSER ? 'overflow-x-hidden' : 'overflow-x-auto',
 			listClass,
 		)}
-		on:pointerdown={(evt) => {
+		onpointerdown={(evt) => {
 			if (evt.button != 0 || !overflows) {
 				return;
 			}
@@ -144,13 +149,13 @@
 				style:transform={translation}
 				aria-hidden={isInRange(visibleRange, index) ? 'false' : 'true'}
 				aria-label="Item {index + 1}"
-				on:click={(evt) => {
+				onclick={(evt) => {
 					if (evt.button === 0 && movement > DRAG_THRESHOLD) {
 						evt.preventDefault();
 					}
 				}}
 			>
-				<slot {item} {index} {dragging} />
+				{@render children?.({ item, index, dragging })}
 			</li>
 		{/each}
 	</ul>
@@ -161,7 +166,7 @@
 				type="button"
 				class="pointer-events-auto text-gray-300 drop-shadow-sm disabled:opacity-50"
 				disabled={visibleRange[0] === 0}
-				on:click={() => updateItemIndex((index) => index - 1)}
+				onclick={() => updateItemIndex((index) => index - 1)}
 			>
 				<span class="sr-only">Previous Item</span>
 				<svg
@@ -182,7 +187,7 @@
 				type="button"
 				class="pointer-events-auto text-gray-300 drop-shadow-sm disabled:opacity-50"
 				disabled={visibleRange[1] === items.length - 1}
-				on:click={() => updateItemIndex((index) => index + 1)}
+				onclick={() => updateItemIndex((index) => index + 1)}
 			>
 				<span class="sr-only">Next Item</span>
 				<svg

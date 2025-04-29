@@ -1,13 +1,12 @@
 <script lang="ts">
 	import { actions, type UseActions } from '$lib/actions';
+	import type { Snippet } from 'svelte';
 	import type { SvelteHTMLElements } from 'svelte/elements';
 	import { twMerge } from 'tailwind-merge';
 
-	type $$Props = SvelteHTMLElements['div'] & { use?: UseActions };
+	type Props = SvelteHTMLElements['div'] & { use?: UseActions; class?: string; children?: Snippet };
 
-	let className: $$Props['class'] = undefined;
-	export { className as class };
-	export let use: UseActions = [];
+	let { class: className = undefined, use = [], children, ...rest }: Props = $props();
 </script>
 
 <div
@@ -16,7 +15,7 @@
 		className,
 	)}
 	use:actions={use}
-	{...$$restProps}
+	{...rest}
 >
-	<slot />
+	{@render children?.()}
 </div>

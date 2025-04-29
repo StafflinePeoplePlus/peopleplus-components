@@ -4,10 +4,9 @@
 	import { getTableContext } from './context';
 	import { actions, type UseActions } from '$lib/actions';
 
-	type $$Props = SvelteHTMLElements['tr'] & { use?: UseActions };
-	let className: $$Props['class'] = undefined;
-	export { className as class };
-	export let use: UseActions = [];
+	type Props = SvelteHTMLElements['tr'] & { use?: UseActions; class?: string };
+
+	let { class: className = undefined, use = [], children, ...rest }: Props = $props();
 
 	const table = getTableContext();
 </script>
@@ -19,7 +18,7 @@
 		className,
 	)}
 	use:actions={use}
-	{...$$restProps}
+	{...rest}
 >
-	<slot />
+	{@render children?.()}
 </tr>

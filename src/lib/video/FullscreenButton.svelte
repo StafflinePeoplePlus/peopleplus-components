@@ -3,8 +3,12 @@
 	import MinimizeIcon from 'lucide-svelte/icons/minimize';
 	import { onMount } from 'svelte';
 
-	export let fullscreen = false;
-	export let element: HTMLElement | undefined;
+	interface Props {
+		fullscreen?: boolean;
+		element: HTMLElement | undefined;
+	}
+
+	let { fullscreen = $bindable(false), element }: Props = $props();
 
 	function toggleFullscreen() {
 		if (document.fullscreenElement) {
@@ -14,16 +18,16 @@
 		}
 	}
 
-	let supported = true;
+	let supported = $state(true);
 	onMount(() => {
 		supported = 'requestFullscreen' in document.body;
 	});
 </script>
 
-<svelte:window on:fullscreenchange={() => (fullscreen = !!document.fullscreenElement)} />
+<svelte:window onfullscreenchange={() => (fullscreen = !!document.fullscreenElement)} />
 
 {#if supported}
-	<button class="p-1" on:click={toggleFullscreen}>
+	<button class="p-1" onclick={toggleFullscreen}>
 		{#if fullscreen}
 			<MinimizeIcon aria-hidden="true" />
 			<span class="sr-only">Minimize player</span>

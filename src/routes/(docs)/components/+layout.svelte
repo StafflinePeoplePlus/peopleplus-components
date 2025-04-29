@@ -3,6 +3,11 @@
 	import { components } from './index';
 	import Copyright from '../Copyright.svelte';
 	import { Sidebar, SidebarItem } from '$lib';
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
+
+	let { children }: Props = $props();
 </script>
 
 <div class="flex grow flex-row overflow-hidden">
@@ -15,7 +20,9 @@
 		</ul>
 	</Sidebar>
 	<main class="h-full grow overflow-auto bg-gray-50 dark:bg-gray-900">
-		<div class="mx-auto max-w-(--breakpoint-xl) px-4 py-8 sm:px-8 md:px-12"><slot /></div>
+		<div class="mx-auto max-w-(--breakpoint-xl) px-4 py-8 sm:px-8 md:px-12">
+			{@render children?.()}
+		</div>
 		<Copyright />
 	</main>
 </div>

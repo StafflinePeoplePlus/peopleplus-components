@@ -1,13 +1,29 @@
 <script lang="ts">
+	import { createBubbler } from 'svelte/legacy';
+
+	const bubble = createBubbler();
 	import { actions, type UseActions } from '$lib/actions';
 	import { CheckIcon } from 'lucide-svelte';
 	import { twMerge } from 'tailwind-merge';
 
-	let className: string | null | undefined = undefined;
-	export { className as class };
-	export let checkClass: string | null | undefined = undefined;
-	export let selected = false;
-	export let use: UseActions = [];
+	interface Props {
+		class?: string | null | undefined;
+		checkClass?: string | null | undefined;
+		selected?: boolean;
+		use?: UseActions;
+		children?: import('svelte').Snippet;
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		[key: string]: any;
+	}
+
+	let {
+		class: className = undefined,
+		checkClass = undefined,
+		selected = false,
+		use = [],
+		children,
+		...rest
+	}: Props = $props();
 </script>
 
 <button
@@ -17,12 +33,12 @@
 	)}
 	aria-selected={selected ? 'true' : 'false'}
 	role="option"
-	{...$$restProps}
+	{...rest}
 	use:actions={use}
-	on:click
+	onclick={bubble('click')}
 	type="button"
 >
 	<CheckIcon size={16} class={twMerge('shrink-0', !selected && 'opacity-0', checkClass)} />
 
-	<slot />
+	{@render children?.()}
 </button>

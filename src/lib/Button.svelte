@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	const variants = {
 		primary:
 			'bg-primary-600 text-white shadow-xs hover:bg-primary-500 disabled:bg-primary-100 disabled:text-primary-300',
@@ -38,33 +38,38 @@
 </script>
 
 <script lang="ts">
+	import { createBubbler } from 'svelte/legacy';
+
+	const bubble = createBubbler();
 	import type { SvelteHTMLElements } from 'svelte/elements';
 	import { twMerge } from 'tailwind-merge';
 	import { actions, type UseActions } from './actions';
 
-	type Props = {
+	type PropsContent = {
 		class?: string;
 		variant?: keyof typeof variants;
 		use?: UseActions;
 		icon?: boolean;
 		shape?: keyof typeof shapes;
 		size?: ButtonSize;
+		href?: string;
+		children?: import('svelte').Snippet;
 	};
-	type $$Props =
-		| (Props & { href: string } & SvelteHTMLElements['a'])
-		| (Props & { href?: undefined } & SvelteHTMLElements['button']);
+	type Props =
+		| (PropsContent & { href: string } & SvelteHTMLElements['a'])
+		| (PropsContent & { href?: undefined } & SvelteHTMLElements['button']);
 
-	let className = '';
-	export { className as class };
-	export let href: string | undefined = undefined;
-	export let variant: $$Props['variant'] = undefined;
-	/**
-	 * Visual shape of the button, defaults to `rounded-sm`
-	 */
-	export let shape: $$Props['shape'] = undefined;
-	export let size: $$Props['size'] = undefined;
-	export let use: UseActions = [];
-	export let icon: $$Props['icon'] = false;
+	let {
+		class: className = '',
+		href = undefined,
+		variant = undefined,
+		shape = undefined,
+		size = undefined,
+		use = [],
+		icon = false,
+		children,
+		...rest
+	}: Props = $props();
 </script>
 
 <svelte:element
@@ -79,9 +84,9 @@
 		className,
 	)}
 	role={href ? 'link' : 'button'}
-	on:click
+	onclick={bubble('click')}
 	use:actions={use}
-	{...$$restProps}
+	{...rest}
 >
-	<slot />
+	{@render children?.()}
 </svelte:element>

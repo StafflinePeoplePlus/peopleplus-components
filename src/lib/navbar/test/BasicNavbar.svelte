@@ -6,14 +6,20 @@
 
 <div data-testid="navbar">
 	<NavBar>
-		<a data-testid="start" slot="start" href="https://peopleplus.co.uk"> PeoplePlus </a>
-		<input data-testid="middle" slot="middle" type="search" placeholder="Search" />
-		<div data-testid="end" slot="end">
-			<NavBarNav>
-				<NavItem href="/">Home</NavItem>
-				<NavItem href="/about">About</NavItem>
-				<NavItem href="/contact">Contact</NavItem>
-			</NavBarNav>
-		</div>
+		{#snippet start()}
+			<a data-testid="start" href="https://peopleplus.co.uk"> PeoplePlus </a>
+		{/snippet}
+		{#snippet middle()}
+			<input data-testid="middle" type="search" placeholder="Search" />
+		{/snippet}
+		{#snippet end()}
+			<div data-testid="end">
+				<NavBarNav>
+					<NavItem href="/">Home</NavItem>
+					<NavItem href="/about">About</NavItem>
+					<NavItem href="/contact">Contact</NavItem>
+				</NavBarNav>
+			</div>
+		{/snippet}
 	</NavBar>
 </div>

@@ -6,7 +6,7 @@
 	import type { CookieCategory } from './types';
 	import CookieConsentCategory from './CookieConsentCategory.svelte';
 	import { twMerge } from 'tailwind-merge';
-	import { defaultCookieStrings } from './i18n';
+	import { defaultCookieStrings, type CookieStrings } from './i18n';
 
 	const dispatch = createEventDispatcher<{
 		save: Record<string, boolean | undefined>;
@@ -14,15 +14,35 @@
 		reject: void;
 	}>();
 
-	let className: string | undefined = undefined;
-	export { className as class };
-	export let categories: CookieCategory[];
-	export let consent: Record<string, boolean | undefined> = {};
-	export let acceptAction: string | undefined = undefined;
-	export let rejectAction: string | undefined = undefined;
-	export let strings = defaultCookieStrings;
+	interface Props {
+		class?: string | undefined;
+		categories: CookieCategory[];
+		consent?: Record<string, boolean | undefined>;
+		acceptAction?: string | undefined;
+		rejectAction?: string | undefined;
 
-	let expanded = false;
+		save?: (consent: Record<string, boolean | undefined>) => void;
+		accept?: () => void;
+		reject?: () => void;
+
+		strings?: CookieStrings;
+		children?: import('svelte').Snippet;
+	}
+
+	let {
+		class: className = undefined,
+		categories,
+		consent = $bindable({}),
+		acceptAction = undefined,
+		rejectAction = undefined,
+		strings = defaultCookieStrings,
+		children,
+		save,
+		accept,
+		reject,
+	}: Props = $props();
+
+	let expanded = $state(false);
 </script>
 
 <section
@@ -47,7 +67,10 @@
 				type={acceptAction ? 'submit' : 'button'}
 				formaction={acceptAction}
 				class="md:w-56"
-				on:click={() => dispatch('accept')}
+				onclick={() => {
+					dispatch('accept');
+					accept?.();
+				}}
 			>
 				<span class="md:hidden">{strings.acceptAll}</span>
 				<span class="hidden md:inline">{strings.acceptAllCookies}</span>
@@ -55,7 +78,7 @@
 			<Button
 				class="md:w-56"
 				type="button"
-				on:click={() => (expanded = !expanded)}
+				onclick={() => (expanded = !expanded)}
 				aria-expanded={expanded ? 'true' : 'false'}
 				aria-controls="consent-content"
 			>
@@ -72,7 +95,7 @@
 	</div>
 	{#if expanded}
 		<div transition:slide class="max-w-prose" id="consent-content">
-			<slot />
+			{@render children?.()}
 
 			<div class="divide-y dark:divide-gray-700">
 				<div class="mb-8">
@@ -81,7 +104,10 @@
 							variant="secondary"
 							type={acceptAction ? 'submit' : 'button'}
 							formaction={acceptAction}
-							on:click={() => dispatch('accept')}
+							onclick={() => {
+								dispatch('accept');
+								accept?.();
+							}}
 						>
 							<span class="md:hidden">{strings.acceptAll}</span>
 							<span class="hidden md:inline">{strings.acceptAllCookies}</span>
@@ -90,7 +116,10 @@
 							variant="secondary"
 							type={rejectAction ? 'submit' : 'button'}
 							formaction={rejectAction}
-							on:click={() => dispatch('reject')}
+							onclick={() => {
+								dispatch('reject');
+								reject?.();
+							}}
 						>
 							<span class="md:hidden">{strings.rejectAll}</span>
 							<span class="hidden md:inline">{strings.rejectAllCookies}</span>
@@ -115,9 +144,10 @@
 					<Button
 						variant="primary"
 						type="submit"
-						on:click={() => {
+						onclick={() => {
 							expanded = false;
 							dispatch('save', consent);
+							save?.(consent);
 						}}
 					>
 						{strings.saveAndClose}
@@ -126,7 +156,7 @@
 						class="md:hidden"
 						variant="secondary"
 						type="button"
-						on:click={() => {
+						onclick={() => {
 							expanded = false;
 						}}
 					>

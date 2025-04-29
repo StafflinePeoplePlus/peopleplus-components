@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import debounce from 'just-debounce-it';
 	import PauseIcon from 'lucide-svelte/icons/pause';
 	import PlayIcon from 'lucide-svelte/icons/play';
@@ -7,18 +9,36 @@
 
 	const dispatchEvent = createEventDispatcher();
 
-	let className = '';
-	export { className as class };
-	export let element: HTMLElement | undefined = undefined;
-	export let playing = false;
-	export let forceControls = false;
-
-	let interacting = false;
-	$: showControls = !playing || interacting || forceControls;
-
-	$: if (!showControls) {
-		dispatchEvent('hideControls');
+	interface Props {
+		class?: string;
+		element?: HTMLElement | undefined;
+		playing?: boolean;
+		forceControls?: boolean;
+		children?: import('svelte').Snippet;
+		top?: import('svelte').Snippet;
+		bottom?: import('svelte').Snippet;
+		overlay?: import('svelte').Snippet;
 	}
+
+	let {
+		class: className = '',
+		element = $bindable(undefined),
+		playing = false,
+		forceControls = false,
+		children,
+		top,
+		bottom,
+		overlay,
+	}: Props = $props();
+
+	let interacting = $state(false);
+	let showControls = $derived(!playing || interacting || forceControls);
+
+	run(() => {
+		if (!showControls) {
+			dispatchEvent('hideControls');
+		}
+	});
 
 	const stopInteracting = debounce(() => {
 		interacting = false;
@@ -40,14 +60,14 @@
 		className,
 	)}
 	role="none"
-	on:pointermove={startInteracting}
-	on:mousedown={startInteracting}
-	on:mouseleave={() => (interacting = false)}
-	on:touchend={startInteracting}
+	onpointermove={startInteracting}
+	onmousedown={startInteracting}
+	onmouseleave={() => (interacting = false)}
+	ontouchend={startInteracting}
 >
 	<!-- Video element -->
 	<div class="pointer-events-none absolute inset-0 h-full w-full">
-		<slot />
+		{@render children?.()}
 	</div>
 
 	<!-- Controls overlay -->
@@ -59,7 +79,7 @@
 	>
 		<button
 			class="absolute inset-0 flex w-full cursor-default items-center justify-center"
-			on:click={() => (playing ? dispatchEvent('pause') : dispatchEvent('play'))}
+			onclick={() => (playing ? dispatchEvent('pause') : dispatchEvent('play'))}
 		>
 			<div class="cursor-pointer rounded-full bg-black/50 p-4 text-center">
 				{#if playing}
@@ -79,7 +99,7 @@
 				!showControls && '-translate-y-full',
 			)}
 		>
-			<slot name="top" />
+			{@render top?.()}
 		</div>
 
 		<!-- Bottom controls -->
@@ -89,11 +109,11 @@
 				!showControls && 'translate-y-full',
 			)}
 		>
-			<slot name="bottom" />
+			{@render bottom?.()}
 		</div>
 
 		<div class="pointer-events-none absolute inset-0">
-			<slot name="overlay" />
+			{@render overlay?.()}
 		</div>
 	</div>
 </div>

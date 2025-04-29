@@ -3,11 +3,9 @@
 	import type { SvelteHTMLElements } from 'svelte/elements';
 	import { twMerge } from 'tailwind-merge';
 
-	type $$Props = SvelteHTMLElements['section'] & { use?: UseActions };
+	type Props = SvelteHTMLElements['section'] & { use?: UseActions; class?: string };
 
-	let className: $$Props['class'] = undefined;
-	export { className as class };
-	export let use: UseActions = [];
+	let { class: className = undefined, use = [], children, ...rest }: Props = $props();
 </script>
 
 <section
@@ -16,7 +14,7 @@
 		className,
 	)}
 	use:actions={use}
-	{...$$restProps}
+	{...rest}
 >
-	<slot />
+	{@render children?.()}
 </section>

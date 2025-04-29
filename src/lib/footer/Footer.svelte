@@ -2,34 +2,56 @@
 	import { actions, type UseActions } from '$lib/actions';
 	import { twMerge } from 'tailwind-merge';
 
-	let className = '';
-	export { className as class };
-	export let startClass = '';
-	export let middleClass = '';
-	export let endClass = '';
-	export let bottomClass = '';
-	export let topClass = '';
-	export let use: UseActions = [];
+	interface Props {
+		class?: string;
+		startClass?: string;
+		middleClass?: string;
+		endClass?: string;
+		bottomClass?: string;
+		topClass?: string;
+		use?: UseActions;
+		start?: import('svelte').Snippet;
+		middle?: import('svelte').Snippet;
+		end?: import('svelte').Snippet;
+		bottom?: import('svelte').Snippet;
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		[key: string]: any;
+	}
+
+	let {
+		class: className = '',
+		startClass = '',
+		middleClass = '',
+		endClass = '',
+		bottomClass = '',
+		topClass = '',
+		use = [],
+		start,
+		middle,
+		end,
+		bottom,
+		...rest
+	}: Props = $props();
 </script>
 
 <footer
 	class={twMerge('bg-white p-2 text-sm dark:bg-gray-800 sm:p-10', className)}
 	use:actions={use}
-	{...$$restProps}
+	{...rest}
 >
-	<div class={twMerge('md:flex flex-row', topClass)}>
-		<div class={twMerge('md:basis-1/2 p-4', startClass)}>
-			<slot name="start" />
+	<div class={twMerge('flex-row md:flex', topClass)}>
+		<div class={twMerge('p-4 md:basis-1/2', startClass)}>
+			{@render start?.()}
 		</div>
-		<div class={twMerge('md:basis-1/3 p-4', middleClass)}>
-			<slot name="middle" />
+		<div class={twMerge('p-4 md:basis-1/3', middleClass)}>
+			{@render middle?.()}
 		</div>
-		<div class={twMerge('md:basis-1/4 p-4', endClass)}>
-			<slot name="end" />
+		<div class={twMerge('p-4 md:basis-1/4', endClass)}>
+			{@render end?.()}
 		</div>
 	</div>
 
 	<div class={twMerge('mt-4 border-t border-gray-100 pt-5 dark:border-gray-700', bottomClass)}>
-		<slot name="bottom" />
+		{@render bottom?.()}
 	</div>
 </footer>

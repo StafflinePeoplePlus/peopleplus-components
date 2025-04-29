@@ -3,11 +3,15 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 	import { actions, type UseActions } from '$lib/actions';
 
-	type $$Props = HTMLAttributes<HTMLDivElement> & { use?: UseActions };
+	type Props = HTMLAttributes<HTMLDivElement> & {
+		use?: UseActions;
+		class?: string;
+		start?: import('svelte').Snippet;
+		children?: import('svelte').Snippet;
+		end?: import('svelte').Snippet;
+	};
 
-	let className: $$Props['class'] = undefined;
-	export { className as class };
-	export let use: UseActions = [];
+	let { class: className = undefined, use = [], start, children, end, ...rest }: Props = $props();
 </script>
 
 <div
@@ -16,11 +20,11 @@
 		className,
 	)}
 	use:actions={use}
-	{...$$restProps}
+	{...rest}
 >
-	<slot name="start" />
-	<slot />
-	<slot name="end" />
+	{@render start?.()}
+	{@render children?.()}
+	{@render end?.()}
 </div>
 
 <style lang="postcss">
