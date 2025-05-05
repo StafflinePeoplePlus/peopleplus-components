@@ -85,7 +85,7 @@
 		"@vitest/ui": "^3.1.2",
 		"autoprefixer": "^10.4.14",
 		"dedent": "^1.0.1",
-		"eslint": "^8.44.0",
+		"eslint": "^9.26.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.45.1",
 		"jsdom": "^26.1.0",
