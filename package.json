@@ -58,7 +58,7 @@
 		"esm-env": "^1.0.0",
 		"just-debounce-it": "^3.2.0",
 		"just-throttle": "^4.2.0",
-		"lucide-svelte": "^0.503.0",
+		"lucide-svelte": "^0.546.0",
 		"svelte-headlessui": "^0.0.46",
 		"tailwind-merge": "^3.2.0"
 	},
@@ -95,7 +95,7 @@
 		"postcss": "^8.4.21",
 		"prettier": "~3.5.3",
 		"prettier-plugin-svelte": "~3.3.3",
-		"prettier-plugin-tailwindcss": "^0.6.11",
+		"prettier-plugin-tailwindcss": "^0.7.1",
 		"publint": "^0.3.1",
 		"shiki": "^1.1.2",
 		"svelte": "^5.0.0",
